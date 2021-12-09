@@ -1,6 +1,6 @@
 <?php
 
-class Tag implements Entity{
+class Tag {
     
     private $id;
     private $name;

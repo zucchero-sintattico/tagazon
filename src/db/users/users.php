@@ -1,36 +1,66 @@
 <?php
 
-class Category {
+class Users {
     
     private $id;
+    private $email;
+    private $password;
     private $name;
-    private $description;
+    private $surname;
 
-    public function __construct($id, $name, $description) {
+    public function __construct($id, $email, $password, $name, $surname) {
         $this->id = $id;
+        $this->email = $email;
+        $this->password = $password;
         $this->name = $name;
-        $this->description = $description;
+        $this->surname = $surname;
     }
 
+    // Getters
+    
     public function getId() {
         return $this->id;
     }
-    
+ 
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
     public function getName() {
         return $this->name;
     }
 
-    public function getDescription() {
-        return $this->description;
+    public function getSurname() {
+        return $this->surname;
+    }
+
+    // Setters
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
     }
 
     public function setName($name) {
         $this->name = $name;
     }
 
-    public function setDescription($description) {
-        $this->description = $description;
+    public function setSurname($surname) {
+        $this->surname = $surname;
     }
+
+    public function getFullName() {
+        return $this->name . ' ' . $this->surname;
+    }
+
+
 
     /**
      * ORM mapping
