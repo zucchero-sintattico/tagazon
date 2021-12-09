@@ -1,17 +1,15 @@
 <?php
 
-class Tag implements Entity{
+class Category implements Entity{
     
     private $id;
     private $name;
     private $description;
-    private $categories;
 
-    public function __construct($id, $name, $description, $categories) {
+    public function __construct($id, $name, $description) {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
-        $this->categories = $categories;
     }
 
     public function getId() {
@@ -26,20 +24,12 @@ class Tag implements Entity{
         return $this->description;
     }
 
-    public function getCategories() {
-        return $this->categories;
-    }
-
     public function setName($name) {
         $this->name = $name;
     }
 
     public function setDescription($description) {
         $this->description = $description;
-    }
-
-    public function setCategories($categories) {
-        $this->categories = $categories;
     }
 
     /**
@@ -58,16 +48,13 @@ class Tag implements Entity{
         throw new NotImplementedException();
     }
 
-    public static function create($name, $description, $categories){
+    public static function create($name, $description){
         throw new NotImplementedException();
     }
 
-    public static function update($id, $name, $description, $categories){
+    public static function update($id, $name, $description){
         throw new NotImplementedException();
     }
-
-
-
 
 }
 ?>
