@@ -1,16 +1,19 @@
 <?php
 
-interface Api {
+abstract class Api {
 
-    /**
-     * Handle GET requests.
-     */
-    public function onGet();
-    
-    /**
-     * Handle POST requests.
-     */
-    public function onPost();
+  
+    protected abstract function onGet();
+    protected abstract function onPost(); 
+
+    public function handle(){
+        if( $_SERVER['REQUEST_METHOD'] === 'GET' ) {
+            $this->onGet();
+        } else if( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+            $this->onPost();
+        }
+    }
+
 
 }
 
