@@ -14,6 +14,10 @@ abstract class Api {
         }
     }
 
+    public static function run($api){
+        $api->handle();
+    }
+
 
 }
 

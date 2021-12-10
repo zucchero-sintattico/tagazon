@@ -14,7 +14,6 @@ class IndexAPI extends AuthAPI {
     }
 }
 
-$api = new IndexAPI();
-$api->handle();
+API::run(new IndexAPI());
 
 ?>
