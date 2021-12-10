@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-10T18:28:23.430Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="JGLc0CdOw4XeO8O6eeA7" version="15.9.4" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2021-12-10T18:29:02.746Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="MwlrPtBir8LiUEEs5KXd" version="15.9.4" type="github" pages="2">
   <diagram id="4Y1K3DNxd5DyIAG-Gc0-" name="Page-1">
     <mxGraphModel dx="2139" dy="1347" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -16,7 +16,7 @@
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
         <mxCell id="kcLijUq_6ekm26uGNMYB-22" value="Category" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-          <mxGeometry x="-220" y="200" width="160" height="120" as="geometry">
+          <mxGeometry x="-230" y="200" width="160" height="120" as="geometry">
             <mxRectangle x="60" y="100" width="70" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -129,7 +129,7 @@
             <mxRectangle x="250" y="100" width="70" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ArocZj9esiuV0b4tvG5O-6" value="ID (PK)&#xa;amount" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="ArocZj9esiuV0b4tvG5O-5" vertex="1">
+        <mxCell id="ArocZj9esiuV0b4tvG5O-6" value="ID (PK)&#xa;quantity" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="ArocZj9esiuV0b4tvG5O-5" vertex="1">
           <mxGeometry y="30" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="ArocZj9esiuV0b4tvG5O-7" value="OrderTag" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
