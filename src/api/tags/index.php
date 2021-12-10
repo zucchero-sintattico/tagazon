@@ -25,12 +25,12 @@ class TagsAPI extends API {
         $id = $_GET['id'];
         $name = $_PATCH['name'];
         $description = $_PATCH['description'];
-        Tag::update($id, $name, $description);
+        Entity::update(Tag::class, [$id, ], $name, $description);
     }
 
     protected function onDelete(){
         if (isset($_GET['id'])) {
-            $res = Tag::delete($_GET['id']);
+            $res = Entity::delete(Tag::class, $_GET['id']);
             http_response_code($res ? 200 : 400);
             echo json_encode($res);
         }
