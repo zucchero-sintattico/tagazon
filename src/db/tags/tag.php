@@ -1,5 +1,7 @@
 <?php
 
+require "/tagazon/src/db/database.php";
+
 class Tag {
     
     private $id;
@@ -47,23 +49,41 @@ class Tag {
      */
 
     public static function all(){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "SELECT * FROM tags";
+        $result = $db->query($query);
+        $tags = [];
+        while($row = $result->fetch_assoc()){
+            $tags[] = new Tag($row['id'], $row['name'], $row['description'], $row['categories']);
+        }
+        return $tags;
+        
     }
 
     public static function find($id){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "SELECT * FROM tags WHERE id = $id";
+        $result = $db->query($query);
+        $row = $result->fetch_assoc();
+        return new Tag($row['id'], $row['name'], $row['description'], $row['categories']);
     }
 
     public static function delete($id){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "DELETE FROM tags WHERE id = $id";
+        $db->query($query);
     }
 
     public static function create($name, $description, $categories){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "INSERT INTO tags (name, description, categories) VALUES ('$name', '$description', '$categories')";
+        $db->query($query);
     }
 
     public static function update($id, $name, $description, $categories){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "UPDATE tags SET name = '$name', description = '$description', categories = '$categories' WHERE id = $id";
+        $db->query($query);
     }
 
 
