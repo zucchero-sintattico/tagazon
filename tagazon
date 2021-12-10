@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-12-10T18:28:08.889Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="ORN3rDp-eBwacfnVumPP" version="15.9.4" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2021-12-10T18:28:23.430Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36" etag="JGLc0CdOw4XeO8O6eeA7" version="15.9.4" type="github" pages="2">
   <diagram id="4Y1K3DNxd5DyIAG-Gc0-" name="Page-1">
     <mxGraphModel dx="2139" dy="1347" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -148,7 +148,7 @@
         <mxCell id="ArocZj9esiuV0b4tvG5O-10" value="ID (PK)&#xa;Timestamp&#xa;CardOwner&#xa;CardNumber&#xa;ExpireDate&#xa;CVV" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="ArocZj9esiuV0b4tvG5O-9" vertex="1">
           <mxGeometry y="30" width="150" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="ArocZj9esiuV0b4tvG5O-11" value="Notifica" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
+        <mxCell id="ArocZj9esiuV0b4tvG5O-11" value="Notification" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="890" y="150" width="160" height="120" as="geometry">
             <mxRectangle x="540" y="100" width="70" height="30" as="alternateBounds" />
           </mxGeometry>
