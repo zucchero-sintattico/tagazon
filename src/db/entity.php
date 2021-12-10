@@ -1,7 +1,5 @@
 <?php
 
-use function PHPSTORM_META\map;
-
 class Entity
 {
     private static function all($class)
