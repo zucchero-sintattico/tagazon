@@ -2,7 +2,7 @@
 
 require_once "api.php";
 
-abstract class AuthenticatedApi extends Api
+abstract class AuthAPI extends Api
 {
 
     private function checkAuth(){

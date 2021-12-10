@@ -1,9 +1,9 @@
 <?php
 
 require_once "api.php";
-require_once "authenticated-api.php";
+require_once "auth-api.php";
  
-class IndexAPI extends AuthenticatedApi {
+class IndexAPI extends AuthAPI {
      
     protected function onGet(){
         echo "Benvenuti nelle API di Tagazon";
