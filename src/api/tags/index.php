@@ -2,21 +2,21 @@
 
 require_once "../api.php";
 require_once "../../db/tags/tag.php";
-
+require_once "../../db/entity.php";
 class TagsAPI extends API {
 
     protected function onGet(){
         if (isset($_GET['id'])) {
-            echo json_encode(Tag::find($_GET['id']));
+            echo json_encode(Entity::find(Tag::class, $_GET['id']));
         } else {
-            echo json_encode(Tag::all());
+            echo json_encode(Entity::all(Tag::class));
         }
     }
 
     protected function onPost(){
         $name = $_POST['name'];
         $description = $_POST['description'];
-        $res = Tag::create($name, $description);
+        $res = Entity::create(Tag::class, null, $name, $description);
         echo $res;
     }
 
