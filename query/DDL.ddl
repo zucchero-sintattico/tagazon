@@ -26,3 +26,16 @@ CREATE TABLE IF NOT EXISTS `tagazon`.`tags` (
     `description` VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS `tagazon`.`categories` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `description` VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS `tagazon`.`tags_categories` (
+    `tag` INT NOT NULL,
+    `category` INT NOT NULL,
+    PRIMARY KEY (`tag`, `category`),
+    FOREIGN KEY (`tag`) REFERENCES `tags`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`category`) REFERENCES `categories`(`id`) ON DELETE CASCADE
+);

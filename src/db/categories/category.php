@@ -37,23 +37,37 @@ class Category {
      */
 
     public static function all(){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "SELECT * FROM categories";
+        $result = $db->query($query);
+        return $result->fetch_all(MYSQLI_ASSOC);  
     }
 
     public static function find($id){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "SELECT * FROM categories WHERE id = $id";
+        $result = $db->query($query);
+        $row = $result->fetch_assoc();
+        return $row;
     }
 
     public static function delete($id){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "DELETE FROM categories WHERE id = $id";
+        return $db->query($query);
     }
 
     public static function create($name, $description){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "INSERT INTO categories (name, description) VALUES ('$name', '$description')";
+        $db->query($query);
+        return $db->insert_id;
     }
 
     public static function update($id, $name, $description){
-        throw new NotImplementedException();
+        $db = Database::getInstance();
+        $query = "UPDATE categories SET name = '$name', description = '$description' WHERE id = $id";
+        return $db->query($query);
     }
 
 }
