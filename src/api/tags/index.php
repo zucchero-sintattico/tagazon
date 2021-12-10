@@ -37,6 +37,6 @@ class TagsAPI extends API {
     }
 }
 
-API::run(new TagsAPI());
-
+$api = new API(Tag::class);
+$api->handle();
 ?>

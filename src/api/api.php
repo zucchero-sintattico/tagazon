@@ -38,28 +38,116 @@ function parse_raw_http_request(array &$a_data)
     $a_data[$matches[1]] = $matches[2];
   }        
 }
-abstract class Api {
+class Api {
+
+    private $class;
+
+    public function __construct($class) {
+        $this->class = $class;
+    }
 
     /**
      * Get the elements.
      * Possible find on specified id.
      */
-    protected abstract function onGet();
+    protected function onGet(){
+        
+        $idSet = true;
+        $ids = [];
+        foreach($this->class::primary_keys as $key => $value){
+          if(!isset($_GET[$key])){
+            $idSet = false;
+          }else{
+            array_push($ids, $_GET[$key]);
+          }
+        }
+
+        if ($idSet) {
+            echo json_encode(Entity::find($this->class, ...$ids));
+        } else {
+            echo json_encode(Entity::all($this->class));
+        }
+    }
 
     /**
      * Create a new element.
      */
-    protected abstract function onPost();
+    protected function onPost(){
+		
+        $idSet = true;
+        $ids = [];
+		$params = [];
+        foreach($this->class::primary_keys as $key => $value){
+			if(!isset($_GET[$key])){
+				$idSet = false;
+			}else{
+				array_push($ids, $_GET[$key]);
+			}
+        }
+		foreach($this->class::fields as $key => $value){
+			if(isset($_POST[$key])){
+			  array_push($params, $_POST[$key]);
+			}
+		}
+
+        $res = Entity::create($this->class, null, ...$params);
+        echo $res;
+	}
 
     /**
      * Update an element.
      */
-    protected abstract function onPatch();
+    protected function onPatch(){
+
+		$_PATCH = $this->getPatchData();
+
+        $idSet = true;
+        $ids = [];
+		$params = [];
+        foreach($this->class::primary_keys as $key => $value){
+			if(!isset($_GET[$key])){
+				$idSet = false;
+			}else{
+				array_push($ids, $_GET[$key]);
+			}
+        }
+		foreach($this->class::fields as $key => $value){
+			if(isset($_PATCH[$key])){
+			  array_push($params, $_PATCH[$key]);
+			}
+		}
+
+        echo Entity::update($this->class, $ids, ...$params);
+	}
 
     /**
      * Delete an element.
      */
-    protected abstract function onDelete();
+    protected function onDelete(){
+
+        $idSet = true;
+        $ids = [];
+		$params = [];
+        foreach($this->class::primary_keys as $key => $value){
+			if(!isset($_GET[$key])){
+				$idSet = false;
+			}else{
+				array_push($ids, $_GET[$key]);
+			}
+        }
+		foreach($this->class::fields as $key => $value){
+			if(isset($_POST[$key])){
+			  array_push($params, $_POST[$key]);
+			}
+		}        
+		
+		if ($idSet) {
+            $res = Entity::delete($this->class, ...$ids);
+            http_response_code($res ? 200 : 400);
+            echo json_encode($res);
+        }
+
+	}
 
     /**
      * Get the PATCH request data.
