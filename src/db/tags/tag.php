@@ -1,9 +1,8 @@
 <?php
 
-require "/tagazon/src/db/database.php";
 
 class Tag {
-    
+
     private $id;
     private $name;
     private $description;
@@ -44,6 +43,18 @@ class Tag {
         $this->categories = $categories;
     }
 
+    public function toJson(){
+        return json_encode($this);
+    }
+
+    public function fromJson($json){
+        $data = json_decode($json);
+        $this->id = $data->id;
+        $this->name = $data->name;
+        $this->description = $data->description;
+        $this->categories = $data->categories;
+    }
+
     /**
      * ORM mapping
      */
@@ -52,12 +63,7 @@ class Tag {
         $db = Database::getInstance();
         $query = "SELECT * FROM tags";
         $result = $db->query($query);
-        $tags = [];
-        while($row = $result->fetch_assoc()){
-            $tags[] = new Tag($row['id'], $row['name'], $row['description'], $row['categories']);
-        }
-        return $tags;
-        
+        return $result->fetch_all(MYSQLI_ASSOC);   
     }
 
     public static function find($id){
@@ -65,7 +71,7 @@ class Tag {
         $query = "SELECT * FROM tags WHERE id = $id";
         $result = $db->query($query);
         $row = $result->fetch_assoc();
-        return new Tag($row['id'], $row['name'], $row['description'], $row['categories']);
+        return $row;
     }
 
     public static function delete($id){
