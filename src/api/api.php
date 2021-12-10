@@ -52,11 +52,7 @@ class Api
 	 */
 	protected function onGet()
 	{
-		if (isset($_GET['id'])) {
-			echo json_encode(Entity::find($this->class, $_GET['id']));
-		} else {
-			echo json_encode(Entity::all($this->class));
-		}
+		echo json_encode(Entity::find($this->class, $_GET));
 	}
 
 	/**

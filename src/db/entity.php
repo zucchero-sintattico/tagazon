@@ -1,8 +1,10 @@
 <?php
 
+use function PHPSTORM_META\map;
+
 class Entity
 {
-    public static function all($class)
+    private static function all($class)
     {
         $tableName = $class::tableName;
         $db = Database::getInstance();
@@ -11,17 +13,38 @@ class Entity
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public static function find($class, $id)
+    public static function find($class, $params)
     {
         $tableName = $class::tableName;
         $db = Database::getInstance();
-        $query = "SELECT * FROM $tableName WHERE id = ?";
+        
+        $keys = [];
+        $bind = [];
+        if (isset($params['id'])){
+            array_push($keys, 'id');
+            array_push($bind, 'i');
+        }
+
+        foreach($class::fields as $field => $type) {
+            if (isset($params[$field])) {
+                array_push($keys, $field);
+                array_push($bind, $type);
+            }
+        }
+
+        if (count($keys) == 0) {
+            return Entity::all($class);
+        }
+        
+        $where = join(' = ? AND ', $keys) . ' = ?';
+        $bind = join('', $bind);
+        
+        $query = "SELECT * FROM $tableName WHERE $where";
         $stmt = $db->prepare($query);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param($bind, ...array_values($params));
         $stmt->execute();
         $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        return $row;
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public static function create($class, ...$params)
