@@ -33,9 +33,10 @@ CREATE TABLE IF NOT EXISTS `tagazon`.`categories` (
 );
 
 CREATE TABLE IF NOT EXISTS `tagazon`.`tags_categories` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `tag` INT NOT NULL,
     `category` INT NOT NULL,
-    PRIMARY KEY (`tag`, `category`),
+    UNIQUE (`tag`, `category`),
     FOREIGN KEY (`tag`) REFERENCES `tags`(`id`) ON DELETE CASCADE,
     FOREIGN KEY (`category`) REFERENCES `categories`(`id`) ON DELETE CASCADE
 );
