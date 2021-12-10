@@ -77,19 +77,20 @@ class Tag {
     public static function delete($id){
         $db = Database::getInstance();
         $query = "DELETE FROM tags WHERE id = $id";
-        $db->query($query);
+        return $db->query($query);
     }
 
-    public static function create($name, $description, $categories){
+    public static function create($name, $description){
         $db = Database::getInstance();
-        $query = "INSERT INTO tags (name, description, categories) VALUES ('$name', '$description', '$categories')";
+        $query = "INSERT INTO tags (name, description) VALUES ('$name', '$description')";
         $db->query($query);
+        return $db->insert_id;
     }
 
-    public static function update($id, $name, $description, $categories){
+    public static function update($id, $name, $description){
         $db = Database::getInstance();
-        $query = "UPDATE tags SET name = '$name', description = '$description', categories = '$categories' WHERE id = $id";
-        $db->query($query);
+        $query = "UPDATE tags SET name = '$name', description = '$description' WHERE id = $id";
+        return $db->query($query);
     }
 
 

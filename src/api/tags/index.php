@@ -6,7 +6,6 @@ require_once "../../db/tags/tag.php";
 class TagsAPI extends API {
 
     protected function onGet(){
-        // check if parameter id is set
         if (isset($_GET['id'])) {
             echo json_encode(Tag::find($_GET['id']));
         } else {
@@ -15,16 +14,25 @@ class TagsAPI extends API {
     }
 
     protected function onPost(){
-        
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $res = Tag::create($name, $description);
+        echo $res;
     }
 
     protected function onPatch(){
-
+        $_PATCH = $this->getPatchData();
+        $id = $_GET['id'];
+        $name = $_PATCH['name'];
+        $description = $_PATCH['description'];
+        Tag::update($id, $name, $description);
     }
 
     protected function onDelete(){
-        if (isset($_GET['tagId'])) {
-            echo (Tag::delete($_GET['tagId']));
+        if (isset($_GET['id'])) {
+            $res = Tag::delete($_GET['id']);
+            http_response_code($res ? 200 : 400);
+            echo json_encode($res);
         }
     }
 }
