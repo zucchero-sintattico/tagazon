@@ -10,6 +10,5 @@ $api = AuthAPI::builder(TagCategory::class)
     ->delete(AuthAPI::SELLER)
     ->build();
 
-$api->handle();
-
+Api::run($api);
 ?>

@@ -10,6 +10,6 @@ $api = AuthAPI::builder(Wishlist::class)
     ->delete(AuthAPI::BUYER)
     ->build();
 
-$api->handle();
+Api::run($api);
 
 ?>

@@ -9,7 +9,7 @@ $api = AuthAPI::builder(Order::class)
     ->patch(AuthAPI::SERVER)
     ->delete(AuthAPI::SERVER)
     ->build();
-
-$api->handle();
+    
+Api::run($api);
 
 ?>

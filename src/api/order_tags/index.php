@@ -12,6 +12,6 @@ $api = AuthAPI::builder(OrderTag::class)
     ->delete(AuthAPI::SERVER)
     ->build();
     
-$api->handle();
+Api::run($api);
 
 ?>

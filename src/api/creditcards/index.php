@@ -10,6 +10,6 @@ $api = AuthAPI::builder(CreditCard::class)
     ->delete(AuthAPI::BUYER)
     ->build();
 
-$api->handle();
+Api::run($api);
 
 ?>

@@ -53,7 +53,9 @@ class Api
 	 */
 	protected function onGet()
 	{
-		echo json_encode(Entity::find($this->class, $_GET));
+		$res = Entity::find($this->class, $_GET);
+		http_response_code(count($res) == 0 && count(array_keys($_GET)) > 0 ? 404 : 200);
+		return $res;
 	}
 
 	/**
@@ -69,7 +71,8 @@ class Api
 		}
 
 		$res = Entity::create($this->class, ...$params);
-		echo $res;
+		http_response_code($res != 0 ? 201 : 500);
+		return $res;
 	}
 
 	/**
@@ -85,7 +88,9 @@ class Api
 					array_push($params, $_PATCH[$key]);
 				}
 			}
-			echo Entity::update($this->class, $_GET['id'], ...$params);
+			$res = Entity::update($this->class, $_GET['id'], ...$params);
+			http_response_code($res ? 200 : 500);
+			return $res;
 		}	
 	}
 
@@ -101,8 +106,8 @@ class Api
 				}
 			}
 			$res = Entity::delete($this->class, $_GET['id']);
-			http_response_code($res ? 200 : 400);
-			echo json_encode($res);
+			http_response_code($res ? 200 : 500);
+			return $res;
 		}
 
 	}
@@ -121,19 +126,32 @@ class Api
 	public function handle()
 	{
 		header('Content-Type: application/json');
-		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-			$this->onGet();
-		} else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$this->onPost();
-		} else if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-			$this->onPatch();
-		} else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-			$this->onDelete();
+
+		$response = null;
+		switch($_SERVER['REQUEST_METHOD']){
+			case 'GET':
+				$response = $this->onGet();
+				break;
+			case 'POST':
+				$response = $this->onPost();
+				break;
+			case 'PATCH':
+				$response = $this->onPost();
+				break;
+			case 'DELETE':
+				$response = $this->onDelete();
+				break;
+			default:
+				http_response_code(405);
+				$response = "Method Not Allowed";
+				break;
 		}
+
+		return json_encode($response);
 	}
 
 	public static function run($api)
 	{
-		$api->handle();
+		echo $api->handle();
 	}
 }

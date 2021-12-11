@@ -9,7 +9,7 @@ $api = AuthAPI::builder(ShoppingCartTag::class)
     ->patch(AuthAPI::BUYER)
     ->delete(AuthAPI::BUYER)
     ->build();
-
-$api->handle();
+    
+Api::run($api);
 
 ?>

@@ -10,6 +10,6 @@ $api = AuthAPI::builder(Notification::class)
     ->delete(AuthAPI::SERVER)
     ->build();
 
-$api->handle();
+Api::run($api);
 
 ?>

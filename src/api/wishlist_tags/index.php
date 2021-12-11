@@ -11,6 +11,6 @@ $api = AuthAPI::builder(WishlistTag::class)
     ->delete(AuthAPI::BUYER)
     ->build();
 
-$api->handle();
+Api::run($api);
 
 ?>

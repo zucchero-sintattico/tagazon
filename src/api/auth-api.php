@@ -103,15 +103,22 @@ class AuthAPI extends Api
         }
     }
 
-    public function handle(){
-        if ($this->checkAuth()){
-            parent::handle();
-        }else{
-            echo "Unauthorized";
-        }
+    private function filterOnAuthentication($jsonElements){
+        //TODO: implements
+        return $jsonElements;
     }
 
+    public function handle(){
+        
+        if ($this->checkAuth()){
+            $result = parent::handle();
+            return $this->filterOnAuthentication($result);
+        }else{
+            http_response_code(401);
+            return json_encode("Unauthorized");
+        }
 
+    }
 
     public static function builder($class){
         return new AuthAPIBuilder($class);

@@ -5,11 +5,11 @@ require_once "../../db/tables.php";
 
 $api = AuthAPI::builder(Tag::class)
     ->get(AuthAPI::OPEN)
-    ->post(AuthAPI::SELLER)
+    ->post(AuthAPI::OPEN)
     ->patch(AuthAPI::SELLER)
     ->delete(AuthAPI::SELLER)
     ->build();
 
-$api->handle();
+Api::run($api);
 
 ?>
