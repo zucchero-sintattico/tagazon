@@ -26,7 +26,7 @@ class Tag {
 }
 
 class TagCategory {
-    const tableName = 'tags_categories';
+    const tableName = 'tag_categories';
     const fields = ['tag' => 'i', 'category' => 'i'];
 }
 
