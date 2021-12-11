@@ -2,6 +2,7 @@
 
 require_once(__DIR__ . "/../db/database.php");
 require_once(__DIR__ . "/../db/entity.php");
+require_once(__DIR__ . "/auth-api.php");
 
 function parse_raw_http_request(array &$a_data)
 {

@@ -2,6 +2,43 @@
 
 require_once "api.php";
 
+class AuthAPIBuilder{
+
+    private $class;
+    private $getAuth = AuthAPI::UNAUTHENTICATED;
+    private $postAuth = AuthAPI::UNAUTHENTICATED;
+    private $patchAuth = AuthAPI::UNAUTHENTICATED;
+    private $deleteAuth = AuthAPI::UNAUTHENTICATED;
+
+    public function __construct($class){
+        $this->class = $class;
+    }
+
+    public function get($auth){
+        $this->getAuth = $auth;
+        return $this;
+    }
+
+    public function post($auth){
+        $this->postAuth = $auth;
+        return $this;
+    }
+
+    public function patch($auth){
+        $this->patchAuth = $auth;
+        return $this;
+    }
+
+    public function delete($auth){
+        $this->deleteAuth = $auth;
+        return $this;
+    }
+
+    public function build(){
+        return new AuthAPI($this->class, $this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
+    }
+
+}
 class AuthAPI extends Api
 {
     const UNAUTHENTICATED = 1;
@@ -23,10 +60,10 @@ class AuthAPI extends Api
     }
 
     private function checkAuthenticated(){
-
+        return true;
     }
     private function checkAdmin(){
-
+        return false;
     }
 
     private function _checkAuth($auth){
@@ -63,6 +100,12 @@ class AuthAPI extends Api
         }else{
             echo "Unauthorized";
         }
+    }
+
+
+
+    public static function builder($class){
+        return new AuthAPIBuilder($class);
     }
 
 
