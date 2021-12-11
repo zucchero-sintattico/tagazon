@@ -5,10 +5,10 @@ require_once "api.php";
 class AuthAPIBuilder{
 
     private $class;
-    private $getAuth = AuthAPI::UNAUTHENTICATED;
-    private $postAuth = AuthAPI::UNAUTHENTICATED;
-    private $patchAuth = AuthAPI::UNAUTHENTICATED;
-    private $deleteAuth = AuthAPI::UNAUTHENTICATED;
+    private $getAuth = AuthAPI::OPEN;
+    private $postAuth = AuthAPI::OPEN;
+    private $patchAuth = AuthAPI::OPEN;
+    private $deleteAuth = AuthAPI::OPEN;
 
     public function __construct($class){
         $this->class = $class;
