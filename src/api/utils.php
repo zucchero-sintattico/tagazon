@@ -32,4 +32,15 @@ function parse_raw_http_request(array &$a_data)
 		$a_data[$matches[1]] = $matches[2];
 	}
 }
+
+function doGet($url){
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+	$data = curl_exec($ch);
+	curl_close($ch);
+	return $data;
+
+}
 ?>

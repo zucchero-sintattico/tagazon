@@ -5,6 +5,7 @@ class Api {
 		http_response_code(405);
 		return "Method Not Allowed";
 	}
+	
 	protected function onGet(){
 		return $this->_methodNotAllowed();
 	}
