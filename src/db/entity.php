@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/database.php');
+
 class Entity
 {
     private static function all($class)

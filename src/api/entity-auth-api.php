@@ -1,14 +1,14 @@
 <?php
 
-require_once "api.php";
+require_once "entity-api.php";
 
-class AuthAPIBuilder{
+class EntityAuthApiBuilder{
 
     private $class;
-    private $getAuth = AuthAPI::OPEN;
-    private $postAuth = AuthAPI::OPEN;
-    private $patchAuth = AuthAPI::OPEN;
-    private $deleteAuth = AuthAPI::OPEN;
+    private $getAuth = EntityAuthApi::OPEN;
+    private $postAuth = EntityAuthApi::OPEN;
+    private $patchAuth = EntityAuthApi::OPEN;
+    private $deleteAuth = EntityAuthApi::OPEN;
 
     public function __construct($class){
         $this->class = $class;
@@ -35,11 +35,12 @@ class AuthAPIBuilder{
     }
 
     public function build(){
-        return new AuthAPI($this->class, $this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
+        return new EntityAuthApi($this->class, $this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
     }
 
 }
-class AuthAPI extends Api
+
+class EntityAuthApi extends EntityApi
 {
     const OPEN = 1;
     const BUYER = 2;
@@ -52,7 +53,7 @@ class AuthAPI extends Api
     private $patchAuth;
     private $deleteAuth;
 
-    public function __construct($class, $getAuth=AuthAPI::BUYER, $postAuth=AuthAPI::BUYER, $patchAuth=AuthAPI::BUYER, $deleteAuth=AuthAPI::BUYER)
+    public function __construct($class, $getAuth=EntityAuthApi::BUYER, $postAuth=EntityAuthApi::BUYER, $patchAuth=EntityAuthApi::BUYER, $deleteAuth=EntityAuthApi::BUYER)
     {
         parent::__construct($class);
         $this->getAuth = $getAuth;
@@ -75,13 +76,13 @@ class AuthAPI extends Api
 
     private function _checkAuth($auth){
         switch($auth){
-            case AuthAPI::OPEN:
+            case EntityAuthApi::OPEN:
                 return true;
-            case AuthAPI::BUYER:
+            case EntityAuthApi::BUYER:
                 return $this->checkBuyer() || $this->checkServer();
-            case AuthAPI::SELLER:
+            case EntityAuthApi::SELLER:
                 return $this->checkSeller() || $this->checkServer();
-            case AuthAPI::SERVER:
+            case EntityAuthApi::SERVER:
                 return $this->checkServer();
             }
 
@@ -121,7 +122,7 @@ class AuthAPI extends Api
     }
 
     public static function builder($class){
-        return new AuthAPIBuilder($class);
+        return new EntityAuthApiBuilder($class);
     }
 
 
