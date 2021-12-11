@@ -41,16 +41,18 @@ class AuthAPIBuilder{
 }
 class AuthAPI extends Api
 {
-    const UNAUTHENTICATED = 1;
-    const AUTHENTICATED = 2;
-    const ADMIN = 3;
+    const OPEN = 1;
+    const BUYER = 2;
+    const SELLER = 3;
+    const SERVER = 4;
+    
 
     private $getAuth;
     private $postAuth;
     private $patchAuth;
     private $deleteAuth;
 
-    public function __construct($class, $getAuth=AuthAPI::AUTHENTICATED, $postAuth=AuthAPI::AUTHENTICATED, $patchAuth=AuthAPI::AUTHENTICATED, $deleteAuth=AuthAPI::AUTHENTICATED)
+    public function __construct($class, $getAuth=AuthAPI::BUYER, $postAuth=AuthAPI::BUYER, $patchAuth=AuthAPI::BUYER, $deleteAuth=AuthAPI::BUYER)
     {
         parent::__construct($class);
         $this->getAuth = $getAuth;
@@ -59,21 +61,28 @@ class AuthAPI extends Api
         $this->deleteAuth = $deleteAuth;
     }
 
-    private function checkAuthenticated(){
+    private function checkBuyer(){
         return true;
     }
-    private function checkAdmin(){
+
+    private function checkSeller(){
+        return false;
+    }
+
+    private function checkServer(){
         return false;
     }
 
     private function _checkAuth($auth){
         switch($auth){
-            case AuthAPI::UNAUTHENTICATED:
+            case AuthAPI::OPEN:
                 return true;
-            case AuthAPI::AUTHENTICATED:
-                return $this->checkAuthenticated();
-            case AuthAPI::ADMIN:
-                return $this->checkAdmin();
+            case AuthAPI::BUYER:
+                return $this->checkBuyer() || $this->checkServer();
+            case AuthAPI::SELLER:
+                return $this->checkSeller() || $this->checkServer();
+            case AuthAPI::SERVER:
+                return $this->checkServer();
             }
 
     }

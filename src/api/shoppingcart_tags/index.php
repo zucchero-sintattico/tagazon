@@ -3,7 +3,13 @@
 require_once "../api.php";
 require_once "../../db/tables.php";
 
-$api = new API(ShoppingCartTag::class);
+$api = AuthAPI::builder(ShoppingCartTag::class)
+    ->get(AuthAPI::BUYER)
+    ->post(AuthAPI::BUYER)
+    ->patch(AuthAPI::BUYER)
+    ->delete(AuthAPI::BUYER)
+    ->build();
+
 $api->handle();
 
 ?>
