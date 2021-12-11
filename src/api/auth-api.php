@@ -13,8 +13,9 @@ class AuthAPI extends Api
     private $patchAuth;
     private $deleteAuth;
 
-    public function __construct($getAuth=AuthAPI::AUTHENTICATED, $postAuth=AuthAPI::AUTHENTICATED, $patchAuth=AuthAPI::AUTHENTICATED, $deleteAuth=AuthAPI::AUTHENTICATED)
+    public function __construct($class, $getAuth=AuthAPI::AUTHENTICATED, $postAuth=AuthAPI::AUTHENTICATED, $patchAuth=AuthAPI::AUTHENTICATED, $deleteAuth=AuthAPI::AUTHENTICATED)
     {
+        parent::__construct($class);
         $this->getAuth = $getAuth;
         $this->postAuth = $postAuth;
         $this->patchAuth = $patchAuth;
