@@ -1,10 +1,22 @@
 <?php
-abstract class Api {
+class Api {
 	
-	protected abstract function onGet();
-	protected abstract function onPost();
-	protected abstract function onPatch();
-	protected abstract function onDelete();
+	private function _methodNotAllowed(){
+		http_response_code(405);
+		return "Method Not Allowed";
+	}
+	protected function onGet(){
+		return $this->_methodNotAllowed();
+	}
+	protected function onPost(){
+		return $this->_methodNotAllowed();
+	}
+	protected function onPatch(){
+		return $this->_methodNotAllowed();
+	}
+	protected function onDelete(){
+		return $this->_methodNotAllowed();
+	}
 	
 	public function handle()
 	{

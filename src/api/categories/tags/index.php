@@ -8,6 +8,7 @@ class CategoriesTag extends Api {
     // implement methods
     protected function onGet(){
         $category_id = $_GET["category_id"];
+
         $tag_cat = json_decode(file_get_contents("http://localhost/tagazon/src/api/tag_categories/?category=$category_id"));
         $tags_id = array_map(function($tc){
             return $tc->tag;
@@ -17,20 +18,7 @@ class CategoriesTag extends Api {
             return json_decode(file_get_contents("http://localhost/tagazon/src/api/tags/?id=$tag_id"))[0];
         }, $tags_id);
         return $tags;
-        
     }
-
-    protected function onPost(){
-
-    }
-
-    protected function onPatch(){
-
-    }
-
-    protected function onDelete(){
-
-    }   
     
 }
 
