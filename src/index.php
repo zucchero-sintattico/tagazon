@@ -15,6 +15,9 @@
     </form>
 <?php else: ?>
     <h1><?php echo $_SESSION["email"] . " -- " . $_SESSION["type"]?></h1>
+    <form action="/tagazon/src/api/users/logout/" method="post">
+        <input type="submit" value="Logout">
+    </form>
 <?php endif; ?>
 
     
