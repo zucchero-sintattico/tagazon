@@ -1,4 +1,24 @@
 <?php
+
+function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+       $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+
 function parse_raw_http_request(array &$a_data)
 {
 	// read incoming data
@@ -33,6 +53,16 @@ function parse_raw_http_request(array &$a_data)
 	}
 }
 
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
 function doGet($url){
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
@@ -53,5 +83,27 @@ function doPost($url, $data, $headers = []){
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
 	$result = curl_exec($ch);
 	return $result;
+}
+
+function doPatch($url, $data){
+	$curl = curl_init($url);
+	curl_setopt($curl, CURLOPT_URL, $url);
+	curl_setopt($curl, CURLOPT_PUT, true);
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+	$headers = array(
+	"Content-Type: application/json",
+	"Accept: application/json",
+	);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+	//for debug only!
+	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+	$resp = curl_exec($curl);
+	curl_close($curl);
+	return $resp;
 }
 ?>

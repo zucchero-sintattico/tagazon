@@ -82,8 +82,8 @@ class Entity
     {
         $tableName = $class::tableName;
 
-        $set =  join('=?, ', array_keys($class::fields)) . '=? ';
-        $bind = join('', array_values($class::fields)) . 'i';
+        $set =  join('=?, ', array_keys($params::fields)) . '=? ';
+        $bind = join('', array_values($params::fields)) . 'i';
         array_push($params, $id);
 
         $db = Database::getInstance();

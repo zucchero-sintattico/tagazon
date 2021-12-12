@@ -31,8 +31,8 @@ class Api {
 			case 'POST':
 				$response = $this->onPost();
 				break;
-			case 'PATCH':
-				$response = $this->onPost();
+			case 'PUT':
+				$response = $this->onPatch();
 				break;
 			case 'DELETE':
 				$response = $this->onDelete();

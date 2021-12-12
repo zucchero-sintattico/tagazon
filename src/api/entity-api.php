@@ -47,8 +47,10 @@ class EntityApi extends Api
 	 */
 	protected function onPatch()
 	{
+		//return $_REQUEST;
 		if (isset($_GET['id'])) {
-			$_PATCH = $this->getPatchData();
+			$_PATCH = $_POST; // $this->getPatchData();
+			return $_PATCH;
 			$params = [];
 			foreach ($this->class::fields as $key => $value) {
 				if (isset($_PATCH[$key])) {
@@ -56,6 +58,8 @@ class EntityApi extends Api
 				}
 			}
 			$res = Entity::update($this->class, $_GET['id'], ...$params);
+
+			return $res;
 			http_response_code($res ? 200 : 500);
 			return $res;
 		}

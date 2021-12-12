@@ -6,8 +6,8 @@ require_once "../../db/tables.php";
 $api = EntityAuthApi::builder(Tag::class)
     ->get(EntityAuthApi::OPEN)
     ->post(EntityAuthApi::OPEN)
-    ->patch(EntityAuthApi::SELLER)
-    ->delete(EntityAuthApi::SELLER)
+    ->patch(EntityAuthApi::SERVER)
+    ->delete(EntityAuthApi::SERVER)
     ->build();
 
 Api::run($api);

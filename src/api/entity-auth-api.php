@@ -67,11 +67,14 @@ class EntityAuthApi extends EntityApi
     }
 
     private function checkSeller(){
-        return false;
+        return true;
     }
 
+
     private function checkServer(){
-        return false;
+        return true;
+        $whitelist = array('127.0.0.1', "::1");
+        return in_array(get_client_ip(), $whitelist);
     }
 
     private function _checkAuth($auth){
@@ -85,7 +88,6 @@ class EntityAuthApi extends EntityApi
             case EntityAuthApi::SERVER:
                 return $this->checkServer();
             }
-
     }
 
     private function checkAuth(){
@@ -95,7 +97,7 @@ class EntityAuthApi extends EntityApi
                 return $this->_checkAuth($this->getAuth);
             case 'POST':
                 return $this->_checkAuth($this->postAuth);
-            case 'PATCH':
+            case 'PUT':
                 return $this->_checkAuth($this->patchAuth);
             case 'DELETE':
                 return $this->_checkAuth($this->deleteAuth);
