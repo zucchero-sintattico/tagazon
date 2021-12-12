@@ -16,7 +16,9 @@ CREATE TABLE IF NOT EXISTS `tagazon`.`sellers` (
     `password` VARCHAR(255) NOT NULL,
     `rag_soc` VARCHAR(255) NOT NULL,
     `piva` VARCHAR(255) NOT NULL,
-    UNIQUE(`email`)
+    UNIQUE(`email`),
+    UNIQUE(`piva`),
+    UNIQUE(`rag_soc`)
 );
 
 CREATE TABLE IF NOT EXISTS `tagazon`.`buyers` (

@@ -43,12 +43,13 @@ function doGet($url){
 	return $data;
 }
 
-function doPost($url, $data){
+function doPost($url, $data, $headers = []){
 	$data_string = http_build_query($data);
 	$ch = curl_init();
 	curl_setopt($ch,CURLOPT_URL, $url);
 	curl_setopt($ch,CURLOPT_POST, true);
 	curl_setopt($ch,CURLOPT_POSTFIELDS, $data_string);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
 	$result = curl_exec($ch);
 	return $result;

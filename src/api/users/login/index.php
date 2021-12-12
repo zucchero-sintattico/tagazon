@@ -16,6 +16,9 @@ class LoginApi extends Api {
         $sellers = json_decode(doGet("http://localhost/tagazon/src/api/sellers/?email=$email"));
         $buyers = json_decode(doGet("http://localhost/tagazon/src/api/buyers/?email=$email"));
 
+        echo "SELLERS = " . json_encode($sellers) . " ";
+        echo "BUYERS = " . json_encode($buyers) . " ";
+
         $user = null;
         $type = null;
         if (count($sellers) > 0) {
@@ -32,6 +35,13 @@ class LoginApi extends Api {
         if (password_verify($password, $user->password)) {
             $_SESSION["email"] = $user->email;
             $_SESSION["type"] = $type;
+            if ($type == "buyer"){
+                $_SESSION["name"] = $user->name;
+                $_SESSION["surname"] = $user->surname;
+            } else {
+                $_SESSION["rag_soc"] = $user->rag_soc;
+                $_SESSION["piva"] = $user->piva;
+            }
             http_response_code(200);
             return true;
         } else {
@@ -42,7 +52,6 @@ class LoginApi extends Api {
     }
     
 }
-
 
 Api::run(new LoginApi());
 

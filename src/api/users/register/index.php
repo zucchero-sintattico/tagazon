@@ -20,22 +20,34 @@ class RegisterApi extends Api {
             return "Email already exists";
         }
 
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         
+        $res = null;
         if (isset($_POST["piva"])){
             $rag_soc = $_POST["rag_soc"];
             $piva = $_POST["piva"];
-            $res = doPost("http://localhost/tagazon/src/api/sellers/", array("email" => $email, "password" => $password, "rag_soc" => $rag_soc, "piva" => $piva));
-            http_response_code($res > 0 ? 201 : 400);
-            return $res > 0;
+            $res = doPost("http://localhost/tagazon/src/api/sellers/", array("email" => $email, "password" => $hashed_password, "rag_soc" => $rag_soc, "piva" => $piva));
+            if ($res > 0){
+                $_SESSION["type"] = "seller";
+                $_SESSION["email"] = $email;
+                $_SESSION["rag_soc"] = $rag_soc;
+                $_SESSION["piva"] = $piva;
+            }
         } else {
             $name = $_POST["name"];
             $surname = $_POST["surname"];
-            $res = doPost("http://localhost/tagazon/src/api/buyers/", array("email" => $email, "password" => $password, "name" => $name, "surname" => $surname));
-            http_response_code($res > 0 ? 201 : 400);
-            return $res > 0;
+            $res = doPost("http://localhost/tagazon/src/api/buyers/", array("email" => $email, "password" => $hashed_password, "name" => $name, "surname" => $surname));
+            if ($res > 0){
+                $_SESSION["type"] = "seller";
+                $_SESSION["email"] = $email;
+                $_SESSION["name"] = $name;
+                $_SESSION["surname"] = $surname;
+            }
         }
-        
+
+        http_response_code($res > 0 ? 200 : 400);
+        return $res > 0;
+
     }
     
 }
