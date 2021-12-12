@@ -104,8 +104,8 @@ class EntityAuthApi extends EntityApi
         }
     }
 
-    private function filterOnAuthentication($jsonElements){
-        //TODO: implements
+    public function filterOnAuthentication($jsonElements){
+
         return $jsonElements;
     }
 

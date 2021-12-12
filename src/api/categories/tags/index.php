@@ -25,3 +25,5 @@ class CategoriesTag extends Api {
 
 
 Api::run(new CategoriesTag());
+
+?>

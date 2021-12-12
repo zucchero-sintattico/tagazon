@@ -47,6 +47,7 @@ class Api {
 	}
 
 	public static function run($api){
+        session_start();
 		echo $api->handle();
 	}
 }
