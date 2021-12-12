@@ -28,6 +28,7 @@ class RegisterApi extends Api {
             $piva = $_POST["piva"];
             $res = doPost("http://localhost/tagazon/src/api/sellers/", array("email" => $email, "password" => $hashed_password, "rag_soc" => $rag_soc, "piva" => $piva));
             if ($res > 0){
+                $_SESSION["user_id"] = $res;
                 $_SESSION["type"] = "seller";
                 $_SESSION["email"] = $email;
                 $_SESSION["rag_soc"] = $rag_soc;
@@ -38,6 +39,7 @@ class RegisterApi extends Api {
             $surname = $_POST["surname"];
             $res = doPost("http://localhost/tagazon/src/api/buyers/", array("email" => $email, "password" => $hashed_password, "name" => $name, "surname" => $surname));
             if ($res > 0){
+                $_SESSION["user_id"] = $res;
                 $_SESSION["type"] = "seller";
                 $_SESSION["email"] = $email;
                 $_SESSION["name"] = $name;
