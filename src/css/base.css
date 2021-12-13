@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: AlfaSlabOne;
+}
+
+body {
+    --primary-color: #9AC1D9;
+    --secondary-color: #7AA5BF;
+    --text-color: #1A3540;
+}

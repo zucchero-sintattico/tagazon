@@ -1,21 +1,10 @@
+@import 'base.css';
+
 @font-face {
     font-family: AlfaSlabOne;
     src: url('/src/res/AlfaSlabOne-Regular.ttf');
 }
 
-* {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: AlfaSlabOne;
-}
-
-body {
-    --primary-color: #9AC1D9;
-    --secondary-color: #7AA5BF;
-    --text-color: #1A3540;
-}
 
 h1 {
     margin-top: 2.5em;
