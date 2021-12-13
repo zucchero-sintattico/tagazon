@@ -1,0 +1,146 @@
+@font-face {
+    font-family: AlfaSlabOne;
+    src: url('/src/res/AlfaSlabOne-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: AlfaSlabOne;
+}
+
+body {
+    --primary-color: #9AC1D9;
+    --secondary-color: #7AA5BF;
+    --text-color: #1A3540;
+}
+
+h1 {
+    margin-top: 2.5em;
+    text-align: center;
+    font-family: AlfaSlabOne;
+    color: white;
+    font-size: 3em;
+    letter-spacing: -0.06em;
+    -webkit-text-stroke: 0.06em var(--primary-color);
+}
+
+
+main > form {
+    margin: 50px 5%;
+    width: 90%;
+    text-align: right;
+}
+
+main > form > fieldset > label {
+    /* hidden, but visible for screen readers */
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+main > form > fieldset > input {
+    margin-top: 1em;
+    padding: 0.8em 0;
+    width: 100%;
+    
+    font-size: 1em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+
+    /* for left image */
+    background-repeat: no-repeat;
+    background-size: 3.5em;
+    background-position: left;
+    
+    border: 2px solid var(--primary-color);
+    border-radius: 0.6em;
+    
+    -webkit-appearance: none; /* for iphone box-shadow in form */
+    box-shadow: 0 0.25em 0.25em #bbb;
+}
+
+main > form > fieldset > input[type=email] {
+    /* TODO */
+    background-image: url('');
+}
+
+main > form > fieldset > input[type=password] {
+    /* TODO */
+    background-image: url('');
+}
+
+main > form > a:first-of-type {
+    display: block;
+    width: fit-content;
+    margin-top: 0.3em;
+    margin-left: auto;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: right;
+}
+
+main > form > a:not(:first-of-type) {
+    display: inline-block;
+    width: 40%;
+    padding: 10px 0;
+    margin: 2em 5%;
+
+    color: var(--primary-color);
+    font-size: 1em;
+    text-decoration: none;
+    text-align: center;
+
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    border-radius: 0.8em;
+}
+
+
+main > form > a:not(:first-of-type):hover {
+    color: white;
+    background-color: var(--primary-color);
+}
+
+main > form > input {
+    display: inline-block;
+    width: 40%;
+    padding: 10px 0;
+    margin: 2em 5%;
+    
+    color: white;
+    font-size: 1em;
+    text-align: center;
+
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 0.8em;
+
+    -webkit-appearance: none; /* for iphone box-shadow in form */
+    box-shadow: 0 0.25em 0.25em #999;
+    cursor: pointer;
+}
+
+main > form > input:hover {
+    color: var(--primary-color);
+    background-color: white;
+}
+
+@media screen and (min-width: 768px) {
+    main > form {
+        width: 60%;
+        margin: 50px 20%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    main > form {
+        width: 40%;
+        margin: 50px 30%;
+    }
+}
