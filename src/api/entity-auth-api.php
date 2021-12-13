@@ -97,7 +97,7 @@ class EntityAuthApi extends EntityApi
                 return $this->_checkAuth($this->getAuth);
             case 'POST':
                 return $this->_checkAuth($this->postAuth);
-            case 'PUT':
+            case 'PATCH':
                 return $this->_checkAuth($this->patchAuth);
             case 'DELETE':
                 return $this->_checkAuth($this->deleteAuth);

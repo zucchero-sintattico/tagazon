@@ -52,6 +52,7 @@ class Api {
 		header('Content-Type: application/json');
 		http_response_code($this->responseCode);
 		echo json_encode(array(
+			"code" => $this->responseCode,
 			"message" => $this->responseMessage,
 			"data" => $this->responseData
 		));

@@ -46,8 +46,11 @@ class EntityApi extends Api
 	{
 		$params = $this->filterParams($this->class, $params);
 		$res = Entity::create($this->class, $params);
-		$this->setResponseCode($res ? 201 : 400);
-		$this->setResponseMessage($res ? "Created" : "Bad request");
+		$this->setResponseCode($res > 0 ? 201 : 400);
+		$this->setResponseMessage($res > 0 ? "Created" : "Bad request");
+		$this->setResponseData([
+			"id" => $res
+		]);
 	}
 
 	/**

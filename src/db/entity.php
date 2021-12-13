@@ -61,7 +61,7 @@ class Entity
         $stmt = $db->prepare($query);
         $stmt->bind_param($bind, ...$bind_param);
         $stmt->execute();
-        return $db->insert_id > 0;
+        return $db->insert_id;
     }
 
     public static function delete($class, $id)
