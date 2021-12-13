@@ -7,11 +7,18 @@ require_once "../../../db/entity.php";
 
 class LoginApi extends Api {
 
+
     // implement methods
     public function onPost($params){
 
         $email = $params["email"];
         $password = $params["password"];
+
+        if (!$email || !$password) {
+            $this->setResponseCode(400);
+            $this->setResponseMessage("Email and password are required");
+            return;
+        }
 
         $sellers = Entity::find(Seller::class, ["email" => $email]);
         $buyers = Entity::find(Buyer::class, ["email" => $email]);
@@ -29,6 +36,7 @@ class LoginApi extends Api {
             $this->setResponseMessage("User not found");
             return;
         }
+        $user = (object) $user;
 
         if (password_verify($password, $user->password)) {
             $_SESSION["email"] = $user->email;

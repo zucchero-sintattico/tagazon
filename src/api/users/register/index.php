@@ -40,11 +40,25 @@ class RegisterApi extends Api {
         }
 
         $res = Entity::create($type == "seller" ? Seller::class : Buyer::class, $user);
-        $this->setResponseCode($res > 0 ? 201 : 400);
-        $this->setResponseMessage($res > 0 ? "User created" : "Error creating user");
-        $this->setResponseData([
-            "id" => $res
-        ]);
+        if($res > 0){
+            $res2 = Entity::create(ShoppingCart::class, [
+                "buyer" => $res
+            ]);
+            if($res2 > 0){            
+                $this->setResponseCode(200);
+                $this->setResponseMessage("User created");
+                $this->setResponseData([
+                    "id" => $res
+                ]);
+            } else {
+                $this->setResponseCode(400);
+                $this->setResponseMessage("Error creating shopping cart");
+            }
+        } else {
+            $this->setResponseCode(400);
+            $this->setResponseMessage("Error creating user");
+        }
+        
     }
     
 }
