@@ -22,7 +22,7 @@ class CreditCard {
 
 class Tag {
     const tableName = 'tags';
-    const fields = ['name' => 's', 'description' => 's'];
+    const fields = ['name' => 's', 'description' => 's', 'seller' => 'i', 'price' => 'f', 'sale_price' => 'f', 'image' => 's'];
 }
 
 class TagCategory {

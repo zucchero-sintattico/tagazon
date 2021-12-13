@@ -7,7 +7,12 @@ CREATE DATABASE IF NOT EXISTS `tagazon`;
 CREATE TABLE IF NOT EXISTS `tagazon`.`tags` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
-    `description` VARCHAR(255) NOT NULL
+    `description` VARCHAR(255) NOT NULL,
+    'seller' INT NOT NULL,
+    'price' FLOAT NOT NULL,
+    'sale_price' FLOAT NOT NULL,
+    'image' VARCHAR(255) NOT NULL,
+    FOREIGN KEY (`seller`) REFERENCES `sellers`(`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `tagazon`.`sellers` (
