@@ -82,28 +82,19 @@ function doPost($url, $data, $headers = []){
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER, true); 
 	$result = curl_exec($ch);
+	curl_close($ch);
 	return $result;
 }
 
-function doPatch($url, $data){
-	$curl = curl_init($url);
-	curl_setopt($curl, CURLOPT_URL, $url);
-	curl_setopt($curl, CURLOPT_PUT, true);
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-	$headers = array(
-	"Content-Type: application/json",
-	"Accept: application/json",
-	);
-	curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-
-	//for debug only!
-	curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-	curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-
-	$resp = curl_exec($curl);
-	curl_close($curl);
-	return $resp;
+function doPatch($url, $data)
+{
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+    $response = curl_exec($curl);
+    curl_close($curl);
+    return $response;
 }
 ?>

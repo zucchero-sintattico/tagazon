@@ -78,18 +78,24 @@ class Entity
         return $stmt->execute();
     }
 
-    public static function update($class, $id, ...$params)
+    public static function update($class, $id, $params)
     {
         $tableName = $class::tableName;
 
-        $set =  join('=?, ', array_keys($params::fields)) . '=? ';
-        $bind = join('', array_values($params::fields)) . 'i';
-        array_push($params, $id);
+        $set =  join('=?, ', array_keys($params)) . '=? ';
+        $bind = [];
+        $bind_param = [];
+        foreach($params as $paramkey => $paramvalue) {
+            array_push($bind, $class::fields[$paramkey]);
+            array_push($bind_param, $paramvalue);
+        }
+        $bind = join('', $bind) . 'i';
+        array_push($bind_param, $id);
 
         $db = Database::getInstance();
         $query = "UPDATE $tableName SET $set WHERE id = ?";
         $stmt = $db->prepare($query);
-        $stmt->bind_param($bind, ...$params);
+        $stmt->bind_param($bind, ...$bind_param);
         return $stmt->execute();
     }
 }

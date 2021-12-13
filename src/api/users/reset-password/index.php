@@ -3,7 +3,7 @@
 require_once "../../api.php";
 require_once "../../utils.php";
 require_once "../../../db/tables.php";
-
+require_once "../../../db/entity.php";
 
 class ResetPasswordApi extends Api {
 
@@ -20,17 +20,19 @@ class ResetPasswordApi extends Api {
             $password = generateRandomString(8);
             $seller->password = password_hash($password, PASSWORD_DEFAULT);
             doPatch("http://localhost/tagazon/src/api/sellers/?id=" . $seller->id, $seller);
-            mail($seller->email, "Password reset", "Your new password is: " . $seller->password);
+            //mail($seller->email, "Password reset", "Your new password is: " . $seller->password);
             http_response_code(200);
             return true;
         } else if (count($buyers) > 0) {
             $buyer = $buyers[0];
             $password = generateRandomString(8);
             $buyer->password = password_hash($password, PASSWORD_DEFAULT);
-            $res = json_decode(doPatch("http://localhost/tagazon/src/api/buyers/?id=" . $buyer->id, $buyer));
-            //mail($buyer->email, "Password reset", "Your new password is: " . $buyer->password);
+            $id = $buyer->id;
+            unset($buyer->id);
+            $res = Entity::update(Buyer::class, $id, (array) $buyer);
+            mail($buyer->email, "Password reset", "Your new password is: " . $buyer->password);
             http_response_code(200);
-            return $res;
+            return $password;
         } else {
             http_response_code(404);
             return "No user found with that email";
