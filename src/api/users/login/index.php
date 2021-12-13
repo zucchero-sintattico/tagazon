@@ -3,21 +3,18 @@
 require_once "../../api.php";
 require_once "../../utils.php";
 require_once "../../../db/tables.php";
-
+require_once "../../../db/entity.php";
 
 class LoginApi extends Api {
 
     // implement methods
-    protected function onPost(){
+    public function onPost($params){
 
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        $email = $params["email"];
+        $password = $params["password"];
 
-        $sellers = json_decode(doGet("http://localhost/tagazon/src/api/sellers/?email=$email"));
-        $buyers = json_decode(doGet("http://localhost/tagazon/src/api/buyers/?email=$email"));
-
-        echo "SELLERS = " . json_encode($sellers) . " ";
-        echo "BUYERS = " . json_encode($buyers) . " ";
+        $sellers = Entity::find(Seller::class, ["email" => $email]);
+        $buyers = Entity::find(Buyer::class, ["email" => $email]);
 
         $user = null;
         $type = null;
@@ -28,8 +25,9 @@ class LoginApi extends Api {
             $user = $buyers[0];
             $type = "buyer";
         } else {
-            http_response_code(404);
-            return "No user found with email $email";
+            $this->setResponseCode(404);
+            $this->setResponseMessage("User not found");
+            return;
         }
 
         if (password_verify($password, $user->password)) {
@@ -42,16 +40,17 @@ class LoginApi extends Api {
                 $_SESSION["rag_soc"] = $user->rag_soc;
                 $_SESSION["piva"] = $user->piva;
             }
-            http_response_code(200);
-            return true;
+            $this->setResponseCode(200);
+            $this->setResponseMessage("Login successful");
         } else {
-            http_response_code(401);
-            return "Wrong password";
+            $this->setResponseCode(401);
+            $this->setResponseMessage("Wrong password");
         }
         
     }
     
 }
+
 
 Api::run(new LoginApi());
 

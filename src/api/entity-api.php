@@ -14,81 +14,74 @@ class EntityApi extends Api
 		$this->class = $class;
 	}
 
+	private function filterParams($class, $params)
+	{
+		$filtered = [];
+		foreach ($params as $key => $value) {
+			if (isset($class::fields[$key]) || $key == 'id') {
+				$filtered[$key] = $value;
+			}
+		}
+		return $filtered;
+	}
+
+
 	/**
 	 * Get the elements.
 	 * Possible find on specified id.
 	 */
-	protected function onGet()
+	public function onGet($params)
 	{
-		$res = Entity::find($this->class, $_GET);
-		http_response_code(count($res) == 0 && count(array_keys($_GET)) > 0 ? 404 : 200);
-		return $res;
+		$params = $this->filterParams($this->class, $params);
+		$res = Entity::find($this->class, $params);
+		$this->setResponseCode(count($res) == 0 && count(array_keys($params)) > 0 ? 404 : 200);
+		$this->setResponseMessage(count($res) == 0 && count(array_keys($params)) > 0 ? "Not found" : "OK");
+		$this->setResponseData($res);
 	}
 
 	/**
 	 * Create a new element.
 	 */
-	protected function onPost()
+	public function onPost($params)
 	{
-		$params = [];
-		foreach ($this->class::fields as $key => $value) {
-			if (isset($_POST[$key])) {
-				array_push($params, $_POST[$key]);
-			}
-		}
-
-		$res = Entity::create($this->class, ...$params);
-		http_response_code($res != 0 ? 201 : 500);
-		return $res;
+		$params = $this->filterParams($this->class, $params);
+		$res = Entity::create($this->class, $params);
+		$this->setResponseCode($res ? 201 : 400);
+		$this->setResponseMessage($res ? "Created" : "Bad request");
 	}
 
 	/**
 	 * Update an element.
 	 */
-	protected function onPatch()
+	public function onPatch($params)
 	{
-		if (isset($_GET['id'])) {
-			$_PATCH = $this->getPatchData();
-			$params = [];
-			foreach ($this->class::fields as $key => $value) {
-				if (isset($_PATCH[$key])) {
-					$params[$key] = $_PATCH[$key];
-				}
-			}
-			$res = Entity::update($this->class, $_GET['id'], $params);
-
-			return $res;
-			http_response_code($res ? 200 : 500);
-			return $res;
+		if (!isset($params['id'])) {
+			$this->setResponseCode(400);
+			$this->setResponseMessage("Missing id");
+			return;
 		}
+
+		$params = $this->filterParams($this->class, $params);
+		$res = Entity::update($this->class, $params);
+		$this->setResponseCode($res ? 200 : 400);
+		$this->setResponseMessage($res ? "Updated" : "Bad request");
 	}
 
 	/**
 	 * Delete an element.
 	 */
-	protected function onDelete()
+	public function onDelete($params)
 	{
-		if (isset($_GET['id'])) {
-			foreach ($this->class::fields as $key => $value) {
-				if (isset($_POST[$key])) {
-					array_push($params, $_POST[$key]);
-				}
-			}
-			$res = Entity::delete($this->class, $_GET['id']);
-			http_response_code($res ? 200 : 500);
-			return $res;
+		if (!isset($params['id'])) {
+			$this->setResponseCode(400);
+			$this->setResponseMessage("Missing id");
+			return;
 		}
+
+		$res = Entity::delete($this->class, $params['id']);
+		$this->setResponseCode($res ? 200 : 404);
+		$this->setResponseMessage($res ? "Deleted" : "Not found");
 	}
 
-	/**
-	 * Get the PATCH request data.
-	 */
-	protected function getPatchData()
-	{
-		$_PATCH = [];
-		parse_str(file_get_contents('php://input'), $_PATCH);
-		parse_raw_http_request($_PATCH);
-		return $_PATCH;
-	}
 
 }

@@ -8,7 +8,7 @@ require_once "../../../db/tables.php";
 class LogoutApi extends Api {
 
     // implement methods
-    protected function onPost(){
+    public function onPost($params){
         if (isset($_SESSION["email"])){
             unset($_SESSION["email"]);
             if ($_SESSION["type"] == "buyer"){
@@ -19,9 +19,12 @@ class LogoutApi extends Api {
                 unset($_SESSION["piva"]);
             }
             unset($_SESSION["type"]);
-            return true;
+            $this->setResponseCode(200);
+            $this->setResponseMessage("Logout effettuato con successo");
+        } else {
+            $this->setResponseCode(400);
+            $this->setResponseMessage("Non sei loggato");
         }
-        return false;
     }
     
 }

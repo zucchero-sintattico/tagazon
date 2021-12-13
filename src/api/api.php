@@ -1,54 +1,88 @@
 <?php
 class Api {
 	
+	private $responseCode;
+	private $responseMessage = "";
+	private $responseData = [];
+
 	private function _methodNotAllowed(){
-		http_response_code(405);
-		return "Method Not Allowed";
+		$this->setResponseCode(405);
+		$this->setResponseMessage('Method Not Allowed');
+		$this->setResponseData(null);
 	}
 	
-	protected function onGet(){
-		return $this->_methodNotAllowed();
+	public function onGet($params){
+		$this->_methodNotAllowed();
 	}
-	protected function onPost(){
-		return $this->_methodNotAllowed();
+	public function onPost($params){
+		$this->_methodNotAllowed();
 	}
-	protected function onPatch(){
-		return $this->_methodNotAllowed();
+	public function onPatch($params){
+		$this->_methodNotAllowed();
 	}
-	protected function onDelete(){
-		return $this->_methodNotAllowed();
+	public function onDelete($params){
+		$this->_methodNotAllowed();
+	}
+
+	public function setResponseCode($code){
+		$this->responseCode = $code;
+	}
+
+	public function setResponseMessage($message){
+		$this->responseMessage = $message;
+	}
+
+	public function setResponseData($data, $json = false){
+		$this->responseData = $json ? json_encode($data) : $data;
+	}
+	
+
+	/**
+	 * Get the PATCH request data.
+	 */
+	private function getRequestData()
+	{
+		$data = [];
+		parse_str(file_get_contents('php://input'), $data);
+		parse_raw_http_request($data);
+		return $data;
+	}
+
+	public function sendResponse(){
+		header('Content-Type: application/json');
+		http_response_code($this->responseCode);
+		echo json_encode(array(
+			"message" => $this->responseMessage,
+			"data" => $this->responseData
+		));
 	}
 	
 	public function handle()
 	{
-		header('Content-Type: application/json');
-
-		$response = null;
 		switch ($_SERVER['REQUEST_METHOD']) {
 			case 'GET':
-				$response = $this->onGet();
+				$this->onGet($_GET);
 				break;
 			case 'POST':
-				$response = $this->onPost();
+				$this->onPost($_POST);
 				break;
-			case 'PUT':
-				$response = $this->onPatch();
+			case 'PATCH':
+				$this->onPatch($this->getRequestData());
 				break;
 			case 'DELETE':
-				$response = $this->onDelete();
+				$this->onDelete($_GET);
 				break;
 			default:
-				http_response_code(405);
-				$response = "Method Not Allowed";
+				$this->_methodNotAllowed();
 				break;
 		}
 
-		return json_encode($response);
+		$this->sendResponse();
 	}
 
 	public static function run($api){
         session_start();
-		echo $api->handle();
+		$api->handle();
 	}
 }
 ?>
