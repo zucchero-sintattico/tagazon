@@ -27,9 +27,7 @@ class ResetPasswordApi extends Api {
             $buyer = $buyers[0];
             $password = generateRandomString(8);
             $buyer->password = password_hash($password, PASSWORD_DEFAULT);
-            $id = $buyer->id;
-            unset($buyer->id);
-            $res = Entity::update(Buyer::class, $id, (array) $buyer);
+            $res = Entity::update(Buyer::class, $buyer->id, (array) $buyer);
             mail($buyer->email, "Password reset", "Your new password is: " . $buyer->password);
             http_response_code(200);
             return $password;

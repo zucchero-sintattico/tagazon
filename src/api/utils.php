@@ -97,4 +97,5 @@ function doPatch($url, $data)
     curl_close($curl);
     return $response;
 }
+
 ?>

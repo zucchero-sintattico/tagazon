@@ -81,13 +81,20 @@ class Entity
     public static function update($class, $id, $params)
     {
         $tableName = $class::tableName;
-
-        $set =  join('=?, ', array_keys($params)) . '=? ';
+        $filteredParams = [];
+        foreach($params as $key => $value) {
+            if (isset($class::fields[$key])) {
+                $filteredParams[$key] = $value;
+            }
+        }
+        $set =  join('=?, ', array_keys($filteredParams)) . '=? ';
         $bind = [];
         $bind_param = [];
-        foreach($params as $paramkey => $paramvalue) {
-            array_push($bind, $class::fields[$paramkey]);
-            array_push($bind_param, $paramvalue);
+        foreach($filteredParams as $paramkey => $paramvalue) {
+            if (isset($class::fields[$paramkey])) {
+                array_push($bind, $class::fields[$paramkey]);
+                array_push($bind_param, $paramvalue);
+            }
         }
         $bind = join('', $bind) . 'i';
         array_push($bind_param, $id);
