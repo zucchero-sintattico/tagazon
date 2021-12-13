@@ -1,9 +1,13 @@
+@font-face {
+    font-family: AlfaSlabOne;
+    src: url('/src/res/AlfaSlabOne-Regular.ttf');
+}
+
 * {
     margin: 0;
     border: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: AlfaSlabOne;
 }
 
 body {
