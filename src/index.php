@@ -29,6 +29,7 @@
     <input id="logout" type="submit" value="Logout">
 <?php endif; ?>
 
+<div id="container"></div>
 <script>
 
     function login(email, password, success=()=>{}, error=()=>{}) {
@@ -104,6 +105,16 @@
         );   
     });
     
+    $(() => {
+        $.ajax({
+                url: '/tagazon/src/api/tags/',
+                success: (response) => {
+                    response.data.forEach(element => {
+                        $("#container").append(`<p>${element.name}</p>`);
+                    });
+                }
+            });
+    })
 
 
 
