@@ -29,16 +29,20 @@ abstract class Entity
         $bind_params = [];
         foreach ($params as $key => $value) {
             array_push($keys, $key);
-            array_push($bind, $key != 'id' ? $class::fields[$key] : 'i');
+            array_push($bind, 's'); //$key != 'id' ? $class::fields[$key] : 'i');
             array_push($bind_params, $value);
         }
 
-        $where = join(' = ? AND ', $keys) . (count($keys) > 0 ? ' = ?' : '');
+        $where = join(' LIKE ? AND ', $keys) . (count($keys) > 0 ? ' LIKE ? ' : '');
         $bind = join('', $bind);
+
+        $bind_param = array_map(function ($value) {
+            return '%' . $value . '%';
+        }, $bind_params);
 
         $query = "SELECT * FROM $tableName WHERE $where";
         $stmt = $db->prepare($query);
-        $stmt->bind_param($bind, ...$bind_params);
+        $stmt->bind_param($bind, ...$bind_param);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

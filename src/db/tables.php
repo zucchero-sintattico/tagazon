@@ -24,7 +24,7 @@ class CreditCard extends Entity {
 
 class Tag extends Entity {
     const tableName = 'tags';
-    const fields = ['name' => 's', 'description' => 's', 'seller' => 'i', 'price' => 'f', 'sale_price' => 'f', 'image' => 's'];
+    const fields = ['name' => 's', 'description' => 's', 'seller' => 'i', 'price' => 'd', 'sale_price' => 'd', 'image' => 's'];
 }
 
 class TagCategory extends Entity {
@@ -39,7 +39,7 @@ class Notification extends Entity {
 
 class Order extends Entity {
     const tableName = 'orders';
-    const fields = ['buyer' => 'i', 'timestamp' => 's', 'status' => 's', 'amount' => 'f'];
+    const fields = ['buyer' => 'i', 'timestamp' => 's', 'status' => 's', 'amount' => 'd'];
 }
 
 class OrderTag extends Entity {
