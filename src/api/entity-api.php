@@ -33,7 +33,7 @@ class EntityApi extends Api
 	public function onGet($params)
 	{
 		$params = $this->filterParams($this->class, $params);
-		$res = Entity::find($this->class, $params);
+		$res = $this->class::find($params);
 		$this->setResponseCode(count($res) == 0 && count(array_keys($params)) > 0 ? 404 : 200);
 		$this->setResponseMessage(count($res) == 0 && count(array_keys($params)) > 0 ? "Not found" : "OK");
 		$this->setResponseData($res);
@@ -45,7 +45,7 @@ class EntityApi extends Api
 	public function onPost($params)
 	{
 		$params = $this->filterParams($this->class, $params);
-		$res = Entity::create($this->class, $params);
+		$res = $this->class::create($params);
 		$this->setResponseCode($res > 0 ? 201 : 400);
 		$this->setResponseMessage($res > 0 ? "Created" : "Bad request");
 		$this->setResponseData([
@@ -65,7 +65,7 @@ class EntityApi extends Api
 		}
 
 		$params = $this->filterParams($this->class, $params);
-		$res = Entity::update($this->class, $params);
+		$res = $this->class::update($params);
 		$this->setResponseCode($res ? 200 : 400);
 		$this->setResponseMessage($res ? "Updated" : "Bad request");
 	}
@@ -81,7 +81,7 @@ class EntityApi extends Api
 			return;
 		}
 
-		$res = Entity::delete($this->class, $params['id']);
+		$res = $this->class::delete($params['id']);
 		$this->setResponseCode($res ? 200 : 404);
 		$this->setResponseMessage($res ? "Deleted" : "Not found");
 	}

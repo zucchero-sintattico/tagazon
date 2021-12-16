@@ -12,8 +12,8 @@ class RegisterApi extends Api {
 
         $email = $params["email"];
         $password = $params["password"];
-        $sellers = Entity::find(Seller::class, ['email' => $email]);
-        $buyers = Entity::find(Buyer::class, ['email' => $email]);
+        $sellers = Seller::find(['email' => $email]);
+        $buyers = Buyer::find(['email' => $email]);
 
         if(count($sellers) > 0 || count($buyers) > 0){
             $this->setResponseCode(400);
@@ -39,9 +39,14 @@ class RegisterApi extends Api {
             return;
         }
 
-        $res = Entity::create($type == "seller" ? Seller::class : Buyer::class, $user);
+        $res = null;
+        if ($type == "seller"){
+            $res = Seller::create($user);
+        } else {
+            $res = Buyer::create($user);
+        }
         if($res > 0){
-            $res2 = Entity::create(ShoppingCart::class, [
+            $res2 = ShoppingCart::create([
                 "buyer" => $res
             ]);
             if($res2 > 0){            

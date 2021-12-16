@@ -20,8 +20,8 @@ class LoginApi extends Api {
             return;
         }
 
-        $sellers = Entity::find(Seller::class, ["email" => $email]);
-        $buyers = Entity::find(Buyer::class, ["email" => $email]);
+        $sellers = Seller::find(["email" => $email]);
+        $buyers = Buyer::find(["email" => $email]);
 
         $user = null;
         $type = null;

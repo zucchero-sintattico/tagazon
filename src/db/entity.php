@@ -2,10 +2,11 @@
 
 require_once(__DIR__ . '/database.php');
 
-class Entity
+abstract class Entity
 {
-    private static function all($class)
+    private static function all()
     {
+        $class = static::class;
         $tableName = $class::tableName;
         $db = Database::getInstance();
         $query = "SELECT * FROM $tableName";
@@ -13,10 +14,11 @@ class Entity
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public static function find($class, $params)
+    public static function find($params)
     {
+        $class = get_called_class();
         if (count(array_keys($params)) == 0) {
-            return Entity::all($class);
+            return $class::all($class);
         }
 
         $tableName = $class::tableName;
@@ -42,8 +44,9 @@ class Entity
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public static function create($class, $params)
+    public static function create($params)
     {
+        $class = static::class;
         $tableName = $class::tableName;
         $columns = join(', ', array_keys($params));
         $bind = '';
@@ -64,8 +67,9 @@ class Entity
         return $db->insert_id;
     }
 
-    public static function delete($class, $id)
+    public static function delete($id)
     {
+        $class = static::class;
         $tableName = $class::tableName;
         $db = Database::getInstance();
         $query = "DELETE FROM $tableName WHERE id = ?";
@@ -74,8 +78,9 @@ class Entity
         return $stmt->execute();
     }
 
-    public static function update($class, $params)
+    public static function update($params)
     {
+        $class = static::class;
         if (!isset($params['id'])) {
             return false;
         }

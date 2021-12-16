@@ -8,9 +8,9 @@ require_once "../../../db/entity.php";
 class ResetPasswordApi extends Api {
 
     // implement methods
-    protected function onPost(){
+    public function onPost($params){
 
-        $email = $_POST["email"];
+        $email = $params["email"];
 
         $sellers = json_decode(doGet("http://localhost/tagazon/src/api/sellers/?email=$email"));
         $buyers = json_decode(doGet("http://localhost/tagazon/src/api/buyers/?email=$email"));
@@ -27,7 +27,7 @@ class ResetPasswordApi extends Api {
             $buyer = $buyers[0];
             $password = generateRandomString(8);
             $buyer->password = password_hash($password, PASSWORD_DEFAULT);
-            $res = Entity::update(Buyer::class, $buyer->id, (array) $buyer);
+            $res = Buyer::update($buyer->id, (array) $buyer);
             mail($buyer->email, "Password reset", "Your new password is: " . $buyer->password);
             http_response_code(200);
             return $password;
