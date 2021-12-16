@@ -1,0 +1,15 @@
+
+/api/
+
+    /categories/
+        /?params
+        /tags/?category_id
+        /tags/sales/?category_id
+    /tags/
+        /
+        /sales/
+    
+
+
+        
+

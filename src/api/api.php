@@ -85,5 +85,14 @@ class Api {
         session_start();
 		$api->handle();
 	}
+
+	public static function get($params){
+		ob_start();
+		$api = new static();
+		$api->onGet($params);
+		$api->sendResponse();
+		$response = ob_get_clean();
+		return json_decode($response)->data;
+	}
 }
 ?>

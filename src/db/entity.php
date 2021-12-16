@@ -16,7 +16,7 @@ abstract class Entity
 
     public static function find($params)
     {
-        $class = get_called_class();
+        $class = static::class;
         if (count(array_keys($params)) == 0) {
             return $class::all($class);
         }
