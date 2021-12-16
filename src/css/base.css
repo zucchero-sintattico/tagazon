@@ -1,6 +1,16 @@
 @font-face {
     font-family: AlfaSlabOne;
-    src: url('/src/res/AlfaSlabOne-Regular.ttf');
+    src: url('../res/AlfaSlabOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: Lobster;
+    src: url('../res/Lobster-Regular.ttf');
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url('../res/Poppins-Regular.ttf');
 }
 
 * {
@@ -8,10 +18,54 @@
     border: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Poppins;
 }
 
 body {
-    --primary-color: #9AC1D9;
-    --secondary-color: #7AA5BF;
-    --text-color: #1A3540;
+    --white-color: #fff;
+    --black-color: #000;
+    --primary-color: #457B9D;
+    --secondary-color: #0077B6;
+    --text-color: #0077B6;
+    --title-size-mobile: 48px;
+    --title-size-desktop: 92px;
+    --sub-title-size-mobile: 36px;
+    --normal-title-mobile: 24px;
+    --normal-text-size-mobile: 14px;
+    --description-size-mobile: 12px;
+    --normal-button-radius: 10px;
+    --logo-stroke: 3px;
+}
+
+/* Animation */
+@keyframes scale-in {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-250px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
