@@ -1,17 +1,7 @@
 <?php
 
-require_once "../entity-auth-api.php";
-require_once "../../db/tables.php";
+require_once "./orders-tags-api.php";
 
-$api = new API(OrderTag::class);
-
-$api = EntityAuthApi::builder(OrderTag::class)
-    ->get(EntityAuthApi::BUYER)
-    ->post(EntityAuthApi::SERVER)
-    ->patch(EntityAuthApi::SERVER)
-    ->delete(EntityAuthApi::SERVER)
-    ->build();
-    
-Api::run($api);
+Api::run(new OrdersTagsApi());
 
 ?>

@@ -1,7 +1,6 @@
 <?php
 
-require_once "../entity-api.php";
-require_once "../../db/tables.php";
+require_once __DIR__."/../entity-api.php";
 
 class CategoriesApi extends EntityApi {
 
@@ -10,10 +9,6 @@ class CategoriesApi extends EntityApi {
         parent::__construct(Category::class, AuthApi::OPEN);
     }
 
-    public function hasAccess($element)
-    {
-        return true;
-    }
 }
 
 ?>

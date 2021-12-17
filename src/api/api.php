@@ -8,7 +8,6 @@ class Api {
 	private function _methodNotAllowed(){
 		$this->setResponseCode(405);
 		$this->setResponseMessage('Method Not Allowed');
-		$this->setResponseData(null);
 	}
 	
 	public function onGet($params){
@@ -52,7 +51,7 @@ class Api {
 	
 
 	/**
-	 * Get the PATCH request data.
+	 * Get the Request data (for Patch request).
 	 */
 	private function getRequestData()
 	{
@@ -65,11 +64,11 @@ class Api {
 	public function sendResponse(){
 		header('Content-Type: application/json');
 		http_response_code($this->responseCode);
-		echo json_encode(array(
+		echo json_encode([
 			"code" => $this->responseCode,
 			"message" => $this->responseMessage,
 			"data" => $this->responseData
-		));
+		]);
 	}
 	
 	public function handle($sendResponse=true)
@@ -100,6 +99,8 @@ class Api {
         session_start();
 		$api->handle();
 	}
+
+	// STATIC FUNCTION FOR CALLING API
 
 	public static function get($params){
 		ob_start();

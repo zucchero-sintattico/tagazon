@@ -1,7 +1,6 @@
 <?php
 
-require_once "../entity-api.php";
-require_once "../../db/tables.php";
+require_once __DIR__."/../entity-api.php";
 
 class BuyersApi extends EntityApi {
 
@@ -10,9 +9,9 @@ class BuyersApi extends EntityApi {
         parent::__construct(Buyer::class, AuthApi::BUYER);
     }
 
-    public function hasAccess($element)
+    public function canAccess($element)
     {
-        return $element["id"] == $_SESSION["user"]->id;
+        return $element["id"] == $_SESSION["user"]["id"];
     }
 }
 

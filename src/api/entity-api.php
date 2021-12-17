@@ -3,38 +3,27 @@
 require_once(__DIR__ . "/../db/entity.php");
 require_once(__DIR__ . "/auth-api.php");
 require_once(__DIR__ . "/utils.php");
-
-class EntityApiBuilder extends AuthApiBuilder {
-
-	private $entity;
-
-    public function __construct($class, $entity){
-        parent::__construct($class);
-		$this->entity = $entity;
-    }
-
-    public function build(){
-        return new $this->class($this->entity, $this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
-    }
-}
+require_once(__DIR__ . "/../db/tables.php");
+require_once(__DIR__ . "/entity-api-builder.php");
 
 abstract class EntityApi extends AuthApi
 {
 
 	private $entity;
 
-	public function __construct($entity, $getAuth=AuthApi::DENIED, $postAuth=AuthApi::DENIED, $patchAuth=AuthApi::DENIED, $deleteAuth=AuthApi::DENIED){
+	public function __construct($entity, $getAuth=AuthApi::OPEN, $postAuth=AuthApi::SERVER, $patchAuth=AuthApi::SERVER, $deleteAuth=AuthApi::SERVER){
 		parent::__construct($getAuth, $postAuth, $patchAuth, $deleteAuth);
 		$this->entity = $entity;
 	}
 
-	protected abstract function hasAccess($element);
-	
-	public function filterOnAuthentication($jsonElements)
-	{
-		return array_filter($jsonElements, function($element) {
-			return $this->hasAccess($element);
-		});
+	protected function canAccess($element){
+		return true;
+	}
+	protected function canModify($element){
+		return true;
+	}
+	protected function canDelete($element){
+		return true;
 	}
 
 	private function filterParams($params)
@@ -56,6 +45,14 @@ abstract class EntityApi extends AuthApi
 	{
 		$params = $this->filterParams($params);
 		$res = $this->entity::find($params);
+
+		// filters in order to get only the elements that the user has access to
+		if ($this->getAuth != AuthApi::OPEN && !$this->checkServer()){
+			$res = array_filter($res, function($element) {
+				return $this->canAccess($element);
+			});
+		}
+
 		$this->setResponseCode(count($res) == 0 && count(array_keys($params)) > 0 ? 404 : 200);
 		$this->setResponseMessage(count($res) == 0 && count(array_keys($params)) > 0 ? "Not found" : "OK");
 		$this->setResponseData($res);
@@ -87,6 +84,14 @@ abstract class EntityApi extends AuthApi
 		}
 
 		$params = $this->filterParams($params);
+		$element = $this->entity::find(["id" => $params['id']]);
+
+		if ($this->patchAuth != AuthApi::OPEN && !$this->checkServer() && !$this->canModify($element)) {
+			$this->setResponseCode(403);
+			$this->setResponseMessage("Forbidden");
+			return;
+		}
+
 		$res = $this->entity::update($params);
 		$this->setResponseCode($res ? 200 : 400);
 		$this->setResponseMessage($res ? "Updated" : "Bad request");
@@ -104,6 +109,12 @@ abstract class EntityApi extends AuthApi
 		}
 
 		$params = $this->filterParams($params);
+		$element = $this->entity::find(["id" => $params['id']]);
+		if ($this->deleteAuth != AuthApi::OPEN && !$this->checkServer() && !$this->canDelete($element) ) {
+			$this->setResponseCode(403);
+			$this->setResponseMessage("Forbidden");
+			return;
+		}
 		$res = $this->entity::delete($params['id']);
 		$this->setResponseCode($res ? 200 : 404);
 		$this->setResponseMessage($res ? "Deleted" : "Not found");
