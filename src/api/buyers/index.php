@@ -1,13 +1,10 @@
 <?php
 
-require_once "../entity-auth-api.php";
+require_once "../entity-api.php";
 require_once "../../db/tables.php";
 
-$api = EntityAuthApi::builder(Buyer::class)
-    ->get(EntityAuthApi::OPEN)
-    ->post(EntityAuthApi::OPEN)
-    ->patch(EntityAuthApi::BUYER)
-    ->delete(EntityAuthApi::SERVER)
+$api = EntityApi::builder(Buyer::class)
+    ->get(AuthApi::OPEN)
     ->build();
 
 Api::run($api);

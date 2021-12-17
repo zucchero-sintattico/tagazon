@@ -1,14 +1,16 @@
 <?php
 
-require_once "entity-api.php";
+require_once(__DIR__ . "/../db/entity.php");
+require_once(__DIR__ . "/api.php");
+require_once(__DIR__ . "/utils.php");
 
-class EntityAuthApiBuilder{
+class AuthApiBuilder{
 
-    private $class;
-    private $getAuth = EntityAuthApi::OPEN;
-    private $postAuth = EntityAuthApi::OPEN;
-    private $patchAuth = EntityAuthApi::OPEN;
-    private $deleteAuth = EntityAuthApi::OPEN;
+    protected $class;
+    protected $getAuth = AuthApi::DENIED;
+    protected $postAuth = AuthApi::DENIED;
+    protected $patchAuth = AuthApi::DENIED;
+    protected $deleteAuth = AuthApi::DENIED;
 
     public function __construct($class){
         $this->class = $class;
@@ -35,17 +37,18 @@ class EntityAuthApiBuilder{
     }
 
     public function build(){
-        return new EntityAuthApi($this->class, $this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
+        return new $this->class($this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
     }
 
 }
 
-class EntityAuthApi extends EntityApi
+abstract class AuthApi extends Api
 {
     const OPEN = 1;
     const BUYER = 2;
     const SELLER = 3;
     const SERVER = 4;
+	const DENIED = 5;
     
 
     private $getAuth;
@@ -53,39 +56,37 @@ class EntityAuthApi extends EntityApi
     private $patchAuth;
     private $deleteAuth;
 
-    public function __construct($class, $getAuth=EntityAuthApi::BUYER, $postAuth=EntityAuthApi::BUYER, $patchAuth=EntityAuthApi::BUYER, $deleteAuth=EntityAuthApi::BUYER)
-    {
-        parent::__construct($class);
-        $this->getAuth = $getAuth;
-        $this->postAuth = $postAuth;
-        $this->patchAuth = $patchAuth;
-        $this->deleteAuth = $deleteAuth;
-    }
+    public function __construct($getAuth, $postAuth, $patchAuth, $deleteAuth){
+		$this->getAuth = $getAuth;
+		$this->postAuth = $postAuth;
+		$this->patchAuth = $patchAuth;
+		$this->deleteAuth = $deleteAuth;
+	}
+
 
     private function checkBuyer(){
-        return true;
+        return isset($_SESSION["type"]) && $_SESSION["type"] == "buyer";
     }
 
     private function checkSeller(){
-        return true;
+        return isset($_SESSION["type"]) && $_SESSION["type"] == "seller";
     }
 
 
     private function checkServer(){
-        return true;
         $whitelist = array('127.0.0.1', "::1");
         return in_array(get_client_ip(), $whitelist);
     }
 
     private function _checkAuth($auth){
         switch($auth){
-            case EntityAuthApi::OPEN:
+            case AuthApi::OPEN:
                 return true;
-            case EntityAuthApi::BUYER:
+            case AuthApi::BUYER:
                 return $this->checkBuyer() || $this->checkServer();
-            case EntityAuthApi::SELLER:
+            case AuthApi::SELLER:
                 return $this->checkSeller() || $this->checkServer();
-            case EntityAuthApi::SERVER:
+            case AuthApi::SERVER:
                 return $this->checkServer();
             }
     }
@@ -106,10 +107,7 @@ class EntityAuthApi extends EntityApi
         }
     }
 
-    public function filterOnAuthentication($jsonElements){
-
-        return $jsonElements;
-    }
+    public abstract function filterOnAuthentication($jsonElements);
 
     public function handle(){
         
@@ -123,12 +121,9 @@ class EntityAuthApi extends EntityApi
 
     }
 
-    public static function builder($class){
-        return new EntityAuthApiBuilder($class);
+    public static function builder(){
+        return new AuthApiBuilder(static::class);
     }
 
-
-
 }
-
 ?>

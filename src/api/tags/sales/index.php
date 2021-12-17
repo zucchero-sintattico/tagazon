@@ -5,7 +5,7 @@ require_once "../../utils.php";
 require_once "../../../db/tables.php";
 require_once "../../../db/entity.php";
 
-class SalesTagApi extends Api {
+class SalesTagApi extends AuthApi {
 
 
     // implement methods
@@ -21,10 +21,22 @@ class SalesTagApi extends Api {
         $this->setResponseData($results);
 
     }
+
+    public function filterOnAuthentication($jsonElements)
+    {
+        $filtered = [];
+        //TODO: filter
+        return $filtered;
+    }
+
+
     
 }
 
 
-Api::run(new SalesTagApi());
+Api::run(
+    SalesTagApi::builder()
+    ->get(AuthApi::OPEN)
+    ->build());
 
 ?>

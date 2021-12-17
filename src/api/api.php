@@ -94,5 +94,32 @@ class Api {
 		$response = ob_get_clean();
 		return json_decode($response)->data;
 	}
+
+	public static function post($params){
+		ob_start();
+		$api = new static();
+		$api->onPost($params);
+		$api->sendResponse();
+		$response = ob_get_clean();
+		return json_decode($response)->data;
+	}
+
+	public static function patch($params){
+		ob_start();
+		$api = new static();
+		$api->onPatch($params);
+		$api->sendResponse();
+		$response = ob_get_clean();
+		return json_decode($response)->data;
+	}
+
+	public static function delete($params){
+		ob_start();
+		$api = new static();
+		$api->onDelete($params);
+		$api->sendResponse();
+		$response = ob_get_clean();
+		return json_decode($response)->data;
+	}
 }
 ?>

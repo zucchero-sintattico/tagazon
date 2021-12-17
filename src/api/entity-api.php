@@ -1,29 +1,47 @@
 <?php
 
 require_once(__DIR__ . "/../db/entity.php");
-require_once(__DIR__ . "/api.php");
+require_once(__DIR__ . "/auth-api.php");
 require_once(__DIR__ . "/utils.php");
 
-class EntityApi extends Api
+class EntityApiBuilder extends AuthApiBuilder {
+
+	private $entity;
+
+    public function __construct($class, $entity){
+        parent::__construct($class);
+		$this->entity = $entity;
+    }
+
+    public function build(){
+        return new $this->class($this->entity, $this->getAuth, $this->postAuth, $this->patchAuth, $this->deleteAuth);
+    }
+}
+
+class EntityApi extends AuthApi
 {
 
-	private $class;
+	private $entity;
 
-	public function __construct($class)
-	{
-		$this->class = $class;
+	public function __construct($entity, $getAuth, $postAuth, $patchAuth, $deleteAuth){
+		parent::__construct($getAuth, $postAuth, $patchAuth, $deleteAuth);
+		$this->entity = $entity;
 	}
 
-	private function filterParams($class, $params)
+	private function filterParams($params)
 	{
 		$filtered = [];
 		foreach ($params as $key => $value) {
-			if (isset($class::fields[$key]) || $key == 'id') {
+			if (isset($this->entity::fields[$key]) || $key == 'id') {
 				$filtered[$key] = $value;
 			}
 		}
 		return $filtered;
 	}
+
+	public function filterOnAuthentication($jsonElements){
+        return $jsonElements;
+    }
 
 
 	/**
@@ -32,8 +50,8 @@ class EntityApi extends Api
 	 */
 	public function onGet($params)
 	{
-		$params = $this->filterParams($this->class, $params);
-		$res = $this->class::find($params);
+		$params = $this->filterParams($params);
+		$res = $this->entity::find($params);
 		$this->setResponseCode(count($res) == 0 && count(array_keys($params)) > 0 ? 404 : 200);
 		$this->setResponseMessage(count($res) == 0 && count(array_keys($params)) > 0 ? "Not found" : "OK");
 		$this->setResponseData($res);
@@ -44,8 +62,8 @@ class EntityApi extends Api
 	 */
 	public function onPost($params)
 	{
-		$params = $this->filterParams($this->class, $params);
-		$res = $this->class::create($params);
+		$params = $this->filterParams($params);
+		$res = $this->entity::create($params);
 		$this->setResponseCode($res > 0 ? 201 : 400);
 		$this->setResponseMessage($res > 0 ? "Created" : "Bad request");
 		$this->setResponseData([
@@ -64,8 +82,8 @@ class EntityApi extends Api
 			return;
 		}
 
-		$params = $this->filterParams($this->class, $params);
-		$res = $this->class::update($params);
+		$params = $this->filterParams($params);
+		$res = $this->entity::update($params);
 		$this->setResponseCode($res ? 200 : 400);
 		$this->setResponseMessage($res ? "Updated" : "Bad request");
 	}
@@ -81,9 +99,14 @@ class EntityApi extends Api
 			return;
 		}
 
-		$res = $this->class::delete($params['id']);
+		$params = $this->filterParams($params);
+		$res = $this->entity::delete($params['id']);
 		$this->setResponseCode($res ? 200 : 404);
 		$this->setResponseMessage($res ? "Deleted" : "Not found");
+	}
+
+	public static function builder($class=null){
+		return new EntityApiBuilder(static::class, $class);
 	}
 
 
