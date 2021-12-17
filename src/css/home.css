@@ -31,6 +31,7 @@ body > main > h1{
 body > main > h2{
     font-size: var(--subtitle-size-mobile);
     color: var(--white-color);
+    animation: slide-in-right 1.5s ease-out 0s 1 normal forwards;
 }
 
 footer{
