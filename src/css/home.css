@@ -28,6 +28,11 @@ body > main > h1{
     animation: scale-in 1.5s ease 0s 1 normal forwards;
 }
 
+body > main > h2{
+    font-size: var(--subtitle-size-mobile);
+    color: var(--white-color);
+}
+
 footer{
     height: 50vh;
     width: 100%;
@@ -42,7 +47,7 @@ body > main > footer > a{
     color: var(--white-color);
     font-size: var(--normal-text-size-mobile);
     border: 2px solid var(--white-color);
-    padding: 10px 35%;
+    padding: 10px 20%;
     border-radius: var(--normal-button-radius);
     animation: slide-in-left 1s ease 0s 1 normal forwards;
 }
@@ -58,6 +63,10 @@ body > main > footer > a:hover{
     
     body > main > h1{
         font-size: var(--title-size-desktop);
+    }
+
+    body > main > h2{
+        font-size: var(--sub-title-size-mobile);
     }
 
 }
