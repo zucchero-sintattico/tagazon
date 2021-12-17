@@ -18,14 +18,23 @@ class EntityApiBuilder extends AuthApiBuilder {
     }
 }
 
-class EntityApi extends AuthApi
+abstract class EntityApi extends AuthApi
 {
 
 	private $entity;
 
-	public function __construct($entity, $getAuth, $postAuth, $patchAuth, $deleteAuth){
+	public function __construct($entity, $getAuth=AuthApi::DENIED, $postAuth=AuthApi::DENIED, $patchAuth=AuthApi::DENIED, $deleteAuth=AuthApi::DENIED){
 		parent::__construct($getAuth, $postAuth, $patchAuth, $deleteAuth);
 		$this->entity = $entity;
+	}
+
+	protected abstract function hasAccess($element);
+	
+	public function filterOnAuthentication($jsonElements)
+	{
+		return array_filter($jsonElements, function($element) {
+			return $this->hasAccess($element);
+		});
 	}
 
 	private function filterParams($params)
@@ -38,11 +47,6 @@ class EntityApi extends AuthApi
 		}
 		return $filtered;
 	}
-
-	public function filterOnAuthentication($jsonElements){
-        return $jsonElements;
-    }
-
 
 	/**
 	 * Get the elements.

@@ -8,7 +8,7 @@
 <body>
 <?php session_start(); ?>
 
-<?php if (!isset($_SESSION["email"])): ?>
+<?php if (!isset($_SESSION["user"])): ?>
     <form id="login-form" action="" method="post">
     <input type="email" name="email" id="login-email">
     <input type="password" name="password" id="login-password">
@@ -25,7 +25,7 @@
     </form>
 
 <?php else: ?>
-    <h1><?php echo $_SESSION["email"] . " -- " . $_SESSION["type"]?></h1>
+    <h1><?php echo $_SESSION["user"]["email"] . " -- " . $_SESSION["user"]["type"] ?></h1>
     <input id="logout" type="submit" value="Logout">
 <?php endif; ?>
 
@@ -75,7 +75,11 @@
             $("#login-email").val(), 
             $("#login-password").val(),
             success = (data) => {
-                window.location.reload();
+                console.log(data);
+                //window.location.reload();
+            },
+            error = (data) => {
+                console.log(data);
             });     
     });
 

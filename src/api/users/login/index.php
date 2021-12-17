@@ -24,30 +24,20 @@ class LoginApi extends Api {
         $buyers = Buyer::find(["email" => $email]);
 
         $user = null;
-        $type = null;
         if (count($sellers) > 0) {
-            $user = $sellers[0];
-            $type = "seller";
+            $user = (array) $sellers[0];
+            $user["type"] = "seller";
         } else if (count($buyers) > 0) {
-            $user = $buyers[0];
-            $type = "buyer";
+            $user = (array) $buyers[0];
+            $user["type"] = "buyer";
         } else {
             $this->setResponseCode(404);
             $this->setResponseMessage("User not found");
             return;
         }
-        $user = (object) $user;
 
-        if (password_verify($password, $user->password)) {
-            $_SESSION["email"] = $user->email;
-            $_SESSION["type"] = $type;
-            if ($type == "buyer"){
-                $_SESSION["name"] = $user->name;
-                $_SESSION["surname"] = $user->surname;
-            } else {
-                $_SESSION["rag_soc"] = $user->rag_soc;
-                $_SESSION["piva"] = $user->piva;
-            }
+        if (password_verify($password, $user["password"])) {
+            $_SESSION["user"] = $user;
             $this->setResponseCode(200);
             $this->setResponseMessage("Login successful");
         } else {

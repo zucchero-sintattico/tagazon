@@ -24,17 +24,31 @@ class Api {
 		$this->_methodNotAllowed();
 	}
 
+	public function getResponseCode(){
+		return $this->responseCode;
+	}
+
 	public function setResponseCode($code){
 		$this->responseCode = $code;
+	}
+
+	public function getResponseMessage(){
+		return $this->responseMessage;
 	}
 
 	public function setResponseMessage($message){
 		$this->responseMessage = $message;
 	}
 
+	public function getResponseData(){
+		return $this->responseData;
+	}
+
 	public function setResponseData($data, $json = false){
 		$this->responseData = $json ? json_encode($data) : $data;
 	}
+
+	
 	
 
 	/**
@@ -58,7 +72,7 @@ class Api {
 		));
 	}
 	
-	public function handle()
+	public function handle($sendResponse=true)
 	{
 		switch ($_SERVER['REQUEST_METHOD']) {
 			case 'GET':
@@ -77,8 +91,9 @@ class Api {
 				$this->_methodNotAllowed();
 				break;
 		}
-
-		$this->sendResponse();
+		if ($sendResponse) {
+			$this->sendResponse();
+		}
 	}
 
 	public static function run($api){

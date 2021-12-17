@@ -9,16 +9,8 @@ class LogoutApi extends Api {
 
     // implement methods
     public function onPost($params){
-        if (isset($_SESSION["email"])){
-            unset($_SESSION["email"]);
-            if ($_SESSION["type"] == "buyer"){
-                unset($_SESSION["name"]);
-                unset($_SESSION["surname"]);
-            } else {
-                unset($_SESSION["rag_soc"]);
-                unset($_SESSION["piva"]);
-            }
-            unset($_SESSION["type"]);
+        if (isset($_SESSION["user"])){
+            unset($_SESSION["user"]);
             $this->setResponseCode(200);
             $this->setResponseMessage("Logout effettuato con successo");
         } else {

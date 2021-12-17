@@ -56,12 +56,16 @@ abstract class AuthApi extends Api
     private $patchAuth;
     private $deleteAuth;
 
-    public function __construct($getAuth, $postAuth, $patchAuth, $deleteAuth){
+    public function __construct($getAuth=AuthApi::DENIED, $postAuth=AuthApi::DENIED, $patchAuth=AuthApi::DENIED, $deleteAuth=AuthApi::DENIED){
 		$this->getAuth = $getAuth;
 		$this->postAuth = $postAuth;
 		$this->patchAuth = $patchAuth;
 		$this->deleteAuth = $deleteAuth;
 	}
+
+    public function filterOnAuthentication($jsonElements){
+        return $jsonElements;
+    }
 
 
     private function checkBuyer(){
@@ -74,6 +78,7 @@ abstract class AuthApi extends Api
 
 
     private function checkServer(){
+        return false;
         $whitelist = array('127.0.0.1', "::1");
         return in_array(get_client_ip(), $whitelist);
     }
@@ -107,18 +112,21 @@ abstract class AuthApi extends Api
         }
     }
 
-    public abstract function filterOnAuthentication($jsonElements);
-
-    public function handle(){
+    public function handle($sendResponse=true){
         
         if ($this->checkAuth()){
-            $result = parent::handle();
-            return $this->filterOnAuthentication($result);
+            $result = parent::handle(false);
+            if (!$this->checkServer()){
+                $this->setResponseData($this->filterOnAuthentication($this->getResponseData()));
+            }
         }else{
-            http_response_code(401);
-            return json_encode("Unauthorized");
+            $this->setResponseCode(401);
+            $this->setResponseMessage("Unauthorized");
         }
 
+        if ($sendResponse){
+            $this->sendResponse();
+        }
     }
 
     public static function builder(){
