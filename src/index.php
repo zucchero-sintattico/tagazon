@@ -41,12 +41,7 @@
         UserManager.login(
             $("#login-email").val(), 
             $("#login-password").val(),
-            success = (data) => {
-                window.location.reload();
-            },
-            error = (data) => {
-                console.log(data);
-            });     
+        );     
     });
 
     $("#register-form").submit(function(e){
@@ -56,23 +51,11 @@
             $("#register-password").val(),
             $("#register-name").val(),
             $("#register-surname").val(),
-            success = (data) => {
-                login(
-                    $("#register-email").val(), 
-                    $("#register-password").val(),
-                    success = (data) => {
-                        window.location.reload();
-                    });
-            });
-             
+        );  
     });
 
     $("#logout").click(function(e) {
-        UserManager.logout(
-            success = () => {
-                window.location.reload();
-            }
-        );   
+        UserManager.logout();   
     });
     
     $(() => {
