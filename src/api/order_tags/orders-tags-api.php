@@ -6,15 +6,13 @@ class OrdersTagsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(OrderTag::class, AuthApi::BUYER);
+        parent::__construct(OrderTag::class, Api::BUYER);
     }
 
     public function hasAccess($element)
     {
-        $apiResponse = OrdersApi::get([
-            'id' => $element->order_id
-        ]);
-        return $apiResponse["code"] == 200;
+        $orders = OrdersApi::get(['id' => $element->order_id])["data"];
+        return count($orders) == 1;
     }
 }
 

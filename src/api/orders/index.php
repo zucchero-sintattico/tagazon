@@ -1,6 +1,6 @@
 <?php
 
-require_once "./orders-api.php";
+require_once __DIR__."/orders-api.php";
 
 Api::run(new OrdersApi());
 

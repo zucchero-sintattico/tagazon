@@ -1,15 +1,7 @@
 <?php
 
-require_once "../entity-auth-api.php";
-require_once "../../db/tables.php";
-
-$api = EntityAuthApi::builder(ShoppingCartTag::class)
-    ->get(EntityAuthApi::BUYER)
-    ->post(EntityAuthApi::BUYER)
-    ->patch(EntityAuthApi::BUYER)
-    ->delete(EntityAuthApi::BUYER)
-    ->build();
+require_once __DIR__."/shopping-carts-tags-api.php";
     
-Api::run($api);
+Api::run(new ShoppingCartsTagsApi());
 
 ?>

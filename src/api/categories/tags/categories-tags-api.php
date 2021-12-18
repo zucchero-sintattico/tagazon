@@ -3,8 +3,13 @@
 require_once __DIR__."/../../api.php";
 require_once __DIR__."/../../../db/tables.php";
 require_once __DIR__."/../categories-api.php";
+require_once __DIR__."/../../tags-categories/tags-categories-api.php";
+class CategoriesTagsApi extends Api {
 
-class CategoriesTagsApi extends AuthApi {
+    public function __construct()
+    {
+        parent::__construct(Api::OPEN, Api::DENIED, Api::DENIED, Api::DENIED);
+    }
 
     // implement methods
     public function onGet($params){
@@ -16,18 +21,17 @@ class CategoriesTagsApi extends AuthApi {
         }
 
         $category_id = $params["category_id"]; 
-        $tags_cat = TagCategory::find([
-            "category" => $category_id, 
-        ]);
+        
+        $tags_cat = TagsCategoriesApi::get(["category" => $category_id])["data"];
 
         $tags_id = array_map(function($tc){
-            return $tc["tag"];
+            return $tc->tag;
         }, $tags_cat);
         
 
         $tags = [];
         foreach($tags_id as $tag_id){
-            array_push($tags, Tag::find(["id" => $tag_id])[0]);
+            array_push($tags, TagsApi::get(["id" => $tag_id])["data"][0]);
         }
 
         $this->setResponseCode(200);

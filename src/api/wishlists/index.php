@@ -1,6 +1,6 @@
 <?php
 
-require_once "./wishlists-api.php";
+require_once __DIR__."/wishlists-api.php";
 
 Api::run(new WishlistsApi());
 

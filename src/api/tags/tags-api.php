@@ -1,13 +1,13 @@
 <?php
 
-require_once "../entity-api.php";
-require_once "../../db/tables.php";
+require_once __DIR__."/../entity-api.php";
+require_once __DIR__."/../../db/tables.php";
 
 class TagsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Tags::class, AuthApi::OPEN, AuthApi::SELLER, AuthApi::SELLER, AuthApi::SELLER);
+        parent::__construct(Tag::class, Api::OPEN, Api::SELLER, Api::SELLER, Api::SELLER);
     }
 
     public function canModify($element)
@@ -17,7 +17,7 @@ class TagsApi extends EntityApi {
 
     public function canDelete($element)
     {
-        return $element["seller"] == $_SESSION["user"]->id;
+        return $this->canModify($element);
     }
 }
 

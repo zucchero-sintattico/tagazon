@@ -6,7 +6,7 @@ class NotificationsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Notification::class, AuthApi::BUYER);
+        parent::__construct(Notification::class, Api::BUYER);
     }
 
     public function hasAccess($element)

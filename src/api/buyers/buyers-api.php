@@ -6,7 +6,7 @@ class BuyersApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Buyer::class, AuthApi::BUYER);
+        parent::__construct(Buyer::class, Api::BUYER);
     }
 
     public function canAccess($element)

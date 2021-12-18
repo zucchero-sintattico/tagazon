@@ -3,17 +3,18 @@
 require_once __DIR__."/../entity-api.php";
 require_once __DIR__."/../../db/tables.php";
 
-class PaymentsApi extends EntityApi {
+class ShoppingCartsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Payment::class, Api::BUYER);
+        parent::__construct(ShoppingCart::class, Api::BUYER);
     }
 
-    public function hasAccess($element)
+    public function canAccess($element)
     {
         return $element["buyer"] == $_SESSION["user"]->id;
     }
+
 }
 
 ?>

@@ -6,7 +6,7 @@ class CategoriesApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Category::class, AuthApi::OPEN);
+        parent::__construct(Category::class, Api::OPEN);
     }
 
 }
