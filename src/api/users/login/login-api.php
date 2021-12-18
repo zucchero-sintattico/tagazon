@@ -29,8 +29,8 @@ class LoginApi extends Api {
             return;
         }
 
-        $sellers = SellersApi::get(["email" => $email])["data"];
-        $buyers = BuyersApi::get(["email" => $email])["data"];        
+        $sellers = SellersApi::get(["email" => $email], true)["data"];
+        $buyers = BuyersApi::get(["email" => $email], true)["data"];
 
         $user = null;
         if (count($sellers) > 0) {

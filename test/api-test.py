@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import unittest, os
 from json import loads, dumps
 from requests import get, post, patch, delete
@@ -5,7 +7,7 @@ from requests import get, post, patch, delete
 API = 'http://localhost/tagazon/src/api/'
 
 class EntityTest():
-
+    
     def test_get_all(self):
         url = API + self.PATH
         response = get(url)
@@ -32,7 +34,7 @@ if __name__ == '__main__':
     for entity in entities:
         # check if it's a directory
         if os.path.isdir('../src/api/' + entity):
-            exec(f"""class {entity}Test(EntityTest, unittest.TestCase):
+            exec(f"""class {entity.replace('-', '_')}Test(EntityTest, unittest.TestCase):
                         PATH = '{entity}/'
                 """)
         

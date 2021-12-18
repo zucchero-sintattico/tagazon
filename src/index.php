@@ -30,53 +30,18 @@
 <?php endif; ?>
 
 <div id="container"></div>
+
+<script src="/tagazon/src/js/user-manager.js"></script>
 <script>
 
-    function login(email, password, success=()=>{}, error=()=>{}) {
-        $.ajax({
-            url: "/tagazon/src/api/users/login/",
-            type: "POST",
-            data: {
-                email: email,
-                password: password
-            },
-            success: success,
-            error: error
-        });
-    }
-
-    function register(email, password, name, surname, success=()=>{}, error=()=>{}){
-        $.ajax({
-            url: "/tagazon/src/api/users/register/",
-            type: "POST",
-            data: {
-                email: email,
-                password: password,
-                name: name,
-                surname: surname
-            },
-            success: success, 
-            error: error
-        });
-    }
-
-    function logout(success=()=>{}, error=()=>{}){
-        $.ajax({
-            url: "/tagazon/src/api/users/logout/",
-            type: "POST",
-            success: success,
-            error: error
-        });
-    }
     
     $("#login-form").submit(function(e){
         e.preventDefault();
-        login(
+        UserManager.login(
             $("#login-email").val(), 
             $("#login-password").val(),
             success = (data) => {
-                console.log(data);
-                //window.location.reload();
+                window.location.reload();
             },
             error = (data) => {
                 console.log(data);
@@ -85,7 +50,7 @@
 
     $("#register-form").submit(function(e){
         e.preventDefault();
-        register(
+        UserManager.registerBuyer(
             $("#register-email").val(), 
             $("#register-password").val(),
             $("#register-name").val(),
@@ -102,7 +67,7 @@
     });
 
     $("#logout").click(function(e) {
-        logout(
+        UserManager.logout(
             success = () => {
                 window.location.reload();
             }

@@ -177,10 +177,10 @@ class Api {
 
 	// STATIC FUNCTION FOR CALLING API
 
-	public static function get($params){
+	public static function get($params, $server=false){
 		ob_start();
 		$api = new static();
-		$api->onGet($params);
+		$api->onGet($params, $server);
 		$api->sendResponse();
 		$response = ob_get_clean();
 		return (array)json_decode($response);

@@ -39,13 +39,13 @@ abstract class EntityApi extends Api
 	 * Get the elements.
 	 * Possible find on specified id.
 	 */
-	public function onGet($params)
+	public function onGet($params, $server=false)
 	{
 		$params = $this->filterParams($params);
 		$res = $this->entity::find($params);
 
 		// filters in order to get only the elements that the user has access to
-		if ($this->getAuth != Api::OPEN && !$this->checkServer()){
+		if ($this->getAuth != Api::OPEN && !$this->checkServer() && !$server) {
 			$res = array_filter($res, function($element) {
 				return $this->canAccess($element);
 			});
