@@ -45,21 +45,26 @@ abstract class EntityApi extends Api
 		$res = $this->entity::find($params);
 
 		// filters in order to get only the elements that the user has access to
-		if ($this->getAuth != Api::OPEN && !$this->checkServer() && !$server) {
-			$res = array_filter($res, function($element) {
-				return $this->canAccess($element);
-			});
-		}
+		$results = [];
+		if ($this->getAuth != Api::OPEN && !$server) {
+			foreach ($res as $elem) {
+				if ($this->canAccess($elem)) {
+					$results[] = $elem;
+				}
+			}
+		} else {
+			$results = $res;
+		}		
 
-		$this->setResponseCode(count($res) == 0 && count(array_keys($params)) > 0 ? 404 : 200);
-		$this->setResponseMessage(count($res) == 0 && count(array_keys($params)) > 0 ? "Not found" : "OK");
-		$this->setResponseData($res);
+		$this->setResponseCode(count($results) == 0 && count(array_keys($params)) > 0 ? 404 : 200);
+		$this->setResponseMessage(count($results) == 0 && count(array_keys($params)) > 0 ? "Not found" : "OK");
+		$this->setResponseData($results);
 	}
 
 	/**
 	 * Create a new element.
 	 */
-	public function onPost($params)
+	public function onPost($params, $server=false)
 	{
 		$params = $this->filterParams($params);
 		$res = $this->entity::create($params);
@@ -71,7 +76,7 @@ abstract class EntityApi extends Api
 	/**
 	 * Update an element.
 	 */
-	public function onPatch($params)
+	public function onPatch($params, $server=false)
 	{
 		if (!isset($params['id'])) {
 			$this->setResponseCode(400);
@@ -80,9 +85,9 @@ abstract class EntityApi extends Api
 		}
 
 		$params = $this->filterParams($params);
-		$element = $this->entity::find(["id" => $params['id']]);
+		$element = $this->entity::find(["id" => $params['id']])[0];
 
-		if ($this->patchAuth != Api::OPEN && !$this->checkServer() && !$this->canModify($element)) {
+		if ($this->patchAuth != Api::OPEN && !$server && !$this->canModify($element)) {
 			$this->setResponseCode(403);
 			$this->setResponseMessage("Forbidden");
 			return;
@@ -96,7 +101,7 @@ abstract class EntityApi extends Api
 	/**
 	 * Delete an element.
 	 */
-	public function onDelete($params)
+	public function onDelete($params, $server=false)
 	{
 		if (!isset($params['id'])) {
 			$this->setResponseCode(400);
@@ -106,7 +111,7 @@ abstract class EntityApi extends Api
 
 		$params = $this->filterParams($params);
 		$element = $this->entity::find(["id" => $params['id']]);
-		if ($this->deleteAuth != Api::OPEN && !$this->checkServer() && !$this->canDelete($element) ) {
+		if ($this->deleteAuth != Api::OPEN && !$server && !$this->canDelete($element) ) {
 			$this->setResponseCode(403);
 			$this->setResponseMessage("Forbidden");
 			return;

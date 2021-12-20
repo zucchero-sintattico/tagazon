@@ -4,6 +4,30 @@
 class UserManager {
 
     static baseUrl = '/tagazon/src/api/users/';
+    static user = null;
+
+    static start(ifLogged, ifNotLogged) {
+        this.updateInfo(
+            (data) => {
+                ifLogged();
+            },
+            (err) => {
+                ifNotLogged();
+            }
+        );
+    }
+
+    static updateInfo(onSuccess = () => {}, onError = (err) => {}) {
+        $.ajax({
+            url: this.baseUrl + 'info/',
+            type: 'GET',
+            success: (data) => {
+                UserManager.user = data["data"];
+                onSuccess(data);
+            },
+            error: onError
+        });
+    }
 
     /**
      * Login user
@@ -12,7 +36,7 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    static login(email, password, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
+    static login(email, password, onSuccess = (...args) => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
             url: this.baseUrl + "login/",
             type: "POST",
@@ -20,7 +44,9 @@ class UserManager {
                 email: email,
                 password: password
             },
-            success: onSuccess,
+            success: (data) => {
+                UserManager.updateInfo((x) => onSuccess(data));
+            },
             error: onError
         });
     }
