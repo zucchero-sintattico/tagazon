@@ -1,0 +1,1 @@
+$("body").load("home.html")
