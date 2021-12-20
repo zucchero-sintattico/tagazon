@@ -1,0 +1,73 @@
+@import 'base.css';
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background-image: url("../img/backgrounds/bg.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body > main > h1{
+    font-size: var(--title-size-mobile);
+    color: transparent;
+    font-family: AlfaSlabOne;
+    -webkit-text-stroke: var(--logo-stroke) var(--white-color);
+    animation: scale-in 1.5s ease 0s 1 normal forwards;
+}
+
+body > main > h2{
+    font-size: var(--subtitle-size-mobile);
+    color: var(--white-color);
+    animation: slide-in-right 1.5s ease-out 0s 1 normal forwards;
+}
+
+footer{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+body > main > footer > a{
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: var(--normal-text-size-mobile);
+    border: 2px solid var(--white-color);
+    padding: 10px 20%;
+    border-radius: var(--normal-button-radius);
+    animation: slide-in-left 1s ease 0s 1 normal forwards;
+}
+
+body > main > footer > a:hover{
+    background-color: var(--primary-color);
+    border: none;
+    transition-duration: 2s;
+}
+
+/* Computer & Ipad */
+@media screen and (min-width: 768px){
+    
+    body > main > h1{
+        font-size: var(--title-size-desktop);
+    }
+
+    body > main > h2{
+        font-size: var(--sub-title-size-mobile);
+    }
+
+}
