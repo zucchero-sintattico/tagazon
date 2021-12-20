@@ -87,10 +87,15 @@ abstract class Entity
         }
 
         $tableName = $class::tableName;
-        $columns = array_filter(array_keys($params), function($key) {
-            return $key != 'id';
-        });
-        $set = join('=?, ', $columns) . (count($columns) > 0 ? '=? ' : '');
+        $columns = [];
+        foreach(array_keys($params) as $key) {
+            if ($key != 'id') {
+                array_push($columns, $key);
+            }
+        }
+
+        
+        $set = join(' = ?, ', $columns) . (count($columns) > 0 ? ' = ? ' : '');
 
         $bind = '';
         $bind_param = [];
@@ -106,6 +111,10 @@ abstract class Entity
         $query = "UPDATE $tableName SET $set WHERE id = ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param($bind, ...$bind_param);
-        return $stmt->execute();
+        $res = $stmt->execute();
+        if (!$res) {
+            echo "errore = " .  htmlspecialchars($stmt->error);
+        }
+        return $res;
     }
 }

@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `tagazon`.`orders` (
     `buyer` INT NOT NULL,
     `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `status` VARCHAR(255) NOT NULL,
-    'amount' FLOAT NOT NULL,
+    `amount` FLOAT NOT NULL,
     FOREIGN KEY (`buyer`) REFERENCES `buyers`(`id`) ON DELETE CASCADE
 );
 
@@ -126,13 +126,11 @@ CREATE TABLE IF NOT EXISTS `tagazon`.`payments` (
 CREATE TABLE IF NOT EXISTS `tagazon`.`notifications` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `order` INT NOT NULL,
-    `buyer` INT NOT NULL,
     `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `title` VARCHAR(255) NOT NULL,
     `message` VARCHAR(255) NOT NULL,
     `seen` BOOLEAN NOT NULL DEFAULT FALSE,
-    FOREIGN KEY (`order`) REFERENCES `orders`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`buyer`) REFERENCES `buyers`(`id`) ON DELETE CASCADE
-
+    FOREIGN KEY (`order`) REFERENCES `orders`(`id`) ON DELETE CASCADE
 );
 
 

@@ -26,6 +26,15 @@ function parse_raw_http_request(array &$a_data)
 
 	// grab multipart boundary from content type header
 	preg_match('/boundary=(.*)$/', $_SERVER['CONTENT_TYPE'], $matches);
+	if (count($matches) == 0){
+		parse_str(file_get_contents('php://input'), $a_data);
+		foreach($a_data as $key => $value) {
+			if (in_array($value, ['true', 'false'])) {
+				$a_data[$key] = $value == "true";
+			}
+		}
+		return;
+	}
 	$boundary = $matches[1];
 
 	// split content by boundary and get rid of last -- element
