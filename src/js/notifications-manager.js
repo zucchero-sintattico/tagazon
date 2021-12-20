@@ -35,17 +35,13 @@ class NotificationsManager {
                 notifications.forEach(notification => {
 
                     Notification.requestPermission().then(function(permission) {
-                        /*
-                        var not = new Notification("Notifica", {
-                            body: notification.message,
-                            timestamp: notification.timestamp,
-                            silent: false,
+                        var not = new Notification("Il tuo ordine è stato consegnato", {
+                            icon: "http://localhost/tagazon/src/res/logo.png",
+                            body: "Il tuo ordine è stato consegnato in via Paolo Paolo alle ore 12:00",
+                            origin: "Tagazon",
+                            data: notification.timestamp,
                             tag: "TAG"
                         });
-                        */
-                        navigator.serviceWorker.getRegistration()
-                            .then((reg) => reg.showNotification("Hi there - persistent!"))
-                            .catch((err) => alert('Service Worker registration error: ' + err));
 
                     });
                     NotificationsManager.setNotificationSeen(notification["id"]);
