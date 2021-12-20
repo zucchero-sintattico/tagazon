@@ -18,6 +18,7 @@ class NotificationsManager {
     }
 
     static startListeningForUserNotifications(clientId, onMessage = (topic, message) => console.log(`${topic.toString()} : ${message.toString()}`)) {
+        console.log("Starting listening for user notifications");
         this.clientId = clientId
         this.client.on('message', onMessage);
         this.client.subscribe(NotificationsManager.topic + '/' + this.clientId, function(err) {
@@ -27,7 +28,8 @@ class NotificationsManager {
         })
     }
 
-    static stopListenForUserNotifications() {
+    static stopListeningForUserNotifications() {
+        console.log("Stopping listening for user notifications");
         this.client.unsubscribe(NotificationsManager.topic + '/' + this.clientId);
     }
 

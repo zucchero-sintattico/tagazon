@@ -9,9 +9,8 @@
 </head>
 
 <body>
-    <?php session_start(); ?>
 
-    <?php if (!isset($_SESSION["user"])) : ?>
+    <div id="login-div" hidden>
         <form id="login-form" action="" method="post">
             <input type="email" name="email" id="login-email">
             <input type="password" name="password" id="login-password">
@@ -26,11 +25,11 @@
             <input type="text" name="surname" id="register-surname">
             <input type="submit" value="Register">
         </form>
-
-    <?php else : ?>
-        <h1><?php echo $_SESSION["user"]["email"] . " -- " . $_SESSION["user"]["type"] ?></h1>
+    </div>
+    <div id="home-div" hidden>
+        <h1 id="user-info-text"></h1>
         <input id="logout" type="submit" value="Logout">
-    <?php endif; ?>
+    </div>
 
     <div id="container"></div>
 
@@ -41,11 +40,33 @@
     <script>
         $(() => {
 
+            function userLogged() {
+                $("#home-div").show();
+                $("#login-div").hide();
+                $("#user-info-text").text(`${UserManager.user["email"]} - ${UserManager.user["type"]}`);
+            }
+
+            function userNotLogged() {
+                $("#home-div").hide();
+                $("#login-div").show();
+            }
+
+            UserManager.start(
+                ifLogged = userLogged,
+                ifNotLogged = userNotLogged
+            );
+
             $("#login-form").submit(function(e) {
                 e.preventDefault();
                 UserManager.login(
                     $("#login-email").val(),
                     $("#login-password").val(),
+                    () => {
+                        userLogged();
+                        if (UserManager.user["type"] == "buyer"){
+                            NotificationsManager.startListeningForUserNotifications(UserManager.user["id"]);
+                        }
+                    }
                 );
             });
 
@@ -60,8 +81,12 @@
             });
 
             $("#logout").click(function(e) {
-                UserManager.logout();
+                UserManager.logout(() => {
+                    userNotLogged()
+                    NotificationsManager.stopListeningForUserNotifications();
+                });
             });
+
 
             $(() => {
                 $.ajax({
@@ -73,7 +98,7 @@
                     }
                 });
             })
-        })
+        });
     </script>
 
 </body>
