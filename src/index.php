@@ -35,14 +35,14 @@
 
 
     <script src="/tagazon/src/js/user-manager.js"></script>
-    <script src="/tagazon/src/js/notifications-manager.js"></script>
+    <script src="/tagazon/src/js/notifications-service.js"></script>
 
     <script>
         $(() => {
 
             function userLogged() {
                 if (UserManager.user["type"] == "buyer") {
-                    NotificationsManager.start(UserManager.user["id"]);
+                    NotificationsService.start();
                 }
                 $("#home-div").show();
                 $("#login-div").hide();
@@ -50,7 +50,7 @@
             }
 
             function userNotLogged() {
-                NotificationsManager.stop();
+                NotificationsService.stop();
                 $("#home-div").hide();
                 $("#login-div").show();
             }
