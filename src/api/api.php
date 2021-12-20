@@ -33,22 +33,16 @@ class Api {
         return isset($_SESSION["user"]) && $_SESSION["user"]["type"] == "seller";
     }
 
-    protected function checkServer(){
-        return isset($_GET["server"]);
-        $whitelist = array('127.0.0.1', "::1");
-        return in_array(get_client_ip(), $whitelist);
-    }
-
     private function _checkAuth($auth){
         switch($auth){
             case Api::OPEN:
                 return true;
             case Api::BUYER:
-                return $this->isBuyer() || $this->checkServer();
+                return $this->isBuyer();
             case Api::SELLER:
-                return $this->isSeller() || $this->checkServer();
+                return $this->isSeller();
             case Api::SERVER:
-                return $this->checkServer();
+                return false;
             case Api::DENIED:
                 return false;
             }
@@ -153,7 +147,6 @@ class Api {
 	private function getRequestData()
 	{
 		$data = [];
-		parse_str(file_get_contents('php://input'), $data);
 		parse_raw_http_request($data);
 		return $data;
 	}
@@ -186,28 +179,28 @@ class Api {
 		return (array)json_decode($response);
 	}
 
-	public static function post($params){
+	public static function post($params, $server=false){
 		ob_start();
 		$api = new static();
-		$api->onPost($params);
+		$api->onPost($params, $server);
 		$api->sendResponse();
 		$response = ob_get_clean();
 		return (array)json_decode($response);
 	}
 
-	public static function patch($params){
+	public static function patch($params, $server=false){
 		ob_start();
 		$api = new static();
-		$api->onPatch($params);
+		$api->onPatch($params, $server);
 		$api->sendResponse();
 		$response = ob_get_clean();
 		return (array)json_decode($response);
 	}
 
-	public static function delete($params){
+	public static function delete($params, $server=false){
 		ob_start();
 		$api = new static();
-		$api->onDelete($params);
+		$api->onDelete($params, $server);
 		$api->sendResponse();
 		$response = ob_get_clean();
 		return (array)json_decode($response);

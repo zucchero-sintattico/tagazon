@@ -24,7 +24,7 @@ class Mqtt:
     def publish(self, buyerId):
         topic = f'{self.topic}/{buyerId}'
         print(f'Publishing to {topic}')
-        self.client.publish(topic, "NEW")
+        self.client.publish(topic, "NEW", qos=1)
 
 mqttClient = Mqtt()
 mqttClient.connect()

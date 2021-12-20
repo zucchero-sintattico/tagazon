@@ -41,12 +41,16 @@
         $(() => {
 
             function userLogged() {
+                if (UserManager.user["type"] == "buyer") {
+                    NotificationsManager.start(UserManager.user["id"]);
+                }
                 $("#home-div").show();
                 $("#login-div").hide();
                 $("#user-info-text").text(`${UserManager.user["email"]} - ${UserManager.user["type"]}`);
             }
 
             function userNotLogged() {
+                NotificationsManager.stop();
                 $("#home-div").hide();
                 $("#login-div").show();
             }
@@ -63,9 +67,6 @@
                     $("#login-password").val(),
                     () => {
                         userLogged();
-                        if (UserManager.user["type"] == "buyer"){
-                            NotificationsManager.startListeningForUserNotifications(UserManager.user["id"]);
-                        }
                     }
                 );
             });
@@ -83,7 +84,6 @@
             $("#logout").click(function(e) {
                 UserManager.logout(() => {
                     userNotLogged()
-                    NotificationsManager.stopListeningForUserNotifications();
                 });
             });
 

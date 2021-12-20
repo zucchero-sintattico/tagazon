@@ -17,7 +17,7 @@ class UserManager {
         );
     }
 
-    static updateInfo(onSuccess = () => {}, onError = (err) => console.error(err)) {
+    static updateInfo(onSuccess = () => {}, onError = (err) => {}) {
         $.ajax({
             url: this.baseUrl + 'info/',
             type: 'GET',
@@ -44,9 +44,8 @@ class UserManager {
                 email: email,
                 password: password
             },
-            success: (...args) => {
-                UserManager.updateInfo();
-                onSuccess(...args);
+            success: (data) => {
+                UserManager.updateInfo((x) => onSuccess(data));
             },
             error: onError
         });
