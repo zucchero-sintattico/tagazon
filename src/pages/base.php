@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Libraries -->
-    <script src="../lib/jquery-3.6.0.min.js" defer></script>
+    <script src="./res/lib/jquery-3.6.0.min.js"></script>
+    <script src="./res/lib/mqtt.min.js"></script>
 
     <!-- User-Defined Libraries -->
-    <script src="../res/js/start.js"></script>
-    <script src="../res/js/user-manager.js" defer></script>
-    <script src="../res/js/notifications-service.js" defer></script>
+    <script src="./res/js/start.js"></script>
+    <script src="./res/js/user-manager.js" defer></script>
+    <script src="./res/js/notifications-service.js" defer></script>
 
     <!-- PHP-based -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>
