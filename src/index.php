@@ -15,8 +15,9 @@ class Pages {
 
 if (!isset($_GET["page"])){
     Pages::get("error");
+} else {
+    Pages::get($_GET["page"]);
 }
 
-Pages::get($_GET["page"]);
 
 ?>
