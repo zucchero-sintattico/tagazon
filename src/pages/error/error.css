@@ -1,14 +1,8 @@
 @import '../base.css';
 
-html, body, main {
-    height: 90%;
-}
-
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
+    margin-top: 25vh;
+    text-align: center;
 }
 
 main > h1 {
@@ -17,7 +11,74 @@ main > h1 {
     font-size: 3.5em;
 }
 
-main > p {
+main > div {
+    width: fit-content;
+    margin: auto;
+}
+
+main > div > p {
     text-align: center;
     font-size: 1.5em;
+    display: inline-block;
+    width: 0;
+
+    overflow: hidden;
+    border-right: .15em solid var(--primary-color);
+    white-space: nowrap;
+    letter-spacing: .15em;
+    animation: 
+        typing 6s 1s steps(20, end) infinite,
+        blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from,to { width: 0%; }
+    25%, 85% { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color); }
+}
+
+main > a {
+    display: inline-block;
+    
+    width: 80%;
+    padding: 10px 0;
+    margin: 5em 10%;
+    
+    color: white;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 0.6em;
+
+    box-shadow: 0 0.25em 0.25em #999;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    main {
+        font-size: 1.5em;
+    }
+    
+    main > a {
+        width: 60%;
+        margin: 5em 20%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    main {
+        font-size: 2em;
+    }
+
+    main > a {
+        width: 40%;
+        margin: 5em 30%;
+    }
 }
