@@ -1,0 +1,15 @@
+a
+button
+details
+embed
+iframe
+keygen
+label
+select
+textarea
+audio
+img
+input
+menu
+object
+video
