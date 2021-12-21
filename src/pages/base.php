@@ -9,9 +9,9 @@
     <script src="../lib/jquery-3.6.0.min.js" defer></script>
 
     <!-- User-Defined Libraries -->
-    <script src="./js/start.js"></script>
-    <script src="./js/user-manager.js" defer></script>
-    <script src="./js/notifications-service.js" defer></script>
+    <script src="../res/js/start.js"></script>
+    <script src="../res/js/user-manager.js" defer></script>
+    <script src="../res/js/notifications-service.js" defer></script>
 
     <!-- PHP-based -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>
