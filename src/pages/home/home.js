@@ -10,9 +10,7 @@ $(() => {
     UserManager.start(
         ifLogged = () => {
             $("h2").text(`Benvenuto ${UserManager.user["email"]}`);
-        },
-        ifNotLogged = () => {
-            window.location.href = "./?page=splash";
+            NotificationsService.start();
         }
     );
 

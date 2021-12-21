@@ -47,7 +47,7 @@ class NotificationsService {
 
     static setNotificationSeen(id) {
         $.ajax({
-            url: "/tagazon/src/api/notifications/",
+            url: "/tagazon/src/api/objects/notifications/",
             method: "PATCH",
             data: {
                 id: id,
@@ -65,7 +65,7 @@ class NotificationsService {
     static async createNotification(notification) {
         Notification.requestPermission().then(function(permission) {
             var not = new Notification(notification.title, {
-                icon: "http://localhost/tagazon/src/res/logo.png",
+                icon: "http://localhost/tagazon/src/res/img/logo.png",
                 body: notification.message,
                 origin: "Tagazon",
                 data: notification.timestamp
@@ -78,7 +78,7 @@ class NotificationsService {
 
     static onNotification(topic, message) {
         console.log(`${topic.toString()} : ${message.toString()}`);
-        let url = "/tagazon/src/api/notifications/";
+        let url = "/tagazon/src/api/objects/notifications/";
         $.ajax({
             url: url,
             type: "GET",
