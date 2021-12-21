@@ -9,13 +9,14 @@
     <script src="../lib/jquery-3.6.0.min.js" defer></script>
 
     <!-- User-Defined Libraries -->
-    <script src="./js/user-manager.js" defer></script>
-    <script src="./js/notifications-service.js" defer></script>
+    <script src="../res/js/start.js"></script>
+    <script src="../res/js/user-manager.js" defer></script>
+    <script src="../res/js/notifications-service.js" defer></script>
 
     <!-- PHP-based -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>
-    <script src="http://localhost/tagazon/src/pages/<?php echo $page;?>/<?php echo $page;?>.js" defer></script>
-    <link rel="stylesheet" href="http://localhost/tagazon/src/pages/<?php echo $page;?>/<?php echo $page;?>.css"/>
+    <script src="./pages/<?php echo $page;?>/<?php echo $page;?>.js" defer></script>
+    <link rel="stylesheet" href="./pages/<?php echo $page;?>/<?php echo $page;?>.css"/>
 
 </head>
 <body>

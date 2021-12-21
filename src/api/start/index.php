@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__."/start-api.php";
+require_once __DIR__ . "/../require.php";
 
 Api::run(new StartApi());
 

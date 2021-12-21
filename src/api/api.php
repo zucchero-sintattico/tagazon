@@ -1,6 +1,7 @@
 <?php
 
-require_once __DIR__."/../utils/utils.php";
+require_once __DIR__ . "/require.php";
+
 class Api {
 	
 	private $responseCode;

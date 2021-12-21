@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__."/login-api.php";
+require_once __DIR__ . "/../../require.php";
 
 Api::run(new LoginApi());
 

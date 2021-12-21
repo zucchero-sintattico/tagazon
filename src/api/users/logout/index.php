@@ -1,7 +1,6 @@
 <?php
 
-require_once __DIR__."/logout-api.php";
-
+require_once __DIR__ . "/../../require.php";
 
 Api::run(new LogoutApi());
 
