@@ -15,4 +15,5 @@ $(() => {
             window.location.href = "./?page=splash";
         }
     );
+
 });
