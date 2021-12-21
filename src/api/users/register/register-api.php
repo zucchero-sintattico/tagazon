@@ -1,10 +1,6 @@
 <?php
 
-require_once __DIR__."/../../api.php";
-require_once __DIR__."/../../../utils/utils.php";
-require_once __DIR__."/../../sellers/sellers-api.php";
-require_once __DIR__."/../../buyers/buyers-api.php";
-require_once __DIR__."/../../shopping-carts/shopping-carts-api.php";
+require_once __DIR__ . "/../../require.php";
 
 class RegisterApi extends Api {
 
@@ -20,8 +16,8 @@ class RegisterApi extends Api {
         $password = $params["password"];
 
 
-        $sellers = SellersApi::get(["email" => $email])["data"];
-        $buyers = BuyersApi::get(["email" => $email])["data"];
+        $sellers = SellersApi::get(["email" => $email], true)["data"];
+        $buyers = BuyersApi::get(["email" => $email], true)["data"];
 
         if(count($sellers) > 0 || count($buyers) > 0){
             $this->setResponseCode(400);
@@ -49,14 +45,12 @@ class RegisterApi extends Api {
 
         $res = null;
         if ($type == "seller"){
-            $res = SellersApi::post($user);
+            $res = SellersApi::post($user, true);
         } else {
-            $res = BuyersApi::post($user);
+            $res = BuyersApi::post($user, true);
         }
         if($res["code"] == 201){
-            
-            $res2 = ShoppingCartsApi::post(['user' => $res["data"]["id"]]);
-
+            $res2 = ShoppingCartsApi::post(['buyer' => $res["data"]->id], true);
             if($res2["code"] == 201){            
                 $this->setResponseCode(200);
                 $this->setResponseMessage("User created");

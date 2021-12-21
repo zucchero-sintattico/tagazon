@@ -1,6 +1,17 @@
+$(() => {
 
-$("#accedi").on("click", function(e) {
-    e.preventDefault();
-    window.history.pushState(Page.LOGIN, null, window.location);
-    PageManager.switchPage(Page.LOGIN);
+    $("form").submit((e) => {
+        e.preventDefault();
+        UserManager.logout(() => {
+            window.location.href = "./?page=splash";
+        })
+    })
+
+    UserManager.start(
+        ifLogged = () => {
+            $("h2").text(`Benvenuto ${UserManager.user["email"]}`);
+            NotificationsService.start();
+        }
+    );
+
 });

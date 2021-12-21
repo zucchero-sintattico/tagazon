@@ -1,9 +1,6 @@
 <?php
 
-require_once(__DIR__ . "/../db/entity.php");
-require_once(__DIR__ . "/api.php");
-require_once(__DIR__ . "/../utils/utils.php");
-require_once(__DIR__ . "/../db/tables.php");
+require_once __DIR__ . "/require.php";
 abstract class EntityApi extends Api
 {
 

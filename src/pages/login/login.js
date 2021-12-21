@@ -1,6 +1,9 @@
-$("html").fadeIn();
-$("#registrati").on("click", function(e) {
-    e.preventDefault();
-    window.history.pushState(Page.REGISTER, null, window.location);
-    PageManager.switchPage(Page.REGISTER);
-});
+$(() => {
+    $("form").submit(function(e) {
+        e.preventDefault();
+        UserManager.login(
+            $("#email").val(),
+            $("#password").val()
+        );
+    });
+})
