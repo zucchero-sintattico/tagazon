@@ -3,11 +3,7 @@ $(() => {
         e.preventDefault();
         UserManager.login(
             $("#email").val(),
-            $("#password").val(),
-            onSuccess = () => {
-                window.location.href = "./?page=home";
-            },
-            onError = (err) => {}
+            $("#password").val()
         );
     });
 })

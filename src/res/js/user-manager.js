@@ -36,7 +36,7 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    static login(email, password, onSuccess = (...args) => window.location.reload(), onError = (err) => console.error(err)) {
+    static login(email, password, onSuccess = (data) => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
             url: this.baseUrl + "login/",
             type: "POST",
@@ -44,9 +44,7 @@ class UserManager {
                 email: email,
                 password: password
             },
-            success: (data) => {
-                UserManager.updateInfo((x) => onSuccess(data));
-            },
+            success: onSuccess,
             error: onError
         });
     }
@@ -84,7 +82,9 @@ class UserManager {
                 name: name,
                 surname: surname
             },
-            success: onSuccess,
+            success: (data) => {
+                UserManager.login(email, password, onSuccess);
+            },
             error: onError
         });
     }
@@ -108,7 +108,9 @@ class UserManager {
                 rag_soc: rag_soc,
                 piva: piva
             },
-            success: onSuccess,
+            success: (data) => {
+                UserManager.login(email, password, onSuccess);
+            },
             error: onError
         });
     }
