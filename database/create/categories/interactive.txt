@@ -3,7 +3,6 @@ button
 details
 embed
 iframe
-keygen
 label
 select
 textarea

@@ -4,7 +4,8 @@ address
 article
 aside
 audio
-b,bdo
+b
+bdo
 bdi
 blockquote
 br
@@ -12,7 +13,6 @@ button
 canvas
 cite
 code
-command
 data
 datalist
 del
@@ -41,7 +41,6 @@ img
 input
 ins
 kbd
-keygen
 label
 main
 map
