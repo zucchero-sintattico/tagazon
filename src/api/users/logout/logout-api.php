@@ -2,7 +2,6 @@
 
 require_once __DIR__."/../../api.php";
 
-
 class LogoutApi extends Api {
 
     public function __construct()

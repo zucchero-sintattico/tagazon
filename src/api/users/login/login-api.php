@@ -1,9 +1,6 @@
 <?php
 
 require_once __DIR__."/../../api.php";
-require_once __DIR__."/../../utils.php";
-require_once __DIR__."/../../../db/tables.php";
-require_once __DIR__."/../../../db/entity.php";
 require_once __DIR__."/../../sellers/sellers-api.php";
 require_once __DIR__."/../../buyers/buyers-api.php";
 
