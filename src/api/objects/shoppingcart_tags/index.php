@@ -2,6 +2,6 @@
 
 require_once __DIR__ . "/../../require.php";
 
-Api::run(new ResetPasswordApi());
+Api::run(new ShoppingCartsTagsApi());
 
 ?>
