@@ -18,21 +18,20 @@ class ResetPasswordApi extends Api {
 
         $email = $params["email"];
 
-        $sellers = SellersApi::get(["email" => $email])["data"];
-        $buyers = BuyersApi::get(["email" => $email])["data"];
+        $sellers = SellersApi::get(["email" => $email], true)["data"];
+        $buyers = BuyersApi::get(["email" => $email], true)["data"];
 
+        $password = generateRandomString(8);
         if (count($sellers) > 0) {
-            $seller = $sellers[0];
-            $password = generateRandomString(8);
-            $seller->password = password_hash($password, PASSWORD_DEFAULT);
+            $seller = (array)$sellers[0];
+            $seller["password"] = password_hash($password, PASSWORD_DEFAULT);
             $res = SellersApi::patch($seller);
-            mail($seller->email, "Password reset", "Your new password is: " . $seller->password);
+            sendMail($seller["email"], "Password reset", "Your new password is: " . $password);
         } else if (count($buyers) > 0) {
-            $buyer = $buyers[0];
-            $password = generateRandomString(8);
-            $buyer->password = password_hash($password, PASSWORD_DEFAULT);
+            $buyer = (array)$buyers[0];
+            $buyer["password"] = password_hash($password, PASSWORD_DEFAULT);
             $res = BuyersApi::patch($buyer);
-            mail($buyer->email, "Password reset", "Your new password is: " . $buyer->password);
+            sendMail($buyer["email"], "Password reset", "Your new password is: " . $password);
         } else {
             $this->setResponseCode(400);
             $this->setResponseMessage("User not found");

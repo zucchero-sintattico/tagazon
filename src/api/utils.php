@@ -1,4 +1,33 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+
+require __DIR__.'/../mailer/PHPMailer.php';
+require __DIR__.'/../mailer/SMTP.php';
+
+
+function sendMail($to, $subject, $message)
+{
+	$email = "tagazon@programmer.net";
+
+	$mail = new PHPMailer();
+	$mail->IsSMTP();
+	$mail->Host = 'smtp.mail.com';
+	$mail->Port = 587;
+	$mail->SMTPAuth = true;
+	$mail->Username = $email;
+	$mail->Password = 'DejK5FT6BFsO';
+	$mail->SMTPSecure = 'tls';
+	$mail->From = $email;
+	$mail->FromName = 'Tagazon';
+	$mail->AddAddress($to);
+	$mail->AddReplyTo($email);
+	$mail->WordWrap = 50;
+	$mail->IsHTML(true);
+	$mail->Subject = $subject;
+	$mail->Body = $message;
+	$mail->AltBody = $message;
+	return $mail->Send();
+}
 
 function get_client_ip() {
     $ipaddress = '';
