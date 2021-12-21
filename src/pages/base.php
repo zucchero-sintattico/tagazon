@@ -10,7 +10,6 @@
     <script src="./res/lib/mqtt.min.js"></script>
 
     <!-- User-Defined Libraries -->
-    <script src="./res/js/start.js"></script>
     <script src="./res/js/user-manager.js" defer></script>
     <script src="./res/js/notifications-service.js" defer></script>
 
