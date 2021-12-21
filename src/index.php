@@ -3,24 +3,21 @@
 class Pages {
 
     const pages = [
-        'home', 'login', 'register'
+        'home', 'login', 'register', 'error'
     ];
 
     static function get($page) {
-        $page = strtolower($page);
-        if (!in_array($page, self::pages)) {
-            echo "404 - Not Found";
-            return;
-        }        
+        $page = strtolower($page);     
         require __DIR__ . "/pages/base.php";
     }
 
 }
 
 if (!isset($_GET["page"])){
-    Pages::get("home");
+    Pages::get("error");
+} else {
+    Pages::get($_GET["page"]);
 }
 
-Pages::get($_GET["page"]);
 
 ?>
