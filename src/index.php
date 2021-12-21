@@ -9,8 +9,8 @@ class Pages {
     static function get($page) {
         $page = strtolower($page);
         if (!in_array($page, self::pages)) {
-            echo "404 - Not Found";
-            return;
+            http_response_code(404);
+            $page = "error";
         }        
         require __DIR__ . "/pages/base.php";
     }
