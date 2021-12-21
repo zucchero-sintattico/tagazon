@@ -9,9 +9,12 @@
     static #SRC_CLASSNAME = "current-src";
 
     static switchPage(page, callback = () => {}) {
-        PageManager.#clearBody();
-        PageManager.#removeResources();
-        PageManager.#loadHTML(page, callback);
+        // PageManager.#clearBody();
+        $("html").fadeOut(500, function() {
+            PageManager.#removeResources();
+            PageManager.#loadCSS(page)
+            PageManager.#loadHTML(page, () => $("html").fadeIn(500));
+        });
     }
 
     /**
@@ -20,18 +23,19 @@
     static #loadHTML(page, callback) {
         $("body").load(
             page.url("html"),
-            () => { PageManager.#loadCSS(page); PageManager.#loadJavascript(page); callback(); }
+            () => { PageManager.#loadJavascript(page); callback(); }
         );
     }
 
     /**
      * Load CSS of the page in the head
      */
-    static #loadCSS(page) {
+    static #loadCSS(page, callback = () => {}) {
         const link = document.createElement("link");
         link.className = this.#SRC_CLASSNAME;
         link.rel = "stylesheet";
         link.href = page.url("css");
+        link.onload = callback;
         $("head").append(link);
     }
 
