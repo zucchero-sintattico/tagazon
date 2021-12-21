@@ -3,7 +3,7 @@
 class Pages {
 
     const pages = [
-        'home', 'login', 'register', 'error'
+        'splash', 'login', 'register', 'error', 'home'
     ];
 
     static function get($page) {
@@ -17,7 +17,7 @@ class Pages {
 }
 
 if (!isset($_GET["page"])){
-    Pages::get("home");
+    Pages::get("splash");
 } else {
     Pages::get($_GET["page"]);
 }
