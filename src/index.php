@@ -3,22 +3,18 @@
 class Pages {
 
     const pages = [
-        'home', 'login', 'register'
+        'home', 'login', 'register', 'error'
     ];
 
     static function get($page) {
-        $page = strtolower($page);
-        if (!in_array($page, self::pages)) {
-            http_response_code(404);
-            $page = "error";
-        }        
+        $page = strtolower($page);     
         require __DIR__ . "/pages/base.php";
     }
 
 }
 
 if (!isset($_GET["page"])){
-    Pages::get("home");
+    Pages::get("error");
 }
 
 Pages::get($_GET["page"]);
