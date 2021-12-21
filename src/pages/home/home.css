@@ -6,7 +6,7 @@ html,body{
 }
 
 body{
-    background-image: url("../../img/backgrounds/bg.webp");
+    background-image: url("../../res/img/backgrounds/bg.webp");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
