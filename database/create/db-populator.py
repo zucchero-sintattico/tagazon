@@ -6,11 +6,11 @@ from multiprocessing import Process
 Configuration
 """
 
-website = 'localhost'
+website = 'tagazon.altervista.org' # 'localhost/tagazon/src'
 if len(sys.argv) > 1:
     website = sys.argv[1]
     
-path = f'http://{website}/tagazon/src/api/objects/'
+path = f'http://{website}/api/objects/'
 end = '?python-bot';
 SELLERS = 10
 BUYERS = 10
@@ -42,6 +42,7 @@ def sellers(num):
             "password": "password"
         }
         res = requests.post(url, seller)
+        print(res.text)
         print(f'Seller: {res.json()}')
 
 def buyers(num):
