@@ -23,6 +23,7 @@ main > section:first-of-type {
     top: 0;
     background-color: var(--background-body);
     border-radius: 1em 1em 0 0;
+    z-index: 2;
 }
 
 main > section > h2 {
@@ -49,10 +50,18 @@ main > section > ul > li > button {
     margin: 1.5em 0.8em;
     padding: 1.2em 2em;
     background-color: whitesmoke;
+
     font-size: 1em;
     color: black;
+    text-transform: capitalize;
+
     border-radius: 0.6em;
 }
+
+main > section > ul > li > button::first-letter {
+    text-transform: capitalize;
+}
+
 
 main > section > ul > li > button.selected {
     background-color: var(--text-color);
@@ -113,6 +122,10 @@ main > section > div > article > p {
     -webkit-box-orient: vertical;
 
     flex-grow: 1;
+}
+
+main > section > div > article > p::first-letter {
+    text-transform: capitalize;
 }
 
 nav {
