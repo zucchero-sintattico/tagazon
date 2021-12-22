@@ -26,6 +26,7 @@ body {
     --black-color: #000;
     --primary-color: #457B9D;
     --secondary-color: #0077B6;
+    --error-message-color: #ED6A66;
     --text-color: #0077B6;
     --title-size-mobile: 48px;
     --title-size-desktop: 92px;
