@@ -1,5 +1,5 @@
 
-name: 🚀 Deploy website on push [develop]
+name: 🚀 Ftp-Deploy website on push [develop]
 
 on: 
   push:

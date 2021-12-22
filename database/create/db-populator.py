@@ -1,11 +1,16 @@
-import os, requests, json, random
+import os, requests, json, random, sys
 from passlib.hash import bcrypt
 from multiprocessing import Process
 
 """
 Configuration
 """
-path = 'http://localhost/tagazon/src/api/objects/'
+
+website = 'localhost'
+if len(sys.argv) > 1:
+    website = sys.argv[1]
+    
+path = f'http://{website}/tagazon/src/api/objects/'
 end = '?python-bot';
 SELLERS = 10
 BUYERS = 10
