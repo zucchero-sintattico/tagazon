@@ -6,9 +6,9 @@ CREATE DATABASE IF NOT EXISTS `my_tagazon`;
 
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`sellers` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `email` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(128) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
-    `rag_soc` VARCHAR(255) NOT NULL,
+    `rag_soc` VARCHAR(128) NOT NULL,
     `piva` VARCHAR(255) NOT NULL,
     UNIQUE(`email`),
     UNIQUE(`rag_soc`)
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`sellers` (
 
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`buyers` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `email` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(128) NOT NULL,
     `password` VARCHAR(255) NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `surname` VARCHAR(255) NOT NULL,
@@ -25,14 +25,14 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`buyers` (
 
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`categories` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(128) NOT NULL,
     `description` TEXT NOT NULL,
     UNIQUE(`name`)
 );
 
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`tags` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(128) NOT NULL,
     `description` TEXT NOT NULL,
     `example` TEXT NOT NULL,
     `example_desc` TEXT NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`shoppingcarts` (
 
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`wishlists` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(128) NOT NULL,
     `buyer` INT NOT NULL,
     UNIQUE(`buyer`, `name`),
     FOREIGN KEY (`buyer`) REFERENCES `buyers`(`id`) ON DELETE CASCADE
