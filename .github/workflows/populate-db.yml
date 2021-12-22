@@ -1,6 +1,8 @@
 name: Populate database
+
 on: 
   workflow_dispatch
+
 jobs:
   populate-db:
     runs-on: ubuntu-latest
