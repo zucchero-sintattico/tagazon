@@ -9,7 +9,7 @@ class OrdersApi extends EntityApi {
         parent::__construct(Order::class, Api::BUYER);
     }
 
-    public function hasAccess($element)
+    public function canAccess($element)
     {
         return $element["buyer"] == $_SESSION["user"]->id;
     }
