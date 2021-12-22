@@ -10,15 +10,17 @@ THREADS = 8
 def getTags():
     mypath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'categories')
     files = [f for f in listdir(mypath) if isfile(join(mypath, f))]
-    tags = []
+    tags = dict()
     for file in files:
+        category = file.replace('.txt', '')
         with open(os.path.join(mypath, file), 'r') as f:
             ts = [t.replace('\n', '') for t in f.readlines()]
             for t in ts:
-                if not t in tags:
-                    tags.append(t)
+                if t not in tags:
+                    tags[t] = {'categories': [category, ]}
+                else:
+                    tags[t]['categories'].append(category)
     return tags
-
 
 def getTagDescription(tag):
     url = f'https://html.com/tags/{tag}'
@@ -47,20 +49,27 @@ def getTagExampleAndExampleDescription(tag):
 def scraping(tags, output, index):
     for tag in tags:
         print(f'Thread {index} - {tag}', flush=True)
-        res = dict({'tag': tag})
-        res['description'] = getTagDescription(tag)
-        res['example'], res['example_desc'] = getTagExampleAndExampleDescription(tag)
-        output[tag] = res
+        desc = getTagDescription(tag)
+        example, example_desc = getTagExampleAndExampleDescription(tag)
+        output[tag] = {
+            'categories': output[tag]['categories'],
+            'description': desc,
+            'example': example,
+            'example_desc': example_desc
+        }
         
 
 
 if __name__ == '__main__':
-    tags = getTags()
-    ps = []
     manager = Manager()
-    output = manager.dict()
-    elementPerThread = int(len(tags)/THREADS) + 1
-    splittedTags = [tags[i*elementPerThread:(i+1)*elementPerThread] for i in range(0, THREADS)]
+    tags = getTags()
+    output = dict()
+    for key in list(tags.keys()):
+        output[key] = tags[key]
+    output = manager.dict(output)
+    ps = []
+    elementPerThread = int(len(output)/THREADS) + 1
+    splittedTags = [list(tags.keys())[i*elementPerThread:(i+1)*elementPerThread] for i in range(0, THREADS)]
     for splitTags in splittedTags:
         p = Process(target=scraping, args=(splitTags, output, splittedTags.index(splitTags) + 1))
         ps.append(p)
@@ -69,6 +78,5 @@ if __name__ == '__main__':
     for p in ps:
         p.join()
 
-    
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tags.json'), 'w') as f:
-        f.write(json.dumps(output.values()))
+        f.write(json.dumps(dict(output), indent=4))
