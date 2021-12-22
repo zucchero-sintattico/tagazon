@@ -28,3 +28,11 @@ jobs:
         username: tagazon
         password: ${{ secrets.altervista_ftp_password }}
         local-dir: ./src/
+        exclude: .git*/**
+          - ./database/**
+          - ./reports/**
+          - ./service/**
+          - ./test/**
+          - ./LICENSE
+          - ./README.md
+          
