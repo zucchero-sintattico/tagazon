@@ -49,8 +49,11 @@ main > section > ul > li > button {
     margin: 1.5em 0.8em;
     padding: 1.2em 2em;
     background-color: whitesmoke;
+
     font-size: 1em;
     color: black;
+    text-transform: capitalize;
+
     border-radius: 0.6em;
 }
 
@@ -105,6 +108,7 @@ main > section > div > article > p {
     margin-top: 20px;
     text-align: center;
     font-size: 0.8em;
+    text-transform: capitalize;
 
     word-break: break-word;
     overflow: hidden;
