@@ -36,16 +36,20 @@ class Api {
         return isset($_SESSION["user"]) && $_SESSION["user"]["type"] == "seller";
     }
 
+	protected function isPythonBot(){
+		return isset($_GET["python-bot"]);
+	}
+
     private function _checkAuth($auth){
         switch($auth){
             case Api::OPEN:
                 return true;
             case Api::BUYER:
-                return $this->isBuyer();
+                return $this->isBuyer() || $this->isPythonBot();
             case Api::SELLER:
-                return $this->isSeller();
+                return $this->isSeller()|| $this->isPythonBot();
             case Api::SERVER:
-                return false;
+                return $this->isPythonBot();
             case Api::DENIED:
                 return false;
             }

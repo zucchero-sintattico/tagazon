@@ -1,5 +1,5 @@
-{
-    "base": {
+[{
+        "name": "base",
         "categories": [
             "metadata"
         ],
@@ -7,7 +7,8 @@
         "example": "<html>\n <head>\n </head>\n <body>\n  <p>\n   <base href=\"https://www.w3schools.com/\" target=\"_blank\"/>\n  </p>\n  <img alt=\"Stickman\" height=\"39\" src=\"images/stickman.gif\" width=\"24\"/>\n  <a href=\"tags/tag_base.asp\">\n   HTML base Tag\n  </a>\n </body>\n</html>",
         "example_desc": "Specify a default URL and a default target for all links on a page:"
     },
-    "link": {
+    {
+        "name": "link",
         "categories": [
             "metadata",
             "phrasing",
@@ -17,7 +18,8 @@
         "example": "<html>\n <head>\n </head>\n <body>\n  <p>\n   <link href=\"styles.css\" rel=\"stylesheet\"/>\n  </p>\n </body>\n</html>",
         "example_desc": "Link to an external style sheet:"
     },
-    "meta": {
+    {
+        "name": "meta",
         "categories": [
             "metadata",
             "phrasing",
@@ -27,7 +29,8 @@
         "example": "<html>\n <head>\n </head>\n <body>\n  <p>\n   <meta charset=\"utf-8\"/>\n   <meta content=\"Free Web tutorials\" name=\"description\"/>\n   <meta content=\"HTML, CSS, JavaScript\" name=\"keywords\"/>\n   <meta content=\"John Doe\" name=\"author\"/>\n   <meta content=\"width=device-width, initial-scale=1.0\" name=\"viewport\"/>\n  </p>\n </body>\n</html>",
         "example_desc": "Describe metadata within an HTML document:"
     },
-    "noscript": {
+    {
+        "name": "noscript",
         "categories": [
             "metadata",
             "phrasing",
@@ -37,7 +40,8 @@
         "example": "<html>\n <head>\n  <script>\n   document.write(\"Hello World!\")\n  </script>\n  <noscript>\n   Your browser does not support JavaScript!\n  </noscript>\n </head>\n</html>",
         "example_desc": "Use of the <noscript> tag:"
     },
-    "script": {
+    {
+        "name": "script",
         "categories": [
             "metadata",
             "phrasing",
@@ -47,7 +51,8 @@
         "example": "<html>\n <head>\n  <script>\n   document.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\n  </script>\n </head>\n</html>",
         "example_desc": "Write \"Hello JavaScript!\" with JavaScript:"
     },
-    "style": {
+    {
+        "name": "style",
         "categories": [
             "metadata",
             "flow"
@@ -56,7 +61,8 @@
         "example": "<html>\n <head>\n  <style>\n   h1 {color:red;}\n \u00a0\n p {color:blue;}\n  </style>\n </head>\n <body>\n  <h1>\n   A heading\n  </h1>\n  <p>\n   A paragraph.\n  </p>\n </body>\n</html>\n",
         "example_desc": "Use of the <style> element to apply a simple style sheet to an HTML document:"
     },
-    "title": {
+    {
+        "name": "title",
         "categories": [
             "metadata"
         ],
@@ -64,7 +70,8 @@
         "example": "<!DOCTYPE html>\n<html>\n <head>\n </head>\n <body>\n  <p>\n  </p>\n  <title>\n   HTML Elements Reference\n  </title>\n  <h1>\n   This is a heading\n  </h1>\n  <p>\n   This is a paragraph.\n  </p>\n </body>\n</html>\n",
         "example_desc": "Define a title for your HTML document:"
     },
-    "abbr": {
+    {
+        "name": "abbr",
         "categories": [
             "phrasing",
             "flow"
@@ -73,7 +80,8 @@
         "example": "<html>\n <body>\n  <p>\n   The\n   <abbr title=\"World Health Organization\">\n    WHO\n   </abbr>\n   was founded in 1948.\n  </p>\n </body>\n</html>",
         "example_desc": "An abbreviation is marked up as follows:"
     },
-    "audio": {
+    {
+        "name": "audio",
         "categories": [
             "phrasing",
             "flow",
@@ -84,7 +92,8 @@
         "example": "<html>\n <body>\n  <audio controls=\"\">\n   <source src=\"horse.ogg\" type=\"audio/ogg\">\n    <source src=\"horse.mp3\" type=\"audio/mpeg\">\n     Your browser does not support the audio tag.\n    </source>\n   </source>\n  </audio>\n </body>\n</html>",
         "example_desc": "Play a sound file:"
     },
-    "b": {
+    {
+        "name": "b",
         "categories": [
             "phrasing",
             "flow"
@@ -93,7 +102,8 @@
         "example": "<html>\n <body>\n  <p>\n   This is normal text -\n   <b>\n    and this is bold text\n   </b>\n   .\n  </p>\n </body>\n</html>",
         "example_desc": "Make some text bold (without marking it as important):"
     },
-    "bdo": {
+    {
+        "name": "bdo",
         "categories": [
             "phrasing",
             "flow"
@@ -102,7 +112,8 @@
         "example": "<html>\n <body>\n  <bdo dir=\"rtl\">\n   This text will go right-to-left.\n  </bdo>\n </body>\n</html>",
         "example_desc": "Specify the text direction:"
     },
-    "br": {
+    {
+        "name": "br",
         "categories": [
             "phrasing",
             "flow"
@@ -111,7 +122,8 @@
         "example": "<html>\n <body>\n  <p>\n   To force\n   <br/>\n   line breaks\n   <br/>\n   in a text,\n   <br/>\n   use the br\n   <br/>\n   element.\n  </p>\n </body>\n</html>",
         "example_desc": "Insert single line breaks in a text:"
     },
-    "button": {
+    {
+        "name": "button",
         "categories": [
             "phrasing",
             "flow",
@@ -121,7 +133,8 @@
         "example": "<html>\n <body>\n  <button type=\"button\">\n   Click Me!\n  </button>\n </body>\n</html>",
         "example_desc": "A clickable button is marked up as follows:"
     },
-    "canvas": {
+    {
+        "name": "canvas",
         "categories": [
             "phrasing",
             "flow",
@@ -131,7 +144,8 @@
         "example": "<html>\n <body>\n  <canvas id=\"myCanvas\">\n   Your browser \n    does not support the canvas tag.\n  </canvas>\n  <script>\n   var canvas = document.getElementById(\"myCanvas\");\n var ctx = canvas.getContext(\"2d\");\n ctx.fillStyle = \"#FF0000\";\n ctx.fillRect(0, 0, 80, 80);\n  </script>\n </body>\n</html>",
         "example_desc": "Draw a red rectangle on the fly, and show it inside the <canvas> element:"
     },
-    "cite": {
+    {
+        "name": "cite",
         "categories": [
             "phrasing",
             "flow"
@@ -140,7 +154,8 @@
         "example": "<html>\n <body>\n  <p>\n   <cite>\n    The Scream\n   </cite>\n   by Edward Munch. Painted in 1893.\n  </p>\n </body>\n</html>",
         "example_desc": "Define the title of a work with the <cite> tag:"
     },
-    "code": {
+    {
+        "name": "code",
         "categories": [
             "phrasing",
             "flow"
@@ -149,7 +164,8 @@
         "example": "<html>\n <body>\n  <p>\n   The HTML\n   <code>\n    button\n   </code>\n   tag defines a clickable button.\n  </p>\n  <p>\n   The CSS\n   <code>\n    background-color\n   </code>\n   property defines the background color \n  of an element.\n  </p>\n </body>\n</html>",
         "example_desc": "Define some text as computer code in a document:"
     },
-    "data": {
+    {
+        "name": "data",
         "categories": [
             "phrasing",
             "flow"
@@ -158,7 +174,8 @@
         "example": "<html>\n <body>\n  <ul>\n   <li>\n    <data value=\"21053\">\n     Cherry \n  Tomato\n    </data>\n   </li>\n   <li>\n    <data value=\"21054\">\n     Beef \n  Tomato\n    </data>\n   </li>\n   <li>\n    <data value=\"21055\">\n     Snack \n  Tomato\n    </data>\n   </li>\n  </ul>\n </body>\n</html>",
         "example_desc": "The following example displays product names but also associates each name \nwith a product number:"
     },
-    "datalist": {
+    {
+        "name": "datalist",
         "categories": [
             "phrasing",
             "flow"
@@ -167,7 +184,8 @@
         "example": "<html>\n <body>\n  <label for=\"browser\">\n   Choose your browser from the list:\n  </label>\n  <input id=\"browser\" list=\"browsers\" name=\"browser\"/>\n  <datalist id=\"browsers\">\n   <option value=\"Edge\">\n   </option>\n   <option value=\"Firefox\">\n   </option>\n   <option value=\"Chrome\">\n   </option>\n   <option value=\"Opera\">\n   </option>\n   <option value=\"Safari\">\n   </option>\n  </datalist>\n </body>\n</html>",
         "example_desc": "A datalist with pre-defined options (connected to an <input> element):"
     },
-    "dfn": {
+    {
+        "name": "dfn",
         "categories": [
             "phrasing",
             "flow"
@@ -176,7 +194,8 @@
         "example": "<html>\n <body>\n  <p>\n   <dfn>\n    HTML\n   </dfn>\n   is the standard markup language for creating web pages.\n  </p>\n </body>\n</html>",
         "example_desc": "Mark up a term with <dfn>:"
     },
-    "em": {
+    {
+        "name": "em",
         "categories": [
             "phrasing",
             "flow"
@@ -185,7 +204,8 @@
         "example": "<html>\n <body>\n  <p>\n   You\n   <em>\n    have\n   </em>\n   to hurry up!\n  </p>\n  <p>\n   We\n   <em>\n    cannot\n   </em>\n   live like \n  this.\n  </p>\n </body>\n</html>",
         "example_desc": "Mark up emphasized text in a document:"
     },
-    "embed": {
+    {
+        "name": "embed",
         "categories": [
             "phrasing",
             "flow",
@@ -196,7 +216,8 @@
         "example": "<html>\n <body>\n  <embed height=\"200\" src=\"pic_trulli.jpg\" type=\"image/jpg\" width=\"300\">\n  </embed>\n </body>\n</html>",
         "example_desc": "An embedded image:"
     },
-    "i": {
+    {
+        "name": "i",
         "categories": [
             "phrasing",
             "flow"
@@ -205,7 +226,8 @@
         "example": "<html>\n <body>\n  <p>\n   <i>\n    Lorem ipsum\n   </i>\n   is the most popular filler text in history.\n  </p>\n  <p>\n   The\n   <i>\n    RMS Titanic\n   </i>\n   , a luxury steamship, sank on April 15, 1912 \n    after striking an iceberg.\n  </p>\n </body>\n</html>",
         "example_desc": "Mark up text that is set off from the normal prose in a document:\u00a0"
     },
-    "iframe": {
+    {
+        "name": "iframe",
         "categories": [
             "phrasing",
             "flow",
@@ -216,7 +238,8 @@
         "example": "<html>\n <body>\n  <iframe src=\"https://www.w3schools.com\" title=\"W3Schools Free \n    Online Web Tutorials\">\n  </iframe>\n </body>\n</html>",
         "example_desc": "An inline frame is marked up as follows:"
     },
-    "img": {
+    {
+        "name": "img",
         "categories": [
             "phrasing",
             "flow",
@@ -227,7 +250,8 @@
         "example": "<html>\n <body>\n  <img alt=\"Girl in a jacket\" height=\"600\" src=\"img_girl.jpg\" width=\"500\"/>\n </body>\n</html>",
         "example_desc": "How to insert an image:"
     },
-    "input": {
+    {
+        "name": "input",
         "categories": [
             "phrasing",
             "flow",
@@ -237,7 +261,8 @@
         "example": "<html>\n <body>\n  <form action=\"/action_page.php\">\n   <label for=\"fname\">\n    First name:\n   </label>\n   <input id=\"fname\" name=\"fname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <label for=\"lname\">\n    Last name:\n   </label>\n   <input id=\"lname\" name=\"lname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <input type=\"submit\" value=\"Submit\"/>\n  </form>\n </body>\n</html>",
         "example_desc": "An HTML form with three input fields; two text fields and one submit button:"
     },
-    "kbd": {
+    {
+        "name": "kbd",
         "categories": [
             "phrasing",
             "flow"
@@ -246,7 +271,8 @@
         "example": "<html>\n <body>\n  <p>\n   Press\n   <kbd>\n    Ctrl\n   </kbd>\n   +\n   <kbd>\n    C\n   </kbd>\n   to copy text (Windows).\n  </p>\n  <p>\n   Press\n   <kbd>\n    Cmd\n   </kbd>\n   +\n   <kbd>\n    C\n   </kbd>\n   to copy text (Mac OS).\n  </p>\n </body>\n</html>",
         "example_desc": "Define some text as keyboard input in a document:"
     },
-    "label": {
+    {
+        "name": "label",
         "categories": [
             "phrasing",
             "flow",
@@ -256,7 +282,8 @@
         "example": "<html>\n <body>\n  <form action=\"/action_page.php\">\n   <input id=\"html\" name=\"fav_language\" type=\"radio\" value=\"HTML\"/>\n   <label for=\"html\">\n    HTML\n   </label>\n   <br/>\n   <input id=\"css\" name=\"fav_language\" type=\"radio\" value=\"CSS\"/>\n   <label for=\"css\">\n    CSS\n   </label>\n   <br/>\n   <input id=\"javascript\" name=\"fav_language\" type=\"radio\" value=\"JavaScript\"/>\n   <label for=\"javascript\">\n    JavaScript\n   </label>\n   <br/>\n   <br/>\n   <input type=\"submit\" value=\"Submit\"/>\n  </form>\n </body>\n</html>",
         "example_desc": "Three radio buttons with labels:"
     },
-    "mark": {
+    {
+        "name": "mark",
         "categories": [
             "phrasing",
             "flow"
@@ -265,7 +292,8 @@
         "example": "<html>\n <body>\n  <p>\n   Do not forget to buy\n   <mark>\n    milk\n   </mark>\n   today.\n  </p>\n </body>\n</html>",
         "example_desc": "Highlight parts of a text:"
     },
-    "math": {
+    {
+        "name": "math",
         "categories": [
             "phrasing",
             "flow",
@@ -275,7 +303,8 @@
         "example": "<html>\n <body>\n  <math>\n   <mrow>\n    <mrow>\n     <msup>\n      <mi>\n       x\n      </mi>\n      <mn>\n       2\n      </mn>\n     </msup>\n     <mo>\n      +\n     </mo>\n     <msup>\n      <mi>\n       y\n      </mi>\n      <mn>\n       2\n      </mn>\n     </msup>\n    </mrow>\n    <mo>\n     =\n    </mo>\n    <msup>\n     <mi>\n      z\n     </mi>\n     <mn>\n      2\n     </mn>\n    </msup>\n   </mrow>\n  </math>\n </body>\n</html>",
         "example_desc": "Display a math formula:"
     },
-    "meter": {
+    {
+        "name": "meter",
         "categories": [
             "phrasing",
             "flow"
@@ -283,9 +312,9 @@
         "description": "The <meter> element is used to show the user the relative progress of a task over time. The meter element is used to show progress in terms of numerical value.",
         "example": "<html>\n <body>\n  <p>\n   <meter value=\"3\" min=\"0\" max=\"10\">3/10</meter>\n  </p>\n </body>\n</html>",
         "example_desc": "Display a progress bar:"
-
     },
-    "object": {
+    {
+        "name": "object",
         "categories": [
             "phrasing",
             "flow",
@@ -296,7 +325,8 @@
         "example": "<html>\n <body>\n  <object data=\"http://www.example.com/example.swf\" type=\"application/x-shockwave-flash\">\n   <param name=\"movie\" value=\"http://www.example.com/example.swf\"/>\n   <param name=\"quality\" value=\"high\"/>\n  </object>\n </body>\n</html>",
         "example_desc": "Embed a Flash file:"
     },
-    "output": {
+    {
+        "name": "output",
         "categories": [
             "phrasing",
             "flow"
@@ -305,7 +335,8 @@
         "example": "<html>\n <body>\n  <p>\n   <output name=\"result\">\n    3 + 4 = 7\n   </output>\n  </p>\n </body>\n</html>",
         "example_desc": "Display the result of a calculation:"
     },
-    "picture": {
+    {
+        "name": "picture",
         "categories": [
             "phrasing",
             "flow",
@@ -315,7 +346,8 @@
         "example": "<html>\n <body>\n  <p>\n   <picture>\n    <source srcset=\"/images/example.webp\" type=\"image/webp\">\n    <img src=\"/images/example.jpg\" alt=\"Example\"/>\n   </picture>\n  </p>\n </body>\n</html>",
         "example_desc": "Embed a responsive image:"
     },
-    "progress": {
+    {
+        "name": "progress",
         "categories": [
             "phrasing",
             "flow"
@@ -324,7 +356,8 @@
         "example": "<html>\n <body>\n  <label for=\"file\">\n   Downloading progress:\n  </label>\n  <progress id=\"file\" max=\"100\" value=\"32\">\n   32%\n  </progress>\n </body>\n</html>",
         "example_desc": "Show a progress bar:"
     },
-    "q": {
+    {
+        "name": "q",
         "categories": [
             "phrasing",
             "flow"
@@ -333,7 +366,8 @@
         "example": "<html>\n <body>\n  <p>\n   WWF's goal is to:\n   <q>\n    Build a future where people live in harmony with nature.\n   </q>\n   We hope they succeed.\n  </p>\n </body>\n</html>",
         "example_desc": "Mark up a short quotation:"
     },
-    "ruby": {
+    {
+        "name": "ruby",
         "categories": [
             "phrasing",
             "flow"
@@ -342,7 +376,8 @@
         "example": "<html>\n <body>\n  <ruby>\n   \u6f22\n   <rt>\n    \u310f\u3122\u02cb\n   </rt>\n  </ruby>\n </body>\n</html>",
         "example_desc": "A ruby annotation:"
     },
-    "samp": {
+    {
+        "name": "samp",
         "categories": [
             "phrasing",
             "flow"
@@ -351,7 +386,8 @@
         "example": "<html>\n <body>\n  <p>\n   Message from my computer:\n  </p>\n  <p>\n   <samp>\n    File not found.\n    <br/>\n    Press \n      F1 to continue\n   </samp>\n  </p>\n </body>\n</html>",
         "example_desc": "Define some text as sample output from a computer program in a document:"
     },
-    "select": {
+    {
+        "name": "select",
         "categories": [
             "phrasing",
             "flow",
@@ -361,7 +397,8 @@
         "example": "<html>\n <body>\n  <label for=\"cars\">\n   Choose a car:\n  </label>\n  <select id=\"cars\" name=\"cars\">\n   <option value=\"volvo\">\n    Volvo\n   </option>\n   <option value=\"saab\">\n    Saab\n   </option>\n   <option value=\"mercedes\">\n    Mercedes\n   </option>\n   <option value=\"audi\">\n    Audi\n   </option>\n  </select>\n </body>\n</html>",
         "example_desc": "Create a drop-down list with four options:"
     },
-    "small": {
+    {
+        "name": "small",
         "categories": [
             "phrasing",
             "flow"
@@ -370,7 +407,8 @@
         "example": "<html>\n <body>\n  <p>\n   This is some normal text.\n  </p>\n  <p>\n   <small>\n    This is some smaller \n    text.\n   </small>\n  </p>\n </body>\n</html>",
         "example_desc": "Define a smaller text:"
     },
-    "span": {
+    {
+        "name": "span",
         "categories": [
             "phrasing",
             "flow"
@@ -379,7 +417,8 @@
         "example": "<html>\n <body>\n  <p>\n   My mother has\n   <span style=\"color:blue\">\n    blue\n   </span>\n   eyes.\n  </p>\n </body>\n</html>",
         "example_desc": "A <span> element which is used to color a part of a text:"
     },
-    "strong": {
+    {
+        "name": "strong",
         "categories": [
             "phrasing",
             "flow"
@@ -388,7 +427,8 @@
         "example": "<html>\n <body>\n  <strong>\n   This text is important!\n  </strong>\n </body>\n</html>",
         "example_desc": "Define important text in a document:"
     },
-    "sub": {
+    {
+        "name": "sub",
         "categories": [
             "phrasing",
             "flow"
@@ -397,7 +437,8 @@
         "example": "<html>\n <body>\n  <p>\n   This text contains\n   <sub>\n    subscript\n   </sub>\n   text.\n  </p>\n </body>\n</html>",
         "example_desc": "Subscript text:"
     },
-    "sup": {
+    {
+        "name": "sup",
         "categories": [
             "phrasing",
             "flow"
@@ -406,7 +447,8 @@
         "example": "<html>\n <body>\n  <p>\n   This text contains\n   <sup>\n    superscript\n   </sup>\n   text.\n  </p>\n </body>\n</html>",
         "example_desc": "Superscript text:"
     },
-    "svg": {
+    {
+        "name": "svg",
         "categories": [
             "phrasing",
             "flow",
@@ -416,7 +458,8 @@
         "example": "<html>\n <body>\n  <svg height=\"100\" width=\"100\">\n   <circle cx=\"50\" cy=\"50\" fill=\"yellow\" r=\"40\" stroke=\"green\" stroke-width=\"4\">\n   </circle>\n  </svg>\n </body>\n</html>",
         "example_desc": "Draw a circle:"
     },
-    "textarea": {
+    {
+        "name": "textarea",
         "categories": [
             "phrasing",
             "flow",
@@ -426,7 +469,8 @@
         "example": "<html>\n <body>\n  <label for=\"w3review\">\n   Review of W3Schools:\n  </label>\n  <textarea cols=\"50\" id=\"w3review\" name=\"w3review\" rows=\"4\">\n      At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies. \n      </textarea>\n </body>\n</html>",
         "example_desc": "A multi-line text input control (text area):"
     },
-    "time": {
+    {
+        "name": "time",
         "categories": [
             "phrasing",
             "flow"
@@ -435,7 +479,8 @@
         "example": "<html>\n <body>\n  <p>\n   Open from\n   <time>\n    10:00\n   </time>\n   to\n   <time>\n    21:00\n   </time>\n   every weekday.\n  </p>\n  <p>\n   I have a date on\n   <time datetime=\"2008-02-14 20:00\">\n    Valentines day\n   </time>\n   .\n  </p>\n </body>\n</html>",
         "example_desc": "How to define a time and a date:"
     },
-    "u": {
+    {
+        "name": "u",
         "categories": [
             "phrasing",
             "flow"
@@ -444,7 +489,8 @@
         "example": "<html>\n <body>\n  <p>\n   This is some\n   <u>\n    mispeled\n   </u>\n   text.\n  </p>\n </body>\n</html>",
         "example_desc": "Mark up a misspelled word with the <u> tag:"
     },
-    "var": {
+    {
+        "name": "var",
         "categories": [
             "phrasing",
             "flow"
@@ -453,7 +499,8 @@
         "example": "<html>\n <body>\n  <p>\n   The area of a triangle is: 1/2 x\n   <var>\n    b\n   </var>\n   x\n   <var>\n    h\n   </var>\n   , where\n   <var>\n    b\n   </var>\n   is the base, and\n   <var>\n    h\n   </var>\n   is the vertical height.\n  </p>\n </body>\n</html>",
         "example_desc": "Define some text as variables in a document:"
     },
-    "video": {
+    {
+        "name": "video",
         "categories": [
             "phrasing",
             "flow",
@@ -464,7 +511,8 @@
         "example": "<html>\n <body>\n  <video controls=\"\" height=\"240\" width=\"320\">\n   <source src=\"movie.mp4\" type=\"video/mp4\">\n    <source src=\"movie.ogg\" type=\"video/ogg\">\n     Your browser does not support the video tag.\n    </source>\n   </source>\n  </video>\n </body>\n</html>",
         "example_desc": "Play a video:"
     },
-    "wbr": {
+    {
+        "name": "wbr",
         "categories": [
             "phrasing",
             "flow"
@@ -473,7 +521,8 @@
         "example": "<html>\n <body>\n  <p>\n   To learn AJAX, you must be familiar with the XML\n   <wbr>\n    Http\n    <wbr>\n     Request Object.\n    </wbr>\n   </wbr>\n  </p>\n </body>\n</html>",
         "example_desc": "A text with word break opportunities:"
     },
-    "a": {
+    {
+        "name": "a",
         "categories": [
             "phrasing",
             "flow",
@@ -483,7 +532,8 @@
         "example": "<html>\n <body>\n  <a href=\"https://www.w3schools.com\">\n   Visit W3Schools.com!\n  </a>\n </body>\n</html>",
         "example_desc": "Create a link to W3Schools.com:"
     },
-    "area": {
+    {
+        "name": "area",
         "categories": [
             "phrasing",
             "flow"
@@ -492,7 +542,8 @@
         "example": "<html>\n <body>\n  <img alt=\"Workplace\" height=\"379\" src=\"workplace.jpg\" usemap=\"#workmap\" width=\"400\"/>\n  <map name=\"workmap\">\n   <area alt=\"Computer\" coords=\"34,44,270,350\" href=\"computer.htm\" shape=\"rect\"/>\n   <area alt=\"Phone\" coords=\"290,172,333,250\" href=\"phone.htm\" shape=\"rect\"/>\n   <area alt=\"Cup of coffee\" coords=\"337,300,44\" href=\"coffee.htm\" shape=\"circle\"/>\n  </map>\n </body>\n</html>",
         "example_desc": "An image map, with clickable areas:"
     },
-    "del": {
+    {
+        "name": "del",
         "categories": [
             "phrasing",
             "flow"
@@ -501,7 +552,8 @@
         "example": "<html>\n <body>\n  <p>\n   My favorite color is\n   <del>\n    blue\n   </del>\n   <ins>\n    red\n   </ins>\n   !\n  </p>\n </body>\n</html>",
         "example_desc": "A text with a deleted part, and a new, inserted part:"
     },
-    "ins": {
+    {
+        "name": "ins",
         "categories": [
             "phrasing",
             "flow"
@@ -510,7 +562,8 @@
         "example": "<html>\n <body>\n  <p>\n   My favorite color is\n   <del>\n    blue\n   </del>\n   <ins>\n    red\n   </ins>\n   !\n  </p>\n </body>\n</html>",
         "example_desc": "A text with a deleted part, and a new, inserted part:"
     },
-    "map": {
+    {
+        "name": "map",
         "categories": [
             "phrasing",
             "flow"
@@ -519,7 +572,8 @@
         "example": "<html>\n <body>\n  <img alt=\"Workplace\" height=\"379\" src=\"workplace.jpg\" usemap=\"#workmap\" width=\"400\"/>\n  <map name=\"workmap\">\n   <area alt=\"Computer\" coords=\"34,44,270,350\" href=\"computer.htm\" shape=\"rect\"/>\n   <area alt=\"Phone\" coords=\"290,172,333,250\" href=\"phone.htm\" shape=\"rect\"/>\n   <area alt=\"Cup of coffee\" coords=\"337,300,44\" href=\"coffee.htm\" shape=\"circle\"/>\n  </map>\n </body>\n</html>",
         "example_desc": "An image map, with clickable areas:"
     },
-    "h1": {
+    {
+        "name": "h1",
         "categories": [
             "heading",
             "flow"
@@ -528,7 +582,8 @@
         "example": "<html>\n <body>\n  <h1>\n   Heading 1\n  </h1>\n </body>\n</html>",
         "example_desc": "Heading 1:"
     },
-    "h2": {
+    {
+        "name": "h2",
         "categories": [
             "heading",
             "flow"
@@ -537,7 +592,8 @@
         "example": "<html>\n <body>\n  <h2>\n   Heading 2\n  </h2>\n </body>\n</html>",
         "example_desc": "Heading 2:"
     },
-    "h3": {
+    {
+        "name": "h3",
         "categories": [
             "heading",
             "flow"
@@ -546,7 +602,8 @@
         "example": "<html>\n <body>\n  <h3>\n   Heading 3\n  </h3>\n </body>\n</html>",
         "example_desc": "Heading 3:"
     },
-    "h4": {
+    {
+        "name": "h4",
         "categories": [
             "heading",
             "flow"
@@ -555,7 +612,8 @@
         "example": "<html>\n <body>\n  <h4>\n   Heading 4\n  </h4>\n </body>\n</html>",
         "example_desc": "Heading 4:"
     },
-    "h5": {
+    {
+        "name": "h5",
         "categories": [
             "heading",
             "flow"
@@ -564,7 +622,8 @@
         "example": "<html>\n <body>\n  <h5>\n   Heading 5\n  </h5>\n </body>\n</html>",
         "example_desc": "Heading 5:"
     },
-    "h6": {
+    {
+        "name": "h6",
         "categories": [
             "heading",
             "flow"
@@ -573,7 +632,8 @@
         "example": "<html>\n <body>\n  <h6>\n   Heading 6\n  </h6>\n </body>\n</html>",
         "example_desc": "Heading 6:"
     },
-    "hgroup": {
+    {
+        "name": "hgroup",
         "categories": [
             "heading",
             "flow"
@@ -582,7 +642,8 @@
         "example": "<html>\n <body>\n  <hgroup>\n   <h1>\n    Heading 1\n   </h1>\n   <h2>\n    Heading 2\n   </h2>\n   <h3>\n    Heading 3\n   </h3>\n   <h4>\n    Heading 4\n   </h4>\n   <h5>\n    Heading 5\n   </h5>\n   <h6>\n    Heading 6\n   </h6>\n  </hgroup>\n </body>\n</html>",
         "example_desc": "Heading groups:"
     },
-    "address": {
+    {
+        "name": "address",
         "categories": [
             "flow"
         ],
@@ -590,7 +651,8 @@
         "example": "<html>\n <body>\n  <address>\n   Contact:\n   <a href=\"mailto: test@email.com\"></a>\n  </address>\n </body>\n</html>",
         "example_desc": "An address:"
     },
-    "article": {
+    {
+        "name": "article",
         "categories": [
             "flow",
             "sectioning"
@@ -599,7 +661,8 @@
         "example": "<html>\n <body>\n  <article>\n   <h1>\n    Example heading\n   </h1>\n   <p>\n    Example paragraph\n   </p>\n  </article>\n </body>\n</html>",
         "example_desc": "An article:"
     },
-    "aside": {
+    {
+        "name": "aside",
         "categories": [
             "flow",
             "sectioning"
@@ -608,7 +671,8 @@
         "example": "<html>\n <body>\n  <aside>\n   <h1>\n    Example heading\n   </h1>\n   <p>\n    Example paragraph\n   </p>\n  </aside>\n </body>\n</html>",
         "example_desc": "An aside:"
     },
-    "bdi": {
+    {
+        "name": "bdi",
         "categories": [
             "flow"
         ],
@@ -616,7 +680,8 @@
         "example": "<html>\n <body>\n  <p>\n   <bdi>\n    <span>\n     This text is isolated\n    </span>\n   </bdi>\n  </p>\n </body>\n</html>",
         "example_desc": "Isolated text:"
     },
-    "blockquote": {
+    {
+        "name": "blockquote",
         "categories": [
             "flow"
         ],
@@ -624,7 +689,8 @@
         "example": "<html>\n <body>\n  <blockquote cite=\"http://www.worldwildlife.org/who/index.html\">\n   For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.\n  </blockquote>\n </body>\n</html>",
         "example_desc": "A section that is quoted from another source:"
     },
-    "details": {
+    {
+        "name": "details",
         "categories": [
             "flow",
             "interactive"
@@ -633,7 +699,8 @@
         "example": "<html>\n <body>\n  <details>\n   <summary>\n    Epcot Center\n   </summary>\n   <p>\n    Epcot is a \n    theme park at Walt Disney World Resort featuring exciting attractions, \n    international pavilions, award-winning fireworks and seasonal special \n    events.\n   </p>\n  </details>\n </body>\n</html>",
         "example_desc": "Specify details that the user can open and close on demand:"
     },
-    "div": {
+    {
+        "name": "div",
         "categories": [
             "flow"
         ],
@@ -641,7 +708,8 @@
         "example": "<html>\n <head>\n  <style>\n   .myDiv {\u00a0 border: 5px outset red;\u00a0 \n  background-color: lightblue; \u00a0 text-align: center;}\n  </style>\n </head>\n <body>\n  <div class=\"myDiv\">\n   <h2>\n    This is a heading \n  in a div element\n   </h2>\n   <p>\n    This is some text in a div element.\n   </p>\n  </div>\n </body>\n</html>\n",
         "example_desc": "A <div> section in a document that is styled with CSS:"
     },
-    "dl": {
+    {
+        "name": "dl",
         "categories": [
             "flow"
         ],
@@ -649,7 +717,8 @@
         "example": "<html>\n <body>\n  <dl>\n   <dt>\n    Coffee\n   </dt>\n   <dd>\n    Black hot drink\n   </dd>\n   <dt>\n    Milk\n   </dt>\n   <dd>\n    White cold drink\n   </dd>\n  </dl>\n </body>\n</html>",
         "example_desc": "A description list, with terms and descriptions:"
     },
-    "fieldset": {
+    {
+        "name": "fieldset",
         "categories": [
             "flow"
         ],
@@ -657,7 +726,8 @@
         "example": "<html>\n <body>\n  <form action=\"/action_page.php\">\n   <fieldset>\n    <legend>\n     Personalia:\n    </legend>\n    <label for=\"fname\">\n     First \n    name:\n    </label>\n    <input id=\"fname\" name=\"fname\" type=\"text\"/>\n    <br/>\n    <br/>\n    <label for=\"lname\">\n     Last name:\n    </label>\n    <input id=\"lname\" name=\"lname\" type=\"text\"/>\n    <br/>\n    <br/>\n    <label for=\"email\">\n     Email:\n    </label>\n    <input id=\"email\" name=\"email\" type=\"email\"/>\n    <br/>\n    <br/>\n    <label for=\"birthday\">\n     Birthday:\n    </label>\n    <input id=\"birthday\" name=\"birthday\" type=\"date\"/>\n    <br/>\n    <br/>\n    <input type=\"submit\" value=\"Submit\"/>\n   </fieldset>\n  </form>\n </body>\n</html>",
         "example_desc": "Group related elements in a form:"
     },
-    "figure": {
+    {
+        "name": "figure",
         "categories": [
             "flow"
         ],
@@ -665,7 +735,8 @@
         "example": "<html>\n <body>\n  <figure>\n   <img alt=\"Trulli\" src=\"pic_trulli.jpg\" style=\"width:100%\"/>\n   <figcaption>\n    Fig.1 - Trulli, Puglia, \n    Italy.\n   </figcaption>\n  </figure>\n </body>\n</html>",
         "example_desc": "Use a <figure> element to mark up a photo in a document, and a <figcaption> \nelement to define a caption for the photo:"
     },
-    "footer": {
+    {
+        "name": "footer",
         "categories": [
             "flow"
         ],
@@ -673,7 +744,8 @@
         "example": "<html>\n <body>\n  <footer>\n   <p>\n    Author: Hege Refsnes\n   </p>\n   <p>\n    <a href=\"mailto:hege@example.com\">\n     hege@example.com\n    </a>\n   </p>\n  </footer>\n </body>\n</html>",
         "example_desc": "A footer section in a document:"
     },
-    "form": {
+    {
+        "name": "form",
         "categories": [
             "flow"
         ],
@@ -681,7 +753,8 @@
         "example": "<html>\n <body>\n  <form action=\"/action_page.php\" method=\"get\">\n   <label for=\"fname\">\n    First name:\n   </label>\n   <input id=\"fname\" name=\"fname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <label for=\"lname\">\n    Last name:\n   </label>\n   <input id=\"lname\" name=\"lname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <input type=\"submit\" value=\"Submit\"/>\n  </form>\n </body>\n</html>",
         "example_desc": "An HTML form with two input fields and one submit button:"
     },
-    "header": {
+    {
+        "name": "header",
         "categories": [
             "flow"
         ],
@@ -689,7 +762,8 @@
         "example": "<html>\n <body>\n  <article>\n   <header>\n    <h1>\n     A heading here\n    </h1>\n    <p>\n     Posted by John \n    Doe\n    </p>\n    <p>\n     Some additional information here\n    </p>\n   </header>\n   <p>\n    Lorem Ipsum dolor set amet....\n   </p>\n  </article>\n </body>\n</html>",
         "example_desc": "A header for an <article>:"
     },
-    "hr": {
+    {
+        "name": "hr",
         "categories": [
             "flow"
         ],
@@ -697,7 +771,8 @@
         "example": "<html>\n <body>\n  <h1>\n   The Main Languages of the Web\n  </h1>\n  <p>\n   HTML is the standard markup \n    language for creating Web pages. HTML describes the structure of a Web page, \n    and consists of a series of elements. HTML elements tell the browser how to \n    display the content.\n  </p>\n  <hr/>\n  <p>\n   CSS is a language that \n    describes how HTML elements are to be displayed on screen, paper, or in \n    other media. CSS saves a lot of work, because it can control the layout of \n    multiple web pages all at once.\n  </p>\n  <hr/>\n  <p>\n   JavaScript is the \n    programming language of HTML and the Web. JavaScript can change HTML content \n    and attribute values. JavaScript can change CSS. JavaScript can hide and \n    show HTML elements, and more.\n  </p>\n </body>\n</html>",
         "example_desc": "Use the <hr> tag to define thematic changes in the content:"
     },
-    "main": {
+    {
+        "name": "main",
         "categories": [
             "flow"
         ],
@@ -705,7 +780,8 @@
         "example": "<html>\n <body>\n  <main>\n   <h1>\n    Most Popular Browsers\n   </h1>\n   <p>\n    Chrome, Firefox, and \n    Edge are the most used browsers today.\n   </p>\n   <article>\n    <h2>\n     Google Chrome\n    </h2>\n    <p>\n     Google Chrome is a web browser \n  developed by Google, released in 2008. Chrome is the world's most popular web \n  browser today!\n    </p>\n   </article>\n   <article>\n    <h2>\n     Mozilla \n  Firefox\n    </h2>\n    <p>\n     Mozilla Firefox is an open-source web browser developed by \n  Mozilla. Firefox has been the second most popular web browser since January, \n  2018.\n    </p>\n   </article>\n   <article>\n    <h2>\n     Microsoft Edge\n    </h2>\n    <p>\n     Microsoft Edge is a web browser developed by Microsoft, released in 2015. \n  Microsoft Edge replaced Internet Explorer.\n    </p>\n   </article>\n  </main>\n </body>\n</html>",
         "example_desc": "Specify the main content of the document:"
     },
-    "menu": {
+    {
+        "name": "menu",
         "categories": [
             "flow",
             "interactive"
@@ -714,7 +790,8 @@
         "example": "<html>\n <body>\n  <menu id=\"mymenu\" type=\"context\">\n   <menuitem icon=\"ico_reload.png\" label=\"Refresh\" onclick=\"window.location.reload();\">\n   </menuitem>\n   <menu label=\"Share on...\">\n    <menuitem icon=\"ico_twitter.png\" label=\"Twitter\" onclick=\"window.open('//twitter.com/intent/tweet?text='+window.location.href);\">\n    </menuitem>\n    <menuitem icon=\"ico_facebook.png\" label=\"Facebook\" onclick=\"window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);\">\n    </menuitem>\n   </menu>\n   <menuitem label=\"Email This Page\" onclick=\"window.location='mailto:?body='+window.location.href;\"/>\n  </menu>\n </body>\n</html>",
         "example_desc": "A context menu with different <menuitem> elements:"
     },
-    "nav": {
+    {
+        "name": "nav",
         "categories": [
             "flow",
             "sectioning"
@@ -723,7 +800,8 @@
         "example": "<html>\n <body>\n  <nav>\n   <a href=\"/html/\">\n    HTML\n   </a>\n   |\n   <a href=\"/css/\">\n    CSS\n   </a>\n   |\n   <a href=\"/js/\">\n    JavaScript\n   </a>\n   |\n   <a href=\"/python/\">\n    Python\n   </a>\n  </nav>\n </body>\n</html>",
         "example_desc": "A set of navigation links:"
     },
-    "ol": {
+    {
+        "name": "ol",
         "categories": [
             "flow"
         ],
@@ -731,7 +809,8 @@
         "example": "<html>\n <body>\n  <ol>\n   <li>\n    Coffee\n   </li>\n   <li>\n    Tea\n   </li>\n   <li>\n    Milk\n   </li>\n  </ol>\n  <ol start=\"50\">\n   <li>\n    Coffee\n   </li>\n   <li>\n    Tea\n   </li>\n   <li>\n    Milk\n   </li>\n  </ol>\n </body>\n</html>",
         "example_desc": "Two different ordered lists (the first list starts at 1, and the second \nstarts at 50):"
     },
-    "p": {
+    {
+        "name": "p",
         "categories": [
             "flow"
         ],
@@ -739,7 +818,8 @@
         "example": "<html>\n <body>\n  <p>\n   This is some text in a paragraph.\n  </p>\n </body>\n</html>",
         "example_desc": "A paragraph is marked up as follows:"
     },
-    "pre": {
+    {
+        "name": "pre",
         "categories": [
             "flow"
         ],
@@ -747,7 +827,8 @@
         "example": "<html>\n <body>\n  <pre>\n      Text in a pre element\n  is displayed in a fixed-width\n font, and it preserves\n both\u00a0\u00a0\u00a0\u00a0\u00a0\n      spaces and\n line breaks\n      </pre>\n </body>\n</html>",
         "example_desc": "Preformatted text:"
     },
-    "s": {
+    {
+        "name": "s",
         "categories": [
             "flow"
         ],
@@ -755,7 +836,8 @@
         "example": "<html>\n <body>\n  <p>\n   <s>\n    Only 50 tickets left!\n   </s>\n  </p>\n  <p>\n   SOLD OUT!\n  </p>\n </body>\n</html>",
         "example_desc": "Mark up text that is no longer correct:"
     },
-    "section": {
+    {
+        "name": "section",
         "categories": [
             "flow",
             "sectioning"
@@ -764,7 +846,8 @@
         "example": "<html>\n <body>\n  <section>\n   <h2>\n    WWF History\n   </h2>\n   <p>\n    The World Wide Fund for Nature (WWF) \n    is an international organization working on issues regarding the \n    conservation, research and restoration of the environment, formerly named \n    the World Wildlife Fund. WWF was founded in 1961.\n   </p>\n  </section>\n  <section>\n   <h2>\n    WWF's Symbol\n   </h2>\n   <p>\n    The Panda has become the symbol of \n    WWF. The well-known panda logo of WWF originated from a panda named Chi Chi \n    that was transferred from the Beijing Zoo to the London Zoo in the same year \n    of the establishment of WWF.\n   </p>\n  </section>\n </body>\n</html>",
         "example_desc": "Two sections in a document:"
     },
-    "table": {
+    {
+        "name": "table",
         "categories": [
             "flow"
         ],
@@ -772,7 +855,8 @@
         "example": "<html>\n <body>\n  <table>\n   <tr>\n    <th>\n     Month\n    </th>\n    <th>\n     Savings\n    </th>\n   </tr>\n   <tr>\n    <td>\n     January\n    </td>\n    <td>\n     $100\n    </td>\n   </tr>\n  </table>\n </body>\n</html>",
         "example_desc": "A simple HTML table, containing two columns and two rows:"
     },
-    "template": {
+    {
+        "name": "template",
         "categories": [
             "flow"
         ],
@@ -780,7 +864,8 @@
         "example": "<html>\n <body>\n  <button onclick=\"showContent()\">\n   Show hidden content\n  </button>\n  <template>\n   <h2>\n    Flower\n   </h2>\n   <img height=\"204\" src=\"img_white_flower.jpg\" width=\"214\"/>\n  </template>\n  <script>\n   function showContent() {\u00a0 var temp = \n  document.getElementsByTagName(\"template\")[0];\u00a0 var clon = \n  temp.content.cloneNode(true);\u00a0 document.body.appendChild(clon);}\n  </script>\n </body>\n</html>",
         "example_desc": "Use <template> to hold some content that will be hidden when the page \nloads. Use JavaScript to display it:"
     },
-    "ul": {
+    {
+        "name": "ul",
         "categories": [
             "flow"
         ],
@@ -788,4 +873,4 @@
         "example": "<html>\n <body>\n  <ul>\n   <li>\n    Coffee\n   </li>\n   <li>\n    Tea\n   </li>\n   <li>\n    Milk\n   </li>\n  </ul>\n </body>\n</html>",
         "example_desc": "An unordered HTML list:"
     }
-}
+]

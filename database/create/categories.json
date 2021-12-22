@@ -1,9 +1,29 @@
-[
-    "flow",
-    "interactive",
-    "embedded",
-    "phrasing",
-    "metadata",
-    "heading",
-    "sectioning"
+[{
+        "name": "flow",
+        "description": "Flow content is a broad category that encompasses most elements that can go inside the <body> element, including heading elements, sectioning elements, phrasing elements, embedding elements, interactive elements, and form-related elements. It also includes text nodes (but not those that only consist of white space characters)"
+    },
+    {
+        "name": "phrasing",
+        "description": "Phrasing content is any textual content that is not a child of a flow content, or a flow content that is not a child of a phrasing content. This includes text nodes, comments, elements with no children, and elements that are children of a flow content, but not phrasing content."
+    },
+    {
+        "name": "interactive",
+        "description": "Interactive content is content that requires user input, such as user interface controls, or a <button> element."
+    },
+    {
+        "name": "embedded",
+        "description": "Embedded content is content that is embedded, or could be embedded, in other content. Examples include applets, frames, iframes, and plug-ins."
+    },
+    {
+        "name": "sectioning",
+        "description": "Sectioning content is content that is a heading, or a group of headings that are related and are repeated in the same document more than once."
+    },
+    {
+        "name": "heading",
+        "description": "Heading content is content that is a heading, or a group of headings that are related but are not repeated in the same document."
+    },
+    {
+        "name": "metadata",
+        "description": "Metadata content is information that is not meant for presentation, such as a <meta> element, a <link> element, a <script> element, or a <style> element."
+    }
 ]
