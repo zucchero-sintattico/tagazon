@@ -12,5 +12,11 @@ with:
     find: 'ref/heads/'        # we want to remove ref/heads/ from source 
     replace: ''  
 
-test
+
+- name: Create temp branch
+  uses: peterjgrainger/action-create-branch@v2.0.1
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  with:
+    branch: 'deploy-temp'
     
