@@ -1,5 +1,5 @@
 
-name: 🚀 Deploy website on push on develop
+name: 🚀 Deploy website on push [develop]
 
 on: 
   push:
