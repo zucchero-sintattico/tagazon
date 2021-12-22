@@ -35,6 +35,11 @@ def getTagDescription(tag):
         return row.get_text()
     return None
 
+def beautifyCode(code):
+    soup = BeautifulSoup(code, features="lxml")
+    code = soup.prettify()
+    return code
+
 def getTagExampleAndExampleDescription(tag):
     url = f"https://www.w3schools.com/TAGS/tag_{tag}.asp"
     content = requests.get(url)
@@ -51,8 +56,7 @@ def scraping(tags, output, index):
         print(f'Thread {index} - {tag}', flush=True)
         desc = getTagDescription(tag)
         example, example_desc = getTagExampleAndExampleDescription(tag)
-        soup = BeautifulSoup(example, features="lxml")                #make BeautifulSoup
-        example = soup.prettify()   #prettify the html
+        example = beautifyCode(example)
         output[tag] = {
             'categories': output[tag]['categories'],
             'description': desc,
