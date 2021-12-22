@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <pre class="prettyprint"><code id="code">
+        
+    </code></pre>
+    <script type="text/javascript" defer>
+        function encodeStr(str) {
+            return str.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
+                return '&#' + i.charCodeAt(0) + ';';
+            });
+        };
+        let code = "<html>\n <body>\n  <p>\n   My mother has\n   <span style=\"color:blue\">\n    blue\n   </span>\n   eyes.\n  </p>\n </body>\n</html>";
+        let el = document.getElementById("code");
+        el.innerHTML = encodeStr(code);
+        hljs.highlightElement(el);
+    </script>
+</body>
+
+</html>

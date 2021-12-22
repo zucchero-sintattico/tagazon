@@ -1,0 +1,742 @@
+{
+    "base": {
+        "categories": [
+            "metadata"
+        ],
+        "description": "The <base> element is used to identify a base URL upon which to build all relative URLs that appear on a webpage. In addition, if the <base> element has a target attribute, the target attribute will be used as the default attribute for all hyperlinks appearing in the document.",
+        "example": "<html>\n <head>\n </head>\n <body>\n  <p>\n   <base href=\"https://www.w3schools.com/\" target=\"_blank\"/>\n  </p>\n  <img alt=\"Stickman\" height=\"39\" src=\"images/stickman.gif\" width=\"24\"/>\n  <a href=\"tags/tag_base.asp\">\n   HTML base Tag\n  </a>\n </body>\n</html>",
+        "example_desc": "Specify a default URL and a default target for all links on a page:"
+    },
+    "link": {
+        "categories": [
+            "metadata",
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <link> element is used to define a relationship between an HTML document and an external resource. This element is most commonly used to define the relationship between a document and one or more external CSS stylesheets.",
+        "example": "<html>\n <head>\n </head>\n <body>\n  <p>\n   <link href=\"styles.css\" rel=\"stylesheet\"/>\n  </p>\n </body>\n</html>",
+        "example_desc": "Link to an external style sheet:"
+    },
+    "meta": {
+        "categories": [
+            "metadata",
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <meta> element is used to add machine-readable information to an HTML document. Information added with the <meta> tag is not displayed to website visitors but is provided for use by browsers and web crawlers.",
+        "example": "<html>\n <head>\n </head>\n <body>\n  <p>\n   <meta charset=\"utf-8\"/>\n   <meta content=\"Free Web tutorials\" name=\"description\"/>\n   <meta content=\"HTML, CSS, JavaScript\" name=\"keywords\"/>\n   <meta content=\"John Doe\" name=\"author\"/>\n   <meta content=\"width=device-width, initial-scale=1.0\" name=\"viewport\"/>\n  </p>\n </body>\n</html>",
+        "example_desc": "Describe metadata within an HTML document:"
+    },
+    "noscript": {
+        "categories": [
+            "metadata",
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <noscript> element contains HTML content that will be rendered if a user viewing the webpage does so using a browser that does not support scripts or has disabled scripts.",
+        "example": "<html>\n <head>\n  <script>\n   document.write(\"Hello World!\")\n  </script>\n  <noscript>\n   Your browser does not support JavaScript!\n  </noscript>\n </head>\n</html>",
+        "example_desc": "Use of the <noscript> tag:"
+    },
+    "script": {
+        "categories": [
+            "metadata",
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <script> element contains code written in a programming language other than HTML or specifies the location of an external script resource. It is most commonly used to add JavaScript and jQuery to webpages either directly or by linking to external .js files.",
+        "example": "<html>\n <head>\n  <script>\n   document.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\n  </script>\n </head>\n</html>",
+        "example_desc": "Write \"Hello JavaScript!\" with JavaScript:"
+    },
+    "style": {
+        "categories": [
+            "metadata",
+            "flow"
+        ],
+        "description": "The <style> element is used to add CSS style rules to an HTML document. The element is expected to appear in the document <head>, but will also render acceptably when used in the <body> of the document.",
+        "example": "<html>\n <head>\n  <style>\n   h1 {color:red;}\n \u00a0\n p {color:blue;}\n  </style>\n </head>\n <body>\n  <h1>\n   A heading\n  </h1>\n  <p>\n   A paragraph.\n  </p>\n </body>\n</html>\n",
+        "example_desc": "Use of the <style> element to apply a simple style sheet to an HTML document:"
+    },
+    "title": {
+        "categories": [
+            "metadata"
+        ],
+        "description": "The <title> element is a required HTML element used to assign a title to an HTML document. Page titles are not displayed in the browser window, but they are used as the page name by search engines and displayed by browsers in the title bar, on the page tab, and as the page name of bookmarked webpages.",
+        "example": "<!DOCTYPE html>\n<html>\n <head>\n </head>\n <body>\n  <p>\n  </p>\n  <title>\n   HTML Elements Reference\n  </title>\n  <h1>\n   This is a heading\n  </h1>\n  <p>\n   This is a paragraph.\n  </p>\n </body>\n</html>\n",
+        "example_desc": "Define a title for your HTML document:"
+    },
+    "abbr": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <abbr> element is used along with a title attribute to associate a full-text explanation with an abbreviation or acronym. Website visitors do not see the text in the title attribute, but browsers, search engines, and assistive technologies do use this information.",
+        "example": "<html>\n <body>\n  <p>\n   The\n   <abbr title=\"World Health Organization\">\n    WHO\n   </abbr>\n   was founded in 1948.\n  </p>\n </body>\n</html>",
+        "example_desc": "An abbreviation is marked up as follows:"
+    },
+    "audio": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive",
+            "embedded"
+        ],
+        "description": "The <audio> element is used to add audio media resources to an HTML document that will be played by native support for audio playback built into the browser rather than a browser plugin.",
+        "example": "<html>\n <body>\n  <audio controls=\"\">\n   <source src=\"horse.ogg\" type=\"audio/ogg\">\n    <source src=\"horse.mp3\" type=\"audio/mpeg\">\n     Your browser does not support the audio tag.\n    </source>\n   </source>\n  </audio>\n </body>\n</html>",
+        "example_desc": "Play a sound file:"
+    },
+    "b": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <b> element is used to draw attention to enclosed text without implying any added importance or emphasis. Text surrounded by <b> tags is displayed with a bold typeface.",
+        "example": "<html>\n <body>\n  <p>\n   This is normal text -\n   <b>\n    and this is bold text\n   </b>\n   .\n  </p>\n </body>\n</html>",
+        "example_desc": "Make some text bold (without marking it as important):"
+    },
+    "bdo": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <bdo> element is used override the default directionality of text. It is used to display characters from languages that are read from right-to-left, such as Hebrew and Arabic.",
+        "example": "<html>\n <body>\n  <bdo dir=\"rtl\">\n   This text will go right-to-left.\n  </bdo>\n </body>\n</html>",
+        "example_desc": "Specify the text direction:"
+    },
+    "br": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <br> element is used to insert a line break or carriage-return within a parent element such as a paragraph without breaking out of the parent container.",
+        "example": "<html>\n <body>\n  <p>\n   To force\n   <br/>\n   line breaks\n   <br/>\n   in a text,\n   <br/>\n   use the br\n   <br/>\n   element.\n  </p>\n </body>\n</html>",
+        "example_desc": "Insert single line breaks in a text:"
+    },
+    "button": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive"
+        ],
+        "description": "The <button> element is used to create an HTML button. Any text appearing between the opening and closing tags will appear as text on the button. No action takes place by default when a button is clicked. Actions must be added to buttons using JavaScript or by associating the button with a form.",
+        "example": "<html>\n <body>\n  <button type=\"button\">\n   Click Me!\n  </button>\n </body>\n</html>",
+        "example_desc": "A clickable button is marked up as follows:"
+    },
+    "canvas": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "embedded"
+        ],
+        "description": "The <canvas> element creates a rectangular pane of arbitrary size which can be used for drawing graphics, manipulating photos, and creating animations with JavaScript.",
+        "example": "<html>\n <body>\n  <canvas id=\"myCanvas\">\n   Your browser \n    does not support the canvas tag.\n  </canvas>\n  <script>\n   var canvas = document.getElementById(\"myCanvas\");\n var ctx = canvas.getContext(\"2d\");\n ctx.fillStyle = \"#FF0000\";\n ctx.fillRect(0, 0, 80, 80);\n  </script>\n </body>\n</html>",
+        "example_desc": "Draw a red rectangle on the fly, and show it inside the <canvas> element:"
+    },
+    "cite": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <cite> element identifies the source of a quotation or creative work. Use the element to identify the name rather than the author or creator of a referenced creative work.",
+        "example": "<html>\n <body>\n  <p>\n   <cite>\n    The Scream\n   </cite>\n   by Edward Munch. Painted in 1893.\n  </p>\n </body>\n</html>",
+        "example_desc": "Define the title of a work with the <cite> tag:"
+    },
+    "code": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <code> element is used to define enclosed text as computer code. It is often paired with the <pre> element to preserve line breaks and indentation when presenting blocks of computer code.",
+        "example": "<html>\n <body>\n  <p>\n   The HTML\n   <code>\n    button\n   </code>\n   tag defines a clickable button.\n  </p>\n  <p>\n   The CSS\n   <code>\n    background-color\n   </code>\n   property defines the background color \n  of an element.\n  </p>\n </body>\n</html>",
+        "example_desc": "Define some text as computer code in a document:"
+    },
+    "data": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <datalist> element is used to define autocompletion values for an associated <input> element. Suggested autocompletion values are added to a datalist by nesting one or more <option> elements between the opening and closing <datalist> tags.",
+        "example": "<html>\n <body>\n  <ul>\n   <li>\n    <data value=\"21053\">\n     Cherry \n  Tomato\n    </data>\n   </li>\n   <li>\n    <data value=\"21054\">\n     Beef \n  Tomato\n    </data>\n   </li>\n   <li>\n    <data value=\"21055\">\n     Snack \n  Tomato\n    </data>\n   </li>\n  </ul>\n </body>\n</html>",
+        "example_desc": "The following example displays product names but also associates each name \nwith a product number:"
+    },
+    "datalist": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <datalist> element is used to define autocompletion values for an associated <input> element. Suggested autocompletion values are added to a datalist by nesting one or more <option> elements between the opening and closing <datalist> tags.",
+        "example": "<html>\n <body>\n  <label for=\"browser\">\n   Choose your browser from the list:\n  </label>\n  <input id=\"browser\" list=\"browsers\" name=\"browser\"/>\n  <datalist id=\"browsers\">\n   <option value=\"Edge\">\n   </option>\n   <option value=\"Firefox\">\n   </option>\n   <option value=\"Chrome\">\n   </option>\n   <option value=\"Opera\">\n   </option>\n   <option value=\"Safari\">\n   </option>\n  </datalist>\n </body>\n</html>",
+        "example_desc": "A datalist with pre-defined options (connected to an <input> element):"
+    },
+    "dfn": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <dfn> element is used to identify the defining instance of a term in an HTML document. When a term is wrapped in <dfn> tags, browsers and web crawlers will understand that nearby text contains a definition of the term.",
+        "example": "<html>\n <body>\n  <p>\n   <dfn>\n    HTML\n   </dfn>\n   is the standard markup language for creating web pages.\n  </p>\n </body>\n</html>",
+        "example_desc": "Mark up a term with <dfn>:"
+    },
+    "em": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <em> element is used to indicate text that should receive greater emphasis than the surrounding text.",
+        "example": "<html>\n <body>\n  <p>\n   You\n   <em>\n    have\n   </em>\n   to hurry up!\n  </p>\n  <p>\n   We\n   <em>\n    cannot\n   </em>\n   live like \n  this.\n  </p>\n </body>\n</html>",
+        "example_desc": "Mark up emphasized text in a document:"
+    },
+    "embed": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive",
+            "embedded"
+        ],
+        "description": "Was used to control the alignment of an embedded application. Not a part of the HTML specification.",
+        "example": "<html>\n <body>\n  <embed height=\"200\" src=\"pic_trulli.jpg\" type=\"image/jpg\" width=\"300\">\n  </embed>\n </body>\n</html>",
+        "example_desc": "An embedded image:"
+    },
+    "i": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <i> element is used to differentiate words from the surrounding text by styling the marked text in italics without implying any added emphasis to the italicized words.",
+        "example": "<html>\n <body>\n  <p>\n   <i>\n    Lorem ipsum\n   </i>\n   is the most popular filler text in history.\n  </p>\n  <p>\n   The\n   <i>\n    RMS Titanic\n   </i>\n   , a luxury steamship, sank on April 15, 1912 \n    after striking an iceberg.\n  </p>\n </body>\n</html>",
+        "example_desc": "Mark up text that is set off from the normal prose in a document:\u00a0"
+    },
+    "iframe": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive",
+            "embedded"
+        ],
+        "description": "The <iframe> creates an inline frame, which embeds an independent HTML document into the current document.",
+        "example": "<html>\n <body>\n  <iframe src=\"https://www.w3schools.com\" title=\"W3Schools Free \n    Online Web Tutorials\">\n  </iframe>\n </body>\n</html>",
+        "example_desc": "An inline frame is marked up as follows:"
+    },
+    "img": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive",
+            "embedded"
+        ],
+        "description": "The <img> tag is used to insert an image into a document.",
+        "example": "<html>\n <body>\n  <img alt=\"Girl in a jacket\" height=\"600\" src=\"img_girl.jpg\" width=\"500\"/>\n </body>\n</html>",
+        "example_desc": "How to insert an image:"
+    },
+    "input": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive"
+        ],
+        "description": "The <input> element is used to create form fields that accept user input. Form <input> elements can be presented many different ways, including simple text fields, buttons, checkboxes, drop-down menus, and more, by setting the type attribute of the input element to the appropriate value.",
+        "example": "<html>\n <body>\n  <form action=\"/action_page.php\">\n   <label for=\"fname\">\n    First name:\n   </label>\n   <input id=\"fname\" name=\"fname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <label for=\"lname\">\n    Last name:\n   </label>\n   <input id=\"lname\" name=\"lname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <input type=\"submit\" value=\"Submit\"/>\n  </form>\n </body>\n</html>",
+        "example_desc": "An HTML form with three input fields; two text fields and one submit button:"
+    },
+    "kbd": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <kbd> element is used to identify text that represents user keyboard input. Text surrounded by <kbd> tags is typically displayed in the browser's default monospace font.",
+        "example": "<html>\n <body>\n  <p>\n   Press\n   <kbd>\n    Ctrl\n   </kbd>\n   +\n   <kbd>\n    C\n   </kbd>\n   to copy text (Windows).\n  </p>\n  <p>\n   Press\n   <kbd>\n    Cmd\n   </kbd>\n   +\n   <kbd>\n    C\n   </kbd>\n   to copy text (Mac OS).\n  </p>\n </body>\n</html>",
+        "example_desc": "Define some text as keyboard input in a document:"
+    },
+    "label": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive"
+        ],
+        "description": "The <label> element is used to associate a text label with a form <input> field. The label is used to tell users the value that should be entered in the associated input field.",
+        "example": "<html>\n <body>\n  <form action=\"/action_page.php\">\n   <input id=\"html\" name=\"fav_language\" type=\"radio\" value=\"HTML\"/>\n   <label for=\"html\">\n    HTML\n   </label>\n   <br/>\n   <input id=\"css\" name=\"fav_language\" type=\"radio\" value=\"CSS\"/>\n   <label for=\"css\">\n    CSS\n   </label>\n   <br/>\n   <input id=\"javascript\" name=\"fav_language\" type=\"radio\" value=\"JavaScript\"/>\n   <label for=\"javascript\">\n    JavaScript\n   </label>\n   <br/>\n   <br/>\n   <input type=\"submit\" value=\"Submit\"/>\n  </form>\n </body>\n</html>",
+        "example_desc": "Three radio buttons with labels:"
+    },
+    "mark": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <mark> element is used to highlight text inside of another element such as a paragraph, list, or table. Text to which the <mark> element has been added is considered to be particularly relevant in a specific context.",
+        "example": "<html>\n <body>\n  <p>\n   Do not forget to buy\n   <mark>\n    milk\n   </mark>\n   today.\n  </p>\n </body>\n</html>",
+        "example_desc": "Highlight parts of a text:"
+    },
+    "math": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "embedded"
+        ]
+    },
+    "meter": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ]
+    },
+    "object": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive",
+            "embedded"
+        ]
+    },
+    "output": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ]
+    },
+    "picture": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "embedded"
+        ]
+    },
+    "progress": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <progress> element is used to create a progress bar to serve as a visual demonstration of progress towards the completion of task or goal. The max and value attributes are used to define how much progress (value) has been made towards task completion (max).",
+        "example": "<html>\n <body>\n  <label for=\"file\">\n   Downloading progress:\n  </label>\n  <progress id=\"file\" max=\"100\" value=\"32\">\n   32%\n  </progress>\n </body>\n</html>",
+        "example_desc": "Show a progress bar:"
+    },
+    "q": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <q> element is used to identify and inline quote that does not require paragraph breaks. Longer quotations that do require paragraph breaks should use the <blockquote> element.",
+        "example": "<html>\n <body>\n  <p>\n   WWF's goal is to:\n   <q>\n    Build a future where people live in harmony with nature.\n   </q>\n   We hope they succeed.\n  </p>\n </body>\n</html>",
+        "example_desc": "Mark up a short quotation:"
+    },
+    "ruby": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <ruby> element is used pair characters of certain Asian languages with pronunciation information. The <ruby> element is used in conjunction with the <rp> and <rt> elements.",
+        "example": "<html>\n <body>\n  <ruby>\n   \u6f22\n   <rt>\n    \u310f\u3122\u02cb\n   </rt>\n  </ruby>\n </body>\n</html>",
+        "example_desc": "A ruby annotation:"
+    },
+    "samp": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <samp> element is used to identify text that should be interpreted as sample output from a computer program. By default, browser render <samp> element contents in a monospace font.",
+        "example": "<html>\n <body>\n  <p>\n   Message from my computer:\n  </p>\n  <p>\n   <samp>\n    File not found.\n    <br/>\n    Press \n      F1 to continue\n   </samp>\n  </p>\n </body>\n</html>",
+        "example_desc": "Define some text as sample output from a computer program in a document:"
+    },
+    "select": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive"
+        ],
+        "description": "The <select> element, used along with one or more <option> elements, creates a drop-down list of options for a web form. The <select> element creates the list and each <option> element is displayed as an available option in the list.",
+        "example": "<html>\n <body>\n  <label for=\"cars\">\n   Choose a car:\n  </label>\n  <select id=\"cars\" name=\"cars\">\n   <option value=\"volvo\">\n    Volvo\n   </option>\n   <option value=\"saab\">\n    Saab\n   </option>\n   <option value=\"mercedes\">\n    Mercedes\n   </option>\n   <option value=\"audi\">\n    Audi\n   </option>\n  </select>\n </body>\n</html>",
+        "example_desc": "Create a drop-down list with four options:"
+    },
+    "small": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <small> element identifies text to display one size smaller than the surrounding text. In HTML5 the element is intended to be used to identify items of secondary importance such as copyright notices, side comments, and legal notices.",
+        "example": "<html>\n <body>\n  <p>\n   This is some normal text.\n  </p>\n  <p>\n   <small>\n    This is some smaller \n    text.\n   </small>\n  </p>\n </body>\n</html>",
+        "example_desc": "Define a smaller text:"
+    },
+    "span": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <span> element is the inline equivalent to the block-level <div> element. It is used to select inline content for purely stylistic purposes.",
+        "example": "<html>\n <body>\n  <p>\n   My mother has\n   <span style=\"color:blue\">\n    blue\n   </span>\n   eyes.\n  </p>\n </body>\n</html>",
+        "example_desc": "A <span> element which is used to color a part of a text:"
+    },
+    "strong": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <strong> element is used to identify text that is of greater importance than the surrounding text. By default, all browsers render <strong> text in a bold typeface.",
+        "example": "<html>\n <body>\n  <strong>\n   This text is important!\n  </strong>\n </body>\n</html>",
+        "example_desc": "Define important text in a document:"
+    },
+    "sub": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <sub> element is used to identify characters that should be rendered in a subscript position. The element should be used mark text according to typographical conventions and not stylistic purposes. Text that is to appear subscript for purely stylistic purposes should be styled with CSS.",
+        "example": "<html>\n <body>\n  <p>\n   This text contains\n   <sub>\n    subscript\n   </sub>\n   text.\n  </p>\n </body>\n</html>",
+        "example_desc": "Subscript text:"
+    },
+    "sup": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "inlineUsagetextual",
+        "example": "<html>\n <body>\n  <p>\n   This text contains\n   <sup>\n    superscript\n   </sup>\n   text.\n  </p>\n </body>\n</html>",
+        "example_desc": "Superscript text:"
+    },
+    "svg": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "embedded"
+        ],
+        "description": null,
+        "example": "<html>\n <body>\n  <svg height=\"100\" width=\"100\">\n   <circle cx=\"50\" cy=\"50\" fill=\"yellow\" r=\"40\" stroke=\"green\" stroke-width=\"4\">\n   </circle>\n  </svg>\n </body>\n</html>",
+        "example_desc": "Draw a circle:"
+    },
+    "textarea": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive"
+        ],
+        "description": "The <textarea> element is used to create a text input area of unlimited length. By default, text in a <textarea> is rendered in a monospace or fixed-width font, and text areas are most often used within a parent <form> element.",
+        "example": "<html>\n <body>\n  <label for=\"w3review\">\n   Review of W3Schools:\n  </label>\n  <textarea cols=\"50\" id=\"w3review\" name=\"w3review\" rows=\"4\">\n      At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies. \n      </textarea>\n </body>\n</html>",
+        "example_desc": "A multi-line text input control (text area):"
+    },
+    "time": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "inline",
+        "example": "<html>\n <body>\n  <p>\n   Open from\n   <time>\n    10:00\n   </time>\n   to\n   <time>\n    21:00\n   </time>\n   every weekday.\n  </p>\n  <p>\n   I have a date on\n   <time datetime=\"2008-02-14 20:00\">\n    Valentines day\n   </time>\n   .\n  </p>\n </body>\n</html>",
+        "example_desc": "How to define a time and a date:"
+    },
+    "u": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <u> element was originally used to identify text that should be underlined. The element was deprecated in HTML 4.01, but in HTML5 it was redefined to represent text that should be displayed in a way that is an unarticulated but stylistically distinct from the surrounding text. For example, one proper use of the <u> element is to identify misspelled terms.",
+        "example": "<html>\n <body>\n  <p>\n   This is some\n   <u>\n    mispeled\n   </u>\n   text.\n  </p>\n </body>\n</html>",
+        "example_desc": "Mark up a misspelled word with the <u> tag:"
+    },
+    "var": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <var> element is used to identify a variable in a mathematical equation or computer program. Text marked with <var> tags is displayed in an italics font style by most browsers.",
+        "example": "<html>\n <body>\n  <p>\n   The area of a triangle is: 1/2 x\n   <var>\n    b\n   </var>\n   x\n   <var>\n    h\n   </var>\n   , where\n   <var>\n    b\n   </var>\n   is the base, and\n   <var>\n    h\n   </var>\n   is the vertical height.\n  </p>\n </body>\n</html>",
+        "example_desc": "Define some text as variables in a document:"
+    },
+    "video": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive",
+            "embedded"
+        ],
+        "description": "The <video> element, which adds native video playback support to the HTML specification in HTML5, can be used to embed a video in an HTML document. Add the video URL to the element by using either the src attribute of the <video> element or by nesting one or more <source> elements between the opening and closing <video> tags.",
+        "example": "<html>\n <body>\n  <video controls=\"\" height=\"240\" width=\"320\">\n   <source src=\"movie.mp4\" type=\"video/mp4\">\n    <source src=\"movie.ogg\" type=\"video/ogg\">\n     Your browser does not support the video tag.\n    </source>\n   </source>\n  </video>\n </body>\n</html>",
+        "example_desc": "Play a video:"
+    },
+    "wbr": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <wbr> element is used to define a word break opportunity in a string of text. It is particularly useful when you wish to define word break opportunities in a long unbroken string of text that might otherwise break improperly.",
+        "example": "<html>\n <body>\n  <p>\n   To learn AJAX, you must be familiar with the XML\n   <wbr>\n    Http\n    <wbr>\n     Request Object.\n    </wbr>\n   </wbr>\n  </p>\n </body>\n</html>",
+        "example_desc": "A text with word break opportunities:"
+    },
+    "a": {
+        "categories": [
+            "phrasing",
+            "flow",
+            "interactive"
+        ],
+        "description": "The <a> element, or anchor element, it used to create a hyperlink to another webpage or another location within the same webpage. The hyperlink created by an anchor element is applied to the text, image, or other HTML content nested between the opening and closing <a> tags.",
+        "example": "<html>\n <body>\n  <a href=\"https://www.w3schools.com\">\n   Visit W3Schools.com!\n  </a>\n </body>\n</html>",
+        "example_desc": "Create a link to W3Schools.com:"
+    },
+    "area": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <area> element is used as a child of a <map> element to define clickable a region on an image map. Different regions of an image map can be hyperlinked to different locations by nesting multiple <area> elements in a single <map> element.",
+        "example": "<html>\n <body>\n  <img alt=\"Workplace\" height=\"379\" src=\"workplace.jpg\" usemap=\"#workmap\" width=\"400\"/>\n  <map name=\"workmap\">\n   <area alt=\"Computer\" coords=\"34,44,270,350\" href=\"computer.htm\" shape=\"rect\"/>\n   <area alt=\"Phone\" coords=\"290,172,333,250\" href=\"phone.htm\" shape=\"rect\"/>\n   <area alt=\"Cup of coffee\" coords=\"337,300,44\" href=\"coffee.htm\" shape=\"circle\"/>\n  </map>\n </body>\n</html>",
+        "example_desc": "An image map, with clickable areas:"
+    },
+    "del": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <del> tag is used to identify text that has been deleted from a document but retained to show the history of modifications made to the document. Pair a <del> element with an <ins> element to identify the inserted text that replaced the deleted text.",
+        "example": "<html>\n <body>\n  <p>\n   My favorite color is\n   <del>\n    blue\n   </del>\n   <ins>\n    red\n   </ins>\n   !\n  </p>\n </body>\n</html>",
+        "example_desc": "A text with a deleted part, and a new, inserted part:"
+    },
+    "ins": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <ins> element is used to identify text that has been inserted into a document. It is often paired with a <del> element which identifies deleted text replaced by the text contained in the <ins> element.",
+        "example": "<html>\n <body>\n  <p>\n   My favorite color is\n   <del>\n    blue\n   </del>\n   <ins>\n    red\n   </ins>\n   !\n  </p>\n </body>\n</html>",
+        "example_desc": "A text with a deleted part, and a new, inserted part:"
+    },
+    "map": {
+        "categories": [
+            "phrasing",
+            "flow"
+        ],
+        "description": "The <map> element is used in conjunction with one or more <area> elements to define hyperlinked regions of an image map.",
+        "example": "<html>\n <body>\n  <img alt=\"Workplace\" height=\"379\" src=\"workplace.jpg\" usemap=\"#workmap\" width=\"400\"/>\n  <map name=\"workmap\">\n   <area alt=\"Computer\" coords=\"34,44,270,350\" href=\"computer.htm\" shape=\"rect\"/>\n   <area alt=\"Phone\" coords=\"290,172,333,250\" href=\"phone.htm\" shape=\"rect\"/>\n   <area alt=\"Cup of coffee\" coords=\"337,300,44\" href=\"coffee.htm\" shape=\"circle\"/>\n  </map>\n </body>\n</html>",
+        "example_desc": "An image map, with clickable areas:"
+    },
+    "h1": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "h2": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "h3": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "h4": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "h5": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "h6": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "hgroup": {
+        "categories": [
+            "heading",
+            "flow"
+        ]
+    },
+    "address": {
+        "categories": [
+            "flow"
+        ]
+    },
+    "article": {
+        "categories": [
+            "flow",
+            "sectioning"
+        ]
+    },
+    "aside": {
+        "categories": [
+            "flow",
+            "sectioning"
+        ]
+    },
+    "bdi": {
+        "categories": [
+            "flow"
+        ]
+    },
+    "blockquote": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <blockquote> element defines a block of text that is a direct quotation. The <quote> element should be used when a quotation is presented inline with the surrounding text, but when the quotation is presented as a separate paragraph, <blockquote> is the appropriate element to use to identify the quotation.",
+        "example": "<html>\n <body>\n  <blockquote cite=\"http://www.worldwildlife.org/who/index.html\">\n   For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.\n  </blockquote>\n </body>\n</html>",
+        "example_desc": "A section that is quoted from another source:"
+    },
+    "details": {
+        "categories": [
+            "flow",
+            "interactive"
+        ],
+        "description": "The <details> element is used to pair a <summary> statement with additional related details. The <summary> is displayed, and a user can view or hide additional details by clicking on the summary.",
+        "example": "<html>\n <body>\n  <details>\n   <summary>\n    Epcot Center\n   </summary>\n   <p>\n    Epcot is a \n    theme park at Walt Disney World Resort featuring exciting attractions, \n    international pavilions, award-winning fireworks and seasonal special \n    events.\n   </p>\n  </details>\n </body>\n</html>",
+        "example_desc": "Specify details that the user can open and close on demand:"
+    },
+    "div": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <div> element defines an arbitrary block of content which can be placed and styled as a single unit.",
+        "example": "<html>\n <head>\n  <style>\n   .myDiv {\u00a0 border: 5px outset red;\u00a0 \n  background-color: lightblue; \u00a0 text-align: center;}\n  </style>\n </head>\n <body>\n  <div class=\"myDiv\">\n   <h2>\n    This is a heading \n  in a div element\n   </h2>\n   <p>\n    This is some text in a div element.\n   </p>\n  </div>\n </body>\n</html>\n",
+        "example_desc": "A <div> section in a document that is styled with CSS:"
+    },
+    "dl": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <dl> element defines a description list.",
+        "example": "<html>\n <body>\n  <dl>\n   <dt>\n    Coffee\n   </dt>\n   <dd>\n    Black hot drink\n   </dd>\n   <dt>\n    Milk\n   </dt>\n   <dd>\n    White cold drink\n   </dd>\n  </dl>\n </body>\n</html>",
+        "example_desc": "A description list, with terms and descriptions:"
+    },
+    "fieldset": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <fieldset> element may be optionally used to group together related fields in an HTML form.",
+        "example": "<html>\n <body>\n  <form action=\"/action_page.php\">\n   <fieldset>\n    <legend>\n     Personalia:\n    </legend>\n    <label for=\"fname\">\n     First \n    name:\n    </label>\n    <input id=\"fname\" name=\"fname\" type=\"text\"/>\n    <br/>\n    <br/>\n    <label for=\"lname\">\n     Last name:\n    </label>\n    <input id=\"lname\" name=\"lname\" type=\"text\"/>\n    <br/>\n    <br/>\n    <label for=\"email\">\n     Email:\n    </label>\n    <input id=\"email\" name=\"email\" type=\"email\"/>\n    <br/>\n    <br/>\n    <label for=\"birthday\">\n     Birthday:\n    </label>\n    <input id=\"birthday\" name=\"birthday\" type=\"date\"/>\n    <br/>\n    <br/>\n    <input type=\"submit\" value=\"Submit\"/>\n   </fieldset>\n  </form>\n </body>\n</html>",
+        "example_desc": "Group related elements in a form:"
+    },
+    "figure": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <figure> element identifies self-contained content related to the main content, such as an image, table, or chart. The <figcaption> element is often nested within a <figure> element to add a caption to the content identified by the <figure> tags.",
+        "example": "<html>\n <body>\n  <figure>\n   <img alt=\"Trulli\" src=\"pic_trulli.jpg\" style=\"width:100%\"/>\n   <figcaption>\n    Fig.1 - Trulli, Puglia, \n    Italy.\n   </figcaption>\n  </figure>\n </body>\n</html>",
+        "example_desc": "Use a <figure> element to mark up a photo in a document, and a <figcaption> \nelement to define a caption for the photo:"
+    },
+    "footer": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <footer> element is a structural element used to identify the footer of a page, document, article, or section. A <footer> typically contains copyright and authorship information or navigational elements pertaining to the contents of the parent element.",
+        "example": "<html>\n <body>\n  <footer>\n   <p>\n    Author: Hege Refsnes\n   </p>\n   <p>\n    <a href=\"mailto:hege@example.com\">\n     hege@example.com\n    </a>\n   </p>\n  </footer>\n </body>\n</html>",
+        "example_desc": "A footer section in a document:"
+    },
+    "form": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <form> element is used to create an HTML form. The <form> element does not actually create form fields, but is used as a parent container to hold form fields such as <input> and <textarea> elements.",
+        "example": "<html>\n <body>\n  <form action=\"/action_page.php\" method=\"get\">\n   <label for=\"fname\">\n    First name:\n   </label>\n   <input id=\"fname\" name=\"fname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <label for=\"lname\">\n    Last name:\n   </label>\n   <input id=\"lname\" name=\"lname\" type=\"text\"/>\n   <br/>\n   <br/>\n   <input type=\"submit\" value=\"Submit\"/>\n  </form>\n </body>\n</html>",
+        "example_desc": "An HTML form with two input fields and one submit button:"
+    },
+    "header": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <header> element is used to identify content that precedes the primary content of the web page and often contains website branding, navigation elements, search forms, and similar content that is duplicated across all or most pages of a website.",
+        "example": "<html>\n <body>\n  <article>\n   <header>\n    <h1>\n     A heading here\n    </h1>\n    <p>\n     Posted by John \n    Doe\n    </p>\n    <p>\n     Some additional information here\n    </p>\n   </header>\n   <p>\n    Lorem Ipsum dolor set amet....\n   </p>\n  </article>\n </body>\n</html>",
+        "example_desc": "A header for an <article>:"
+    },
+    "hr": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <hr> element is used to represent a thematic break between paragraph-level elements. It is typically rendered as a horizontal line.",
+        "example": "<html>\n <body>\n  <h1>\n   The Main Languages of the Web\n  </h1>\n  <p>\n   HTML is the standard markup \n    language for creating Web pages. HTML describes the structure of a Web page, \n    and consists of a series of elements. HTML elements tell the browser how to \n    display the content.\n  </p>\n  <hr/>\n  <p>\n   CSS is a language that \n    describes how HTML elements are to be displayed on screen, paper, or in \n    other media. CSS saves a lot of work, because it can control the layout of \n    multiple web pages all at once.\n  </p>\n  <hr/>\n  <p>\n   JavaScript is the \n    programming language of HTML and the Web. JavaScript can change HTML content \n    and attribute values. JavaScript can change CSS. JavaScript can hide and \n    show HTML elements, and more.\n  </p>\n </body>\n</html>",
+        "example_desc": "Use the <hr> tag to define thematic changes in the content:"
+    },
+    "main": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <main> element is used to denote the content of a webpage that relates to the central topic of that page or application. It should include content that is unique to that page and should not include content that is duplicated across multiple webpages, such as headers, footers, and primary navigation elements.",
+        "example": "<html>\n <body>\n  <main>\n   <h1>\n    Most Popular Browsers\n   </h1>\n   <p>\n    Chrome, Firefox, and \n    Edge are the most used browsers today.\n   </p>\n   <article>\n    <h2>\n     Google Chrome\n    </h2>\n    <p>\n     Google Chrome is a web browser \n  developed by Google, released in 2008. Chrome is the world's most popular web \n  browser today!\n    </p>\n   </article>\n   <article>\n    <h2>\n     Mozilla \n  Firefox\n    </h2>\n    <p>\n     Mozilla Firefox is an open-source web browser developed by \n  Mozilla. Firefox has been the second most popular web browser since January, \n  2018.\n    </p>\n   </article>\n   <article>\n    <h2>\n     Microsoft Edge\n    </h2>\n    <p>\n     Microsoft Edge is a web browser developed by Microsoft, released in 2015. \n  Microsoft Edge replaced Internet Explorer.\n    </p>\n   </article>\n  </main>\n </body>\n</html>",
+        "example_desc": "Specify the main content of the document:"
+    },
+    "menu": {
+        "categories": [
+            "flow",
+            "interactive"
+        ],
+        "description": "The <menu> element defines an instance of a menu. This experimental HTML feature has very limited browser support, but may soon be an effective way to add menu items to context menus and to create interactive web application menus.",
+        "example": "<html>\n <body>\n  <menu id=\"mymenu\" type=\"context\">\n   <menuitem icon=\"ico_reload.png\" label=\"Refresh\" onclick=\"window.location.reload();\">\n   </menuitem>\n   <menu label=\"Share on...\">\n    <menuitem icon=\"ico_twitter.png\" label=\"Twitter\" onclick=\"window.open('//twitter.com/intent/tweet?text='+window.location.href);\">\n    </menuitem>\n    <menuitem icon=\"ico_facebook.png\" label=\"Facebook\" onclick=\"window.open('//facebook.com/sharer/sharer.php?u='+window.location.href);\">\n    </menuitem>\n   </menu>\n   <menuitem label=\"Email This Page\" onclick=\"window.location='mailto:?body='+window.location.href;\"/>\n  </menu>\n </body>\n</html>",
+        "example_desc": "A context menu with different <menuitem> elements:"
+    },
+    "nav": {
+        "categories": [
+            "flow",
+            "sectioning"
+        ],
+        "description": "The <nav> element identifies a group of navigation links. Links in a <nav> element may point to other webpages or to different sections of the same webpage.",
+        "example": "<html>\n <body>\n  <nav>\n   <a href=\"/html/\">\n    HTML\n   </a>\n   |\n   <a href=\"/css/\">\n    CSS\n   </a>\n   |\n   <a href=\"/js/\">\n    JavaScript\n   </a>\n   |\n   <a href=\"/python/\">\n    Python\n   </a>\n  </nav>\n </body>\n</html>",
+        "example_desc": "A set of navigation links:"
+    },
+    "ol": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <ol> element is used to create an ordered list. An ordered list is created by nesting one or more <li> elements between the opening and closing <ol> tags.",
+        "example": "<html>\n <body>\n  <ol>\n   <li>\n    Coffee\n   </li>\n   <li>\n    Tea\n   </li>\n   <li>\n    Milk\n   </li>\n  </ol>\n  <ol start=\"50\">\n   <li>\n    Coffee\n   </li>\n   <li>\n    Tea\n   </li>\n   <li>\n    Milk\n   </li>\n  </ol>\n </body>\n</html>",
+        "example_desc": "Two different ordered lists (the first list starts at 1, and the second \nstarts at 50):"
+    },
+    "p": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <p> element is used to identify blocks of paragraph text. The closing <p> tag is optional and is implied by the opening tag of the next HTML element encountered in an HTML document after an opening <p> tag.",
+        "example": "<html>\n <body>\n  <p>\n   This is some text in a paragraph.\n  </p>\n </body>\n</html>",
+        "example_desc": "A paragraph is marked up as follows:"
+    },
+    "pre": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <pre> element is used to identify text that should be rendered with all line breaks and spaces intact. It is often used to preserve indenting and line breaks when displaying code blocks.",
+        "example": "<html>\n <body>\n  <pre>\n      Text in a pre element\n  is displayed in a fixed-width\n font, and it preserves\n both\u00a0\u00a0\u00a0\u00a0\u00a0\n      spaces and\n line breaks\n      </pre>\n </body>\n</html>",
+        "example_desc": "Preformatted text:"
+    },
+    "s": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <s> element is used to identify text that is no longer accurate or relevant. It is similar to, but semantically distinct from, the <del> element which is used to identify document edits. By default, browsers render the contents of an <s> element with a strikethrough.",
+        "example": "<html>\n <body>\n  <p>\n   <s>\n    Only 50 tickets left!\n   </s>\n  </p>\n  <p>\n   SOLD OUT!\n  </p>\n </body>\n</html>",
+        "example_desc": "Mark up text that is no longer correct:"
+    },
+    "section": {
+        "categories": [
+            "flow",
+            "sectioning"
+        ],
+        "description": "The <section> element is a structural HTML element used to group together related elements. Each <section> typically includes one or more heading elements and additional elements presenting related content.",
+        "example": "<html>\n <body>\n  <section>\n   <h2>\n    WWF History\n   </h2>\n   <p>\n    The World Wide Fund for Nature (WWF) \n    is an international organization working on issues regarding the \n    conservation, research and restoration of the environment, formerly named \n    the World Wildlife Fund. WWF was founded in 1961.\n   </p>\n  </section>\n  <section>\n   <h2>\n    WWF's Symbol\n   </h2>\n   <p>\n    The Panda has become the symbol of \n    WWF. The well-known panda logo of WWF originated from a panda named Chi Chi \n    that was transferred from the Beijing Zoo to the London Zoo in the same year \n    of the establishment of WWF.\n   </p>\n  </section>\n </body>\n</html>",
+        "example_desc": "Two sections in a document:"
+    },
+    "table": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <table> element is used in conjunction with child elements such as <tr>, <td>, <th>, and others to add tabular data to an HTML document.",
+        "example": "<html>\n <body>\n  <table>\n   <tr>\n    <th>\n     Month\n    </th>\n    <th>\n     Savings\n    </th>\n   </tr>\n   <tr>\n    <td>\n     January\n    </td>\n    <td>\n     $100\n    </td>\n   </tr>\n  </table>\n </body>\n</html>",
+        "example_desc": "A simple HTML table, containing two columns and two rows:"
+    },
+    "template": {
+        "categories": [
+            "flow"
+        ],
+        "description": null,
+        "example": "<html>\n <body>\n  <button onclick=\"showContent()\">\n   Show hidden content\n  </button>\n  <template>\n   <h2>\n    Flower\n   </h2>\n   <img height=\"204\" src=\"img_white_flower.jpg\" width=\"214\"/>\n  </template>\n  <script>\n   function showContent() {\u00a0 var temp = \n  document.getElementsByTagName(\"template\")[0];\u00a0 var clon = \n  temp.content.cloneNode(true);\u00a0 document.body.appendChild(clon);}\n  </script>\n </body>\n</html>",
+        "example_desc": "Use <template> to hold some content that will be hidden when the page \nloads. Use JavaScript to display it:"
+    },
+    "ul": {
+        "categories": [
+            "flow"
+        ],
+        "description": "The <ul> element is used to define an unordered list of items. Use an unordered list to contain <li> elements that do not need to be presented in numerical order and can be rearranged without changing the meaning of the list.",
+        "example": "<html>\n <body>\n  <ul>\n   <li>\n    Coffee\n   </li>\n   <li>\n    Tea\n   </li>\n   <li>\n    Milk\n   </li>\n  </ul>\n </body>\n</html>",
+        "example_desc": "An unordered HTML list:"
+    }
+}

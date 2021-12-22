@@ -51,6 +51,8 @@ def scraping(tags, output, index):
         print(f'Thread {index} - {tag}', flush=True)
         desc = getTagDescription(tag)
         example, example_desc = getTagExampleAndExampleDescription(tag)
+        soup = BeautifulSoup(example, features="lxml")                #make BeautifulSoup
+        example = soup.prettify()   #prettify the html
         output[tag] = {
             'categories': output[tag]['categories'],
             'description': desc,
@@ -78,5 +80,5 @@ if __name__ == '__main__':
     for p in ps:
         p.join()
 
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tags.json'), 'w') as f:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'output.json'), 'w') as f:
         f.write(json.dumps(dict(output), indent=4))
