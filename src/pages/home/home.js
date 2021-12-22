@@ -41,7 +41,7 @@ function loadTags(data) {
         $("#tags-list").append(`
             <article>
                 <header>
-                    <a href="#"><img src="../../res/img/icons/mail.webp" alt="info"></a>
+                    <a href="#"><img src="res/img/icons/mail.webp" alt="info"></a>
                     <h3>${tag["name"]}</h3>
                 </header>
                     <p>${encodeStr(tag["description"])}</p>
