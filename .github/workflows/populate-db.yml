@@ -1,4 +1,5 @@
 name: Database populator
+
 on:
   workflow_dispatch:
     inputs:
@@ -6,6 +7,7 @@ on:
         description: 'Person to greet'
         default: 'World'
         required: true
+
 jobs:
   populate-db:
     runs-on: ubuntu-latest
