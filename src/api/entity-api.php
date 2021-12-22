@@ -43,7 +43,7 @@ abstract class EntityApi extends Api
 
 		// filters in order to get only the elements that the user has access to
 		$results = [];
-		if ($this->getAuth != Api::OPEN && !$server) {
+		if ($this->getAuth != Api::OPEN && !$server && !$this->isPythonBot()) {
 			foreach ($res as $elem) {
 				if ($this->canAccess($elem)) {
 					$results[] = $elem;
@@ -84,7 +84,7 @@ abstract class EntityApi extends Api
 		$params = $this->filterParams($params);
 		$element = $this->entity::find(["id" => $params['id']])[0];
 
-		if ($this->patchAuth != Api::OPEN && !$server && !$this->canModify($element)) {
+		if ($this->patchAuth != Api::OPEN && !$server && !$this->canModify($element) && !$this->isPythonBot()) {
 			$this->setResponseCode(403);
 			$this->setResponseMessage("Forbidden");
 			return;
@@ -108,7 +108,7 @@ abstract class EntityApi extends Api
 
 		$params = $this->filterParams($params);
 		$element = $this->entity::find(["id" => $params['id']]);
-		if ($this->deleteAuth != Api::OPEN && !$server && !$this->canDelete($element) ) {
+		if ($this->deleteAuth != Api::OPEN && !$server && !$this->canDelete($element) && !$this->isPythonBot()) {
 			$this->setResponseCode(403);
 			$this->setResponseMessage("Forbidden");
 			return;

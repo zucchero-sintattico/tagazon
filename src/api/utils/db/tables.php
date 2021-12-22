@@ -17,11 +17,6 @@ class Category extends Entity {
     const fields = ['name' => 's', 'description' => 's'];
 }
 
-class CreditCard extends Entity {
-    const tableName = 'buyers';
-    const fields = ['owner' => 's', 'number' => 's', 'expiration' => 's', 'cvv' => 's', 'buyer' => 'i'];
-}
-
 class Tag extends Entity {
     const tableName = 'tags';
     const fields = ['name' => 's', 'description' => 's', 'example' => 's', 'example_desc' => 's', 'seller' => 'i', 'price' => 'd', 'sale_price' => 'd'];
