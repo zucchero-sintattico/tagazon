@@ -18,6 +18,3 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
-      - name: execute db-populator script # run the run.py to get the latest data
-        run: |
-          python database/create/db-populator.py tagazon.altervista.org
