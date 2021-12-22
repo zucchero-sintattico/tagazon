@@ -14,7 +14,9 @@ class Pages {
         'splash' => false, 
         'login' => false, 
         'register' => false, 
-        'error' => false, 
+        'error' => false,
+        'restore-password' => false,
+        'restore-password-success' => false, 
         
         /**
          * Pages with authentication

@@ -13,6 +13,7 @@ $(document).ready(function() {
             },
             success: function(data){
                 //TODO: Switch to success-email.html
+                window.location.href = "?page=restore-password-success";
                 console.log(data);
             },
             error: function(data){
