@@ -28,4 +28,5 @@ jobs:
         username: tagazon
         password: ${{ secrets.altervista_ftp_password }}
         local-dir: ./src/
+        dry-run: true
 
