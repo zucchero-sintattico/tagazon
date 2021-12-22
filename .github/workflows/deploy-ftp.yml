@@ -11,9 +11,13 @@ jobs:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
+    - name: 🚚 Get latest code and switch to deploy
       uses: actions/checkout@v2
-    
+      
+    - name: Replace link
+      run: |
+        find ./src -type f -name "*" -exec sed -i "s/\/tagazon\/src//g" {} \;
+
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.2.0
       with:
