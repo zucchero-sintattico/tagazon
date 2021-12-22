@@ -27,7 +27,6 @@ jobs:
         server: ftp.tagazon.altervista.org
         username: tagazon
         password: ${{ secrets.altervista_ftp_password }}
-        local-dir: ./src/
         exclude: .git*/**
           - ./database/**
           - ./reports/**
@@ -35,4 +34,3 @@ jobs:
           - ./test/**
           - ./LICENSE
           - ./README.md
-          
