@@ -27,10 +27,11 @@ jobs:
         server: ftp.tagazon.altervista.org
         username: tagazon
         password: ${{ secrets.altervista_ftp_password }}
-        exclude: .git/
-          - .github/
-          - ./database/
-          - ./reports/
-          - ./service/
-          - ./LICENSE
-          - ./README.md
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/database/**
+          **/reports/**
+          **/services/**
+          **/LICENSE
+          **/README.md
