@@ -6,8 +6,8 @@ $(() => {
         }
     );
 
-    request("api/objects/categories/", loadCategory);
-    request("api/objects/tags/", loadTags);
+    request("api/objects/categories", loadCategory);
+    request("api/objects/tags", loadTags);
 
 });
 
