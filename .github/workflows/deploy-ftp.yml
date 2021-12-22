@@ -20,6 +20,5 @@ jobs:
         server: ftp.tagazon.altervista.org
         username: tagazon
         password: ${{ secrets.altervista_ftp_password }}
-        state-name: .state.json
         local-dir: src/
 
