@@ -7,7 +7,7 @@ class Database{
     public static function getInstance(){
         static $instance = null;
         if(null === $instance){
-            $instance = new mysqli("localhost", "root", "", "tagazon", 3306);
+            $instance = new mysqli("localhost", "root", "", "my_tagazon", 3306);
         }
         return $instance;
     }
