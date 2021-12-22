@@ -6,8 +6,8 @@ $(() => {
         }
     );
 
-    request("api/objects/categories", loadCategory);
-    request("api/objects/tags", loadTags);
+    request("api/objects/categories/", loadCategory);
+    request("api/objects/tags/", loadTags);
 
 });
 
@@ -20,7 +20,8 @@ function request(request, callback) {
     $.ajax({
         url: request,
         type: "GET",
-        success: (data) => callback(data["data"]),  /* data: {code: Integer, message: String, data: Array} */
+        success: (data) => callback(data["data"]),
+        /* data: {code: Integer, message: String, data: Array} */
         error: (err) => { console.log(err); }
     });
 }
