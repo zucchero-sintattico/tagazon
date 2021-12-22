@@ -2,11 +2,10 @@ from bs4 import BeautifulSoup # BeautifulSoup is in bs4 package
 import json, time, os, requests
 from os import listdir
 from os.path import isfile, join
-from multiprocessing import Process
+from multiprocessing import Process, Manager
 
 
 THREADS = 8
-OUTPUT = dict()
 
 def getTags():
     mypath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'categories')
@@ -45,29 +44,31 @@ def getTagExampleAndExampleDescription(tag):
         return example, example_desc
     return None, None
 
-def scraping(tags, index):
-    global OUTPUT
+def scraping(tags, output, index):
     for tag in tags:
         print(f'Thread {index} - {tag}', flush=True)
         res = dict({'tag': tag})
         res['description'] = getTagDescription(tag)
         res['example'], res['example_desc'] = getTagExampleAndExampleDescription(tag)
-        OUTPUT[tag] = res
+        output[tag] = res
         
 
 
 if __name__ == '__main__':
     tags = getTags()
     ps = []
+    manager = Manager()
+    output = manager.dict()
     elementPerThread = int(len(tags)/THREADS) + 1
     splittedTags = [tags[i*elementPerThread:(i+1)*elementPerThread] for i in range(0, THREADS)]
     for splitTags in splittedTags:
-        p = Process(target=scraping, args=(splitTags, splittedTags.index(splitTags) + 1))
+        p = Process(target=scraping, args=(splitTags, output, splittedTags.index(splitTags) + 1))
         ps.append(p)
         p.start()
 
     for p in ps:
         p.join()
 
-    with open('tags.json', 'w') as f:
-        json.dump(OUTPUT, f)
+    
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tags.json'), 'w') as f:
+        f.write(json.dumps(output.values()))
