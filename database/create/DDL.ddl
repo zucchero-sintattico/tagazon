@@ -114,7 +114,8 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`payments` (
     `card-number` INT NOT NULL,
     `card-expiry-year` VARCHAR(2) NOT NULL,
     `card-expiry-month` VARCHAR(2) NOT NULL,
-    `card-cvv` INT NOT NULL,
+    `card-cvc` INT NOT NULL,
+    `amount` FLOAT NOT NULL,
     UNIQUE(`order`),
     FOREIGN KEY (`order`) REFERENCES `orders`(`id`) ON DELETE CASCADE
 );
