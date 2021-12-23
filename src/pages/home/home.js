@@ -6,8 +6,8 @@ $(() => {
         }
     );
 
-    request("api/objects/categories/", loadCategory);
-    request("api/objects/tags/", loadTags);
+    request("/api/objects/categories/", loadCategory);
+    request("/api/objects/tags/", loadTags);
 
 });
 
@@ -48,14 +48,14 @@ function handleChangeCategory() {
     if ($(this).hasClass("selected")) {
         $(this).removeClass("selected");
 
-        request("api/objects/tags", loadTags);
+        request("/api/objects/tags/", loadTags);
     } else {
         $("#categories-list > li > button").removeClass("selected");
         $(this).addClass("selected");
 
         request(
             `api/objects/categories/tags/?category_id=${this.categoryId}`,
-            (tags) => tags.length > 0 ? loadTags(tags) : request("api/objects/tags", loadTags),
+            (tags) => tags.length > 0 ? loadTags(tags) : request("/api/objects/tags/", loadTags),
         );
     }
 }

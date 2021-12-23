@@ -1,8 +1,8 @@
 class NotificationsService {
 
-    static protocol = "ws";
+    static protocol = "wss";
     static server = "broker.emqx.io";
-    static port = 8083;
+    static port = 8084;
     static topic = "tagazon-notifications";
 
     /**
