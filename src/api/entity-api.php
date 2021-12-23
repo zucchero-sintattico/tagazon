@@ -21,16 +21,6 @@ abstract class EntityApi extends Api
 		return true;
 	}
 
-	private function filterParams($params)
-	{
-		$filtered = [];
-		foreach ($params as $key => $value) {
-			if (isset($this->entity::fields[$key]) || $key == 'id') {
-				$filtered[$key] = $value;
-			}
-		}
-		return $filtered;
-	}
 
 	/**
 	 * Get the elements.
@@ -38,7 +28,6 @@ abstract class EntityApi extends Api
 	 */
 	public function onGet($params, $server=false)
 	{
-		$params = $this->filterParams($params);
 		$res = $this->entity::find($params);
 
 		// filters in order to get only the elements that the user has access to
@@ -63,7 +52,6 @@ abstract class EntityApi extends Api
 	 */
 	public function onPost($params, $server=false)
 	{
-		$params = $this->filterParams($params);
 		$res = $this->entity::create($params);
 		$this->setResponseCode($res > 0 ? 201 : 400);
 		$this->setResponseMessage($res > 0 ? "Created" : "Bad request");
@@ -81,7 +69,6 @@ abstract class EntityApi extends Api
 			return;
 		}
 
-		$params = $this->filterParams($params);
 		$element = $this->entity::find(["id" => $params['id']])[0];
 
 		if ($this->patchAuth != Api::OPEN && !$server && !$this->canModify($element) && !$this->isPythonBot()) {
@@ -106,7 +93,6 @@ abstract class EntityApi extends Api
 			return;
 		}
 
-		$params = $this->filterParams($params);
 		$element = $this->entity::find(["id" => $params['id']]);
 		if ($this->deleteAuth != Api::OPEN && !$server && !$this->canDelete($element) && !$this->isPythonBot()) {
 			$this->setResponseCode(403);

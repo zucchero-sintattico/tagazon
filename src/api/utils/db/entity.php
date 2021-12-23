@@ -4,21 +4,43 @@ require_once __DIR__ . "/../../require.php";
 
 abstract class Entity
 {
-    public static function all()
+    const tableName = "";
+    const fields = [];
+    const orderBy = null;
+
+	private static function filterParams($params)
+	{
+		$filtered = [];
+		foreach ($params as $key => $value) {
+			if (isset(static::fields[$key]) || $key == 'id') {
+				$filtered[$key] = $value;
+			}
+		}
+		return $filtered;
+	}
+    public static function all($orderBy)
     {
         $class = static::class;
         $tableName = $class::tableName;
         $db = Database::getInstance();
-        $query = "SELECT * FROM $tableName";
+        $query = "SELECT * FROM $tableName ORDER BY $orderBy";
         $result = $db->query($query);
+        if (!$result) {
+            echo "errore = " .  htmlspecialchars($db->error);
+        }
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public static function find($params)
     {
         $class = static::class;
+        $orderBy = static::orderBy;
+        if (isset($params['orderBy'])){
+            $orderBy = $params['orderBy'];
+        }
+        $params = static::filterParams($params);
         if (count(array_keys($params)) == 0) {
-            return $class::all($class);
+            return $class::all($orderBy);
         }
 
         $tableName = $class::tableName;
@@ -36,13 +58,7 @@ abstract class Entity
         $where = join(' = ? AND ', $keys) . (count($keys) > 0 ? ' = ? ' : '');
         $bind = join('', $bind);
 
-        $orderBy = $class::orderBy;
-        if (isset($params['orderBy'])){
-            $orderBy = $params['orderBy'];
-        }
-        $bind_params[] = $orderBy;
-
-        $query = "SELECT * FROM $tableName WHERE $where ORDER BY ?";
+        $query = "SELECT * FROM $tableName WHERE $where ORDER BY $orderBy";
         $stmt = $db->prepare($query);
         $stmt->bind_param($bind, ...$bind_params);
         $stmt->execute();
@@ -52,6 +68,7 @@ abstract class Entity
 
     public static function create($params)
     {
+        $params = static::filterParams($params);
         $class = static::class;
         $tableName = $class::tableName;
         $columns = join(', ', array_keys($params));
@@ -86,6 +103,7 @@ abstract class Entity
 
     public static function update($params)
     {
+        $params = static::filterParams($params);
         $class = static::class;
         if (!isset($params['id'])) {
             return false;
