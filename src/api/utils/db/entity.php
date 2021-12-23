@@ -87,7 +87,11 @@ abstract class Entity
         $stmt = $db->prepare($query);
         $stmt->bind_param($bind, ...$bind_param);
         $stmt->execute();
-        return $db->insert_id;
+        if (!$db->insert_id){
+            echo "errore = " .  htmlspecialchars($db->error);
+            return null;
+        }
+        return $class::find(["id" => $db->insert_id]);
     }
 
     public static function delete($id)
