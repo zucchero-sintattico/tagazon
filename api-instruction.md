@@ -22,9 +22,9 @@ $.ajax({
 Ogni API restituisce lo stesso tipo di risposta che segue il seguente formato:
 ```json
 {
-    "code": codice http,
-    "message": messaggio di errore/successo,
-    "data": array di oggetti
+    "code": "codice http",
+    "message": "messaggio di errore/successo",
+    "data": "array di oggetti"
 }
 ```
 Fare attenzione che **data** è sempre un array, quindi se si effettua una chiamata che restituirà un solo risultato per ottenerlo bisognerà estrarlo:
@@ -127,7 +127,7 @@ restituirà:
     "data": [ ]
 }
 ```
-poichè non esiste un tag con il nome "`untagacaso`".
+poichè non esiste un tag con il nome `untagacaso`.
 
 
 ---
@@ -160,7 +160,7 @@ e la risposta sarà:
     "code": 201,
     "message": "Created",
     "data": [{
-        "id": X,
+        "id": 1,
         "name": "categoriaX",
         "description": "descrizione categoriaX"
     }]
