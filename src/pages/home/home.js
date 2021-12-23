@@ -6,8 +6,8 @@ $(() => {
         }
     );
 
-    request("/api/objects/categories/", loadCategory);
-    request("/api/objects/tags/", loadTags);
+    request("/tagazon/src/api/objects/categories/", loadCategory);
+    request("/tagazon/src/api/objects/tags/", loadTags);
 
 });
 
@@ -48,13 +48,13 @@ function handleChangeCategory() {
     if ($(this).hasClass("selected")) {
         $(this).removeClass("selected");
 
-        request("/api/objects/tags/", loadTags);
+        request("/tagazon/src/api/objects/tags/", loadTags);
     } else {
         $("#categories-list > li > button").removeClass("selected");
         $(this).addClass("selected");
 
         request(
-            `api/objects/categories/tags/?category_id=${this.categoryId}`,
+            `/tagazon/src/api/objects/categories/tags/?category_id=${this.categoryId}`,
             (tags) => tags.length > 0 ? loadTags(tags) : request("/api/objects/tags/", loadTags),
         );
     }
@@ -72,7 +72,7 @@ function loadTags(tags) {
             $("#tags-list").append(`
                 <article>
                     <header>
-                        <a href="#"><img src="res/img/icons/mail.webp" alt="info"></a>
+                        <a href="#"><img src="/tagazon/src/res/img/icons/mail.webp" alt="info"></a>
                         <h3>${tag["name"]}</h3>
                     </header>
                         <p>${encodeStr(tag["description"])}</p>

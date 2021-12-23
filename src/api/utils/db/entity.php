@@ -35,9 +35,14 @@ abstract class Entity
 
         $where = join(' = ? AND ', $keys) . (count($keys) > 0 ? ' = ? ' : '');
         $bind = join('', $bind);
-        $orderBy = $class::orderBy;
 
-        $query = "SELECT * FROM $tableName WHERE $where ORDER BY $orderBy";
+        $orderBy = $class::orderBy;
+        if (isset($params['orderBy'])){
+            $orderBy = $params['orderBy'];
+        }
+        $bind_params[] = $orderBy;
+
+        $query = "SELECT * FROM $tableName WHERE $where ORDER BY ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param($bind, ...$bind_params);
         $stmt->execute();
