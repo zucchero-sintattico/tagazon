@@ -69,27 +69,68 @@ function loadTags(tags) {
     $("#tags-list").fadeOut(500, () => {
         removeTags();
         tags.forEach(tag => {
-            const article = document.createElement("article");
-            article.ariaRoleDescription = "button"; /* for screen readers */
-            article.addEventListener(
-                "click", 
-                () => window.location.href = `./?page=info_tag&tag_id=${tag["id"]}`
-            );
-            article.innerHTML = `
-                    <header>
-                        <a href="#"><img src="res/img/icons/mail.webp" alt="info"></a>
-                        <h3>&lt;${tag["name"]}&gt;</h3>
-                    </header>
-                        <p>${encodeStr(tag["description"])}</p>
-                    <footer>
-                        <p>${tag["price"]}€</p>
-                    </footer>
-            `;
-            $("#tags-list").append(article);
+            $("#tags-list").append(createArticle(tag));
         });
         $("#tags-list").fadeIn(250);
     })
 
+}
+
+function createArticle(tag) {
+    const article = document.createElement("article");
+    article.ariaRoleDescription = "button"; /* for screen readers */
+
+    /* event on click of all article */
+    article.addEventListener(
+        "click", 
+        () => window.location.href = `./?page=info_tag&tag_id=${tag["id"]}`
+    );
+
+
+    /* header */
+    const header = document.createElement("header");
+    const addToCartButton = document.createElement("button");
+    addToCartButton.innerText = "+";
+    addToCartButton.addEventListener("click", (e) => { e.stopPropagation(); addToCart(tag["id"])});
+    const h3 = document.createElement("h3");
+    h3.innerText = `<${tag["name"]}>`;
+
+    header.appendChild(addToCartButton);
+    header.appendChild(h3);
+
+    /* middle */
+    const p = document.createElement("p");
+    p.innerText = encodeStr(tag["description"]);
+    
+    /* footer */
+    const footer = document.createElement("footer");
+    const p_footer = document.createElement("p");
+    p_footer.innerText = `${tag["price"]}€`;
+
+    footer.appendChild(p_footer);
+    
+    /* 
+        <article>
+            <header>
+                <button>+</button>
+                <h3>Name</h3>
+            </header>
+            <p>Description</p>
+            <footer>
+                <p>Price</p>
+            </footer>
+        </article>
+    */
+    article.appendChild(header);
+    article.appendChild(p);
+    article.appendChild(footer);
+
+    return article;
+}
+
+function addToCart(tag_id) {
+
+    console.log(tag_id);
 }
 
 /**

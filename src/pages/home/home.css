@@ -111,8 +111,15 @@ main > section > div > article > header {
     text-align: right;
 }
 
-main > section > div > article > header > a > img {
-    width: 1.5em;
+main > section > div > article > header > button {
+    width: 3em;
+    height: 3em;
+    border-radius: 100%;
+    -webkit-mask: url(../../res/img/icons/plus-circle.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/plus-circle.svg) center / contain no-repeat;
+    background: var(--text-color);
+    color: transparent;
+    cursor: pointer;
 }
 
 main > section > div > article > header > h3 {
