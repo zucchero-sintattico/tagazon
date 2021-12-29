@@ -6,9 +6,12 @@ $(() => {
         }
     );
 
-    request("/tagazon/src/api/objects/categories/", loadCategory);
-    request("/tagazon/src/api/objects/tags/", loadTags);
+    requestGet("/tagazon/src/api/objects/categories/", loadCategory);
+    requestGet("/tagazon/src/api/objects/tags/", loadTags);
 
+    // give id of navbar like pages!!!
+    const page = new URLSearchParams(document.location.search).get("page");
+    $(`#${page}`).addClass("active-page");
 });
 
 /**
@@ -16,7 +19,7 @@ $(() => {
  * @param {string} object to get from server
  * @param {function} callback to execute on data["data"]
  */
-function request(request, callback) {
+function requestGet(request, callback) {
     $.ajax({
         url: request,
         type: "GET",
@@ -48,14 +51,14 @@ function handleChangeCategory() {
     if ($(this).hasClass("selected")) {
         $(this).removeClass("selected");
         $("#category-name").text("Tutte le categorie");
-        request("api/objects/tags", loadTags);
+        requestGet("api/objects/tags", loadTags);
     } else {
         $("#categories-list > li > button").removeClass("selected");
         $(this).addClass("selected");
         $("#category-name").text($(this).text());
-        request(
+        requestGet(
             `/tagazon/src/api/objects/categories/tags/?category_id=${this.categoryId}`,
-            (tags) => tags.length > 0 ? loadTags(tags) : request("/api/objects/tags/", loadTags),
+            (tags) => tags.length > 0 ? loadTags(tags) : requestGet("/api/objects/tags/", loadTags),
         );
     }
 }
@@ -130,7 +133,14 @@ function createArticle(tag) {
 
 function addToCart(tag_id) {
 
-    console.log(tag_id);
+    $.ajax({
+        url: `/tagazon/src/api/objects/shoppingcart_tags/`,
+        type: "POST",
+        data: {tag: tag_id}, //TODO
+        success: (data) => callback(data["data"]),
+        /* data: {code: Integer, message: String, data: Array} */
+        error: (err) => { console.log(err); }
+    });
 }
 
 /**
