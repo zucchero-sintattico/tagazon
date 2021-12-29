@@ -1,72 +1,108 @@
 @import '../base.css';
-html,
-body {
+
+html,body {
     height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins';
+    font-size: 48px;
+    animation: fade-in 2s ease 0s 1 normal forwards;
+    overflow-x: hidden;
 }
 
-html {
-    background-image: url("../../res/img/backgrounds/bg.webp");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    overflow: hidden
-}
-
-main {
-    height: 100vh;
+body > header {
+    height: 20vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-body>main>h1 {
-    font-size: 36px;
-    color: transparent;
-    font-family: AlfaSlabOne;
-    -webkit-text-stroke: 3px #fff;
-    animation: scale-in 1.5s ease 0s 1 normal forwards;
+body > header > h1{
+    margin-top: 2.5em;
+    font-family: 'AlfaSlabOne';
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    letter-spacing: -0.06em;
+    -webkit-text-stroke: 0.06em var(--primary-color);
 }
 
-body>main>h2 {
-    font-size: 24px;
-    color: #fff;
-    animation: slide-in-right 1.5s ease-out 0s 1 normal forwards;
+body > main {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-footer {
-    height: 50vh;
-    width: 100%;
+body > main > section > img{
+    width: 3em;
+    height: 3em;
+}
+
+body > main > section > h2{
+    font-size: 0.5em;
+    font-weight: normal;
+}
+
+body > main > section{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: slide-in-right 2s ease 0s 1 normal forwards;
+}
+
+body > main > section > a{
+    font-size: 0.3em;
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+}
+
+body > main > footer{
+    height: 30vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
 }
 
-body>main>footer>a {
+body > main > footer > div > span{
+    position: fixed;
+    display: inline-flex;
+    width: 0.2rem;
+    height: 0.2rem;
+    background: var(--gray-color);
     text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    border: 2px solid #fff;
-    padding: 10px 20%;
-    border-radius: 10px;
-    animation: slide-in-left 1s ease 0s 1 normal forwards;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+    animation: pop-down ease 1s 1 normal forwards;
 }
 
-body>main>footer>a:hover {
-    background-color: var(--primary-color);
-    border: none;
-    transition-duration: 2s;
+.item-active{
+    background-color: var(--secondary-color);
+    animation: pop-up ease 1s 1 normal forwards;
 }
 
+.page-hide{
+    display: none;
+    visibility: hidden;
+}
 
-/* Computer & Ipad */
-
-@media screen and (min-width: 768px) {
-    body>main>h1 {
-        font-size: 92px;
-    }
-    body>main>h2 {
-        font-size: 36px;
+/* Desktop */
+@media screen and (min-width: 768px){
+    html,body {
+        font-size: 72px;
     }
 }
