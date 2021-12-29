@@ -63,7 +63,6 @@ def categories():
         data = json.load(f)
     for category in data:
         res = requests.post(url, category)
-        print(res.text);
         print(f"Categories : {res.json()}")
 
 def tags():
@@ -88,7 +87,7 @@ def tags():
             'price': price,
             'sale_price': getRandomSalePrice(price),
         })
-        print(f"Tags : {res.json()}")
+        print(f'Tags : {res.json()["code"]}')
 
 def tags_categories():
     url = path + 'tags-categories/' + end

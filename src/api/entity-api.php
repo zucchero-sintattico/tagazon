@@ -12,13 +12,16 @@ abstract class EntityApi extends Api
 	}
 
 	protected function canAccess($element){
-		return true;
+		return false;
+	}
+	protected function canCreate($request){
+		return false;
 	}
 	protected function canModify($element){
-		return true;
+		return false;
 	}
 	protected function canDelete($element){
-		return true;
+		return false;
 	}
 
 
@@ -52,6 +55,11 @@ abstract class EntityApi extends Api
 	 */
 	public function onPost($params, $server=false)
 	{
+		if ($this->postAuth != Api::OPEN && !$this->canCreate($params) && !$this->isPythonBot()) {
+			$this->setResponseCode(403);
+			$this->setResponseMessage("Forbidden");
+			return;
+		}
 		$res = $this->entity::create($params);
 		$this->setResponseCode(!is_null($res) ? 201 : 400);
 		$this->setResponseMessage(!is_null($res) ? "Created" : "Bad request");

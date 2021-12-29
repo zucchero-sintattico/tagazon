@@ -56,15 +56,9 @@ class Payment extends Entity {
     const orderBy = 'order';
 }
 
-class ShoppingCart extends Entity {
-    const tableName = 'shoppingcarts';
-    const fields = ['buyer' => 'i', ];
-    const orderBy = 'buyer';
-}
-
 class ShoppingCartTag extends Entity {
     const tableName = 'shoppingcart_tags';
-    const fields = ['shoppingcart' => 'i', 'tag' => 'i', 'quantity' => 'i'];
+    const fields = ['buyer' => 'i', 'tag' => 'i', 'quantity' => 'i'];
     const orderBy = 'tag';
 }
 

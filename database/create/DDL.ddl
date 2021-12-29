@@ -52,13 +52,6 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`tag_categories` (
     FOREIGN KEY (`category`) REFERENCES `categories`(`id`) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS `my_tagazon`.`shoppingcarts` (
-    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `buyer` INT NOT NULL,
-    UNIQUE(`buyer`),
-    FOREIGN KEY (`buyer`) REFERENCES `buyers`(`id`) ON DELETE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`wishlists` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(128) NOT NULL,
@@ -80,11 +73,11 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`wishlist_tags` (
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`shoppingcart_tags` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `tag` INT NOT NULL,
-    `shoppingcart` INT NOT NULL,
-    `quantity` INT NOT NULL,
-    UNIQUE(`tag`, `shoppingcart`),
+    `buyer` INT NOT NULL,
+    `quantity` INT NOT NULL DEFAULT 1,
+    UNIQUE(`tag`, `buyer`),
     FOREIGN KEY (`tag`) REFERENCES `tags`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`shoppingcart`) REFERENCES `shoppingcarts`(`id`) ON DELETE CASCADE
+    FOREIGN KEY (`buyer`) REFERENCES `buyers`(`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `my_tagazon`.`orders` (
