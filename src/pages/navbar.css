@@ -1,0 +1,78 @@
+nav {
+    display: block;
+    width: 100%;
+    background-color: var(--background-body);
+    position: sticky;
+    bottom: 0;
+}
+
+nav > ul {
+    display: flex;
+    padding-top: 12px;
+    border-radius: 1.5em 1.5em 0 0;
+    background-color: white;
+    justify-content: space-around;
+    list-style-type: none;
+
+    box-shadow: 0 -1px 10px 1px var(--background-body)
+}
+
+nav > ul > li {
+    flex: 1 1 0;
+    text-align: center;
+    width: 100%;
+}
+
+nav > ul > li > a {
+    display: inline-block;
+    width: 2.5em;
+    height: 2.5em;
+    -webkit-mask: center / contain no-repeat;
+    mask: center / contain no-repeat;
+    background-color: black;
+    color: transparent;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.active-page {
+    background-color: var(--text-color);
+}
+
+nav > ul > li:nth-of-type(1) > a {
+    -webkit-mask-image: url(../res/img/icons/account.svg);
+    mask-image: url(../res/img/icons/account.svg);
+}
+
+nav > ul > li:nth-of-type(2) > a {
+    -webkit-mask-image: url(../res/img/icons/home.svg);
+    mask-image: url(../res/img/icons/home.svg);
+}
+
+nav > ul > li:nth-of-type(3) > a {
+    -webkit-mask-image: url(../res/img/icons/shopping-cart.svg);
+    mask-image: url(../res/img/icons/shopping-cart.svg);
+}
+
+nav > ul > li:nth-of-type(4) > a {
+    -webkit-mask-image: url(../res/img/icons/notification.svg);
+    mask-image: url(../res/img/icons/notification.svg);
+}
+
+nav > ul > li > span {
+    padding: 0 0.4em;
+    vertical-align: top;
+
+    text-align: center;
+    color: white;
+    background-color: var(--text-color);
+    border-radius: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+nav > ul > li:nth-of-type(4) > span {
+    position: relative;
+    right: 8px;
+}
