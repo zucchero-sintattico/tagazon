@@ -6,7 +6,7 @@ from multiprocessing import Process
 Configuration
 """
 
-website = 'tagazon.altervista.org' # 'localhost/tagazon/src'
+website = 'localhost/tagazon/src'
 if len(sys.argv) > 1:
     website = sys.argv[1]
     
@@ -42,7 +42,6 @@ def sellers(num):
             "password": "password"
         }
         res = requests.post(url, seller)
-        print(res.text)
         print(f'Seller: {res.json()}')
 
 def buyers(num):
@@ -64,6 +63,7 @@ def categories():
         data = json.load(f)
     for category in data:
         res = requests.post(url, category)
+        print(res.text);
         print(f"Categories : {res.json()}")
 
 def tags():

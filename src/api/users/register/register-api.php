@@ -50,15 +50,18 @@ class RegisterApi extends Api {
             $res = BuyersApi::post($user, true);
         }
         if($res["code"] == 201){
-            $res2 = ShoppingCartsApi::post(['buyer' => $res["data"]->id], true);
-            if($res2["code"] == 201){            
-                $this->setResponseCode(200);
-                $this->setResponseMessage("User created");
-                $this->setResponseData($res["data"]);
-            } else {
-                $this->setResponseCode(400);
-                $this->setResponseMessage("Error creating shopping cart");
+            if ($type == "buyer"){
+                $res2 = ShoppingCartsApi::post(['buyer' => $res["data"]->id], true);
+                if($res2["code"] == 400){
+                    $this->setResponseCode(400);
+                    $this->setResponseMessage("Error creating shopping cart");
+                    return;
+                }       
             }
+            $this->setResponseCode(200);
+            $this->setResponseMessage("User created");
+            $this->setResponseData($res["data"]);
+
             
         } else {
             $this->setResponseCode(400);

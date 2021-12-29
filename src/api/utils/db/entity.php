@@ -26,7 +26,7 @@ abstract class Entity
         $query = "SELECT * FROM $tableName ORDER BY $orderBy";
         $result = $db->query($query);
         if (!$result) {
-            echo "errore = " .  htmlspecialchars($db->error);
+            //echo "errore = " .  htmlspecialchars($db->error);
         }
         return $result->fetch_all(MYSQLI_ASSOC);
     }
@@ -88,10 +88,10 @@ abstract class Entity
         $stmt->bind_param($bind, ...$bind_param);
         $stmt->execute();
         if (!$db->insert_id){
-            echo "errore = " .  htmlspecialchars($db->error);
+            //echo "errore = " .  htmlspecialchars($db->error);
             return null;
         }
-        return $class::find(["id" => $db->insert_id]);
+        return $class::find(["id" => $db->insert_id])[0];
     }
 
     public static function delete($id)
@@ -140,7 +140,7 @@ abstract class Entity
         $stmt->bind_param($bind, ...$bind_param);
         $res = $stmt->execute();
         if (!$res) {
-            echo "errore = " .  htmlspecialchars($stmt->error);
+            //echo "errore = " .  htmlspecialchars($stmt->error);
         }
         return $res;
     }

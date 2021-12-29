@@ -53,9 +53,9 @@ abstract class EntityApi extends Api
 	public function onPost($params, $server=false)
 	{
 		$res = $this->entity::create($params);
-		$this->setResponseCode($res > 0 ? 201 : 400);
-		$this->setResponseMessage($res > 0 ? "Created" : "Bad request");
-		$this->setResponseData($res > 0 ? ["id" => $res] : []);
+		$this->setResponseCode(!is_null($res) ? 201 : 400);
+		$this->setResponseMessage(!is_null($res) ? "Created" : "Bad request");
+		$this->setResponseData(!is_null($res) ? $res : []);
 	}
 
 	/**
