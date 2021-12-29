@@ -11,17 +11,18 @@ class Pages {
         /**
          * Pages without authentication
          */
-        'splash' => false, 
-        'login' => false, 
-        'register' => false, 
+        'splash' => false,
+        'login' => false,
+        'register' => false,
         'error' => false,
         'restore-password' => false,
-        'restore-password-success' => false, 
+        'restore-password-success' => false,
         
         /**
          * Pages with authentication
          */
-        'home' => true
+        'home' => true,
+        'info_tag' => true
     ];
 
     static function get($page) {
