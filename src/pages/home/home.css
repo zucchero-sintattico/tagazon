@@ -166,7 +166,7 @@ nav {
 
 nav > ul {
     display: flex;
-    padding-top: 10px;
+    padding-top: 12px;
     border-radius: 1.5em 1.5em 0 0;
     background-color: white;
     justify-content: space-evenly;
@@ -175,9 +175,39 @@ nav > ul {
     box-shadow: 0 -1px 10px 1px var(--background-body)
 }
 
+nav > ul > li {
+    text-align: right;
+}
+
 nav > ul > li > a > img {
     width: 2em;
 }
+
+nav > ul > li:nth-of-type(3) > a {
+    display: block;
+    width: 2em;
+    height: 2em;
+    -webkit-mask: url(../../res/img/icons/shopping-cart.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/shopping-cart.svg) center / contain no-repeat;
+    background-color: var(--text-color);
+    color: transparent;
+}
+
+nav > ul > li > span {
+    position: absolute;
+    top: 2px;
+    width: 2.3em;
+    padding: 0 0.4em;
+
+    text-align: center;
+    color: white;
+    background-color: var(--text-color);
+    border-radius: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 @media screen and (min-width: 768px) {
 
