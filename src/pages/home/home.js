@@ -42,17 +42,17 @@ function loadCategory(categories) {
 }
 
 /**
- * Event handler for the category button
+ * Event handler for categories buttons
  */
 function handleChangeCategory() {
     if ($(this).hasClass("selected")) {
         $(this).removeClass("selected");
-
-        request("/tagazon/src/api/objects/tags/", loadTags);
+        $("#category-name").text("Tutte le categorie");
+        request("api/objects/tags", loadTags);
     } else {
         $("#categories-list > li > button").removeClass("selected");
         $(this).addClass("selected");
-
+        $("#category-name").text($(this).text());
         request(
             `/tagazon/src/api/objects/categories/tags/?category_id=${this.categoryId}`,
             (tags) => tags.length > 0 ? loadTags(tags) : request("/api/objects/tags/", loadTags),
@@ -69,18 +69,23 @@ function loadTags(tags) {
     $("#tags-list").fadeOut(500, () => {
         removeTags();
         tags.forEach(tag => {
-            $("#tags-list").append(`
-                <article>
+            const article = document.createElement("article");
+            article.ariaRoleDescription = "button"; /* for screen readers */
+            article.addEventListener(
+                "click", 
+                () => window.location.href = `./?page=info_tag&tag_id=${tag["id"]}`
+            );
+            article.innerHTML = `
                     <header>
-                        <a href="#"><img src="/tagazon/src/res/img/icons/mail.webp" alt="info"></a>
-                        <h3>${tag["name"]}</h3>
+                        <a href="#"><img src="res/img/icons/mail.webp" alt="info"></a>
+                        <h3>&lt;${tag["name"]}&gt;</h3>
                     </header>
                         <p>${encodeStr(tag["description"])}</p>
                     <footer>
                         <p>${tag["price"]}€</p>
                     </footer>
-                </article>
-            `);
+            `;
+            $("#tags-list").append(article);
         });
         $("#tags-list").fadeIn(250);
     })
