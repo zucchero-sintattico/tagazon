@@ -26,10 +26,14 @@ class Pages {
 
     static function get($page) {
         $page = strtolower($page);
+        if ($page == self::errorPage) {
+            self::renderPage($page);
+            die();
+        }
         if (!in_array($page, array_keys(self::pages))) {
             header("Location: ./?page=" . self::errorPage);
             die();
-        }
+        }        
         if (self::isAuthRequiredForPage($page) && !self::isUserLoggedIn()) {
             header("Location: ./?page=" . self::userNotLoggedDefaultPage);
             die();
