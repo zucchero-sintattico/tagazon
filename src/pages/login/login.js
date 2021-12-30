@@ -1,7 +1,7 @@
 $(() => {
     $("form").submit(function(e) {
         e.preventDefault();
-        UserManager.login(
+        Application.authManager.login(
             $("#email").val(),
             $("#password").val()
         );

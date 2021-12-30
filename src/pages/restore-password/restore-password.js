@@ -1,25 +1,20 @@
 $(document).ready(function() {
     //Hide error message
     $("body > main > section > footer > p").hide();
-    
+
     //Control submit button
     $("input[type='submit']").click(function(e) {
         e.preventDefault();
-        $.ajax({
-            url: "/tagazon/src/api/users/reset-password/",
-            type: "POST",
-            data: {
-                email:$("email").val()
-            },
-            success: function(data){
-                //TODO: Switch to success-email.html
+        Application.authManager.resetPassword(
+            $("#email").val(),
+            success = () => {
                 window.location.href = "?page=restore-password-success";
-                console.log(data);
             },
-            error: function(data){
+            error = (err) => {
+                console.error(err);
                 showErrorMessage("Errore! L'email inserita non è valida");
             }
-        })
+        );
     });
 });
 
