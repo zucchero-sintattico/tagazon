@@ -65,6 +65,7 @@ class NotificationsService {
         Notification.requestPermission(function(result) {
             if (result === 'granted') {
                 navigator.serviceWorker.register("/tagazon/src/res/js/service.js").then(function(registration) {
+                    alert(registration);
                     registration.showNotification(notification["title"], {
                         body: notification["message"],
                         icon: "/tagazon/src/res/img/logo.png",
@@ -72,6 +73,7 @@ class NotificationsService {
                         origin: "Tagazon"
                     });
                 }, function(err) {
+                    alert("error");
                     console.error(err);
                 });
 
