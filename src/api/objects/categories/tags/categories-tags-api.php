@@ -32,6 +32,11 @@ class CategoriesTagsApi extends Api {
             array_push($tags, TagsApi::get(["id" => $tag_id])["data"][0]);
         }
 
+        // sort based on name
+        usort($tags, function($a, $b){
+            return strcmp($a->name, $b->name);
+        });
+
         $this->setResponseCode(200);
         $this->setResponseMessage("OK");
         $this->setResponseData($tags);
