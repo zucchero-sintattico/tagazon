@@ -52,7 +52,7 @@ abstract class Entity
         foreach ($params as $key => $value) {
             array_push($keys, $key);
             array_push($bind, $key != 'id' ? $class::fields[$key] : 'i');
-            array_push($bind_params, $value);
+            array_push($bind_params, "$value");
         }
 
         $where = join(' = ? AND ', $keys) . (count($keys) > 0 ? ' = ? ' : '');
