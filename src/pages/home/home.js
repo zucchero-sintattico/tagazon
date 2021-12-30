@@ -120,7 +120,7 @@ function createArticle(tag) {
 
     /* middle */
     const p = document.createElement("p");
-    p.innerText = encodeStr(tag["description"]);
+    p.innerText = tag["description"];
 
     /* footer */
     const footer = document.createElement("footer");
@@ -141,6 +141,7 @@ function createArticle(tag) {
             </footer>
         </article>
     */
+
     article.appendChild(header);
     article.appendChild(p);
     article.appendChild(footer);
