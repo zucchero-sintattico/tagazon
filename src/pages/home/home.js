@@ -1,6 +1,22 @@
-$(() => {
+Application.whenUserReady(() => {
 
-    Application.start();
+    Application.onCartChange(() => {
+        if (Application.cart.getTotalQuantity() > 0) {
+            $("#cart-counter").text(Application.cart.getTotalQuantity());
+            $("#cart-counter").fadeIn(500);
+        } else {
+            $("#cart-counter").hide();
+        }
+    })
+
+    Application.onNotificationChange(() => {
+        if (Application.notifications.length > 0) {
+            $("#notification-counter").text(Application.notifications.length);
+            $("#notification-counter").fadeIn(500);
+        } else {
+            $("#notification-counter").hide();
+        }
+    });
 
     requestGet("/tagazon/src/api/objects/categories/", loadCategory);
     requestGet("/tagazon/src/api/objects/tags/", loadTags);
@@ -8,6 +24,7 @@ $(() => {
     // give id of navbar like pages!!!
     const page = new URLSearchParams(document.location.search).get("page");
     $(`#${page}`).addClass("active-page");
+
 });
 
 /**
@@ -131,15 +148,7 @@ function createArticle(tag) {
 }
 
 function addToCart(tag_id) {
-
-    $.ajax({
-        url: `/tagazon/src/api/objects/shoppingcart_tags/`,
-        type: "POST",
-        data: { tag: tag_id }, //TODO
-        success: (data) => callback(data["data"]),
-        /* data: {code: Integer, message: String, data: Array} */
-        error: (err) => { console.log(err); }
-    });
+    Application.cart.addItem(tag_id);
 }
 
 /**

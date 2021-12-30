@@ -22,9 +22,7 @@
     <script src="./res/js/objects/notification.js"></script>
 
     <!-- Main static class script -->
-    <script src="./res/js/application.js" defer></script>
-
-
+    <script src="./res/js/application.js"></script>
 
     <!-- PHP-based -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>

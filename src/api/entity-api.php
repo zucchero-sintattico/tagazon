@@ -4,7 +4,7 @@ require_once __DIR__ . "/require.php";
 abstract class EntityApi extends Api
 {
 
-	private $entity;
+	protected $entity;
 
 	public function __construct($entity, $getAuth=Api::OPEN, $postAuth=Api::SERVER, $patchAuth=Api::SERVER, $deleteAuth=Api::SERVER){
 		parent::__construct($getAuth, $postAuth, $patchAuth, $deleteAuth);

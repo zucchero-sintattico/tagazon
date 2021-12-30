@@ -12,7 +12,7 @@ class ShoppingCartsTagsApi extends EntityApi {
 
     public function onPost($params, $server=false)
 	{
-        $params["buyer"] == $_SESSION["user"]["id"];
+        $params["buyer"] = $_SESSION["user"]["id"];
 		$res = $this->entity::create($params);
 		$this->setResponseCode(!is_null($res) ? 201 : 400);
 		$this->setResponseMessage(!is_null($res) ? "Created" : "Bad request");
