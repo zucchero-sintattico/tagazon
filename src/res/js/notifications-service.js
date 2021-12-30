@@ -90,7 +90,7 @@ class NotificationsService {
                 notifications.forEach((notification) => {
                     let not = new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]);
                     Application.addNotification(not);
-                    //not.setReceived();
+                    not.setReceived();
                     service.createNotification(notification);
                 });
             },
