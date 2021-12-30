@@ -65,15 +65,17 @@ class NotificationsService {
         Notification.requestPermission(function(result) {
             if (result === 'granted') {
                 navigator.serviceWorker.register("/tagazon/src/res/js/service.js").then(function(registration) {
-                    registration.showNotification(notification["title"], {
-                        body: notification["message"],
-                        icon: "https://localhost/tagazon/src/res/img/logo.png",
-                        data: notification["timestamp"],
-                        origin: "Tagazon"
+                        registration.showNotification(notification["title"], {
+                            body: notification["message"],
+                            icon: "/tagazon/src/res/img/logo.png",
+                            data: notification["timestamp"],
+                            origin: "Tagazon",
+                            tag: "tagazon-notification",
+                        });
+                    },
+                    function(err) {
+                        console.error(err);
                     });
-                }, function(err) {
-                    console.error(err);
-                });
 
             }
         });
