@@ -71,7 +71,10 @@ abstract class Entity
         $params = static::filterParams($params);
         $class = static::class;
         $tableName = $class::tableName;
-        $columns = join(', ', array_keys($params));
+        $keys = array_map(function($key){
+            return "`$key`";
+        }, array_keys($params));
+        $columns = join(', ', $keys);
         $bind = '';
         $bind_param = [];
         $values = [];
@@ -82,13 +85,14 @@ abstract class Entity
         }
         $values = join(', ', $values);
 
-        $query = "INSERT INTO $tableName ($columns) VALUES ($values)";
+
+        $query = "INSERT INTO `$tableName` ($columns) VALUES ($values);";
         $db = Database::getInstance();
         $stmt = $db->prepare($query);
         $stmt->bind_param($bind, ...$bind_param);
         $stmt->execute();
         if (!$db->insert_id){
-            //echo "errore = " .  htmlspecialchars($db->error);
+            echo "errore = " .  htmlspecialchars($db->error);
             return null;
         }
         return $class::find(["id" => $db->insert_id])[0];

@@ -10,8 +10,9 @@ Application.whenUserReady(() => {
     })
 
     Application.onNotificationChange(() => {
-        if (Application.notifications.length > 0) {
-            $("#notification-counter").text(Application.notifications.length);
+        let unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
+        if (unseen > 0) {
+            $("#notification-counter").text(unseen);
             $("#notification-counter").fadeIn(500);
         } else {
             $("#notification-counter").hide();

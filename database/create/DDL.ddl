@@ -117,8 +117,9 @@ CREATE TABLE IF NOT EXISTS `my_tagazon`.`notifications` (
     `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `order` INT NOT NULL,
     `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `title` VARCHAR(255) NOT NULL,
-    `message` VARCHAR(255) NOT NULL,
+    `title` TEXT NOT NULL,
+    `message` TEXT NOT NULL,
+    `received` BOOLEAN NOT NULL DEFAULT FALSE,
     `seen` BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (`order`) REFERENCES `orders`(`id`) ON DELETE CASCADE
 );

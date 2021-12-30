@@ -11,7 +11,7 @@ class NotificationsNewsApi extends Api {
 
 
     public function onGet($params){
-        $news = NotificationsApi::get(["seen" => false], true)["data"];
+        $news = NotificationsApi::get(["received" => false], true)["data"];
         $orders_id = array_unique(array_map(function($notification){
             return $notification->order;
         }, $news));

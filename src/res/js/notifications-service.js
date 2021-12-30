@@ -15,7 +15,10 @@ class NotificationsService {
             qos: 1
         }
         this.client = mqtt.connect(`${this.protocol}://${this.server}:${this.port}/mqtt`, options)
-        this.client.on('message', this.onNotification);
+        let service = this;
+        this.client.on('message', (topic, message) => {
+            this.onNotification(topic, message, service);
+        });
         let _this = this;
         this.client.on('connect', function() {
             console.log('Notifications Service Connected')
@@ -27,8 +30,6 @@ class NotificationsService {
                 }
             })
         });
-
-
     }
 
     /**
@@ -59,7 +60,7 @@ class NotificationsService {
         });
     }
 
-    async createNotification(notification) {
+    createNotification(notification) {
         Notification.requestPermission().then(function(permission) {
             var not = new Notification(notification.title, {
                 icon: "http://localhost/tagazon/src/res/img/logo.png",
@@ -73,18 +74,19 @@ class NotificationsService {
         });
     }
 
-    onNotification(topic, message) {
-        console.log(`${topic.toString()} : ${message.toString()}`);
-        let url = "/tagazon/src/api/objects/notifications/";
+    onNotification(topic, message, service) {
+        let url = "/tagazon/src/api/objects/notifications/?received=false";
         let _this = this;
         $.ajax({
             url: url,
             type: "GET",
             success: (data) => {
                 let notifications = data["data"];
-                notifications.forEach(notification => {
-                    _this.createNotification(notification);
-                    _this.setNotificationSeen(notification["id"]);
+                notifications.forEach((notification) => {
+                    let not = new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]);
+                    Application.addNotification(not);
+                    not.setReceived();
+                    service.createNotification(notification);
                 });
             },
             error: (err) => {

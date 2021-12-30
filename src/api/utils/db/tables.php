@@ -34,7 +34,7 @@ class TagCategory extends Entity {
 
 class Notification extends Entity {
     const tableName = 'notifications';
-    const fields = [ 'order' => 'i', 'buyer' => 'i', 'timestamp' => 's', 'title' => 's', 'message' => 's', 'seen' => 'i'];
+    const fields = [ 'order' => 'i', 'timestamp' => 's', 'title' => 's', 'message' => 's', 'received' => 'i', 'seen' => 'i'];
     const orderBy = 'timestamp';
 }
 

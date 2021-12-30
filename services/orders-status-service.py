@@ -38,6 +38,7 @@ def checkOrderAndSetStatus(order, nextStatus):
         }
         response = requests.patch(url, data)
         if response.status_code == 200:
+            sendNotification(order, nextStatus)
             print(f'The status of order {order["id"]} has been changed to {nextStatus}')
         else:
             print('Error')
@@ -46,7 +47,23 @@ def checkOrdersAndSetStatus(orders, nextStatus):
     for order in orders:
         checkOrderAndSetStatus(order, nextStatus)
         
-    
+
+def sendNotification(order, nextStatus):
+    title = f"Your order's status is: {nextStatus}";
+    body = f"Your order's status has been changed from {order['status']} to {nextStatus}.";
+    data = {
+        "order": order["id"],
+        "title": title,
+        "message": body
+    }
+    url = 'http://localhost/tagazon/src/api/objects/notifications/?python-bot'
+    response = requests.post(url, data)
+    print(response.text)
+    if response.status_code == 200:
+        print(f'Notification has been sent')
+    else:
+        print('Error')
+
 while True:
     
     print('Checking orders...')

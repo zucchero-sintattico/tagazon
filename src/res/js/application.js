@@ -19,7 +19,9 @@ class Application {
     static notificationListeners = [];
 
     static start() {
-        Application.refreshUser();
+        Application.refreshUser(() => {
+            Application.notificationsService.start();
+        });
     }
 
     static refreshUser(onRefresh = () => {}) {
@@ -74,7 +76,7 @@ class Application {
             url: Application.baseUrl + "notifications/",
             type: "GET",
             success: (data) => {
-                Application.notifications = data["data"].map((notification) => new NotificationObject(notification));
+                Application.notifications = data["data"].map((notification) => new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]));
                 console.log("Notifications loaded");
                 Application.notificationsReady = true;
                 onRefresh();
@@ -85,22 +87,7 @@ class Application {
         });
     }
 
-    static _whenReady(type, callback) {
 
-        let ready = type == "user" ? Application.userReady :
-            type == "cart" ? Application.cartReady :
-            type == "orders" ? Application.ordersReady :
-            type == "notifications" ? Application.notificationsReady : false;
-
-        if (ready) {
-            callback();
-        } else {
-            setTimeout(() => {
-                Application._whenReady(type, callback);
-            }, 30);
-        }
-
-    }
 
     static async notifyCartChange() {
         Application.cartListeners.forEach((listener) => listener());
@@ -120,8 +107,28 @@ class Application {
         Application.whenNotificationsReady(() => callback());
     }
 
-    static whenUserReady(callback) {
-        return Application._whenReady("user", callback);
+    static addNotification(notification, onSuccess = () => {}) {
+        Application.notifications.push(notification);
+        Application.notifyNotificationChange();
+    }
+
+    // WHEN READY FUNCTIONS
+
+    static _whenReady(type, callback) {
+
+        let ready = type == "user" ? Application.userReady :
+            type == "cart" ? Application.cartReady :
+            type == "orders" ? Application.ordersReady :
+            type == "notifications" ? Application.notificationsReady : false;
+
+        if (ready) {
+            callback();
+        } else {
+            setTimeout(() => {
+                Application._whenReady(type, callback);
+            }, 30);
+        }
+
     }
 
     static whenCartReady(callback) {
@@ -137,6 +144,10 @@ class Application {
     static whenNotificationsReady(callback) {
         Application.refreshNotifications();
         return Application._whenReady("notifications", callback);
+    }
+
+    static whenUserReady(callback) {
+        return Application._whenReady("user", callback);
     }
 
 }
