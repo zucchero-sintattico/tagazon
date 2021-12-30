@@ -2,6 +2,7 @@ class Cart {
 
     constructor(items, onReady) {
         this.items = [];
+        console.log("AA");
         this._buildItems(items, 0, () => {
             console.log("Cart Items loaded");
             onReady();

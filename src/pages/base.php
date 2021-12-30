@@ -15,10 +15,11 @@
 
 
     <script src="./res/js/objects/user.js"></script>
-    <script src="./res/js/objects/order.js"></script>
+    <script src="./res/js/objects/category.js"></script>
     <script src="./res/js/objects/tag.js"></script>
-    <script src="./res/js/objects/cart.js"></script>
     <script src="./res/js/objects/cart-item.js"></script>
+    <script src="./res/js/objects/cart.js"></script>
+    <script src="./res/js/objects/order.js"></script>
     <script src="./res/js/objects/notification.js"></script>
 
     <!-- Main static class script -->
