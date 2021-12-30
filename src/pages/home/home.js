@@ -1,10 +1,6 @@
 $(() => {
 
-    UserManager.start(
-        ifLogged = () => {
-            NotificationsService.start();
-        }
-    );
+    Application.start();
 
     requestGet("/tagazon/src/api/objects/categories/", loadCategory);
     requestGet("/tagazon/src/api/objects/tags/", loadTags);
@@ -85,7 +81,7 @@ function createArticle(tag) {
 
     /* event on click of all article */
     article.addEventListener(
-        "click", 
+        "click",
         () => window.location.href = `./?page=info_tag&tag_id=${tag["id"]}`
     );
 
@@ -94,7 +90,10 @@ function createArticle(tag) {
     const header = document.createElement("header");
     const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "+";
-    addToCartButton.addEventListener("click", (e) => { e.stopPropagation(); addToCart(tag["id"])});
+    addToCartButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        addToCart(tag["id"])
+    });
     const h3 = document.createElement("h3");
     h3.innerText = `<${tag["name"]}>`;
 
@@ -104,14 +103,14 @@ function createArticle(tag) {
     /* middle */
     const p = document.createElement("p");
     p.innerText = encodeStr(tag["description"]);
-    
+
     /* footer */
     const footer = document.createElement("footer");
     const p_footer = document.createElement("p");
     p_footer.innerText = `${tag["price"]}€`;
 
     footer.appendChild(p_footer);
-    
+
     /* 
         <article>
             <header>
@@ -136,7 +135,7 @@ function addToCart(tag_id) {
     $.ajax({
         url: `/tagazon/src/api/objects/shoppingcart_tags/`,
         type: "POST",
-        data: {tag: tag_id}, //TODO
+        data: { tag: tag_id }, //TODO
         success: (data) => callback(data["data"]),
         /* data: {code: Integer, message: String, data: Array} */
         error: (err) => { console.log(err); }

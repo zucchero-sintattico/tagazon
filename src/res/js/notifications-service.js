@@ -1,28 +1,25 @@
 class NotificationsService {
 
-    static protocol = "wss";
-    static server = "broker.emqx.io";
-    static port = 8084;
-    static topic = "tagazon-notifications";
+    protocol = "wss";
+    server = "broker.emqx.io";
+    port = 8084;
+    topic = "tagazon-notifications";
 
     /**
      * Start listening for user notifications (if the user is logged in)
      */
-    static start() {
+    start() {
         const options = {
             clean: true,
             connectTimeout: 30000,
             qos: 1
         }
-        if (UserManager.user == null) {
-            console.error("Cannot start listening for user notifications: user not logged in");
-            return;
-        }
         this.client = mqtt.connect(`${this.protocol}://${this.server}:${this.port}/mqtt`, options)
         this.client.on('message', this.onNotification);
+        let _this = this;
         this.client.on('connect', function() {
             console.log('Notifications Service Connected')
-            NotificationsService.client.subscribe(NotificationsService.topic + '/' + UserManager.user["id"], function(err) {
+            _this.client.subscribe(_this.topic + '/' + Application.user.getId(), function(err) {
                 if (err) {
                     console.error(err);
                 } else {
@@ -37,15 +34,15 @@ class NotificationsService {
     /**
      * Stop listening for user notifications
      */
-    static stop() {
+    stop() {
         if (this.client) {
             console.log("Stopping listening for user notifications");
-            this.client.unsubscribe(NotificationsService.topic + '/' + UserManager.user["id"]);
+            this.client.unsubscribe(this.topic + '/' + Application.user.getId());
             this.client.end();
         }
     }
 
-    static setNotificationSeen(id) {
+    setNotificationSeen(id) {
         $.ajax({
             url: "/tagazon/src/api/objects/notifications/",
             method: "PATCH",
@@ -62,7 +59,7 @@ class NotificationsService {
         });
     }
 
-    static async createNotification(notification) {
+    async createNotification(notification) {
         Notification.requestPermission().then(function(permission) {
             var not = new Notification(notification.title, {
                 icon: "http://localhost/tagazon/src/res/img/logo.png",
@@ -76,17 +73,18 @@ class NotificationsService {
         });
     }
 
-    static onNotification(topic, message) {
+    onNotification(topic, message) {
         console.log(`${topic.toString()} : ${message.toString()}`);
         let url = "/tagazon/src/api/objects/notifications/";
+        let _this = this;
         $.ajax({
             url: url,
             type: "GET",
             success: (data) => {
                 let notifications = data["data"];
                 notifications.forEach(notification => {
-                    NotificationsService.createNotification(notification);
-                    NotificationsService.setNotificationSeen(notification["id"]);
+                    _this.createNotification(notification);
+                    _this.setNotificationSeen(notification["id"]);
                 });
             },
             error: (err) => {

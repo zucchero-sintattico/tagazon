@@ -11,7 +11,7 @@ class OrdersApi extends EntityApi {
 
     public function canAccess($element)
     {
-        return $element["buyer"] == $_SESSION["user"]->id;
+        return $element["buyer"] == $_SESSION["user"]["id"];
     }
 }
 
