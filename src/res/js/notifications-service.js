@@ -65,15 +65,13 @@ class NotificationsService {
         Notification.requestPermission(function(result) {
             if (result === 'granted') {
                 navigator.serviceWorker.register("/tagazon/src/res/js/service.js").then(function(registration) {
-                    alert(registration);
                     registration.showNotification(notification["title"], {
                         body: notification["message"],
-                        icon: "/tagazon/src/res/img/logo.png",
+                        icon: "https://localhost/tagazon/src/res/img/logo.png",
                         data: notification["timestamp"],
                         origin: "Tagazon"
                     });
                 }, function(err) {
-                    alert("error");
                     console.error(err);
                 });
 
@@ -84,7 +82,6 @@ class NotificationsService {
 
     onNotification(topic, message, service) {
         let url = "/tagazon/src/api/objects/notifications/?received=false";
-        let _this = this;
         $.ajax({
             url: url,
             type: "GET",
