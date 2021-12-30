@@ -70,7 +70,6 @@ class NotificationsService {
                             icon: "/tagazon/src/res/img/logo.png",
                             data: notification["timestamp"],
                             origin: "Tagazon",
-                            tag: "tagazon-notification",
                         });
                     },
                     function(err) {
