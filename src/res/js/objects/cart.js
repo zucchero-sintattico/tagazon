@@ -102,6 +102,7 @@ class Cart {
 
     removeItem(tagId, onSuccess = () => {}) {
         let item = this.getItem(tagId);
+        let _this = this;
         if (item != null) {
             $.ajax({
                 url: "/tagazon/src/api/objects/shoppingcart_tags/?id=" + item.getId(),
@@ -110,6 +111,9 @@ class Cart {
                     _this.items.splice(_this.items.indexOf(item), 1);
                     Application.notifyCartChange();
                     onSuccess();
+                },
+                error: (data) => {
+                    console.error(data);
                 }
             });
         }

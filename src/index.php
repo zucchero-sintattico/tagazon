@@ -22,7 +22,8 @@ class Pages {
          * Pages with authentication
          */
         'home' => true,
-        'info_tag' => true
+        'info_tag' => true,
+        'cart' => true,
     ];
 
     static function get($page) {

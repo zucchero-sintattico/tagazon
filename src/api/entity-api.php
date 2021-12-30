@@ -101,10 +101,10 @@ abstract class EntityApi extends Api
 			return;
 		}
 
-		$element = $this->entity::find(["id" => $params['id']]);
+		$element = $this->entity::find(["id" => $params['id']])[0];
 		if ($this->deleteAuth != Api::OPEN && !$server && !$this->canDelete($element) && !$this->isPythonBot()) {
 			$this->setResponseCode(403);
-			$this->setResponseMessage("Forbidden");
+			$this->setResponseMessage("Forbidden qui");
 			return;
 		}
 		$res = $this->entity::delete($params['id']);

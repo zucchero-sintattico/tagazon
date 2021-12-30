@@ -110,7 +110,7 @@ function createArticle(tag) {
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        addToCart(tag["id"])
+        addToCart(tag["id"]);
     });
     const h3 = document.createElement("h3");
     h3.innerText = `<${tag["name"]}>`;

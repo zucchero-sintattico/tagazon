@@ -15,6 +15,10 @@ class CartItem {
         });
     }
 
+    getId() {
+        return this.id;
+    }
+
     getTag() {
         return this.tag;
     }
