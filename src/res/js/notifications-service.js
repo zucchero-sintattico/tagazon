@@ -61,17 +61,23 @@ class NotificationsService {
     }
 
     createNotification(notification) {
-        Notification.requestPermission().then(function(permission) {
-            var not = new Notification(notification.title, {
-                icon: "http://localhost/tagazon/src/res/img/logo.png",
-                body: notification.message,
-                origin: "Tagazon",
-                data: notification.timestamp
-            });
-            not.onclick = () => {
-                window.focus();
-            };
+
+        Notification.requestPermission(function(result) {
+            if (result === 'granted') {
+                navigator.serviceWorker.register("/tagazon/src/res/js/service.js").then(function(registration) {
+                    registration.showNotification(notification["title"], {
+                        body: notification["message"],
+                        icon: "/tagazon/src/res/img/logo.png",
+                        data: notification["timestamp"],
+                        origin: "Tagazon"
+                    });
+                }, function(err) {
+                    console.error(err);
+                });
+
+            }
         });
+
     }
 
     onNotification(topic, message, service) {
@@ -85,7 +91,7 @@ class NotificationsService {
                 notifications.forEach((notification) => {
                     let not = new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]);
                     Application.addNotification(not);
-                    not.setReceived();
+                    //not.setReceived();
                     service.createNotification(notification);
                 });
             },

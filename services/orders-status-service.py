@@ -1,14 +1,20 @@
 import requests, json
-import time
+import time, sys
 from time import sleep
 from datetime import datetime
 
-received_url = 'http://localhost/tagazon/src/api/objects/orders/?status=RECEIVED&python-bot'
-processing_url = 'http://localhost/tagazon/src/api/objects/orders/?status=PROCESSING&python-bot'
-shipped_url = 'http://localhost/tagazon/src/api/objects/orders/?status=SHIPPED&python-bot'
-delivering_url = 'http://localhost/tagazon/src/api/objects/orders/?status=DELIVERING&python-bot'
 
-delay = 3
+website = 'localhost/tagazon/src'
+if len(sys.argv) > 1:
+    website = sys.argv[1]
+
+
+received_url = f'http://{website}/api/objects/orders/?status=RECEIVED&python-bot'
+processing_url = f'http://{website}/api/objects/orders/?status=PROCESSING&python-bot'
+shipped_url = f'http://{website}/api/objects/orders/?status=SHIPPED&python-bot'
+delivering_url = f'http://{website}/api/objects/orders/?status=DELIVERING&python-bot'
+
+delay = 10
 
 def getObjects(url):
     return requests.get(url).json()["data"]
@@ -25,12 +31,12 @@ def getNextStatus(status):
     
 def setStatus(order, status):
     order["status"] = status
-    requests.patch('http://localhost/tagazon/src/api/objects/orders/&python-bot', order)
+    requests.patch(f'http://{website}/api/objects/orders/&python-bot', order)
 
 def checkOrderAndSetStatus(order, nextStatus):
     timestamp = datetime.strptime(order["timestamp"], "%Y-%m-%d %H:%M:%S")
     if ((datetime.now() - timestamp).total_seconds() >= 2):
-        url = 'http://localhost/tagazon/src/api/objects/orders/?python-bot'
+        url = f'http://{website}/api/objects/orders/?python-bot'
         data = {
             "id": order["id"],
             "status": nextStatus,
@@ -56,7 +62,7 @@ def sendNotification(order, nextStatus):
         "title": title,
         "message": body
     }
-    url = 'http://localhost/tagazon/src/api/objects/notifications/?python-bot'
+    url = f'http://{website}/api/objects/notifications/?python-bot'
     response = requests.post(url, data)
     print(response.text)
     if response.status_code == 200:

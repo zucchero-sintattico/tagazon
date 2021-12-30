@@ -3,9 +3,13 @@
 import requests
 import paho.mqtt.client as mqtt
 from time import sleep
-import json
+import json, sys
 
-url = 'http://localhost/tagazon/src/api/objects/notifications/news/'
+website = 'localhost/tagazon/src'
+if len(sys.argv) > 1:
+    website = sys.argv[1]
+    
+url = f'http://{website}/api/objects/notifications/news/'
 delay = 1
 
 class Mqtt:
