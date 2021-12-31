@@ -29,7 +29,6 @@ class Application {
         Application.authManager.start(
             (user) => {
                 Application.user = new User(user["id"], user["email"], user["type"], () => {
-                    console.log("User loaded");
                     Application.userReady = true;
                     onRefresh();
                 });
@@ -44,7 +43,6 @@ class Application {
             type: "GET",
             success: (data) => {
                 Application.cart = new Cart(data["data"], () => {
-                    console.log("Cart loaded");
                     Application.cartReady = true;
                     onRefresh();
                 });
@@ -61,7 +59,6 @@ class Application {
             type: "GET",
             success: (data) => {
                 Application.orders = data["data"].map((order) => new Order(order));
-                console.log("Orders loaded");
                 Application.ordersReady = true;
                 onRefresh();
             },
@@ -77,7 +74,6 @@ class Application {
             type: "GET",
             success: (data) => {
                 Application.notifications = data["data"].map((notification) => new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]));
-                console.log("Notifications loaded");
                 Application.notificationsReady = true;
                 onRefresh();
             },
@@ -119,7 +115,12 @@ class Application {
         let ready = type == "user" ? Application.userReady :
             type == "cart" ? Application.cartReady :
             type == "orders" ? Application.ordersReady :
-            type == "notifications" ? Application.notificationsReady : false;
+            type == "notifications" ? Application.notificationsReady : null;
+
+        if (ready == null) {
+            console.error("Invalid type");
+            return;
+        }
 
         if (ready) {
             callback();

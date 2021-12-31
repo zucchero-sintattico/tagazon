@@ -49,6 +49,7 @@ class RegisterApi extends Api {
         } else {
             $res = BuyersApi::post($user, true);
         }
+        
         if($res["code"] == 201){
             $this->setResponseCode(200);
             $this->setResponseMessage("User created");

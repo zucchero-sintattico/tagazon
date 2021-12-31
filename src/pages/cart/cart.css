@@ -76,7 +76,7 @@ main>section>ul>li>button.selected {
 main>section>div {
     display: grid;
     padding: 1em 0 2em 5%;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 95%;
     grid-auto-rows: 1fr;
     column-gap: 5%;
     row-gap: 2em;
@@ -172,7 +172,7 @@ main>section>div>article>footer>p:last-of-type {
 
 @media screen and (min-width: 768px) {
     main>section>div {
-        grid-template-columns: 20% 20% 20% 20%;
+        grid-template-columns: 95%;
         column-gap: 5%;
     }
 }
