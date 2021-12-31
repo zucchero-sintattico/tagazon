@@ -38,7 +38,7 @@ function createArticle(item) {
     /* event on click of all article */
     article.addEventListener(
         "click",
-        () => window.location.href = `./?page=info_tag&tag_id=${tag["id"]}`
+        () => window.location.href = `./?page=info_tag&tag_id=${item["tag"]["id"]}`
     );
 
 
