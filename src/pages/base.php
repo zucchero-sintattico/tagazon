@@ -22,13 +22,16 @@
     <script src="./res/js/objects/order.js"></script>
     <script src="./res/js/objects/notification.js"></script>
 
-    <!-- Main static class script -->
-    <script src="./res/js/application.js"></script>
+    <script src="./res/js/page.js"></script>
 
     <!-- PHP-based -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>
-    <script src="./pages/<?php echo $page;?>/<?php echo $page;?>.js" defer></script>
+    <script src="./pages/<?php echo $page;?>/<?php echo $page;?>.js"></script>
     <link rel="stylesheet" href="./pages/<?php echo $page;?>/<?php echo $page;?>.css"/>
+    
+    
+    <!-- Main static class script -->
+    <script src="./res/js/application.js"></script>
 
 </head>
 <body>

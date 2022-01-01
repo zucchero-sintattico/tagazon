@@ -1,15 +1,20 @@
-Application.whenUserReady(() => {
+class HomePage extends Page {
 
-    Application.onCartChange(() => {
+    onPageLoad() {
+        const page = new URLSearchParams(document.location.search).get("page");
+        $(`#${page}`).addClass("active-page");
+    }
+
+    onCartChange(cart) {
         if (Application.cart.getTotalQuantity() > 0) {
             $("#cart-counter").text(Application.cart.getTotalQuantity());
             $("#cart-counter").fadeIn(500);
         } else {
             $("#cart-counter").hide();
         }
-    })
+    }
 
-    Application.onNotificationChange(() => {
+    onNotificationsChange(notifications) {
         let unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
         if (unseen > 0) {
             $("#notification-counter").text(unseen);
@@ -17,16 +22,16 @@ Application.whenUserReady(() => {
         } else {
             $("#notification-counter").hide();
         }
-    });
+    }
 
-    requestGet("/tagazon/src/api/objects/categories/", loadCategory);
-    requestGet("/tagazon/src/api/objects/tags/", loadTags);
 
-    // give id of navbar like pages!!!
-    const page = new URLSearchParams(document.location.search).get("page");
-    $(`#${page}`).addClass("active-page");
+    onUserLoad(user) {
+        requestGet("/tagazon/src/api/objects/categories/", loadCategory);
+        requestGet("/tagazon/src/api/objects/tags/", loadTags);
+    }
 
-});
+}
+
 
 /**
  * 
