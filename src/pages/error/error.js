@@ -1,0 +1,4 @@
+class ErrorPage extends Page {
+
+
+}

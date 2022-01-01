@@ -26,6 +26,7 @@ class Application {
         const properties = Object.getOwnPropertyNames(Object.getPrototypeOf(page));
         const methods = properties.filter(item => typeof page[item] === 'function')
 
+
         methods.forEach((method) => {
             switch (method) {
                 case "onPageLoad":
@@ -59,6 +60,10 @@ class Application {
     }
 
     static loadCart(onLoad = () => {}) {
+        if (!Application.userReady) {
+            setTimeout(() => Application.loadCart(onLoad), 100);
+            return;
+        }
         $.ajax({
             url: Application.baseUrl + "shoppingcart_tags/",
             type: "GET",
@@ -74,6 +79,10 @@ class Application {
         });
     }
     static loadOrders(onLoad = () => {}) {
+        if (!Application.userReady) {
+            setTimeout(() => Application.loadOrders(onLoad), 100);
+            return;
+        }
         $.ajax({
             url: Application.baseUrl + "orders/",
             type: "GET",
@@ -88,6 +97,10 @@ class Application {
         });
     }
     static loadNotifications(onLoad = () => {}) {
+        if (!Application.userReady) {
+            setTimeout(() => Application.loadNotifications(onLoad), 100);
+            return;
+        }
         $.ajax({
             url: Application.baseUrl + "notifications/",
             type: "GET",
