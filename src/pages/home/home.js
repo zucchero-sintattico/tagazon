@@ -5,7 +5,7 @@ class HomePage extends Page {
         $(`#${page}`).addClass("active-page");
     }
 
-    onCartChange(cart) {
+    onCartChange() {
         if (Application.cart.getTotalQuantity() > 0) {
             $("#cart-counter").text(Application.cart.getTotalQuantity());
             $("#cart-counter").fadeIn(500);
@@ -14,7 +14,7 @@ class HomePage extends Page {
         }
     }
 
-    onNotificationsChange(notifications) {
+    onNotificationsChange() {
         let unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
         if (unseen > 0) {
             $("#notification-counter").text(unseen);
@@ -25,7 +25,7 @@ class HomePage extends Page {
     }
 
 
-    onUserLoad(user) {
+    onUserLoad() {
         requestGet("/tagazon/src/api/objects/categories/", loadCategory);
         requestGet("/tagazon/src/api/objects/tags/", loadTags);
     }

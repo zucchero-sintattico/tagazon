@@ -22,24 +22,25 @@ class Application {
     static notificationsListen = false;
 
     static start(page) {
+        Application.loadUser();
         Application.page = page;
         const properties = Object.getOwnPropertyNames(Object.getPrototypeOf(page));
         const methods = properties.filter(item => typeof page[item] === 'function')
 
-
+        console.log(page);
         methods.forEach((method) => {
             switch (method) {
                 case "onPageLoad":
                     Application.whenPageReady(() => Application.page.onPageLoad());
                     break;
                 case "onUserLoad":
-                    Application.whenUserReady(() => Application.page.onUserLoad(Application.user));
+                    Application.whenUserReady(() => Application.page.onUserLoad());
                     break;
                 case "onCartChange":
-                    Application.onCartChange(() => Application.page.onCartChange(Application.cart));
+                    Application.onCartChange(() => Application.page.onCartChange());
                     break;
                 case "onNotificationsChange":
-                    Application.onNotificationsChange(() => Application.page.onNotificationsChange(Application.notifications));
+                    Application.onNotificationsChange(() => Application.page.onNotificationsChange());
                     break;
             }
         });
@@ -115,7 +116,6 @@ class Application {
         });
     }
 
-
     static async notifyCartChange() {
         Application.page.onCartChange();
     }
@@ -167,7 +167,6 @@ class Application {
         return Application._whenReady("orders", callback);
     }
     static whenUserReady(callback) {
-        Application.loadUser();
         return Application._whenReady("user", callback);
     }
 

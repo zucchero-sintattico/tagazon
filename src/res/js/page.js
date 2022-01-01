@@ -25,15 +25,15 @@ class Page {
 
     }
 
-    onUserLoad(user) {
+    onUserLoad() {
 
     }
 
-    onCartChange(cart) {
+    onCartChange() {
 
     }
 
-    onNotificationsChange(notifications) {
+    onNotificationsChange() {
 
     }
 
