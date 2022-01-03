@@ -24,7 +24,16 @@
 
     <script src="./res/js/page.js"></script>
 
-    <!-- PHP-based -->
+
+    <!-- 
+        PHP-based
+
+        <?php 
+            /** 
+             * @var string $page 
+             * */ 
+        ?> 
+    -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>
     <script src="./pages/<?php echo $page;?>/<?php echo $page;?>.js"></script>
     <link rel="stylesheet" href="./pages/<?php echo $page;?>/<?php echo $page;?>.css"/>
@@ -35,6 +44,7 @@
 
 </head>
 <body>
+    
     
     <!-- HTML Page -->
     <?php require __DIR__ . "/$page/$page.html"; ?>
