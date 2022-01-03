@@ -20,7 +20,7 @@ class CartPage extends Page {
     }
 
     onNotificationsChange() {
-        let unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
+        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
         if (unseen > 0) {
             $("#notification-counter").text(unseen);
             $("#notification-counter").fadeIn(500);
@@ -46,14 +46,14 @@ function createArticle(item) {
     /* header */
     const header = document.createElement("header");
 
-    let removeFromCartButton = document.createElement("button");
+    const removeFromCartButton = document.createElement("button");
     removeFromCartButton.innerText = "-";
     removeFromCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
         Application.cart.decreaseItemQuantity(item["tag"]["id"]);
     });
 
-    let addToCartButton = document.createElement("button");
+    const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();

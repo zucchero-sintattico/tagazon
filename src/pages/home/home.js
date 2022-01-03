@@ -15,7 +15,7 @@ class HomePage extends Page {
     }
 
     onNotificationsChange() {
-        let unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
+        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
         if (unseen > 0) {
             $("#notification-counter").text(unseen);
             $("#notification-counter").fadeIn(500);
@@ -77,7 +77,9 @@ function handleChangeCategory() {
         $("#category-name").text($(this).text());
         requestGet(
             `/tagazon/src/api/objects/categories/tags/?category_id=${this.categoryId}`,
-            (tags) => tags.length > 0 ? loadTags(tags) : requestGet("/api/objects/tags/", loadTags),
+            (tags) => {
+                return tags.length > 0 ? loadTags(tags) : requestGet("/api/objects/tags/", loadTags);
+            },
         );
     }
 }
@@ -164,9 +166,3 @@ function addToCart(tag_id) {
 function removeTags() {
     document.getElementById("tags-list").innerHTML = "";
 }
-
-function encodeStr(str) {
-    return str.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
-        return '&#' + i.charCodeAt(0) + ';';
-    });
-};

@@ -11,7 +11,7 @@ class AuthManager {
 
     updateInfo(onSuccess = (user) => {}, onError = (err) => {}) {
         $.ajax({
-            url: this.baseUrl + 'info/',
+            url: `${this.baseUrl}info/`,
             type: 'GET',
             success: (data) => {
                 onSuccess(data["data"]);
@@ -29,7 +29,7 @@ class AuthManager {
      */
     login(email, password, onSuccess = (data) => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
-            url: this.baseUrl + "login/",
+            url: `${this.baseUrl}login/`,
             type: "POST",
             data: {
                 email: email,
@@ -47,7 +47,7 @@ class AuthManager {
      */
     logout(onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
-            url: this.baseUrl + "logout/",
+            url: `${this.baseUrl}logout/`,
             type: "POST",
             success: onSuccess,
             error: onError
@@ -66,7 +66,7 @@ class AuthManager {
     registerBuyer(email, password, name, surname, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
         let _this = this;
         $.ajax({
-            url: this.baseUrl + "register/",
+            url: `${this.baseUrl}register/`,
             type: "POST",
             data: {
                 email: email,
@@ -93,7 +93,7 @@ class AuthManager {
     registerSeller(email, password, rag_soc, piva, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
         let _this = this;
         $.ajax({
-            url: this.baseUrl + "register/",
+            url: `${this.baseUrl}register/`,
             type: "POST",
             data: {
                 email: email,
@@ -116,7 +116,7 @@ class AuthManager {
      */
     resetPassword(email, onSuccess, onError = (err) => console.error(err)) {
         $.ajax({
-            url: this.baseUrl + "reset-password/",
+            url: `${this.baseUrl}reset-password/`,
             type: "POST",
             data: {
                 email: email
