@@ -2,8 +2,6 @@ class Page {
 
     static fromName(page) {
         switch (page) {
-            case "error":
-                return new ErrorPage();
             case "splash":
                 return new SplashPage();
             case "login":
@@ -18,6 +16,9 @@ class Page {
                 return new HomePage();
             case "cart":
                 return new CartPage();
+
+            default:
+                return new ErrorPage();
         }
     }
 
