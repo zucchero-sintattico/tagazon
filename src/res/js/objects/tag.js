@@ -8,9 +8,9 @@ class Tag {
         this.sale_price = sale_price != null ? parseFloat(sale_price) : null;
         this.example = example;
         this.example_desc = example_desc;
-        let _this = this;
+        const _this = this;
         $.ajax({
-            url: "/tagazon/src/api/objects/tags/categories/?tag_id=" + id,
+            url: `/tagazon/src/api/objects/tags/categories/?tag_id=${id}`,
             type: "GET",
             success: (data) => {
                 data = data["data"];

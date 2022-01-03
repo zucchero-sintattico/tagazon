@@ -3,9 +3,9 @@ class CartItem {
     constructor(id, tagId, quantity, onReady = () => {}) {
         this.id = id;
         this.quantity = parseInt(quantity);
-        let _this = this;
+        const _this = this;
         $.ajax({
-            url: "/tagazon/src/api/objects/tags/?id=" + tagId,
+            url: `/tagazon/src/api/objects/tags/?id=${tagId}`,
             type: "GET",
             success: (data) => {
                 data = data["data"][0];

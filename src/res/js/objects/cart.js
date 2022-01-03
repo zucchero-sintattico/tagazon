@@ -56,7 +56,7 @@ class Cart {
     // Functionalities
 
     _addNewItem(tagId, onSuccess = () => {}) {
-        let _this = this;
+        const _this = this;
         $.ajax({
             url: "/tagazon/src/api/objects/shoppingcart_tags/",
             type: "POST",
@@ -102,7 +102,7 @@ class Cart {
         let _this = this;
         if (item != null) {
             $.ajax({
-                url: "/tagazon/src/api/objects/shoppingcart_tags/?id=" + item.getId(),
+                url: `/tagazon/src/api/objects/shoppingcart_tags/?id=${item.getId()}`,
                 type: "DELETE",
                 success: (data) => {
                     _this.items.splice(_this.items.indexOf(item), 1);

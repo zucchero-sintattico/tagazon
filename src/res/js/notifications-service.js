@@ -18,7 +18,7 @@ class NotificationsService {
         });
         let _this = this;
         this.client.on('connect', function() {
-            _this.client.subscribe(_this.topic + '/' + Application.user.getId(), function(err) {
+            _this.client.subscribe(`${_this.topic}/${Application.user.getId()}`, function(err) {
                 if (err) {
                     console.error(err);
                 } else {
@@ -30,7 +30,7 @@ class NotificationsService {
 
     stop() {
         if (this.client) {
-            this.client.unsubscribe(this.topic + '/' + Application.user.getId());
+            this.client.unsubscribe(`${this.topic}/${Application.user.getId()}`);
             this.client.end();
             console.log("Unsubscribed from notifications");
         }
