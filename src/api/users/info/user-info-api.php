@@ -6,23 +6,23 @@ class UserInfoApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::OPEN, Api::DENIED, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::OPEN)
+            ->build();
+        parent::__construct($auth);
     }
 
 
     public function onGet($params){
+        
         if (!isset($_SESSION["user"])){
-            $this->setResponseCode(404);
-            $this->setResponseMessage("User not logged in");
-            return;
+            return Response::notFound("User not logged in");
         }
 
         $user = $_SESSION["user"];
         unset($user["password"]);
 
-        $this->setResponseCode(200);
-        $this->setResponseMessage("User info");
-        $this->setResponseData($user);
+        return Response::ok($user, "User info");
     }
     
 }

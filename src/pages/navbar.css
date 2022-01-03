@@ -2,7 +2,7 @@ nav {
     display: block;
     width: 100%;
     background-color: var(--background-body);
-    position: sticky;
+    position: fixed;
     bottom: 0;
 }
 

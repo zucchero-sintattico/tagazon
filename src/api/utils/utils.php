@@ -72,6 +72,16 @@ function parse_raw_http_request(array &$a_data)
 	}
 }
 
+/**
+ * Get the Request data (for Put request).
+ */
+function getRequestData()
+{
+	$data = [];
+	parse_raw_http_request($data);
+	return $data;
+}
+
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
@@ -82,5 +92,9 @@ function generateRandomString($length = 10) {
     return $randomString;
 }
 
+
+function isPythonBot(){
+	return isset($_GET["python-bot"]);
+}
 
 ?>

@@ -27,7 +27,6 @@ class Application {
         const properties = Object.getOwnPropertyNames(Object.getPrototypeOf(page));
         const methods = properties.filter(item => typeof page[item] === 'function')
 
-        console.log(page);
         methods.forEach((method) => {
             switch (method) {
                 case "onPageLoad":

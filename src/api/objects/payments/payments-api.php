@@ -6,7 +6,10 @@ class PaymentsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Payment::class, Api::BUYER);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::BUYER)
+            ->build();
+        parent::__construct(Payment::class, $auth);
     }
 
     public function hasAccess($element)

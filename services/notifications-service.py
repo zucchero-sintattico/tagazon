@@ -34,7 +34,7 @@ mqttClient = Mqtt()
 mqttClient.connect()
 while True:
     response = requests.get(url)
-    buyers = json.loads(response.text)["data"]["buyers"]
+    buyers = json.loads(response.text)["data"]
     for buyerId in buyers:
         #print("Sending notification to buyer: " + str(buyerId))
         mqttClient.publish(str(buyerId))

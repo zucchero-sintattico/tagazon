@@ -66,7 +66,7 @@ class Pages {
 
 session_start();
 if (!isset($_GET["page"])){
-    Pages::get(Pages::userNotLoggedDefaultPage);
+    header("Location: ./?page=" . Pages::userNotLoggedDefaultPage);
 } else {
     Pages::get($_GET["page"]);
 }

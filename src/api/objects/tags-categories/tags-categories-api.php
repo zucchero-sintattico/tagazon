@@ -6,13 +6,19 @@ class TagsCategoriesApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(TagCategory::class, Api::OPEN, Api::SELLER, Api::SELLER, Api::SELLER);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::OPEN)
+            ->post(ApiAuth::SELLER)
+            ->put(ApiAuth::SELLER)
+            ->delete(ApiAuth::SELLER)
+            ->build();
+        parent::__construct(TagCategory::class, $auth);
     }
 
     public function canModify($element)
     {
         $tagId = $element["tag"];
-        $tag = TagsApi::get(["id" => $tagId])["data"];
+        $tag = TagsApi::get(["id" => $tagId])->getData();
         return count($tag) == 1 && $tag[0]["seller"] == $_SESSION["user"]->id;
     }
 

@@ -6,7 +6,10 @@ class SellersApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Seller::class);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::OPEN)
+            ->build();
+        parent::__construct(Seller::class, $auth);
     }
 
 }

@@ -6,45 +6,40 @@ class LoginApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::DENIED, Api::OPEN, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->post(ApiAuth::OPEN)
+            ->build();
+        parent::__construct($auth);
     }
 
-
-    // implement methods
     public function onPost($params){
 
         $email = $params["email"];
         $password = $params["password"];
 
         if (!$email || !$password) {
-            $this->setResponseCode(400);
-            $this->setResponseMessage("Email and password are required");
-            return;
+            return Response::badRequest("Missing email or password");
         }
 
-        $sellers = SellersApi::get(["email" => $email], true)["data"];
-        $buyers = BuyersApi::get(["email" => $email], true)["data"];
+        $sellers = SellersApi::get(["email" => $email], true)->getData();
+        $buyers = BuyersApi::get(["email" => $email], true)->getData();
 
         $user = null;
         if (count($sellers) > 0) {
-            $user = (array) $sellers[0];
+            $user = $sellers[0];
             $user["type"] = "seller";
         } else if (count($buyers) > 0) {
-            $user = (array) $buyers[0];
+            $user = $buyers[0];
             $user["type"] = "buyer";
         } else {
-            $this->setResponseCode(404);
-            $this->setResponseMessage("User not found");
-            return;
+            return Response::notFound("User not found");
         }
 
         if (password_verify($password, $user["password"])) {
             $_SESSION["user"] = $user;
-            $this->setResponseCode(200);
-            $this->setResponseMessage("Login successful");
+            return Response::ok($user, "User logged in");
         } else {
-            $this->setResponseCode(401);
-            $this->setResponseMessage("Wrong password");
+            return Response::badRequest("Wrong password");
         }
         
     }

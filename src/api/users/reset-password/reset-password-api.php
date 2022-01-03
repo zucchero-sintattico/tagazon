@@ -6,7 +6,10 @@ class ResetPasswordApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::DENIED, Api::OPEN, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->post(ApiAuth::OPEN)
+            ->build();
+        parent::__construct($auth);
     }
 
     // implement methods
@@ -14,28 +17,29 @@ class ResetPasswordApi extends Api {
 
         $email = $params["email"];
 
-        $sellers = SellersApi::get(["email" => $email], true)["data"];
-        $buyers = BuyersApi::get(["email" => $email], true)["data"];
+        $sellers = SellersApi::get(["email" => $email], true)->getData();
+        $buyers = BuyersApi::get(["email" => $email], true)->getData();
 
         $password = generateRandomString(8);
         if (count($sellers) > 0) {
-            $seller = (array)$sellers[0];
+            $seller = $sellers[0];
             $seller["password"] = password_hash($password, PASSWORD_DEFAULT);
-            $res = SellersApi::patch($seller);
+            $res = SellersApi::put($seller);
             sendMail($seller["email"], "Password reset", "Your new password is: " . $password);
         } else if (count($buyers) > 0) {
-            $buyer = (array)$buyers[0];
+            $buyer = $buyers[0];
             $buyer["password"] = password_hash($password, PASSWORD_DEFAULT);
-            $res = BuyersApi::patch($buyer);
+            $res = BuyersApi::put($buyer);
             sendMail($buyer["email"], "Password reset", "Your new password is: " . $password);
         } else {
-            $this->setResponseCode(400);
-            $this->setResponseMessage("User not found");
-            return;
+            return Response::notFound("User not found");
         }
 
-        $this->setResponseCode(200);
-        $this->setResponseMessage("Password Reset");
+        if ($res->getCode() == 200) {
+            return Response::ok($res->getData(), "Password reset");
+        } else {
+            return Response::badRequest("Error resetting password");
+        }
         
     }
     

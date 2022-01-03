@@ -30,7 +30,7 @@ class CartItem {
         this.quantity = quantity;
         $.ajax({
             url: "/tagazon/src/api/objects/shoppingcart_tags/",
-            type: "PATCH",
+            type: "PUT",
             data: {
                 "id": this.id,
                 "quantity": this.quantity

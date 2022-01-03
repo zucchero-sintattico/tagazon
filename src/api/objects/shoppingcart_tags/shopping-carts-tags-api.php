@@ -6,7 +6,13 @@ class ShoppingCartsTagsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(ShoppingCartTag::class, Api::BUYER, Api::BUYER, Api::BUYER, Api::BUYER);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::BUYER)
+            ->post(ApiAuth::BUYER)
+            ->put(ApiAuth::BUYER)
+            ->delete(ApiAuth::BUYER)
+            ->build();
+        parent::__construct(ShoppingCartTag::class, $auth);
     }
 
 
@@ -14,15 +20,13 @@ class ShoppingCartsTagsApi extends EntityApi {
 	{
         $params["buyer"] = $_SESSION["user"]["id"];
 		$res = $this->entity::create($params);
-		$this->setResponseCode(!is_null($res) ? 201 : 400);
-		$this->setResponseMessage(!is_null($res) ? "Created" : "Bad request");
-		$this->setResponseData(!is_null($res) ? $res : []);
+        return $res ? Response::created($res) : Response::badRequest();
 	}
 
     public function canAccess($element)
     {
         $buyer = $element["buyer"];
-        $buyer = BuyersApi::get(["id" => $buyer])["data"];
+        $buyer = BuyersApi::get(["id" => $buyer])->getData();
         return count($buyer) == 1;
     }
 

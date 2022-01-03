@@ -6,23 +6,24 @@ class RegisterApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::DENIED, Api::OPEN, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->post(ApiAuth::OPEN)
+            ->build();
+        parent::__construct($auth);
     }
-
-    // implement methods
+    
+    
     public function onPost($params){
 
         $email = $params["email"];
         $password = $params["password"];
 
 
-        $sellers = SellersApi::get(["email" => $email], true)["data"];
-        $buyers = BuyersApi::get(["email" => $email], true)["data"];
+        $sellers = SellersApi::get(["email" => $email], true)->getData();
+        $buyers = BuyersApi::get(["email" => $email], true)->getData();
 
         if(count($sellers) > 0 || count($buyers) > 0){
-            $this->setResponseCode(400);
-            $this->setResponseMessage("User already exists");
-            return;
+            return Response::badRequest("Email already exists");
         }
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -38,9 +39,7 @@ class RegisterApi extends Api {
             $user["surname"] = $params["surname"];
             $type = "buyer";
         } else {
-            $this->setResponseCode(400);
-            $this->setResponseMessage("Invalid parameters");
-            return;
+            return Response::badRequest("Missing parameters");
         }
 
         $res = null;
@@ -50,13 +49,10 @@ class RegisterApi extends Api {
             $res = BuyersApi::post($user, true);
         }
         
-        if($res["code"] == 201){
-            $this->setResponseCode(200);
-            $this->setResponseMessage("User created");
-            $this->setResponseData($res["data"]);            
+        if($res->getCode() == 201){
+            return Response::ok($res->getData(), "User created");    
         } else {
-            $this->setResponseCode(400);
-            $this->setResponseMessage("Error creating user");
+            return Response::badRequest("Error creating user");
         }
         
     }

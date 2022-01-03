@@ -33,7 +33,7 @@ class NotificationObject {
         this.seen = true;
         $.ajax({
             url: Application.baseUrl + "notifications/?id=" + this.id,
-            type: "PATCH",
+            type: "PUT",
             data: {
                 "id": this.id,
                 "seen": true
@@ -51,7 +51,7 @@ class NotificationObject {
     setReceived(onSuccess = () => {}) {
         $.ajax({
             url: Application.baseUrl + "notifications/?id=" + this.id,
-            type: "PATCH",
+            type: "PUT",
             data: {
                 "id": this.id,
                 "received": true

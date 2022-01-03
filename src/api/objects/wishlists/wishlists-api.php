@@ -6,7 +6,10 @@ class WishlistsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Wishlist::class, Api::BUYER);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::BUYER)
+            ->build();
+        parent::__construct(Wishlist::class, $auth);
     }
 
     public function canAccess($element)

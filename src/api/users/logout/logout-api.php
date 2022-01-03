@@ -6,18 +6,19 @@ class LogoutApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::DENIED, Api::OPEN, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->post(ApiAuth::OPEN)
+            ->build();
+        parent::__construct($auth);
     }
 
     // implement methods
     public function onPost($params){
         if (isset($_SESSION["user"])){
             unset($_SESSION["user"]);
-            $this->setResponseCode(200);
-            $this->setResponseMessage("Logout effettuato con successo");
+            return Response::ok([], "User logged out");
         } else {
-            $this->setResponseCode(400);
-            $this->setResponseMessage("Non sei loggato");
+            return Response::badRequest("User not logged in");
         }
     }
     
