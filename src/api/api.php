@@ -8,14 +8,12 @@ class Api {
 	private $responseMessage = "";
 	private $responseData = [];
 
-
     const OPEN = 1;
     const BUYER = 2;
     const SELLER = 3;
     const SERVER = 4;
     const DENIED = 5;
     
-
     protected $getAuth;
     protected $postAuth;
     protected $patchAuth;
@@ -55,6 +53,16 @@ class Api {
             }
     }
 
+	/**
+	 * Get the Request data (for Patch request).
+	 */
+	private function getRequestData()
+	{
+		$data = [];
+		parse_raw_http_request($data);
+		return $data;
+	}
+
     public function handle($sendResponse=true){
         
 		switch ($_SERVER['REQUEST_METHOD']) {
@@ -90,8 +98,6 @@ class Api {
 				$this->_methodNotAllowed();
 				break;
 		}
-        
-
 
         if ($sendResponse){
             $this->sendResponse();
@@ -108,6 +114,10 @@ class Api {
 		$this->setResponseMessage('Method Not Allowed');
 	}
 	
+	/*
+	Basic methods of API
+	*/
+
 	public function onGet($params){
 		$this->_methodNotAllowed();
 	}
@@ -121,41 +131,21 @@ class Api {
 		$this->_methodNotAllowed();
 	}
 
-	public function getResponseCode(){
-		return $this->responseCode;
-	}
+
+	/*
+	Response management
+	*/
 
 	public function setResponseCode($code){
 		$this->responseCode = $code;
-	}
-
-	public function getResponseMessage(){
-		return $this->responseMessage;
 	}
 
 	public function setResponseMessage($message){
 		$this->responseMessage = $message;
 	}
 
-	public function getResponseData(){
-		return $this->responseData;
-	}
-
 	public function setResponseData($data, $json = false){
 		$this->responseData = $json ? json_encode($data) : $data;
-	}
-
-	
-	
-
-	/**
-	 * Get the Request data (for Patch request).
-	 */
-	private function getRequestData()
-	{
-		$data = [];
-		parse_raw_http_request($data);
-		return $data;
 	}
 
 	public function sendResponse(){
@@ -167,15 +157,16 @@ class Api {
 			"data" => $this->responseData
 		]);
 	}
-	
 
+	/*
+	STATIC FUNCTION FOR CALLING API
+	*/
 
+	// Main method for calling API
 	public static function run($api){
         session_start();
 		$api->handle();
 	}
-
-	// STATIC FUNCTION FOR CALLING API
 
 	public static function get($params, $server=false){
 		ob_start();
