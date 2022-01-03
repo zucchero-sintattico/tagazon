@@ -69,6 +69,7 @@ nav>ul>li>span {
     border-radius: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: absolute;
 }
 
 nav>ul>li:nth-of-type(4)>span {
