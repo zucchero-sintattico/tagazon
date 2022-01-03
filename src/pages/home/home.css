@@ -131,6 +131,7 @@ main>section>div>article>header>h3 {
     text-align: center;
     font-size: 1.6em;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
