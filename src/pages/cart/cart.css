@@ -2,7 +2,6 @@
 @import '../navbar.css';
 html,
 body {
-    --background-body: rgb(206, 220, 231);
     height: 100%;
 }
 
