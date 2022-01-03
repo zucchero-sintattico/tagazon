@@ -46,7 +46,7 @@ abstract class EntityApi extends Api
 	 */
 	public function onPost($params, $server=false)
 	{
-		if ($this->postAuth != ApiAuth::OPEN && !$server && !isPythonBot() && !$this->canCreate($params)) {
+		if ($this->getAuth()->postAuth() != ApiAuth::OPEN && !$server && !isPythonBot() && !$this->canCreate($params)) {
 			return Response::forbidden();
 		}
 
