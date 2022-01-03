@@ -75,7 +75,7 @@ function createArticle(item) {
     const price = document.createElement("p");
     const quantity = document.createElement("p");
     price.innerText = `${item["tag"].getPrice()}€`;
-    quantity.innerText = `${item.getQuantity()}`;
+    quantity.innerText = `Quantità: ${item.getQuantity()}`;
 
     footer.appendChild(price);
     footer.appendChild(quantity);
