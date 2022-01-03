@@ -32,7 +32,7 @@ main > form > fieldset > label {
 
 main > form > fieldset > input {
     margin-top: 1em;
-    padding: 0.8em 0;
+    padding: 0.8em 0 0.8em 3.5em;
     width: 100%;
     
     font-size: 1em;
@@ -41,8 +41,8 @@ main > form > fieldset > input {
 
     /* for left image */
     background-repeat: no-repeat;
-    background-size: 3.5em;
-    background-position: left;
+    background-size: 1.5em;
+    background-position: left 1em top 50%;
     
     border: 2px solid var(--primary-color);
     border-radius: 0.6em;
@@ -52,13 +52,11 @@ main > form > fieldset > input {
 }
 
 main > form > fieldset > input[type=email] {
-    /* TODO */
-    background-image: url('');
+    background-image: url('../../res/img/icons/mail.webp');
 }
 
 main > form > fieldset > input[type=password] {
-    /* TODO */
-    background-image: url('');
+    background-image: url('../../res/img/icons/key.webp');
 }
 
 main > form > a:first-of-type {
