@@ -80,6 +80,8 @@ export class CartPage extends NavbarPage {
         Application.cart.getItems().forEach(item => {
             $("#cart-items").append(createArticle(item));
         });
+
+        $("#cart-total").html(`(${Application.cart.getTotalPrice().toFixed(2)}€)`);
     }
 
 }

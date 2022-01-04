@@ -75,10 +75,10 @@ main>section>ul>li>button.selected {
 
 main>section>div {
     display: grid;
-    padding: 1em 0 2em 5%;
-    grid-template-columns: 95%;
+    padding: 2em 5% 2em 5%;
+    width: 100%;
+    grid-template-columns: 100%;
     grid-auto-rows: 1fr;
-    column-gap: 5%;
     row-gap: 2em;
 }
 
@@ -170,9 +170,32 @@ main>section>div>article>footer>p:last-of-type {
     font-size: 1.2em;
 }
 
+main > a {
+    display: inline-block;
+    position: sticky;
+    bottom: 3.5em;
+    margin: 1em 10%;
+    padding: .6em 0;
+    width: 80%;
+
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: -0.05em;
+    background-color: var(--text-color);
+    border-radius: 0.6em;
+    z-index: 3;
+}
+
 @media screen and (min-width: 768px) {
     main>section>div {
-        grid-template-columns: 95%;
-        column-gap: 5%;
+        padding: 1em 20% 2em 20%;
+        grid-template-columns: 100%;
+    }
+
+    main > a {
+        margin: 1em 25%;
+        width: 50%;
     }
 }
