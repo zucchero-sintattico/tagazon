@@ -14,7 +14,7 @@ export class Tag {
             url: `/tagazon/src/api/objects/tags/categories/?tag_id=${id}`,
             type: "GET",
             success: (response) => {
-                const { code, message, data } = response;
+                const { data } = response;
                 _this.categories = data.map(element => new Category(element.id, element.name, element.description));
                 onReady();
             }

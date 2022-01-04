@@ -70,7 +70,7 @@ export class Cart {
                 "tag": tagId
             },
             success: (response) => {
-                const { code, message, data } = response;
+                const { data } = response;
                 _this.items.push(new CartItem(data.id, data.tag, data.quantity, () => {
                     _this.onCartChange();
                 }, () => {
