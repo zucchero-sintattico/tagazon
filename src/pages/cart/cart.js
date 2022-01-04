@@ -1,5 +1,5 @@
 import { Application } from "../../res/js/application.js";
-import { Page } from "../../res/js/page.js";
+import { NavbarPage } from "../navbar.js";
 
 function createArticle(item) {
     const article = document.createElement("article");
@@ -69,35 +69,15 @@ function createArticle(item) {
     return article;
 }
 
-export class CartPage extends Page {
-
-    onPageLoad() {
-        const page = new URLSearchParams(document.location.search).get("page");
-        $(`#${page}`).addClass("active-page");
-    }
+export class CartPage extends NavbarPage {
 
     onCartChange() {
-        if (Application.cart.getTotalQuantity() > 0) {
-            $("#cart-counter").text(Application.cart.getTotalQuantity());
-            $("#cart-counter").fadeIn(500);
-        } else {
-            $("#cart-counter").hide();
-        }
+        super.onCartChange();
 
         $("#cart-items").html("");
         Application.cart.getItems().forEach(item => {
             $("#cart-items").append(createArticle(item));
         });
-    }
-
-    onNotificationsChange() {
-        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
-        if (unseen > 0) {
-            $("#notification-counter").text(unseen);
-            $("#notification-counter").fadeIn(500);
-        } else {
-            $("#notification-counter").hide();
-        }
     }
 
 }

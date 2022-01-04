@@ -1,5 +1,5 @@
 import { Application } from "../../res/js/application.js";
-import { Page } from "../../res/js/page.js";
+import { NavbarPage } from "../navbar.js";
 
 function createArticle(tag) {
     const article = document.createElement("article");
@@ -135,32 +135,7 @@ function handleChangeCategory() {
 
 
 
-export class HomePage extends Page {
-
-    onPageLoad() {
-        const page = new URLSearchParams(document.location.search).get("page");
-        $(`#${page}`).addClass("active-page");
-    }
-
-    onCartChange() {
-        if (Application.cart.getTotalQuantity() > 0) {
-            $("#cart-counter").text(Application.cart.getTotalQuantity());
-            $("#cart-counter").fadeIn(500);
-        } else {
-            $("#cart-counter").hide();
-        }
-    }
-
-    onNotificationsChange() {
-        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
-        if (unseen > 0) {
-            $("#notification-counter").text(unseen);
-            $("#notification-counter").fadeIn(500);
-        } else {
-            $("#notification-counter").hide();
-        }
-    }
-
+export class HomePage extends NavbarPage {
 
     onUserLoad() {
         requestGet("/tagazon/src/api/objects/categories/", loadCategory);

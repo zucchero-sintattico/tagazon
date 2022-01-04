@@ -5,6 +5,7 @@ import { Cart } from './objects/cart.js';
 import { NotificationObject } from './objects/notification.js';
 import { Order } from './objects/order.js';
 
+
 export class Application {
 
     static baseUrl = "/tagazon/src/api/./objects/";
@@ -29,27 +30,32 @@ export class Application {
     static notificationsListen = false;
 
     static start(page) {
-        Application.whenUserReady(() => {
-            Application.page = page;
-            const properties = Object.getOwnPropertyNames(Object.getPrototypeOf(page));
-            const methods = properties.filter(item => typeof page[item] === 'function')
+        Application.loadUser();
+        Application.page = page;
+        let methods = new Set()
+        let currentObj = Object.getPrototypeOf(page)
+        do {
+            console.log();
+            Object.getOwnPropertyNames(currentObj)
+                .map(item => methods.add(item))
+        }
+        while ((currentObj = Object.getPrototypeOf(currentObj)) && currentObj.constructor.name !== "Page");
 
-            methods.forEach((method) => {
-                switch (method) {
-                    case "onPageLoad":
-                        Application.whenPageReady(() => Application.page.onPageLoad());
-                        break;
-                    case "onUserLoad":
-                        Application.whenUserReady(() => Application.page.onUserLoad());
-                        break;
-                    case "onCartChange":
-                        Application.onCartChange(() => Application.page.onCartChange());
-                        break;
-                    case "onNotificationsChange":
-                        Application.onNotificationsChange(() => Application.page.onNotificationsChange());
-                        break;
-                }
-            });
+        methods.forEach((method) => {
+            switch (method) {
+                case "onPageLoad":
+                    Application.whenPageReady(() => Application.page.onPageLoad());
+                    break;
+                case "onUserLoad":
+                    Application.whenUserReady(() => Application.page.onUserLoad());
+                    break;
+                case "onCartChange":
+                    Application.onCartChange(() => Application.page.onCartChange());
+                    break;
+                case "onNotificationsChange":
+                    Application.onNotificationsChange(() => Application.page.onNotificationsChange());
+                    break;
+            }
         });
 
 
@@ -180,7 +186,6 @@ export class Application {
     }
 
     static whenUserReady(callback) {
-        Application.loadUser();
         return Application._whenReady("user", callback);
     }
 
