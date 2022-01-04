@@ -61,7 +61,7 @@ export class Cart {
 
     // Functionalities
 
-    _addNewItem(tagId, onSuccess) {
+    _addNewItem(tagId) {
         const _this = this;
         $.ajax({
             url: "/tagazon/src/api/objects/shoppingcart_tags/",
@@ -76,7 +76,6 @@ export class Cart {
                 }, () => {
                     _this.onCartChange();
                 }));
-                onSuccess();
             },
             error: (data) => {
                 console.error(data);

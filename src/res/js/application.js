@@ -1,6 +1,6 @@
 import { AuthManager } from './auth-manager.js';
 import { NotificationsService } from './notifications-service.js';
-import { User } from './objects/user.js';
+import { Buyer, Seller } from './objects/user.js';
 import { Cart } from './objects/cart.js';
 import { NotificationObject } from './objects/notification.js';
 import { Order } from './objects/order.js';
@@ -65,11 +65,16 @@ export class Application {
         Application.userReady = false;
         Application.authManager.start(
             (user) => {
-                Application.user = new User(user.id, user.email, user.type, () => {
-                    Application.userReady = true;
-                    Application.notificationsService.start(user.id, (notification) => {
-                        Application.addNotification(notification);
-                    });
+
+                if (user.type == "buyer") {
+                    Application.user = new Buyer(user.id, user.email, user.name, user.surname);
+                } else if (user.type == "seller") {
+                    Application.user = new Seller(user.id, user.email, user.rag_soc, user.piva);
+                }
+
+                Application.userReady = true;
+                Application.notificationsService.start(user.id, (notification) => {
+                    Application.addNotification(notification);
                 });
             }
         );

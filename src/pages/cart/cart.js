@@ -1,5 +1,5 @@
 import { Application } from "../../res/js/application.js";
-import { NavbarPage } from "../navbar.js";
+import { NavbarPage } from "../navbar/navbar.js";
 
 function createArticle(item) {
     const article = document.createElement("article");

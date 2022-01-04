@@ -1,7 +1,4 @@
 @import '../base.css';
-@import '../navbar.css';
-
-
 html,
 body {
     font-family: AlfaSlabOne;
@@ -17,26 +14,26 @@ main {
     width: 90%;
 }
 
-main > article {
+main>article {
     margin: 1em 0;
     padding: .25em .5em;
     background-color: var(--text-color);
     border-radius: .5em;
 }
 
-main > article > *::first-letter {
+main>article>*::first-letter {
     text-transform: capitalize;
 }
 
-main > article:last-of-type {
+main>article:last-of-type {
     margin-bottom: 5.5em;
 }
 
-main > article > header {
+main>article>header {
     text-align: right;
 }
 
-main > article > header > button {
+main>article>header>button {
     text-align: right;
     width: 1em;
     height: 1em;
@@ -44,10 +41,10 @@ main > article > header > button {
     mask: url(../../res/img/icons/close-x.svg) center / contain no-repeat;
     background: white;
     color: transparent;
-    cursor: pointer;   
+    cursor: pointer;
 }
 
-main > article > header > h2 {
+main>article>header>h2 {
     margin-top: -1em;
     margin-bottom: .5em;
     color: white;
@@ -55,12 +52,12 @@ main > article > header > h2 {
     font-size: 1.6em;
 }
 
-main > article > p {
+main>article>p {
     color: white;
     font-size: 1.2em;
 }
 
-main > article > footer > p {
+main>article>footer>p {
     color: white;
     text-align: right;
     font-size: .6em;
@@ -71,7 +68,6 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
-    
     main {
         margin: 1.5em 25%;
         width: 50%;

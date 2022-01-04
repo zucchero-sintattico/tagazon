@@ -15,7 +15,8 @@ class NotificationsApi extends EntityApi {
     public function canAccess($element)
     {
         $order = OrdersApi::get(["id" => $element["order"]], true)->getData()[0];
-        return $order["buyer"] == $_SESSION["user"]["id"];
+        $res = ($order["buyer"] == $_SESSION["user"]["id"]);
+        return $res;
     }
 
     public function canModify($element)

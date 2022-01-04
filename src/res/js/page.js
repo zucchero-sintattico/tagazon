@@ -1,7 +1,5 @@
 export class Page {
 
-    onChange() {}
-
     onPageLoad() {
         // Extend this class and implement this method
     }

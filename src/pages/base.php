@@ -14,19 +14,22 @@
 
         <?php 
             /** 
-             * @var string $page 
+             * @var Page $page 
              * */ 
         ?> 
     -->
-    <title>Tagazon - <?php echo ucfirst($page); ?></title>
-    <link rel="stylesheet" href="./pages/<?php echo $page;?>/<?php echo $page;?>.css"/>
-    <script type="module" src="./pages/<?php echo $page;?>/<?php echo $page;?>.js"></script>
+    <title>Tagazon - <?php echo $page->getFormatName(); ?></title>
+    <link rel="stylesheet" href="<?php echo $page->getCss(); ?>"/>
+    <?php if ($page->isNavbarPresent()): ?>
+        <link rel="stylesheet" href="./pages/navbar/navbar.css"/>
+    <?php endif; ?>
+    <script type="module" src="<?php echo $page->getJs(); ?>"></script>
     <script type="module">
-        <?php $pageClass = str_replace('_', '', ucwords($page, '_')) . "Page" ?>
-        import {Application} from './res/js/application.js';
-        import {<?php echo $pageClass; ?>} from './pages/<?php echo $page;?>/<?php echo $page;?>.js';
+        <?php $pageController = $page->getFormatName() . "Page"; ?>
+        import { Application } from './res/js/application.js';
+        import {<?php echo $pageController; ?>} from '<?php echo $page->getJs(); ?>';
         
-        Application.start(new <?php echo $pageClass; ?>());
+        Application.start(new <?php echo $pageController; ?>());
     </script>
 
 </head>
@@ -34,7 +37,12 @@
     
     
     <!-- HTML Page -->
-    <?php require __DIR__ . "/$page/$page.html"; ?>
+    <?php 
+        require $page->getHtml(); 
+        if ($page->isNavbarPresent()) {
+            require './pages/navbar/navbar.html';
+        }
+    ?>
 
 </body>
 </html>
