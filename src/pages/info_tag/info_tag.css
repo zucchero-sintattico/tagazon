@@ -15,17 +15,6 @@ main{
     height: 100%;
 }
 
-body > header {
-    height: 5%;
-    background-color: var(--secondary-color);
-}
-
-body > header > img{
-    width: 1em;
-    height: 1em;
-    margin: 50px 10px;
-}
-
 body > main > section {
     height: 40%;
     display: flex;
