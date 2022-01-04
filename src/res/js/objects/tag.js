@@ -1,7 +1,7 @@
 import { Category } from './category.js';
 export class Tag {
 
-    constructor(id, name, description, price, sale_price, example, example_desc, onReady = () => {}) {
+    constructor(id, name, description, price, sale_price, example, example_desc, onReady) {
         this.id = id;
         this.name = name;
         this.description = description;

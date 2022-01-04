@@ -32,7 +32,7 @@ export class NotificationObject {
         return this.seen;
     }
 
-    setSeen(onSuccess = () => {}) {
+    setSeen() {
         this.seen = true;
         const _this = this;
         $.ajax({
@@ -44,7 +44,6 @@ export class NotificationObject {
             },
             success: () => {
                 _this.onNotificationChange();
-                onSuccess();
             },
             error: (data) => {
                 console.error(data);
@@ -52,7 +51,7 @@ export class NotificationObject {
         });
     }
 
-    setReceived(onSuccess = () => {}) {
+    setReceived() {
         const _this = this;
         $.ajax({
             url: `${NotificationObject.baseUrl}?id=${this.id}`,
@@ -63,7 +62,6 @@ export class NotificationObject {
             },
             success: () => {
                 _this.onNotificationChange();
-                onSuccess();
             },
             error: (data) => {
                 console.error(data);

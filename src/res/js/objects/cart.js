@@ -9,7 +9,7 @@ export class Cart {
 
     }
 
-    _buildItems(items, index = 0, onReady = () => {}) {
+    _buildItems(items, index = 0, onReady) {
         if (index < items.length) {
             const item = items[index];
             const _this = this;
@@ -61,7 +61,7 @@ export class Cart {
 
     // Functionalities
 
-    _addNewItem(tagId, onSuccess = () => {}) {
+    _addNewItem(tagId, onSuccess) {
         const _this = this;
         $.ajax({
             url: "/tagazon/src/api/objects/shoppingcart_tags/",
@@ -73,8 +73,9 @@ export class Cart {
                 data = data.data;
                 _this.items.push(new CartItem(data.id, data.tag, data.quantity, () => {
                     _this.onCartChange();
+                }, () => {
+                    _this.onCartChange();
                 }));
-                _this.onCartChange();
                 onSuccess();
             },
             error: (data) => {
@@ -83,27 +84,27 @@ export class Cart {
         });
     }
 
-    addItem(tagId, onSuccess = () => {}) {
+    addItem(tagId) {
         const item = this.getItem(tagId);
         if (item === null) {
-            this._addNewItem(tagId, onSuccess);
+            this._addNewItem(tagId);
         } else {
-            item.increaseQuantity(onSuccess);
+            item.increaseQuantity();
         }
     }
 
-    decreaseItemQuantity(tagId, onSuccess = () => {}) {
+    decreaseItemQuantity(tagId) {
         const item = this.getItem(tagId);
         if (item !== null) {
             if (item.getQuantity() > 1) {
-                item.setQuantity(item.getQuantity() - 1, onSuccess);
+                item.setQuantity(item.getQuantity() - 1);
             } else {
-                this.removeItem(tagId, onSuccess);
+                this.removeItem(tagId);
             }
         }
     }
 
-    removeItem(tagId, onSuccess = () => {}) {
+    removeItem(tagId) {
         const item = this.getItem(tagId);
         const _this = this;
         if (item !== null) {
@@ -113,7 +114,6 @@ export class Cart {
                 success: () => {
                     _this.items.splice(_this.items.indexOf(item), 1);
                     _this.onCartChange();
-                    onSuccess();
                 },
                 error: (data) => {
                     console.error(data);

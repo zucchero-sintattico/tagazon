@@ -29,31 +29,33 @@ export class Application {
     static notificationsListen = false;
 
     static start(page) {
-        Application.loadUser();
-        Application.page = page;
-        const properties = Object.getOwnPropertyNames(Object.getPrototypeOf(page));
-        const methods = properties.filter(item => typeof page[item] === 'function')
+        Application.whenUserReady(() => {
+            Application.page = page;
+            const properties = Object.getOwnPropertyNames(Object.getPrototypeOf(page));
+            const methods = properties.filter(item => typeof page[item] === 'function')
 
-        methods.forEach((method) => {
-            switch (method) {
-                case "onPageLoad":
-                    Application.whenPageReady(() => Application.page.onPageLoad());
-                    break;
-                case "onUserLoad":
-                    Application.whenUserReady(() => Application.page.onUserLoad());
-                    break;
-                case "onCartChange":
-                    Application.onCartChange(() => Application.page.onCartChange());
-                    break;
-                case "onNotificationsChange":
-                    Application.onNotificationsChange(() => Application.page.onNotificationsChange());
-                    break;
-            }
+            methods.forEach((method) => {
+                switch (method) {
+                    case "onPageLoad":
+                        Application.whenPageReady(() => Application.page.onPageLoad());
+                        break;
+                    case "onUserLoad":
+                        Application.whenUserReady(() => Application.page.onUserLoad());
+                        break;
+                    case "onCartChange":
+                        Application.onCartChange(() => Application.page.onCartChange());
+                        break;
+                    case "onNotificationsChange":
+                        Application.onNotificationsChange(() => Application.page.onNotificationsChange());
+                        break;
+                }
+            });
         });
+
 
     }
 
-    static loadUser(onLoad = () => {}) {
+    static loadUser() {
         Application.userReady = false;
         Application.authManager.start(
             (user) => {
@@ -62,15 +64,14 @@ export class Application {
                     Application.notificationsService.start(user.id, (notification) => {
                         Application.addNotification(notification);
                     });
-                    onLoad();
                 });
             }
         );
     }
 
-    static loadCart(onLoad = () => {}) {
+    static loadCart() {
         if (!Application.userReady) {
-            setTimeout(() => Application.loadCart(onLoad), 100);
+            setTimeout(() => Application.loadCart(), 100);
             return;
         }
         $.ajax({
@@ -79,7 +80,6 @@ export class Application {
             success: (data) => {
                 Application.cart = new Cart(data.data, () => {
                     Application.cartReady = true;
-                    onLoad();
                 }, () => {
                     Application.notifyCartChange();
                 });
@@ -89,9 +89,9 @@ export class Application {
             }
         });
     }
-    static loadOrders(onLoad = () => {}) {
+    static loadOrders() {
         if (!Application.userReady) {
-            setTimeout(() => Application.loadOrders(onLoad), 100);
+            setTimeout(() => Application.loadOrders(), 100);
             return;
         }
         $.ajax({
@@ -100,16 +100,15 @@ export class Application {
             success: (data) => {
                 Application.orders = data.data.map((order) => new Order(order));
                 Application.ordersReady = true;
-                onLoad();
             },
             error: (data) => {
                 console.error(data);
             }
         });
     }
-    static loadNotifications(onLoad = () => {}) {
+    static loadNotifications() {
         if (!Application.userReady) {
-            setTimeout(() => Application.loadNotifications(onLoad), 100);
+            setTimeout(() => Application.loadNotifications(), 100);
             return;
         }
         $.ajax({
@@ -120,7 +119,6 @@ export class Application {
                     Application.notifyNotificationChange();
                 }));
                 Application.notificationsReady = true;
-                onLoad();
             },
             error: (data) => {
                 console.error(data);
@@ -174,11 +172,15 @@ export class Application {
     }
 
 
+
+
     static whenOrdersReady(callback) {
         Application.loadOrders();
         return Application._whenReady("orders", callback);
     }
+
     static whenUserReady(callback) {
+        Application.loadUser();
         return Application._whenReady("user", callback);
     }
 

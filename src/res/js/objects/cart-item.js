@@ -1,7 +1,7 @@
 import { Tag } from './tag.js';
 export class CartItem {
 
-    constructor(id, tagId, quantity, onCartItemChange, onReady = () => {}) {
+    constructor(id, tagId, quantity, onCartItemChange, onReady) {
         this.id = id;
         this.quantity = parseInt(quantity, 10);
         this.onCartItemChange = onCartItemChange;
@@ -28,7 +28,7 @@ export class CartItem {
         return this.quantity;
     }
 
-    setQuantity(quantity, onSuccess = () => {}) {
+    setQuantity(quantity) {
         this.quantity = quantity;
         const _this = this;
         $.ajax({
@@ -40,13 +40,12 @@ export class CartItem {
             },
             success: () => {
                 _this.onCartItemChange();
-                onSuccess();
             }
         });
     }
 
-    increaseQuantity(onSuccess = () => {}) {
-        this.setQuantity(this.getQuantity() + 1, onSuccess);
+    increaseQuantity() {
+        this.setQuantity(this.getQuantity() + 1);
     }
 
     getTotalPrice() {
