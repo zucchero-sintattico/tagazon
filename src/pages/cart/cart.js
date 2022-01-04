@@ -102,10 +102,6 @@ function createArticle(item) {
     return article;
 }
 
-function decreaseFromCart(tag_id) {
-    Application.cart.decreaseItemQuantity(tag_id);
-}
-
 function addToCart(tag_id) {
     Application.cart.addItem(tag_id);
 }

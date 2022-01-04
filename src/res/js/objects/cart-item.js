@@ -3,7 +3,7 @@ export class CartItem {
 
     constructor(id, tagId, quantity, onCartItemChange, onReady = () => {}) {
         this.id = id;
-        this.quantity = parseInt(quantity);
+        this.quantity = parseInt(quantity, 10);
         this.onCartItemChange = onCartItemChange;
         const _this = this;
         $.ajax({

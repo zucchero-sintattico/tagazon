@@ -1,12 +1,14 @@
 export class NotificationObject {
 
+    static baseUrl = "/tagazon/src/api/objects/notifications/";
+
     constructor(id, order, timestamp, title, message, seen, onNotificationChange) {
         this.id = id;
         this.order = order;
         this.timestamp = timestamp;
         this.title = title;
         this.message = message;
-        this.seen = seen == "1";
+        this.seen = seen === "1";
         this.onNotificationChange = onNotificationChange;
     }
 
@@ -34,7 +36,7 @@ export class NotificationObject {
         this.seen = true;
         const _this = this;
         $.ajax({
-            url: `${Application.baseUrl}notifications/?id=${this.id}`,
+            url: `${NotificationObject.baseUrl}?id=${this.id}`,
             type: "PUT",
             data: {
                 "id": this.id,
@@ -53,7 +55,7 @@ export class NotificationObject {
     setReceived(onSuccess = () => {}) {
         const _this = this;
         $.ajax({
-            url: `${Application.baseUrl}notifications/?id=${this.id}`,
+            url: `${NotificationObject.baseUrl}?id=${this.id}`,
             type: "PUT",
             data: {
                 "id": this.id,

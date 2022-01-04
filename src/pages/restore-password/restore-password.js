@@ -12,10 +12,10 @@ export class RestorePasswordPage extends Page {
             e.preventDefault();
             Application.authManager.resetPassword(
                 $("#email").val(),
-                success = () => {
+                onSuccess = () => {
                     window.location.href = "?page=restore-password-success";
                 },
-                error = (err) => {
+                onError = (err) => {
                     console.error(err);
                     showErrorMessage("Errore! L'email inserita non è valida");
                 }
