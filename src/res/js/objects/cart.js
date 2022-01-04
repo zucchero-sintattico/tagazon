@@ -69,8 +69,8 @@ export class Cart {
             data: {
                 "tag": tagId
             },
-            success: (data) => {
-                data = data.data;
+            success: (response) => {
+                const { code, message, data } = response;
                 _this.items.push(new CartItem(data.id, data.tag, data.quantity, () => {
                     _this.onCartChange();
                 }, () => {

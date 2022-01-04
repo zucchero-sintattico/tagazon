@@ -3,8 +3,7 @@ import { Application } from "../../res/js/application.js";
 export class ProfilePage extends Page {
 
     onPageLoad() {
-        const user = Application.user;
-        $("h1").text(`Bentornato ${user.getName()}`)
+        $("h1").text(`Bentornato ${Application.user.getName()}`)
     }
 
 }

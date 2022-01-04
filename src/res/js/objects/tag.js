@@ -13,8 +13,8 @@ export class Tag {
         $.ajax({
             url: `/tagazon/src/api/objects/tags/categories/?tag_id=${id}`,
             type: "GET",
-            success: (data) => {
-                data = data.data;
+            success: (response) => {
+                const { code, message, data } = response;
                 _this.categories = data.map(element => new Category(element.id, element.name, element.description));
                 onReady();
             }

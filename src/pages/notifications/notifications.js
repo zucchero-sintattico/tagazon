@@ -22,7 +22,9 @@ export class NotificationsPage extends NavbarPage {
         /* event on click of all article */
         article.addEventListener(
             "click",
-            () => window.location.href = `./?page=info_tag&tag_id=${notification.tag.id}`
+            () => {
+                window.location.href = `./?page=info_tag&tag_id=${notification.tag.id}`
+            }
         );
 
         /* header */
