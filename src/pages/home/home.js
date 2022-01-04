@@ -9,7 +9,7 @@ function createArticle(tag) {
     article.addEventListener(
         "click",
         () => {
-            window.location.href = `./?page=info_tag&tag_id=${tag.id}`
+            window.location.href = `./?page=info-tag&tag_id=${tag.id}`
         }
     );
 

@@ -17,7 +17,7 @@ class Page {
     }
 
     public function getFormatName() {
-        return str_replace('_', '', ucwords($this->name, '_'));
+        return str_replace('-', '', ucwords($this->name, '-'));
     }
 
     public function isAuthRequired() {

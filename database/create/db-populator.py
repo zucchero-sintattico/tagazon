@@ -63,7 +63,8 @@ def categories():
         data = json.load(f)
     for category in data:
         res = requests.post(url, category)
-        print(f"Categories : {res.json()}")
+        if (res.status_code == 201):
+            print(f'Category: {res.json()}')
 
 def tags():
     def getRandomPrice():
@@ -87,6 +88,7 @@ def tags():
             'price': price,
             'sale_price': getRandomSalePrice(price),
         })
+        
         print(f'Tags : {res.json()["code"]}')
 
 def tags_categories():
