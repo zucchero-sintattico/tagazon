@@ -86,7 +86,7 @@ class Cart {
 
     addItem(tagId, onSuccess = () => {}) {
         let item = this.getItem(tagId);
-        if (item == null) {
+        if (item === null) {
             this._addNewItem(tagId, onSuccess);
         } else {
             item.increaseQuantity(onSuccess);
@@ -95,7 +95,7 @@ class Cart {
 
     decreaseItemQuantity(tagId, onSuccess = () => {}) {
         let item = this.getItem(tagId);
-        if (item != null) {
+        if (item !== null) {
             if (item.getQuantity() > 1) {
                 item.setQuantity(item.getQuantity() - 1, onSuccess);
             } else {
@@ -107,7 +107,7 @@ class Cart {
     removeItem(tagId, onSuccess = () => {}) {
         let item = this.getItem(tagId);
         let _this = this;
-        if (item != null) {
+        if (item !== null) {
             $.ajax({
                 url: `/tagazon/src/api/objects/shoppingcart_tags/?id=${item.getId()}`,
                 type: "DELETE",

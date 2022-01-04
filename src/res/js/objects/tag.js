@@ -7,7 +7,7 @@ class Tag {
         this.name = name;
         this.description = description;
         this.price = parseFloat(price);
-        this.sale_price = sale_price != null ? parseFloat(sale_price) : null;
+        this.sale_price = sale_price !== null ? parseFloat(sale_price) : null;
         this.example = example;
         this.example_desc = example_desc;
         const _this = this;
@@ -47,7 +47,7 @@ class Tag {
     }
 
     isInSale() {
-        return this.sale_price != null;
+        return this.sale_price !== null;
     }
 
     getPrice() {
