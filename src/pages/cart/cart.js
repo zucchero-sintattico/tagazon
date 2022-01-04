@@ -45,7 +45,11 @@ function createArticle(item) {
     const footer = document.createElement("footer");
     const price = document.createElement("p");
     const quantity = document.createElement("p");
+
     price.innerText = `${item.tag.getPrice()}€`;
+    if (item.tag.isInSale()) {
+        price.innerHTML = `<del>${item.tag.getPriceWithoutSale()}€</del> ${item.tag.getPrice()}€`;
+    }
     quantity.innerText = `Quantità: ${item.getQuantity()}`;
 
     footer.appendChild(price);

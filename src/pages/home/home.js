@@ -35,7 +35,11 @@ function createArticle(tag) {
     /* footer */
     const footer = document.createElement("footer");
     const p_footer = document.createElement("p");
+
     p_footer.innerText = `${tag.price}€`;
+    if (tag.sale_price !== null) {
+        p_footer.innerHTML = `<del>${tag.price}€</del> ${tag.sale_price}€`;
+    }
 
     footer.appendChild(p_footer);
 

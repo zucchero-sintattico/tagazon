@@ -12,16 +12,13 @@
 </head>
 
 <body>
-    <pre class="prettyprint"><code id="code">
-        
-    </code></pre>
+    <pre class="prettyprint"><code id="code"></code></pre>
     <script type="text/javascript" defer>
         function encodeStr(str) {
             return str.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
                 return '&#' + i.charCodeAt(0) + ';';
             });
         };
-        let code = `&lt;html&gt;\n &lt;body&gt;\n  &lt;button onclick=\"showContent()\"&gt;\n   Show hidden content\n  &lt;/button&gt;\n  &lt;template&gt;\n   <h2>\n    Flower\n   </h2>\n   <img height="\&quot;204\&quot;" src width="\&quot;214\&quot;" />\n  &lt;/template&gt;\n  &lt;script&gt;\n   function showContent() {\u00a0 var temp = \n  document.getElementsByTagName(\"template\")[0];\u00a0 var clon = \n  temp.content.cloneNode(true);\u00a0 document.body.appendChild(clon);}\n  &lt;/script&gt;\n &lt;/body&gt;\n&lt;/html&gt;`;
         let el = document.getElementById("code");
         el.innerHTML = encodeStr(code);
         hljs.highlightElement(el);
