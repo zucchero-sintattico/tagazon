@@ -71,3 +71,7 @@ nav>ul>li>span {
     text-overflow: ellipsis;
     position: absolute;
 }
+
+nav > ul > li:last-of-type > span {
+    margin-left: -1em;
+}
