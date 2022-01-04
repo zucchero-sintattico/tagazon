@@ -1,6 +1,5 @@
-export { Tag }
 import { Category } from './category.js';
-class Tag {
+export class Tag {
 
     constructor(id, name, description, price, sale_price, example, example_desc, onReady = () => {}) {
         this.id = id;

@@ -1,5 +1,4 @@
-export { Order }
-class Order {
+export class Order {
 
     constructor(order) {
         this.id = order.id;

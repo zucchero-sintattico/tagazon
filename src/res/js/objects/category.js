@@ -1,5 +1,4 @@
-export { Category }
-class Category {
+export class Category {
 
     constructor(id, name, description) {
         this.id = id;

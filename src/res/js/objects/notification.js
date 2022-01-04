@@ -1,5 +1,4 @@
-export { NotificationObject }
-class NotificationObject {
+export class NotificationObject {
 
     constructor(id, order, timestamp, title, message, seen, onNotificationChange) {
         this.id = id;
@@ -41,7 +40,7 @@ class NotificationObject {
                 "id": this.id,
                 "seen": true
             },
-            success: (data) => {
+            success: () => {
                 _this.onNotificationChange();
                 onSuccess();
             },
@@ -60,7 +59,7 @@ class NotificationObject {
                 "id": this.id,
                 "received": true
             },
-            success: (data) => {
+            success: () => {
                 _this.onNotificationChange();
                 onSuccess();
             },

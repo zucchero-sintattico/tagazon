@@ -1,6 +1,4 @@
-export { NotificationsService }
-
-class NotificationsService {
+export class NotificationsService {
 
     protocol = "wss";
     server = "broker.emqx.io";
@@ -18,7 +16,7 @@ class NotificationsService {
         this.client = mqtt.connect(`${this.protocol}://${this.server}:${this.port}/mqtt`, options)
         let service = this;
         this.client.on('message', (topic, message) => {
-            this.onNotification(topic, message, service);
+            this.onNotification(service);
         });
         let _this = this;
         this.client.on('connect', function() {
@@ -60,7 +58,7 @@ class NotificationsService {
 
     }
 
-    onNotification(topic, message, service) {
+    onNotification(service) {
         const _this = this;
         const url = "/tagazon/src/api/objects/notifications/?received=false";
         $.ajax({

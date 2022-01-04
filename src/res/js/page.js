@@ -1,6 +1,4 @@
-export { Page }
-
-class Page {
+export class Page {
 
     onPageLoad() {
 

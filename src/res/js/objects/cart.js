@@ -1,7 +1,6 @@
-export { Cart }
 import { CartItem } from './cart-item.js';
 
-class Cart {
+export class Cart {
 
     constructor(items, onReady, onCartChange) {
         this.items = [];
@@ -111,7 +110,7 @@ class Cart {
             $.ajax({
                 url: `/tagazon/src/api/objects/shoppingcart_tags/?id=${item.getId()}`,
                 type: "DELETE",
-                success: (data) => {
+                success: () => {
                     _this.items.splice(_this.items.indexOf(item), 1);
                     _this.onCartChange();
                     onSuccess();

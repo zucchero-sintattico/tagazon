@@ -44,7 +44,7 @@ function requestGet(request, callback) {
     $.ajax({
         url: request,
         type: "GET",
-        success: (data) => callback(data["data"]),
+        success: (data) => callback(data.data),
         /* data: {code: Integer, message: String, data: Array} */
         error: (err) => { console.log(err); }
     });
@@ -57,8 +57,8 @@ function loadCategory(categories) {
     categories.forEach(category => {
         const li = document.createElement("li");
         const button = document.createElement("button");
-        button.categoryId = category["id"];
-        button.innerText = category["name"];
+        button.categoryId = category.id;
+        button.innerText = category.name;
         button.addEventListener("click", handleChangeCategory);
         li.appendChild(button);
         $("#categories-list").append(li);

@@ -1,8 +1,7 @@
-export { AuthManager }
 /**
  * Manager for interact with user-access Api
  */
-class AuthManager {
+export class AuthManager {
 
     baseUrl = '/tagazon/src/api/users/';
 
@@ -10,7 +9,7 @@ class AuthManager {
         this.updateInfo(onReady);
     }
 
-    updateInfo(onSuccess = (user) => {}, onError = (err) => {}) {
+    updateInfo(onSuccess = () => {}, onError = () => {}) {
         $.ajax({
             url: `${this.baseUrl}info/`,
             type: 'GET',
@@ -28,7 +27,7 @@ class AuthManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    login(email, password, onSuccess = (data) => window.location.reload(), onError = (err) => console.error(err)) {
+    login(email, password, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
             url: `${this.baseUrl}login/`,
             type: "POST",
@@ -75,7 +74,7 @@ class AuthManager {
                 name: name,
                 surname: surname
             },
-            success: (data) => {
+            success: () => {
                 _this.login(email, password, onSuccess);
             },
             error: onError
@@ -102,7 +101,7 @@ class AuthManager {
                 rag_soc: rag_soc,
                 piva: piva
             },
-            success: (data) => {
+            success: () => {
                 _this.login(email, password, onSuccess);
             },
             error: onError

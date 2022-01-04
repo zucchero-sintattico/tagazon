@@ -1,6 +1,5 @@
-export { CartItem }
 import { Tag } from './tag.js';
-class CartItem {
+export class CartItem {
 
     constructor(id, tagId, quantity, onCartItemChange, onReady = () => {}) {
         this.id = id;
@@ -39,7 +38,7 @@ class CartItem {
                 "id": this.id,
                 "quantity": this.quantity
             },
-            success: (data) => {
+            success: () => {
                 _this.onCartItemChange();
                 onSuccess();
             }

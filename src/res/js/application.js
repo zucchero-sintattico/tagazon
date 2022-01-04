@@ -1,6 +1,3 @@
-export { Application }
-
-
 import { AuthManager } from './auth-manager.js';
 import { NotificationsService } from './notifications-service.js';
 import { User } from './objects/user.js';
@@ -8,7 +5,7 @@ import { Cart } from './objects/cart.js';
 import { NotificationObject } from './objects/notification.js';
 import { Order } from './objects/order.js';
 
-class Application {
+export class Application {
 
     static baseUrl = "/tagazon/src/api/./objects/";
 
