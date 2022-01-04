@@ -26,7 +26,7 @@
         import {Application} from './res/js/application.js';
         import {<?php echo $pageClass; ?>} from './pages/<?php echo $page;?>/<?php echo $page;?>.js';
         
-        Application.start(new <?php echo $pageClass; ?>());
+        Application.start(<?php echo $pageClass; ?>);
     </script>
 
 </head>

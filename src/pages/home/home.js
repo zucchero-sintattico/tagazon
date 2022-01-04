@@ -18,7 +18,7 @@ function createArticle(tag) {
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        Application.cart.addItem();
+        Application.cart.addItem(tag.id);
     });
     const h3 = document.createElement("h3");
     h3.innerText = `<${tag.name}>`;
@@ -137,12 +137,12 @@ function handleChangeCategory() {
 
 export class HomePage extends Page {
 
-    static onPageLoad() {
+    onPageLoad() {
         const page = new URLSearchParams(document.location.search).get("page");
         $(`#${page}`).addClass("active-page");
     }
 
-    static onCartChange() {
+    onCartChange() {
         if (Application.cart.getTotalQuantity() > 0) {
             $("#cart-counter").text(Application.cart.getTotalQuantity());
             $("#cart-counter").fadeIn(500);
@@ -151,7 +151,7 @@ export class HomePage extends Page {
         }
     }
 
-    static onNotificationsChange() {
+    onNotificationsChange() {
         const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
         if (unseen > 0) {
             $("#notification-counter").text(unseen);
@@ -162,7 +162,7 @@ export class HomePage extends Page {
     }
 
 
-    static onUserLoad() {
+    onUserLoad() {
         requestGet("/tagazon/src/api/objects/categories/", loadCategory);
         requestGet("/tagazon/src/api/objects/tags/", loadTags);
     }

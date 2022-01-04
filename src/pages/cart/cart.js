@@ -68,6 +68,7 @@ function createArticle(item) {
 
     return article;
 }
+
 export class CartPage extends Page {
 
     onPageLoad() {

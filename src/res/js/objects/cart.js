@@ -28,7 +28,7 @@ export class Cart {
     getItem(tagId) {
         let item = null;
         this.items.forEach(element => {
-            if (element.getTag().getId() === tagId) {
+            if (element.getTag().getId() == tagId) {
                 item = element;
             }
         });
