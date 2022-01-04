@@ -3,7 +3,12 @@ version = 1
 [[analyzers]]
 name = "javascript"
 enabled = true
-
+  [analyzers.meta]
+  module_system = "es-modules"
+  environment = [
+    "jquery"
+  ]
+  
 [[analyzers]]
 name = "php"
 enabled = true
