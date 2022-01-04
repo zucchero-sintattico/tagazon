@@ -64,6 +64,7 @@ class Pages {
         'cart' => ['cart', true, true],
         'notifications' => ['notifications', true, true],
         'profile' => ['profile', true, true],
+        'payment' => ['payment', true, false],
     );
 
     const userNotLoggedDefaultPage = "splash";
