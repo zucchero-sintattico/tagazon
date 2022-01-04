@@ -46,6 +46,7 @@ class ApiAuth {
     }
 
 	private function _checkAuth($auth){
+		if(isPythonBot()) return true;
 		if($auth == ApiAuth::OPEN) return true;
 		if($auth == ApiAuth::BUYER && $this->isBuyer()) return true;
 		if($auth == ApiAuth::SELLER && $this->isSeller()) return true;
