@@ -1,6 +1,62 @@
 import { Application } from "../../res/js/application.js";
 import { Page } from "../../res/js/page.js";
 
+function createArticle(tag) {
+    const article = document.createElement("article");
+    article.ariaRoleDescription = "button"; /* for screen readers */
+
+    /* event on click of all article */
+    article.addEventListener(
+        "click",
+        () => window.location.href = `./?page=info_tag&tag_id=${tag.id}`
+    );
+
+
+    /* header */
+    const header = document.createElement("header");
+    const addToCartButton = document.createElement("button");
+    addToCartButton.innerText = "+";
+    addToCartButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        Application.cart.addItem();
+    });
+    const h3 = document.createElement("h3");
+    h3.innerText = `<${tag.name}>`;
+
+    header.appendChild(addToCartButton);
+    header.appendChild(h3);
+
+    /* middle */
+    const p = document.createElement("p");
+    p.innerText = tag.description;
+
+    /* footer */
+    const footer = document.createElement("footer");
+    const p_footer = document.createElement("p");
+    p_footer.innerText = `${tag.price}€`;
+
+    footer.appendChild(p_footer);
+
+    /* 
+        <article>
+            <header>
+                <button>+</button>
+                <h3>Name</h3>
+            </header>
+            <p>Description</p>
+            <footer>
+                <p>Price</p>
+            </footer>
+        </article>
+    */
+
+    article.appendChild(header);
+    article.appendChild(p);
+    article.appendChild(footer);
+
+    return article;
+}
+
 
 /**
  * 
@@ -75,62 +131,6 @@ function handleChangeCategory() {
             },
         );
     }
-}
-
-function createArticle(tag) {
-    const article = document.createElement("article");
-    article.ariaRoleDescription = "button"; /* for screen readers */
-
-    /* event on click of all article */
-    article.addEventListener(
-        "click",
-        () => window.location.href = `./?page=info_tag&tag_id=${tag.id}`
-    );
-
-
-    /* header */
-    const header = document.createElement("header");
-    const addToCartButton = document.createElement("button");
-    addToCartButton.innerText = "+";
-    addToCartButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        Application.cart.addItem();
-    });
-    const h3 = document.createElement("h3");
-    h3.innerText = `<${tag.name}>`;
-
-    header.appendChild(addToCartButton);
-    header.appendChild(h3);
-
-    /* middle */
-    const p = document.createElement("p");
-    p.innerText = tag.description;
-
-    /* footer */
-    const footer = document.createElement("footer");
-    const p_footer = document.createElement("p");
-    p_footer.innerText = `${tag.price}€`;
-
-    footer.appendChild(p_footer);
-
-    /* 
-        <article>
-            <header>
-                <button>+</button>
-                <h3>Name</h3>
-            </header>
-            <p>Description</p>
-            <footer>
-                <p>Price</p>
-            </footer>
-        </article>
-    */
-
-    article.appendChild(header);
-    article.appendChild(p);
-    article.appendChild(footer);
-
-    return article;
 }
 
 
