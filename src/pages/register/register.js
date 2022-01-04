@@ -22,7 +22,7 @@ export class RegisterPage extends Page {
 
         $("form").submit(function(e) {
             e.preventDefault();
-            let type = $("input[type=radio]").val();
+            const type = $("input[type=radio]").val();
             if (type == "cliente") {
                 Application.authManager.registerBuyer(
                     $("#email").val(),

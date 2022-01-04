@@ -11,7 +11,7 @@ class CartItem {
             url: `/tagazon/src/api/objects/tags/?id=${tagId}`,
             type: "GET",
             success: (data) => {
-                data = data["data"][0];
+                data = data.data[0];
                 _this.tag = new Tag(data.id, data.name, data.description, data.price, data.sale_price, data.example, data.example_desc, onReady);
             }
         });

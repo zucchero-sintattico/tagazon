@@ -12,9 +12,9 @@ class Cart {
 
     _buildItems(items, index = 0, onReady = () => {}) {
         if (index < items.length) {
-            let item = items[index];
-            let _this = this;
-            let it = new CartItem(item.id, item.tag, item.quantity, () => {
+            const item = items[index];
+            const _this = this;
+            const it = new CartItem(item.id, item.tag, item.quantity, () => {
                 this.onCartChange();
             }, () => {
                 _this.items.push(it);
@@ -71,7 +71,7 @@ class Cart {
                 "tag": tagId
             },
             success: (data) => {
-                data = data["data"];
+                data = data.data;
                 _this.items.push(new CartItem(data.id, data.tag, data.quantity, () => {
                     _this.onCartChange();
                 }));
@@ -85,7 +85,7 @@ class Cart {
     }
 
     addItem(tagId, onSuccess = () => {}) {
-        let item = this.getItem(tagId);
+        const item = this.getItem(tagId);
         if (item === null) {
             this._addNewItem(tagId, onSuccess);
         } else {
@@ -94,7 +94,7 @@ class Cart {
     }
 
     decreaseItemQuantity(tagId, onSuccess = () => {}) {
-        let item = this.getItem(tagId);
+        const item = this.getItem(tagId);
         if (item !== null) {
             if (item.getQuantity() > 1) {
                 item.setQuantity(item.getQuantity() - 1, onSuccess);
@@ -105,8 +105,8 @@ class Cart {
     }
 
     removeItem(tagId, onSuccess = () => {}) {
-        let item = this.getItem(tagId);
-        let _this = this;
+        const item = this.getItem(tagId);
+        const _this = this;
         if (item !== null) {
             $.ajax({
                 url: `/tagazon/src/api/objects/shoppingcart_tags/?id=${item.getId()}`,

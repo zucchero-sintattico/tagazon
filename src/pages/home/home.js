@@ -109,7 +109,7 @@ function createArticle(tag) {
     /* event on click of all article */
     article.addEventListener(
         "click",
-        () => window.location.href = `./?page=info_tag&tag_id=${tag["id"]}`
+        () => window.location.href = `./?page=info_tag&tag_id=${tag.id}`
     );
 
 
@@ -119,22 +119,22 @@ function createArticle(tag) {
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        addToCart(tag["id"]);
+        addToCart(tag.id);
     });
     const h3 = document.createElement("h3");
-    h3.innerText = `<${tag["name"]}>`;
+    h3.innerText = `<${tag.name}>`;
 
     header.appendChild(addToCartButton);
     header.appendChild(h3);
 
     /* middle */
     const p = document.createElement("p");
-    p.innerText = tag["description"];
+    p.innerText = tag.description;
 
     /* footer */
     const footer = document.createElement("footer");
     const p_footer = document.createElement("p");
-    p_footer.innerText = `${tag["price"]}€`;
+    p_footer.innerText = `${tag.price}€`;
 
     footer.appendChild(p_footer);
 

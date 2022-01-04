@@ -41,7 +41,7 @@ function createArticle(item) {
     /* event on click of all article */
     article.addEventListener(
         "click",
-        () => window.location.href = `./?page=info_tag&tag_id=${item["tag"]["id"]}`
+        () => window.location.href = `./?page=info_tag&tag_id=${item.tag.id}`
     );
 
 
@@ -52,17 +52,17 @@ function createArticle(item) {
     removeFromCartButton.innerText = "-";
     removeFromCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        Application.cart.decreaseItemQuantity(item["tag"]["id"]);
+        Application.cart.decreaseItemQuantity(item.tag.id);
     });
 
     const addToCartButton = document.createElement("button");
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        addToCart(item["tag"]["id"])
+        addToCart(item.tag.id)
     });
     const h3 = document.createElement("h3");
-    h3.innerText = `<${item["tag"]["name"]}>`;
+    h3.innerText = `<${item.tag.name}>`;
 
     header.appendChild(removeFromCartButton);
     header.appendChild(addToCartButton);
@@ -70,13 +70,13 @@ function createArticle(item) {
 
     /* middle */
     const p = document.createElement("p");
-    p.innerText = item["tag"]["description"];
+    p.innerText = item.tag.description;
 
     /* footer */
     const footer = document.createElement("footer");
     const price = document.createElement("p");
     const quantity = document.createElement("p");
-    price.innerText = `${item["tag"].getPrice()}€`;
+    price.innerText = `${item.tag.getPrice()}€`;
     quantity.innerText = `Quantità: ${item.getQuantity()}`;
 
     footer.appendChild(price);
