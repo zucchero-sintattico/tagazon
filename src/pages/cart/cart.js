@@ -1,38 +1,5 @@
 import { Application } from "../../res/js/application.js";
 import { Page } from "../../res/js/page.js";
-export class CartPage extends Page {
-
-    onPageLoad() {
-        const page = new URLSearchParams(document.location.search).get("page");
-        $(`#${page}`).addClass("active-page");
-    }
-
-    onCartChange() {
-        if (Application.cart.getTotalQuantity() > 0) {
-            $("#cart-counter").text(Application.cart.getTotalQuantity());
-            $("#cart-counter").fadeIn(500);
-        } else {
-            $("#cart-counter").hide();
-        }
-
-        $("#cart-items").html("");
-        Application.cart.getItems().forEach(item => {
-            $("#cart-items").append(createArticle(item));
-        });
-    }
-
-    onNotificationsChange() {
-        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
-        if (unseen > 0) {
-            $("#notification-counter").text(unseen);
-            $("#notification-counter").fadeIn(500);
-        } else {
-            $("#notification-counter").hide();
-        }
-    }
-
-}
-
 
 function createArticle(item) {
     const article = document.createElement("article");
@@ -59,7 +26,7 @@ function createArticle(item) {
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        addToCart(item.tag.id)
+        Application.cart.addItem(item.tag.id);
     });
     const h3 = document.createElement("h3");
     h3.innerText = `<${item.tag.name}>`;
@@ -101,7 +68,35 @@ function createArticle(item) {
 
     return article;
 }
+export class CartPage extends Page {
 
-function addToCart(tag_id) {
-    Application.cart.addItem(tag_id);
+    onPageLoad() {
+        const page = new URLSearchParams(document.location.search).get("page");
+        $(`#${page}`).addClass("active-page");
+    }
+
+    onCartChange() {
+        if (Application.cart.getTotalQuantity() > 0) {
+            $("#cart-counter").text(Application.cart.getTotalQuantity());
+            $("#cart-counter").fadeIn(500);
+        } else {
+            $("#cart-counter").hide();
+        }
+
+        $("#cart-items").html("");
+        Application.cart.getItems().forEach(item => {
+            $("#cart-items").append(createArticle(item));
+        });
+    }
+
+    onNotificationsChange() {
+        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
+        if (unseen > 0) {
+            $("#notification-counter").text(unseen);
+            $("#notification-counter").fadeIn(500);
+        } else {
+            $("#notification-counter").hide();
+        }
+    }
+
 }

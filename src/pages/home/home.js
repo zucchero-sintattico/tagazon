@@ -1,38 +1,5 @@
 import { Application } from "../../res/js/application.js";
 import { Page } from "../../res/js/page.js";
-export class HomePage extends Page {
-
-    onPageLoad() {
-        const page = new URLSearchParams(document.location.search).get("page");
-        $(`#${page}`).addClass("active-page");
-    }
-
-    onCartChange() {
-        if (Application.cart.getTotalQuantity() > 0) {
-            $("#cart-counter").text(Application.cart.getTotalQuantity());
-            $("#cart-counter").fadeIn(500);
-        } else {
-            $("#cart-counter").hide();
-        }
-    }
-
-    onNotificationsChange() {
-        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
-        if (unseen > 0) {
-            $("#notification-counter").text(unseen);
-            $("#notification-counter").fadeIn(500);
-        } else {
-            $("#notification-counter").hide();
-        }
-    }
-
-
-    onUserLoad() {
-        requestGet("/tagazon/src/api/objects/categories/", loadCategory);
-        requestGet("/tagazon/src/api/objects/tags/", loadTags);
-    }
-
-}
 
 
 /**
@@ -48,6 +15,30 @@ function requestGet(request, callback) {
         /* data: {code: Integer, message: String, data: Array} */
         error: (err) => { console.log(err); }
     });
+}
+
+/**
+ * 
+ */
+function removeTags() {
+    document.getElementById("tags-list").innerHTML = "";
+}
+
+
+/**
+ * 
+ * @param {Array} tags to load in the list of tags
+ */
+function loadTags(tags) {
+
+    $("#tags-list").fadeOut(500, () => {
+        removeTags();
+        tags.forEach(tag => {
+            $("#tags-list").append(createArticle(tag));
+        });
+        $("#tags-list").fadeIn(250);
+    })
+
 }
 
 /**
@@ -86,22 +77,6 @@ function handleChangeCategory() {
     }
 }
 
-/**
- * 
- * @param {Array} tags to load in the list of tags
- */
-function loadTags(tags) {
-
-    $("#tags-list").fadeOut(500, () => {
-        removeTags();
-        tags.forEach(tag => {
-            $("#tags-list").append(createArticle(tag));
-        });
-        $("#tags-list").fadeIn(250);
-    })
-
-}
-
 function createArticle(tag) {
     const article = document.createElement("article");
     article.ariaRoleDescription = "button"; /* for screen readers */
@@ -119,7 +94,7 @@ function createArticle(tag) {
     addToCartButton.innerText = "+";
     addToCartButton.addEventListener("click", (e) => {
         e.stopPropagation();
-        addToCart(tag.id);
+        Application.cart.addItem();
     });
     const h3 = document.createElement("h3");
     h3.innerText = `<${tag.name}>`;
@@ -158,13 +133,38 @@ function createArticle(tag) {
     return article;
 }
 
-function addToCart(tag_id) {
-    Application.cart.addItem(tag_id);
-}
 
-/**
- * 
- */
-function removeTags() {
-    document.getElementById("tags-list").innerHTML = "";
+
+export class HomePage extends Page {
+
+    onPageLoad() {
+        const page = new URLSearchParams(document.location.search).get("page");
+        $(`#${page}`).addClass("active-page");
+    }
+
+    onCartChange() {
+        if (Application.cart.getTotalQuantity() > 0) {
+            $("#cart-counter").text(Application.cart.getTotalQuantity());
+            $("#cart-counter").fadeIn(500);
+        } else {
+            $("#cart-counter").hide();
+        }
+    }
+
+    onNotificationsChange() {
+        const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
+        if (unseen > 0) {
+            $("#notification-counter").text(unseen);
+            $("#notification-counter").fadeIn(500);
+        } else {
+            $("#notification-counter").hide();
+        }
+    }
+
+
+    onUserLoad() {
+        requestGet("/tagazon/src/api/objects/categories/", loadCategory);
+        requestGet("/tagazon/src/api/objects/tags/", loadTags);
+    }
+
 }
