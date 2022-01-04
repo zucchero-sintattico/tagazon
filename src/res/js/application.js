@@ -1,6 +1,16 @@
+export { Application }
+
+
+import { AuthManager } from './auth-manager.js';
+import { NotificationsService } from './notifications-service.js';
+import { User } from './objects/user.js';
+import { Cart } from './objects/cart.js';
+import { NotificationObject } from './objects/notification.js';
+import { Order } from './objects/order.js';
+
 class Application {
 
-    static baseUrl = "/tagazon/src/api/objects/";
+    static baseUrl = "/tagazon/src/api/./objects/";
 
     static page = null;
 
@@ -52,7 +62,9 @@ class Application {
             (user) => {
                 Application.user = new User(user["id"], user["email"], user["type"], () => {
                     Application.userReady = true;
-                    Application.notificationsService.start();
+                    Application.notificationsService.start(user["id"], (notification) => {
+                        Application.addNotification(notification);
+                    });
                     onLoad();
                 });
             }
@@ -71,6 +83,8 @@ class Application {
                 Application.cart = new Cart(data["data"], () => {
                     Application.cartReady = true;
                     onLoad();
+                }, () => {
+                    Application.notifyCartChange();
                 });
             },
             error: (data) => {
@@ -105,7 +119,9 @@ class Application {
             url: Application.baseUrl + "notifications/",
             type: "GET",
             success: (data) => {
-                Application.notifications = data["data"].map((notification) => new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]));
+                Application.notifications = data["data"].map((notification) => new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"], () => {
+                    Application.notifyNotificationChange();
+                }));
                 Application.notificationsReady = true;
                 onLoad();
             },
@@ -174,9 +190,6 @@ class Application {
     }
 
 }
-
-let page = new URLSearchParams(document.location.search).get("page");
-Application.start(Page.fromName(page));
 
 $(() => {
     Application.pageReady = true;

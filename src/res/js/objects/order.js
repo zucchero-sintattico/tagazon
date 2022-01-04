@@ -1,3 +1,4 @@
+export { Order }
 class Order {
 
     constructor(order) {

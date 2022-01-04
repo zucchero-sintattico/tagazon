@@ -1,8 +1,11 @@
+export { CartItem }
+import { Tag } from './tag.js';
 class CartItem {
 
-    constructor(id, tagId, quantity, onReady = () => {}) {
+    constructor(id, tagId, quantity, onCartItemChange, onReady = () => {}) {
         this.id = id;
         this.quantity = parseInt(quantity);
+        this.onCartItemChange = onCartItemChange;
         const _this = this;
         $.ajax({
             url: `/tagazon/src/api/objects/tags/?id=${tagId}`,
@@ -28,6 +31,7 @@ class CartItem {
 
     setQuantity(quantity, onSuccess = () => {}) {
         this.quantity = quantity;
+        const _this = this;
         $.ajax({
             url: "/tagazon/src/api/objects/shoppingcart_tags/",
             type: "PUT",
@@ -36,6 +40,7 @@ class CartItem {
                 "quantity": this.quantity
             },
             success: (data) => {
+                _this.onCartItemChange();
                 onSuccess();
             }
         });

@@ -9,22 +9,6 @@
     <script src="./res/lib/jquery-3.6.0.min.js"></script>
     <script src="./res/lib/mqtt.min.js"></script>
 
-    <!-- User-Defined Class -->
-    <script src="./res/js/auth-manager.js"></script>
-    <script src="./res/js/notifications-service.js"></script>
-
-
-    <script src="./res/js/objects/user.js"></script>
-    <script src="./res/js/objects/category.js"></script>
-    <script src="./res/js/objects/tag.js"></script>
-    <script src="./res/js/objects/cart-item.js"></script>
-    <script src="./res/js/objects/cart.js"></script>
-    <script src="./res/js/objects/order.js"></script>
-    <script src="./res/js/objects/notification.js"></script>
-
-    <script src="./res/js/page.js"></script>
-
-
     <!-- 
         PHP-based
 
@@ -35,12 +19,15 @@
         ?> 
     -->
     <title>Tagazon - <?php echo ucfirst($page); ?></title>
-    <script src="./pages/<?php echo $page;?>/<?php echo $page;?>.js"></script>
     <link rel="stylesheet" href="./pages/<?php echo $page;?>/<?php echo $page;?>.css"/>
-    
-    
-    <!-- Main static class script -->
-    <script src="./res/js/application.js"></script>
+    <script type="module" src="./pages/<?php echo $page;?>/<?php echo $page;?>.js"></script>
+    <script type="module">
+        <?php $pageClass = str_replace('_', '', ucwords($page, '_')) . "Page" ?>
+        import {Application} from './res/js/application.js';
+        import {<?php echo $pageClass; ?>} from './pages/<?php echo $page;?>/<?php echo $page;?>.js';
+        
+        Application.start(new <?php echo $pageClass; ?>());
+    </script>
 
 </head>
 <body>

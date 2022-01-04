@@ -26,8 +26,7 @@ class ShoppingCartsTagsApi extends EntityApi {
     public function canAccess($element)
     {
         $buyer = $element["buyer"];
-        $buyer = BuyersApi::get(["id" => $buyer])->getData();
-        return count($buyer) == 1;
+        return $buyer == $_SESSION["user"]["id"];
     }
 
     public function canCreate($params)

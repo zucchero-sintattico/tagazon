@@ -1,8 +1,13 @@
+export { Cart }
+import { CartItem } from './cart-item.js';
+
 class Cart {
 
-    constructor(items, onReady) {
+    constructor(items, onReady, onCartChange) {
         this.items = [];
+        this.onCartChange = onCartChange;
         this._buildItems(items, 0, onReady);
+
     }
 
     _buildItems(items, index = 0, onReady = () => {}) {
@@ -10,6 +15,8 @@ class Cart {
             let item = items[index];
             let _this = this;
             let it = new CartItem(item["id"], item["tag"], item["quantity"], () => {
+                this.onCartChange();
+            }, () => {
                 _this.items.push(it);
                 _this._buildItems(items, index + 1, onReady);
             });
@@ -65,8 +72,10 @@ class Cart {
             },
             success: (data) => {
                 data = data["data"];
-                _this.items.push(new CartItem(data["id"], data["tag"], data["quantity"]));
-                Application.notifyCartChange();
+                _this.items.push(new CartItem(data["id"], data["tag"], data["quantity"], () => {
+                    _this.onCartChange();
+                }));
+                _this.onCartChange();
                 onSuccess();
             },
             error: (data) => {
@@ -82,7 +91,6 @@ class Cart {
         } else {
             item.increaseQuantity(onSuccess);
         }
-        Application.notifyCartChange();
     }
 
     decreaseItemQuantity(tagId, onSuccess = () => {}) {
@@ -90,7 +98,6 @@ class Cart {
         if (item != null) {
             if (item.getQuantity() > 1) {
                 item.setQuantity(item.getQuantity() - 1, onSuccess);
-                Application.notifyCartChange();
             } else {
                 this.removeItem(tagId, onSuccess);
             }
@@ -106,7 +113,7 @@ class Cart {
                 type: "DELETE",
                 success: (data) => {
                     _this.items.splice(_this.items.indexOf(item), 1);
-                    Application.notifyCartChange();
+                    _this.onCartChange();
                     onSuccess();
                 },
                 error: (data) => {

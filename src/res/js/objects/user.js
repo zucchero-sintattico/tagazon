@@ -1,4 +1,4 @@
-class User {
+export class User {
 
     constructor(id, email, type, onReady) {
         this.id = id;

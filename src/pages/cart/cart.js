@@ -1,4 +1,6 @@
-class CartPage extends Page {
+import { Application } from "../../res/js/application.js";
+import { Page } from "../../res/js/page.js";
+export class CartPage extends Page {
 
     onPageLoad() {
         const page = new URLSearchParams(document.location.search).get("page");

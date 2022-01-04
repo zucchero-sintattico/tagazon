@@ -1,12 +1,14 @@
+export { NotificationObject }
 class NotificationObject {
 
-    constructor(id, order, timestamp, title, message, seen) {
+    constructor(id, order, timestamp, title, message, seen, onNotificationChange) {
         this.id = id;
         this.order = order;
         this.timestamp = timestamp;
         this.title = title;
         this.message = message;
         this.seen = seen == "1";
+        this.onNotificationChange = onNotificationChange;
     }
 
     getOrder() {
@@ -31,6 +33,7 @@ class NotificationObject {
 
     setSeen(onSuccess = () => {}) {
         this.seen = true;
+        const _this = this;
         $.ajax({
             url: `${Application.baseUrl}notifications/?id=${this.id}`,
             type: "PUT",
@@ -39,8 +42,8 @@ class NotificationObject {
                 "seen": true
             },
             success: (data) => {
+                _this.onNotificationChange();
                 onSuccess();
-                Application.notifyNotificationChange();
             },
             error: (data) => {
                 console.error(data);
@@ -49,6 +52,7 @@ class NotificationObject {
     }
 
     setReceived(onSuccess = () => {}) {
+        const _this = this;
         $.ajax({
             url: `${Application.baseUrl}notifications/?id=${this.id}`,
             type: "PUT",
@@ -57,8 +61,8 @@ class NotificationObject {
                 "received": true
             },
             success: (data) => {
+                _this.onNotificationChange();
                 onSuccess();
-                Application.notifyNotificationChange();
             },
             error: (data) => {
                 console.error(data);

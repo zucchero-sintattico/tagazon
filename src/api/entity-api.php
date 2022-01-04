@@ -32,9 +32,12 @@ abstract class EntityApi extends Api
 		// filters in order to get only the elements that the user has access to
 		$results = $res;
 		if ($this->getAuth()->getAuth() != ApiAuth::OPEN && !$server && !isPythonBot()) {
-			$results = array_filter($res, function($element) {
-				return $this->canAccess($element);
-			});
+			$results = [];
+			foreach ($res as $element) {
+				if ($this->canAccess($element)) {
+					$results[] = $element;
+				}
+			}
 		}
 
 		return count($results) == 0 && count(array_keys($params)) > 0 ? Response::notFound() : Response::ok($results);

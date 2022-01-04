@@ -1,3 +1,5 @@
+export { Tag }
+import { Category } from './category.js';
 class Tag {
 
     constructor(id, name, description, price, sale_price, example, example_desc, onReady = () => {}) {
@@ -49,11 +51,7 @@ class Tag {
     }
 
     getPrice() {
-        if (this.sale_price == null) {
-            return this.price;
-        } else {
-            return this.sale_price;
-        }
+        return this.isInSale() ? this.sale_price : this.price;
     }
 
     getPriceWithoutSale() {

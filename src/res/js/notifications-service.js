@@ -1,3 +1,5 @@
+export { NotificationsService }
+
 class NotificationsService {
 
     protocol = "wss";
@@ -5,7 +7,9 @@ class NotificationsService {
     port = 8084;
     topic = "tagazon-notifications";
 
-    start() {
+    start(userId, onNewNotification) {
+        this.userId = userId;
+        this.onNewNotification = onNewNotification;
         const options = {
             clean: true,
             connectTimeout: 30000,
@@ -18,7 +22,7 @@ class NotificationsService {
         });
         let _this = this;
         this.client.on('connect', function() {
-            _this.client.subscribe(`${_this.topic}/${Application.user.getId()}`, function(err) {
+            _this.client.subscribe(`${_this.topic}/${userId}`, function(err) {
                 if (err) {
                     console.error(err);
                 } else {
@@ -30,7 +34,7 @@ class NotificationsService {
 
     stop() {
         if (this.client) {
-            this.client.unsubscribe(`${this.topic}/${Application.user.getId()}`);
+            this.client.unsubscribe(`${this.topic}/${this.userId}`);
             this.client.end();
             console.log("Unsubscribed from notifications");
         }
@@ -57,7 +61,8 @@ class NotificationsService {
     }
 
     onNotification(topic, message, service) {
-        let url = "/tagazon/src/api/objects/notifications/?received=false";
+        const _this = this;
+        const url = "/tagazon/src/api/objects/notifications/?received=false";
         $.ajax({
             url: url,
             type: "GET",
@@ -65,7 +70,7 @@ class NotificationsService {
                 let notifications = data["data"];
                 notifications.forEach((notification) => {
                     let not = new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]);
-                    Application.addNotification(not);
+                    _this.onNewNotification(not);
                     not.setReceived();
                     service.createNotification(notification);
                 });

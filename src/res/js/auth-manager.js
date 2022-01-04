@@ -1,3 +1,4 @@
+export { AuthManager }
 /**
  * Manager for interact with user-access Api
  */
