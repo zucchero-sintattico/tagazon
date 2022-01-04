@@ -45,10 +45,10 @@ class NotificationsService {
         Notification.requestPermission(function(result) {
             if (result === 'granted') {
                 navigator.serviceWorker.register("/tagazon/src/res/js/service.js").then(function(registration) {
-                        registration.showNotification(notification["title"], {
-                            body: notification["message"],
+                        registration.showNotification(notification.title, {
+                            body: notification.message,
                             icon: "/tagazon/src/res/img/logo.png",
-                            data: notification["timestamp"],
+                            data: notification.timestamp,
                             origin: "Tagazon",
                         });
                     },
@@ -67,9 +67,9 @@ class NotificationsService {
             url: url,
             type: "GET",
             success: (data) => {
-                let notifications = data["data"];
+                let notifications = data.data;
                 notifications.forEach((notification) => {
-                    let not = new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"]);
+                    let not = new NotificationObject(notification.id, notification.order, notification.timestamp, notification.title, notification.message, notification.seen);
                     _this.onNewNotification(not);
                     not.setReceived();
                     service.createNotification(notification);

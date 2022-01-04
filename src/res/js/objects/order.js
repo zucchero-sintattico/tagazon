@@ -2,9 +2,9 @@ export { Order }
 class Order {
 
     constructor(order) {
-        this.id = order["id"];
-        this.timestamp = order["timestamp"];
-        this.status = order["status"];
+        this.id = order.id;
+        this.timestamp = order.timestamp;
+        this.status = order.status;
         //this.items = order["items"].map((item) => new OrderItem(item));
     }
 

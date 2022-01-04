@@ -15,8 +15,8 @@ class Tag {
             url: `/tagazon/src/api/objects/tags/categories/?tag_id=${id}`,
             type: "GET",
             success: (data) => {
-                data = data["data"];
-                _this.categories = data.map(element => new Category(element["id"], element["name"], element["description"]));
+                data = data.data;
+                _this.categories = data.map(element => new Category(element.id, element.name, element.description));
                 onReady();
             }
         });

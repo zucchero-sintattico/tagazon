@@ -15,7 +15,7 @@ class AuthManager {
             url: `${this.baseUrl}info/`,
             type: 'GET',
             success: (data) => {
-                onSuccess(data["data"]);
+                onSuccess(data.data);
             },
             error: onError
         });

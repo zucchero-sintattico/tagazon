@@ -14,7 +14,7 @@ class Cart {
         if (index < items.length) {
             let item = items[index];
             let _this = this;
-            let it = new CartItem(item["id"], item["tag"], item["quantity"], () => {
+            let it = new CartItem(item.id, item.tag, item.quantity, () => {
                 this.onCartChange();
             }, () => {
                 _this.items.push(it);
@@ -72,7 +72,7 @@ class Cart {
             },
             success: (data) => {
                 data = data["data"];
-                _this.items.push(new CartItem(data["id"], data["tag"], data["quantity"], () => {
+                _this.items.push(new CartItem(data.id, data.tag, data.quantity, () => {
                     _this.onCartChange();
                 }));
                 _this.onCartChange();

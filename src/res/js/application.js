@@ -60,9 +60,9 @@ class Application {
         Application.userReady = false;
         Application.authManager.start(
             (user) => {
-                Application.user = new User(user["id"], user["email"], user["type"], () => {
+                Application.user = new User(user.id, user.email, user.type, () => {
                     Application.userReady = true;
-                    Application.notificationsService.start(user["id"], (notification) => {
+                    Application.notificationsService.start(user.id, (notification) => {
                         Application.addNotification(notification);
                     });
                     onLoad();
@@ -80,7 +80,7 @@ class Application {
             url: Application.baseUrl + "shoppingcart_tags/",
             type: "GET",
             success: (data) => {
-                Application.cart = new Cart(data["data"], () => {
+                Application.cart = new Cart(data.data, () => {
                     Application.cartReady = true;
                     onLoad();
                 }, () => {
@@ -101,7 +101,7 @@ class Application {
             url: Application.baseUrl + "orders/",
             type: "GET",
             success: (data) => {
-                Application.orders = data["data"].map((order) => new Order(order));
+                Application.orders = data.data.map((order) => new Order(order));
                 Application.ordersReady = true;
                 onLoad();
             },
@@ -119,7 +119,7 @@ class Application {
             url: Application.baseUrl + "notifications/",
             type: "GET",
             success: (data) => {
-                Application.notifications = data["data"].map((notification) => new NotificationObject(notification["id"], notification["order"], notification["timestamp"], notification["title"], notification["message"], notification["seen"], () => {
+                Application.notifications = data.data.map((notification) => new NotificationObject(notification.id, notification.order, notification.timestamp, notification.title, notification.message, notification.seen, () => {
                     Application.notifyNotificationChange();
                 }));
                 Application.notificationsReady = true;
