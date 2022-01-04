@@ -1,19 +1,11 @@
 export class Page {
 
-    onPageLoad() {
+    static onPageLoad();
 
-    }
+    static onUserLoad();
 
-    onUserLoad() {
+    static onCartChange();
 
-    }
-
-    onCartChange() {
-
-    }
-
-    onNotificationsChange() {
-
-    }
+    static onNotificationsChange();
 
 }

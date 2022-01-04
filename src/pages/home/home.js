@@ -137,12 +137,12 @@ function handleChangeCategory() {
 
 export class HomePage extends Page {
 
-    onPageLoad() {
+    static onPageLoad() {
         const page = new URLSearchParams(document.location.search).get("page");
         $(`#${page}`).addClass("active-page");
     }
 
-    onCartChange() {
+    static onCartChange() {
         if (Application.cart.getTotalQuantity() > 0) {
             $("#cart-counter").text(Application.cart.getTotalQuantity());
             $("#cart-counter").fadeIn(500);
@@ -151,7 +151,7 @@ export class HomePage extends Page {
         }
     }
 
-    onNotificationsChange() {
+    static onNotificationsChange() {
         const unseen = Application.notifications.filter(notification => !notification.getSeen()).length;
         if (unseen > 0) {
             $("#notification-counter").text(unseen);
@@ -162,7 +162,7 @@ export class HomePage extends Page {
     }
 
 
-    onUserLoad() {
+    static onUserLoad() {
         requestGet("/tagazon/src/api/objects/categories/", loadCategory);
         requestGet("/tagazon/src/api/objects/tags/", loadTags);
     }
