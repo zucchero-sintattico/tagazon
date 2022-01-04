@@ -1,5 +1,11 @@
-$(() => {
-    const tag_id = new URLSearchParams(document.location.search).get("tag_id");
+import { NavbarPage } from '../navbar/navbar.js';
+import { Application } from '../../res/js/application.js';
 
-    $("h1").append(`#${tag_id}`);
-});
+export class InfoTagPage extends NavbarPage {
+
+    onPageLoad() {
+        const tagId = new URLSearchParams(document.location.search).get("tagId");
+
+    }
+
+}
