@@ -38,6 +38,7 @@ body {
     --description-size-mobile: 12px;
     --normal-button-radius: 10px;
     --logo-stroke: 3px;
+    --gray-color: #C4C4C4;
 }
 
 
@@ -80,5 +81,25 @@ body {
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes pop-up {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pop-down {
+    0% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
     }
 }

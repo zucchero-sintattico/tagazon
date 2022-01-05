@@ -8,8 +8,6 @@
     <!-- Libraries -->
     <script src="./res/lib/jquery-3.6.0.min.js"></script>
     <script src="./res/lib/mqtt.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/googlecode.min.css"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 

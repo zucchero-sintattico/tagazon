@@ -9,7 +9,7 @@ nav {
 nav>ul {
     display: flex;
     padding-top: 12px;
-    border-radius: 1.5em 1.5em 0 0;
+    border-radius: 1.5rem 1.5rem 0 0;
     background-color: white;
     justify-content: space-around;
     list-style-type: none;
@@ -24,8 +24,8 @@ nav>ul>li {
 
 nav>ul>li>a {
     display: inline-block;
-    width: 2.5em;
-    height: 2.5em;
+    width: 2.5rem;
+    height: 2.5rem;
     -webkit-mask: center / contain no-repeat;
     mask: center / contain no-repeat;
     background-color: black;
@@ -60,8 +60,8 @@ nav>ul>li:nth-of-type(4)>a {
 
 nav>ul>li>span {
     display: inline-block;
-    width: 2.3em;
-    padding: 0 0.4em;
+    width: 2.3rem;
+    padding: 0 0.4rem;
     vertical-align: top;
     text-align: center;
     color: white;
@@ -72,6 +72,6 @@ nav>ul>li>span {
     position: absolute;
 }
 
-nav > ul > li:last-of-type > span {
-    margin-left: -1em;
+nav>ul>li:last-of-type>span {
+    margin-left: -1rem;
 }
