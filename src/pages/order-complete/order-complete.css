@@ -1,0 +1,62 @@
+@import "../base.css";
+
+html,body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow-y: hidden;
+    font-family: "Poppins";
+    font-size: 24px;
+    text-align: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+main{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body > main > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+body > main > section > header {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body > main > section > header > img {
+    width: 200px;
+    height: 200px;
+}
+
+body > main > section > h1 {
+    font-size: 0.7em;
+}
+
+body > main > section > button{
+    padding: 10px 20px;
+    color: #fff;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    font-size: 0.7em;
+}
+
+/* Desktop */
+@media screen and (min-width:768px){
+
+    html,body{
+        font-size: 48px;
+    }
+}
