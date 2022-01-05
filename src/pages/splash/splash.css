@@ -1,16 +1,15 @@
 @import '../base.css';
-
-html,body {
+html,
+body {
     height: 100vh;
     padding: 0;
     margin: 0;
     font-family: 'Poppins';
-    font-size: 48px;
     animation: fade-in 2s ease 0s 1 normal forwards;
     overflow-x: hidden;
 }
 
-body > header {
+body>header {
     height: 20vh;
     display: flex;
     flex-direction: row;
@@ -18,7 +17,7 @@ body > header {
     align-items: center;
 }
 
-body > header > h1{
+body>header>h1 {
     margin-top: 2.5em;
     font-family: 'AlfaSlabOne';
     text-align: center;
@@ -28,7 +27,7 @@ body > header > h1{
     -webkit-text-stroke: 0.06em var(--primary-color);
 }
 
-body > main {
+body>main {
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -37,17 +36,17 @@ body > main {
     text-align: center;
 }
 
-body > main > section > img{
+body>main>section>img {
     width: 3em;
     height: 3em;
 }
 
-body > main > section > h2{
+body>main>section>h2 {
     font-size: 0.5em;
     font-weight: normal;
 }
 
-body > main > section{
+body>main>section {
     height: 40vh;
     display: flex;
     flex-direction: column;
@@ -56,7 +55,7 @@ body > main > section{
     animation: slide-in-right 2s ease 0s 1 normal forwards;
 }
 
-body > main > section > a{
+body>main>section>a {
     font-size: 0.3em;
     text-decoration: none;
     color: white;
@@ -67,7 +66,7 @@ body > main > section > a{
     margin: 10px;
 }
 
-body > main > footer{
+body>main>footer {
     height: 30vh;
     display: flex;
     flex-direction: row;
@@ -75,7 +74,7 @@ body > main > footer{
     align-items: flex-end;
 }
 
-body > main > footer > div > span{
+body>main>footer>div>span {
     position: fixed;
     display: inline-flex;
     width: 0.2rem;
@@ -90,19 +89,22 @@ body > main > footer > div > span{
     animation: pop-down ease 1s 1 normal forwards;
 }
 
-.item-active{
+.item-active {
     background-color: var(--secondary-color);
     animation: pop-up ease 1s 1 normal forwards;
 }
 
-.page-hide{
+.page-hide {
     display: none;
     visibility: hidden;
 }
 
+
 /* Desktop */
-@media screen and (min-width: 768px){
-    html,body {
+
+@media screen and (min-width: 768px) {
+    html,
+    body {
         font-size: 72px;
     }
 }
