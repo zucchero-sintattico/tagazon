@@ -43,12 +43,16 @@ body>main>section>img {
     height: 3em;
 }
 
+body > main > section{
+    animation: slide-in-right 2s ease 0s 1 normal forwards;
+}
+
 body>main>section>h2 {
     font-size: 0.5em;
     font-weight: normal;
 }
 
-body>main>section>a {
+body>main>a {
     font-size: 0.3em;
     text-decoration: none;
     color: white;
