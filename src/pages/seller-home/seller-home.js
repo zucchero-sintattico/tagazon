@@ -6,19 +6,25 @@ function createArticle(tag) {
     const article = document.createElement("article");
     article.ariaRoleDescription = "button"; /* for screen readers */
 
-    article.addEventListener(
-        "click",
-        () => {
-            window.location.href = `./?page=info-tag&tag_id=${tag.id}`
-        }
-    );
-
 
     /* header */
     const header = document.createElement("header");
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "X";
+    deleteButton.addEventListener("click", () => {
+        $.ajax({
+            url: `/tagazon/src/api/objects/tags/?id=${tag.id}`,
+            type: "DELETE",
+            success: () => {
+                load();
+            }
+        });
+    });
+
     const h3 = document.createElement("h3");
     h3.innerText = `<${tag.name}>`;
 
+    header.appendChild(deleteButton);
     header.appendChild(h3);
 
     /* middle */
@@ -119,12 +125,16 @@ function handleChangeCategory() {
 }
 
 
+function load() {
+    requestGet("/tagazon/src/api/objects/categories/", loadCategory);
+    requestGet(`/tagazon/src/api/objects/sellers/tags/?seller_id=${Application.user.getId()}`, loadTags);
+}
 
 export class SellerHomePage extends NavbarSellerPage {
 
+
     onUserLoad() {
-        requestGet("/tagazon/src/api/objects/categories/", loadCategory);
-        requestGet(`/tagazon/src/api/objects/sellers/tags/?seller_id=${Application.user.getId()}`, loadTags);
+        load();
     }
 
 }
