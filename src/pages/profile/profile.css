@@ -5,18 +5,19 @@ body {
     font-family: AlfaSlabOne;
 }
 
-main {
-    margin-top: 5.5em;
-    background-color: var(--background-body);
-    border-radius: 1em 1em 0 0;
-    min-height: 90%;
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 2em;
+    font-family: AlfaSlabOne;
+    margin: 1em 0;
 }
 
-main>h1 {
-    margin-bottom: 2em;
-    color: white;
-    font-size: 2em;
-    text-align: center;
+main {
+    background-color: var(--background-body);
+    border-radius: 1em 1em 0 0;
+    padding-top: 4em;
+    min-height: 90%;
 }
 
 main>a {
@@ -33,9 +34,6 @@ main>a {
 }
 
 @media screen and (min-width: 768px) {
-    main>h1 {
-        font-size: 3em;
-    }
     main>a {
         margin: 1em 25%;
         width: 50%;
