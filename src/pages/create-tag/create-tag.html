@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="create-tag.css">
+</head>
+<body>
+    <h1>Build your Tag!</h1>
+    <main>
+        <form action="#" method="POST">
+            <fieldset>
+                <legend>Select categories</legend>
+                <ul>
+                    <li><label for="item1">item1</label><input type="checkbox" name="category" id="item1" value="item1" /></li>
+                    <li><label for="item2">item2</label><input type="checkbox" name="category" id="item2" value="item2" /></li>
+                </ul>
+            </fieldset>
+            <section>
+                <h2>Tag information</h2>
+                <label for="tag-name">Tag name</label>
+                <input type="text" name="tag-name" id="tag-name" placeholder="Tag name" required />
+                <label for="tag-description">Tag description</label>
+                <textarea name="tag-description" id="tag-description" maxlength="120" cols="30" rows="10" placeholder="Tag description: max 120 characters" required></textarea>
+                <label for="tag-info">Tag info</label>
+                <input type="text" name="tag-info" id="tag-info" placeholder="Tag info" required />
+                <label for="tag-code">Tag code example</label>
+                <textarea name="tag-code" id="tag-code" cols="30" rows="10" placeholder="Code example" required></textarea>
+                <label for="tag-price">Tag price</label>
+                <input type="number" name="tag-price" id="tag-price" placeholder="Price €" required />
+                <label for="tag-discount">Tag discount</label>
+                <input type="number" name="tag-discount" id="tag-discount" placeholder="Discount €" />
+            </section>
+            <input type="submit" value="Sell the Tag" />
+        </form>
+    </main>
+</body>
+</html>
