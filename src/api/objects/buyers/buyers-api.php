@@ -6,7 +6,11 @@ class BuyersApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Buyer::class, Api::BUYER);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::OPEN)
+            ->build();
+
+        parent::__construct(Buyer::class, $auth);
     }
 
     public function canAccess($element)

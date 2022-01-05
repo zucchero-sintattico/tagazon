@@ -1,0 +1,201 @@
+@import '../base.css';
+html,
+body {
+    height: 100%;
+}
+
+h1 {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 2em;
+    font-family: AlfaSlabOne;
+    margin: 1em 0;
+}
+
+main {
+    background-color: var(--background-body);
+    border-radius: 1em 1em 0 0;
+    min-height: 90%;
+}
+
+main>section>h2 {
+    /* hidden, but visible for screen readers category name */
+    clip: rect(1px 1px 1px 1px);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+
+/* list to select categories */
+
+main>section>ul {
+    list-style-type: none;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin: 0 1%;
+    box-shadow: 0 1px 10px 1px var(--background-body);
+}
+
+main>section>ul>li {
+    display: inline-block;
+}
+
+main>section>ul>li>button {
+    margin: 1.5em 0.8em;
+    padding: 1.2em 2em;
+    background-color: whitesmoke;
+    font-size: 1em;
+    color: black;
+    text-transform: capitalize;
+    border-radius: 0.6em;
+    cursor: pointer;
+}
+
+main>section>ul>li>button:hover {
+    box-shadow: 0px 0px 10px grey;
+}
+
+main>section>ul>li>button::first-letter {
+    text-transform: capitalize;
+}
+
+main>section>ul>li>button.selected {
+    background-color: var(--text-color);
+    color: white;
+}
+
+
+/* Grid layout to display article in page 
+    5% padding - (45% column - 5% column-gap - 45% column - 5% column-gap)
+    Treat as 100% for box-sizing: border-box
+*/
+
+main>section>div {
+    display: grid;
+    padding: 2em 5% 2em 5%;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-auto-rows: 1fr;
+    row-gap: 2em;
+}
+
+
+/*
+    Flex to align vertically items. Only p can grow to reach all same height
+*/
+
+main>section>div>article {
+    padding: 1em;
+    background-color: white;
+    border-radius: 1.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+main>section>div>article:hover {
+    box-shadow: 0px 0px 10px var(--text-color);
+}
+
+main>section>div>article>header {
+    text-align: end;
+}
+
+main>section>div>article>header>button:first-of-type {
+    float: left;
+    width: 3em;
+    height: 3em;
+    border-radius: 100%;
+    -webkit-mask: url(../../res/img/icons/minus-circle.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/minus-circle.svg) center / contain no-repeat;
+    background: var(--text-color);
+    color: transparent;
+    cursor: pointer;
+}
+
+main>section>div>article>header>button:last-of-type {
+    width: 3em;
+    height: 3em;
+    border-radius: 100%;
+    -webkit-mask: url(../../res/img/icons/plus-circle.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/plus-circle.svg) center / contain no-repeat;
+    background: var(--text-color);
+    color: transparent;
+    cursor: pointer;
+}
+
+main>section>div>article>header>h3 {
+    text-align: center;
+    font-size: 1.6em;
+    overflow: hidden;
+}
+
+
+/*
+    The p can expand to all article remaining height.
+    The exceded lines are clamped
+*/
+
+main>section>div>article>p {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    word-break: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    flex-grow: 1;
+}
+
+main>section>div>article>p::first-letter {
+    text-transform: capitalize;
+}
+
+main>section>div>article>footer>p:first-of-type {
+    float: left;
+    margin-top: 1em;
+    color: var(--text-color);
+    font-size: 1.2em;
+}
+
+main>section>div>article>footer>p:last-of-type {
+    float: right;
+    margin-top: 1em;
+    color: var(--text-color);
+    font-size: 1.2em;
+}
+
+main > a {
+    display: inline-block;
+    position: sticky;
+    bottom: 3.5em;
+    margin: 1em 10%;
+    padding: .6em 0;
+    width: 80%;
+
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: -0.05em;
+    background-color: var(--text-color);
+    border-radius: 0.6em;
+    z-index: 3;
+}
+
+@media screen and (min-width: 768px) {
+    main>section>div {
+        padding: 1em 20% 2em 20%;
+        grid-template-columns: 100%;
+    }
+
+    main > a {
+        margin: 1em 25%;
+        width: 50%;
+    }
+}

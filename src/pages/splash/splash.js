@@ -1,15 +1,5 @@
-$(document).ready(() => {
-    /* Span Click */
-    $("span").click(function(e) {
-        e.preventDefault();
-        removeAllActiveItem();
-        activeItem(this);
-        showCorrectPage(this);
-    });
+import { Page } from '../../res/js/page.js';
 
-    setInterval(nextSlide, 5000);
-
-});
 
 function nextSlide() {
     const actual = $("span.item-active");
@@ -40,4 +30,20 @@ function showCorrectPage(item) {
             $("#" + index).addClass('page-hide');
         }
     });
+}
+export class SplashPage extends Page {
+
+    onPageLoad() {
+
+        $("span").click(function(e) {
+            e.preventDefault();
+            removeAllActiveItem();
+            activeItem(this);
+            showCorrectPage(this);
+        });
+
+        setInterval(nextSlide, 5000);
+
+    }
+
 }

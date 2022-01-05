@@ -6,21 +6,22 @@ class SalesTagsApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::OPEN, Api::DENIED, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::OPEN)
+            ->build();
+        parent::__construct($auth);
     }
 
 
     // implement methods
     public function onGet($params){
 
-        $tags = TagsApi::get([])["data"];
+        $tags = TagsApi::get([])->getData();
         $results = array_filter($tags, function($tag){
             return !is_null($tag["sale_price"]);
         });
 
-        $this->setResponseCode(200);
-        $this->setResponseMessage("OK");
-        $this->setResponseData($results);
+        return Response::ok($results);
 
     }
 

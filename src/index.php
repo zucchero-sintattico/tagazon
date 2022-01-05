@@ -1,29 +1,82 @@
 <?php
 
+class Page {
+
+    public $name;
+    public $authRequired;
+    public $navbar;
+
+    public function __construct($name, $authRequired, $navbar) {
+        $this->name = $name;
+        $this->authRequired = $authRequired;
+        $this->navbar = $navbar;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getFormatName() {
+        return str_replace('-', '', ucwords($this->name, '-'));
+    }
+
+    public function isAuthRequired() {
+        return $this->authRequired;
+    }
+
+    public function isNavbarPresent() {
+        return $this->navbar;
+    }
+
+    public function getHtml() {
+        return "./pages/$this->name/$this->name.html";
+    }
+
+    public function getCss() {
+        return "./pages/$this->name/$this->name.css";
+    }
+
+    public function getJs() {
+        return "./pages/$this->name/$this->name.js";
+    }
+
+}
+
 class Pages {
+    
+    const pages = array(
+
+        /**
+         * Pages without authentication
+         */
+        'splash' => ['splash', false, false],
+        'login' => ['login', false, false],
+        'register' => ['register', false, false],
+        'error' => ['error', false, false],
+        'restore-password' => ['restore-password', false, false],
+        'restore-password-success' => ['restore-password-success', false, false],
+        
+        /**
+         * Pages with authentication
+         */
+        'home' => ['home', true, true],
+        'info-tag' => ['info-tag', true, true],
+        'cart' => ['cart', true, true],
+        'notifications' => ['notifications', true, true],
+        'profile' => ['profile', true, true],
+        'payment' => ['payment', true, false],
+    );
 
     const userNotLoggedDefaultPage = "splash";
     const defaultPage = "home";
     const errorPage = "error";
 
-    const pages = [
-
-        /**
-         * Pages without authentication
-         */
-        'splash' => false, 
-        'login' => false, 
-        'register' => false, 
-        'error' => false, 
-        
-        /**
-         * Pages with authentication
-         */
-        'home' => true
-    ];
-
     static function get($page) {
         $page = strtolower($page);
+        if ($page == self::errorPage) {
+            self::renderPage($page);
+            die();
+        }
         if (!in_array($page, array_keys(self::pages))) {
             header("Location: ./?page=" . self::errorPage);
             die();
@@ -39,7 +92,7 @@ class Pages {
     }
 
     static function isAuthRequiredForPage($page) {
-        return self::pages[$page];
+        return self::pages[$page][1];
     }
 
     static function isUserLoggedIn() {
@@ -51,6 +104,7 @@ class Pages {
      * @param $page -- the page to render [REQUIRED BECAUSE IT HAS TO BE PASSED TO base.php]
      */
     static function renderPage($page) {
+        $page = new Page(...self::pages[$page]);
         require __DIR__ . "/pages/base.php";
     }
 
@@ -58,7 +112,7 @@ class Pages {
 
 session_start();
 if (!isset($_GET["page"])){
-    Pages::get(Pages::userNotLoggedDefaultPage);
+    header("Location: ./?page=" . Pages::userNotLoggedDefaultPage);
 } else {
     Pages::get($_GET["page"]);
 }

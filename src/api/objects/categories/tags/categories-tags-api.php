@@ -6,35 +6,38 @@ class CategoriesTagsApi extends Api {
 
     public function __construct()
     {
-        parent::__construct(Api::OPEN, Api::DENIED, Api::DENIED, Api::DENIED);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::OPEN)
+            ->build();
+
+        parent::__construct($auth);
     }
 
     // implement methods
     public function onGet($params){
 
         if (!isset($params["category_id"])) {
-            $this->setResponseCode(400);
-            $this->setResponseMessage("Missing category_id parameter");
-            return;
+            return Response::badRequest("category_id is required");
         }
 
-        $category_id = $params["category_id"]; 
-        
-        $tags_cat = TagsCategoriesApi::get(["category" => $category_id])["data"];
+        $category_id = $params["category_id"];        
+        $tags_cat = TagsCategoriesApi::get(["category" => $category_id])->getData();
 
         $tags_id = array_map(function($tc){
-            return $tc->tag;
-        }, $tags_cat);
-        
+            return $tc["tag"];
+        }, $tags_cat);        
 
         $tags = [];
         foreach($tags_id as $tag_id){
-            array_push($tags, TagsApi::get(["id" => $tag_id])["data"][0]);
+            array_push($tags, TagsApi::get(["id" => $tag_id])->getData()[0]);
         }
 
-        $this->setResponseCode(200);
-        $this->setResponseMessage("OK");
-        $this->setResponseData($tags);
+        // sort based on name
+        usort($tags, function($a, $b){
+            return strcmp($a["name"], $b["name"]);
+        });
+
+        return Response::ok($tags);
     }
     
 }

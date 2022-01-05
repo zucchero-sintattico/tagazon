@@ -6,13 +6,17 @@ class NotificationsApi extends EntityApi {
 
     public function __construct()
     {
-        parent::__construct(Notification::class, Api::BUYER, Api::SERVER, Api::BUYER, Api::SERVER);
+        $auth = ApiAuth::builder()
+            ->get(ApiAuth::BUYER)
+            ->build();
+        parent::__construct(Notification::class, $auth);
     }
 
     public function canAccess($element)
     {
-        $order = (array)(OrdersApi::get(["id" => $element["order"]], true)["data"][0]);
-        return $order["buyer"] == $_SESSION["user"]["id"];
+        $order = OrdersApi::get(["id" => $element["order"]], true)->getData()[0];
+        $res = ($order["buyer"] == $_SESSION["user"]["id"]);
+        return $res;
     }
 
     public function canModify($element)

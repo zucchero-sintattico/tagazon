@@ -1,29 +1,20 @@
 /**
  * Manager for interact with user-access Api
  */
-class UserManager {
+export class AuthManager {
 
-    static baseUrl = '/tagazon/src/api/users/';
-    static user = null;
+    baseUrl = '/tagazon/src/api/users/';
 
-    static start(ifLogged, ifNotLogged) {
-        this.updateInfo(
-            (data) => {
-                ifLogged();
-            },
-            (err) => {
-                ifNotLogged();
-            }
-        );
+    start(onReady) {
+        this.updateInfo(onReady);
     }
 
-    static updateInfo(onSuccess = () => {}, onError = (err) => {}) {
+    updateInfo(onSuccess = () => {}, onError = () => {}) {
         $.ajax({
-            url: this.baseUrl + 'info/',
+            url: `${this.baseUrl}info/`,
             type: 'GET',
             success: (data) => {
-                UserManager.user = data["data"];
-                onSuccess(data);
+                onSuccess(data.data);
             },
             error: onError
         });
@@ -36,9 +27,9 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    static login(email, password, onSuccess = (data) => window.location.reload(), onError = (err) => console.error(err)) {
+    login(email, password, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
-            url: this.baseUrl + "login/",
+            url: `${this.baseUrl}login/`,
             type: "POST",
             data: {
                 email: email,
@@ -54,9 +45,9 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    static logout(onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
+    logout(onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
         $.ajax({
-            url: this.baseUrl + "logout/",
+            url: `${this.baseUrl}logout/`,
             type: "POST",
             success: onSuccess,
             error: onError
@@ -72,9 +63,10 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    static registerBuyer(email, password, name, surname, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
+    registerBuyer(email, password, name, surname, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
+        let _this = this;
         $.ajax({
-            url: this.baseUrl + "register/",
+            url: `${this.baseUrl}register/`,
             type: "POST",
             data: {
                 email: email,
@@ -82,8 +74,8 @@ class UserManager {
                 name: name,
                 surname: surname
             },
-            success: (data) => {
-                UserManager.login(email, password, onSuccess);
+            success: () => {
+                _this.login(email, password, onSuccess);
             },
             error: onError
         });
@@ -98,9 +90,10 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful 
      * @param {function} onError the function to call when the request is not successful
      */
-    static registerSeller(email, password, rag_soc, piva, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
+    registerSeller(email, password, rag_soc, piva, onSuccess = () => window.location.reload(), onError = (err) => console.error(err)) {
+        let _this = this;
         $.ajax({
-            url: this.baseUrl + "register/",
+            url: `${this.baseUrl}register/`,
             type: "POST",
             data: {
                 email: email,
@@ -108,8 +101,8 @@ class UserManager {
                 rag_soc: rag_soc,
                 piva: piva
             },
-            success: (data) => {
-                UserManager.login(email, password, onSuccess);
+            success: () => {
+                _this.login(email, password, onSuccess);
             },
             error: onError
         });
@@ -121,9 +114,9 @@ class UserManager {
      * @param {function} onSuccess the function to call when the request is successful
      * @param {function} onError the function to call when the request is not successful
      */
-    static resetPassword(email, onSuccess, onError = (err) => console.error(err)) {
+    resetPassword(email, onSuccess, onError = (err) => console.error(err)) {
         $.ajax({
-            url: this.baseUrl + "reset-password/",
+            url: `${this.baseUrl}reset-password/`,
             type: "POST",
             data: {
                 email: email

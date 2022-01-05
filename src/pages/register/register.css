@@ -73,14 +73,24 @@ main > form > section > input {
 
     /* for left image */
     background-repeat: no-repeat;
-    background-size: 3.5em;
-    background-position: left;
+    background-size: 1.5em;
+    background-position: left 1em top 50%;
     
     border: 2px solid var(--primary-color);
     border-radius: 0.6em;
     
     -webkit-appearance: none; /* for iphone box-shadow in form */
     box-shadow: 0 0.25em 0.25em #bbb;
+}
+
+main > form > section > input[type=email] {
+    padding: 0.8em 3.5em;
+    background-image: url('../../res/img/icons/mail.webp');
+}
+
+main > form > section > input[type=password] {
+    padding: 0.8em 3.5em;
+    background-image: url('../../res/img/icons/key.webp');
 }
 
 main > form > section > input:nth-of-type(1) {
