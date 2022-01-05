@@ -1,16 +1,18 @@
 @import '../base.css';
 html,
 body {
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
     font-family: 'Poppins';
     animation: fade-in 2s ease 0s 1 normal forwards;
+    font-size: 48px;
     overflow-x: hidden;
 }
 
 body>header {
-    height: 20vh;
+    height: 20%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -28,7 +30,7 @@ body>header>h1 {
 }
 
 body>main {
-    height: 80vh;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -44,15 +46,6 @@ body>main>section>img {
 body>main>section>h2 {
     font-size: 0.5em;
     font-weight: normal;
-}
-
-body>main>section {
-    height: 40vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    animation: slide-in-right 2s ease 0s 1 normal forwards;
 }
 
 body>main>section>a {
