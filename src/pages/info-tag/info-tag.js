@@ -39,7 +39,5 @@ export class InfoTagPage extends NavbarPage {
                 });
             }
         });
-
     }
-
 }
