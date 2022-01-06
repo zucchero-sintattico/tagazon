@@ -6,11 +6,12 @@ export class LoginPage extends Page {
     onPageLoad() {
         $("form").submit(function(e) {
             e.preventDefault();
+            $("#error").hide(0);
             Application.authManager.login(
                 $("#email").val(),
                 $("#password").val(),
                 () => window.location.reload(),
-                () => { $("#error").toggle(500).delay(5000).toggle(500); }
+                () => { $("#error").show(500); }
             );
         });
     }

@@ -22,23 +22,36 @@ export class RegisterPage extends Page {
 
         $("form").submit(function(e) {
             e.preventDefault();
-            const type = $("input[type=radio]").val();
-            if (type === "cliente") {
-                Application.authManager.registerBuyer(
-                    $("#email").val(),
-                    $("#password").val(),
-                    $("#nome").val(),
-                    $("#cognome").val(),
-                );
+            $("#error").hide(0);
+            if ($("#password").val() === $("#conferma_password").val()) {
+                const type = $("input[type=radio]:checked").val();
+                if (type === "cliente") {
+                    Application.authManager.registerBuyer(
+                        $("#email").val(),
+                        $("#password").val(),
+                        $("#nome").val(),
+                        $("#cognome").val(),
+                        () => window.location.reload(),
+                        () => onError("Invalid email")
+                    );
+                } else {
+                    Application.authManager.registerSeller(
+                        $("#email").val(),
+                        $("#password").val(),
+                        $("#rag_soc").val(),
+                        $("#piva").val(),
+                        () => window.location.reload(),
+                        () => onError("Invalid email")
+                    );
+                }
             } else {
-                Application.authManager.registerSeller(
-                    $("#email").val(),
-                    $("#password").val(),
-                    $("#rag_soc").val(),
-                    $("#piva").val(),
-                );
+                onError("No matched password");
             }
 
         });
     }
+}
+
+function onError(error) {
+    $("#error").text(error).show(500);
 }
