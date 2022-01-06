@@ -16,7 +16,7 @@ function createArticle(tag) {
             url: `/tagazon/src/api/objects/tags/?id=${tag.id}`,
             type: "DELETE",
             success: () => {
-                load();
+                requestGet(`/tagazon/src/api/objects/sellers/tags/?seller_id=${Application.user.getId()}`, loadTags);
             }
         });
     });
