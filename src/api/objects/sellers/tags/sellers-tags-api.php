@@ -16,7 +16,7 @@ class SellersTagsApi extends Api {
     public function onGet($params){
 
         if (!isset($params["seller_id"])) {
-            return Response::badRequest("seller is required");
+            return Response::badRequest("seller_id is required");
         }
 
         $seller_id = $params["seller_id"];
