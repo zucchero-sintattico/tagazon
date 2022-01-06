@@ -8,7 +8,9 @@ export class LoginPage extends Page {
             e.preventDefault();
             Application.authManager.login(
                 $("#email").val(),
-                $("#password").val()
+                $("#password").val(),
+                () => window.location.reload(),
+                () => { $("#error").toggle(500).delay(5000).toggle(500); }
             );
         });
     }
