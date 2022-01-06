@@ -27,12 +27,20 @@ class SellersCategoriesTagsApi extends Api {
         $category_id = $params["category_id"];
 
         $tags = SellersTagsApi::get(["seller_id" => $seller_id])->getData();
+        $cattags = TagsCategoriesApi::get(["category" => $category_id])->getData();
 
-        $results = array_filter($tags, function($tag) use ($category_id){
-            return $tag["category"] == $category_id;
-        });
+        $tags_categories = [];
+        foreach ($tags as $tag) {
+            foreach ($cattags as $cattag) {
+                if ($tag["id"] == $cattag["tag"]) {
+                    if (!in_array($tag, $tags_categories)) {
+                        array_push($tags_categories, $tag);
+                    }
+                }
+            }
+        }
 
-        return Response::ok($tags);
+        return Response::ok($tags_categories);
     }
     
 }

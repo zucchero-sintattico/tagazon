@@ -118,7 +118,8 @@ function handleChangeCategory() {
         requestGet(
             `/tagazon/src/api/objects/sellers/categories/tags/?category_id=${this.categoryId}&seller_id=${Application.user.getId()}`,
             (tags) => {
-                return tags.length > 0 ? loadTags(tags) : requestGet(`api/objects/sellers/tags/?seller_id=${Application.user.getId()}`, loadTags);
+                console.log(tags);
+                return loadTags(tags);
             },
         );
     }
@@ -126,7 +127,7 @@ function handleChangeCategory() {
 
 
 function load() {
-    requestGet(`/tagazon/src/api/objects/categories/`, loadCategory);
+    requestGet(`/tagazon/src/api/objects/sellers/categories/?seller_id=${Application.user.getId()}`, loadCategory);
     requestGet(`/tagazon/src/api/objects/sellers/tags/?seller_id=${Application.user.getId()}`, loadTags);
 }
 
