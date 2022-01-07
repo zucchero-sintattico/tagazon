@@ -77,6 +77,9 @@ class Pages {
          * Admin pages
          */
         'seller-home' => ['seller-home', false, false, true],
+        'seller-profile' => ['seller-profile', false, false, true],
+        'seller-add-product' => ['seller-add-product', false, false, true],
+        'seller-notifications' => ['seller-notifications', false, false, true],
     );
 
     const userNotLoggedDefaultPage = "splash";
