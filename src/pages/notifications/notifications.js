@@ -69,5 +69,11 @@ export class NotificationsPage extends NavbarPage {
             const article = this.createArticle(notification);
             $("main").append(article);
         });
+
+        if (Application.notifications.length !== 0) {
+            $("#empty-notifications").hide(500);
+        } else {
+            $("#empty-notifications").show(500);
+        }
     }
 }

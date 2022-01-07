@@ -10,6 +10,13 @@ h1 {
     text-align: center;
 }
 
+h1 + p {
+    display: none;
+    margin: 1em 0;
+    text-align: center;
+    font-size: 2em;
+}
+
 main {
     margin: 1em 5%;
     width: 90%;
