@@ -1,3 +1,4 @@
+import { NotificationObject } from "./objects/notification.js";
 export class NotificationsService {
 
     protocol = "wss";
@@ -67,7 +68,7 @@ export class NotificationsService {
             success: (data) => {
                 let notifications = data.data;
                 notifications.forEach((notification) => {
-                    let not = new NotificationObject(notification.id, notification.order, notification.timestamp, notification.title, notification.message, notification.seen);
+                    let not = new NotificationObject(notification.id, notification.order, notification.timestamp, notification.title, notification.message, notification.seen, () => {});
                     _this.onNewNotification(not);
                     not.setReceived();
                     service.createNotification(notification);

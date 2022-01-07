@@ -30,6 +30,7 @@ export class Application {
     static notificationsListen = false;
 
     static start(page) {
+
         Application.loadUser();
         Application.page = page;
         let methods = new Set()

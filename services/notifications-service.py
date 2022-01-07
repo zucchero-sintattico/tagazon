@@ -30,9 +30,9 @@ class Mqtt:
         print(f'Publishing to {topic}')
         self.client.publish(topic, "NEW", qos=1)
 
-mqttClient = Mqtt()
-mqttClient.connect()
 while True:
+    mqttClient = Mqtt()
+    mqttClient.connect()
     response = requests.get(url)
     buyers = json.loads(response.text)["data"]
     for buyerId in buyers:

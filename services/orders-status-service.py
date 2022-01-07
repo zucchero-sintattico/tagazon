@@ -31,7 +31,7 @@ def getNextStatus(status):
     
 def setStatus(order, status):
     order["status"] = status
-    requests.patch(f'http://{website}/api/objects/orders/&python-bot', order)
+    requests.put(f'http://{website}/api/objects/orders/&python-bot', order)
 
 def checkOrderAndSetStatus(order, nextStatus):
     timestamp = datetime.strptime(order["timestamp"], "%Y-%m-%d %H:%M:%S")
@@ -42,11 +42,12 @@ def checkOrderAndSetStatus(order, nextStatus):
             "status": nextStatus,
             "timestamp": datetime.now()
         }
-        response = requests.patch(url, data)
+        response = requests.put(url, data)
         if response.status_code == 200:
             sendNotification(order, nextStatus)
             print(f'The status of order {order["id"]} has been changed to {nextStatus}')
         else:
+            print(response.text)
             print('Error')
             
 def checkOrdersAndSetStatus(orders, nextStatus):

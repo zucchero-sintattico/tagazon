@@ -8,6 +8,7 @@ class OrdersTagsApi extends EntityApi {
     {
         $auth = ApiAuth::builder()
             ->get(ApiAuth::OPEN)
+            ->post(ApiAuth::SERVER)
             ->build();
         parent::__construct(OrderTag::class, $auth);
     }

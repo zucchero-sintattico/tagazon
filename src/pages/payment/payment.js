@@ -8,8 +8,16 @@ export class PaymentPage extends Page {
         $("#submit").val(`Paga (${Application.cart.getTotalPrice().toFixed(2)}€)`);
         $("#submit").click((e) => {
             e.preventDefault();
+            $.ajax({
+                url: "/tagazon/src/api/objects/orders/",
+                method: "POST",
+                success: (data) => {
+                    window.location.href = "?page=order-completed";
+                }
 
-            window.location.href = "?page=order-completed";
+            });
+
+
         });
     }
 }
