@@ -170,7 +170,15 @@ main>section>div>article>footer>p:last-of-type {
     font-size: 1.2em;
 }
 
+main > p {
+    display: none;
+    text-align: center;
+    font-size: 2em;
+    color: var(--text-color);
+}
+
 main > a {
+    visibility: hidden;
     display: inline-block;
     position: sticky;
     bottom: 3.5em;

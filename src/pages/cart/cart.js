@@ -85,7 +85,15 @@ export class CartPage extends NavbarPage {
             $("#cart-items").append(createArticle(item));
         });
 
-        $("#cart-total").html(`(${Application.cart.getTotalPrice().toFixed(2)}€)`);
+        if (Application.cart.getItems().length !== 0) {
+            $("#cart-total").html(`(${Application.cart.getTotalPrice().toFixed(2)}€)`);   
+            $("#checkout").css("visibility", "visible");
+            $("#empty-cart").hide(500);
+        } else {
+            $("#cart-total").html("");
+            $("#checkout").css("visibility", "hidden");
+            $("#empty-cart").show(500);
+        }
     }
 
 }
