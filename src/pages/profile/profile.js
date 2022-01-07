@@ -1,9 +1,10 @@
-import { Page } from "../../res/js/page.js";
 import { Application } from "../../res/js/application.js";
-export class ProfilePage extends Page {
+import { NavbarPage } from '../navbar/navbar.js';
 
-    onPageLoad() {
-        $("h1").text(`Bentornato ${Application.user.getName()}`)
+export class ProfilePage extends NavbarPage {
+
+    onUserLoad() {
+        $("h1").text(`Profile - ${Application.user.getAlias()}`);
     }
 
 }

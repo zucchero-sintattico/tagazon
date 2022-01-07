@@ -20,6 +20,9 @@ class User {
         return this.type;
     }
 
+    getAlias() {
+        return this.email.split("@")[0];
+    }
 
 }
 
@@ -37,6 +40,10 @@ export class Seller extends User {
     getPiva() {
         return this.piva;
     }
+
+    getAlias() {
+        return this.rag_soc;
+    }
 }
 
 export class Buyer extends User {
@@ -45,5 +52,9 @@ export class Buyer extends User {
         super(id, email, Buyer);
         this.name = name;
         this.surname = surname;
+    }
+
+    getAlias() {
+        return `${this.name} ${this.surname}`;
     }
 }
