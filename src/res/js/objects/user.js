@@ -46,4 +46,13 @@ export class Buyer extends User {
         this.name = name;
         this.surname = surname;
     }
+
+    getName() {
+        return this.name;
+    }
+
+    getSurname() {
+        return this.surname;
+    }
+
 }

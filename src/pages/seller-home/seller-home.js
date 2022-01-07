@@ -16,7 +16,8 @@ function createArticle(tag) {
             url: `/tagazon/src/api/objects/tags/?id=${tag.id}`,
             type: "DELETE",
             success: () => {
-                requestGet(`/tagazon/src/api/objects/sellers/tags/?seller_id=${Application.user.getId()}`, loadTags);
+                $(article).fadeOut(500, () => { article.remove(); });
+
             }
         });
     });
@@ -118,7 +119,6 @@ function handleChangeCategory() {
         requestGet(
             `/tagazon/src/api/objects/sellers/categories/tags/?category_id=${this.categoryId}&seller_id=${Application.user.getId()}`,
             (tags) => {
-                console.log(tags);
                 return loadTags(tags);
             },
         );
