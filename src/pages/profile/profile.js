@@ -7,4 +7,10 @@ export class ProfilePage extends NavbarPage {
         $("h1").text(`Profile - ${Application.user.getAlias()}`);
     }
 
+    onPageLoad() {
+        $("#logout").on("click", () => {
+            document.cookie = "PHPSESSID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        });
+    }
+
 }
