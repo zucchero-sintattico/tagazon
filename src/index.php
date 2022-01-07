@@ -71,6 +71,7 @@ class Pages {
         'notifications' => ['notifications', true, true],
         'profile' => ['profile', true, true],
         'payment' => ['payment', true, false],
+        'order-completed' => ['order-completed', true, false],
 
 
         /**
