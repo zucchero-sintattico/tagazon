@@ -67,7 +67,7 @@ export class NotificationsPage extends NavbarPage {
         $("main").html("");
         Application.notifications.forEach((notification) => {
             const article = this.createArticle(notification);
-            $("main").append(article);
+            $("main").prepend(article);
         });
     }
 }

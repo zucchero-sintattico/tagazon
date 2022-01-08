@@ -12,7 +12,8 @@ export class NotificationsService {
         const options = {
             clean: true,
             connectTimeout: 30000,
-            qos: 1
+            qos: 1,
+            clientId: `${this.userId}`,
         }
         this.client = mqtt.connect(`${this.protocol}://${this.server}:${this.port}/mqtt`, options)
         let service = this;
@@ -49,6 +50,9 @@ export class NotificationsService {
                             icon: "/tagazon/src/res/img/logo.png",
                             data: notification.timestamp,
                             origin: "Tagazon",
+                            data: {
+                                url: "/tagazon/src/?page=notifications"
+                            }
                         });
                     },
                     function(err) {

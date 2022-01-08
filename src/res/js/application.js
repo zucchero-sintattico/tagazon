@@ -8,7 +8,7 @@ import { Order } from './objects/order.js';
 
 export class Application {
 
-    static baseUrl = "/tagazon/src/api/./objects/";
+    static baseUrl = "/tagazon/src/api/objects/";
 
     static page = null;
 

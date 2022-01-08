@@ -33,6 +33,11 @@ def setStatus(order, status):
     order["status"] = status
     requests.put(f'http://{website}/api/objects/orders/&python-bot', order)
 
+def buildMessageTitle(order, status):
+    return f'The status of order {order["id"]} has been changed to {status}'
+def buildMessageBody(order, status):
+    return f'The status of order {order["id"]} has been changed to {status}'
+
 def checkOrderAndSetStatus(order, nextStatus):
     timestamp = datetime.strptime(order["timestamp"], "%Y-%m-%d %H:%M:%S")
     if ((datetime.now() - timestamp).total_seconds() >= 2):
@@ -56,8 +61,8 @@ def checkOrdersAndSetStatus(orders, nextStatus):
         
 
 def sendNotification(order, nextStatus):
-    title = f"Your order's status is: {nextStatus}";
-    body = f"Your order's status has been changed from {order['status']} to {nextStatus}.";
+    title = f"{nextStatus.lower().capitalize()}: Your order #{order['id']} has been {nextStatus.lower()}";
+    body = f"Dear customer, your order #{order['id']} has been {nextStatus.lower()}. \nThank you for choosing Tagazon.";
     data = {
         "order": order["id"],
         "title": title,
