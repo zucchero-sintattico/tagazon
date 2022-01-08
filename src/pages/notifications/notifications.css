@@ -1,4 +1,4 @@
-@import '../seller-page.css';
+@import '../buyer-page.css';
 
 /*
 Empty section error paragraph
@@ -77,14 +77,7 @@ main>section>div>article>footer>p {
 
 @media screen and (min-width: 768px) {
     main>section {
-        margin: 1.5em 25%;
-        width: 50%;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    main>section {
-        margin: 1.5em 35%;
-        width: 30%;
+        margin: 1.5em 15% 0;
+        width: 70%;
     }
 }

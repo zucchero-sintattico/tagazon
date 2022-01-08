@@ -14,8 +14,8 @@ export class Application {
 
     static user = null;
     static cart = null;
-    static orders = null;
-    static notifications = null;
+    static orders = [];
+    static notifications = [];
 
     static authManager = new AuthManager();
     static notificationsService = new NotificationsService();
@@ -56,6 +56,9 @@ export class Application {
                 case "onNotificationsChange":
                     Application.onNotificationsChange(() => Application.page.onNotificationsChange());
                     break;
+                case "onOrdersReady":
+                    Application.whenOrdersReady(() => Application.page.onOrdersReady());
+                    break;
             }
         });
 
@@ -70,7 +73,7 @@ export class Application {
                 if (user.type == "buyer") {
                     Application.user = new Buyer(user.id, user.email, user.name, user.surname);
                 } else if (user.type == "seller") {
-                    Application.user = new Seller(user.id, user.email, user.rag_soc, user.piva);
+                    Application.user = new Seller(user.id, user.email, user.rag_soc, user.piva, user.balance);
                 }
 
                 Application.userReady = true;
@@ -111,14 +114,26 @@ export class Application {
         $.ajax({
             url: Application.baseUrl + "orders/",
             type: "GET",
-            success: (data) => {
-                Application.orders = data.data.map((order) => new Order(order));
-                Application.ordersReady = true;
+            success: (response) => {
+                Application._buildOrders(response.data, 0, () => {
+                    Application.ordersReady = true;
+                });
             },
             error: (data) => {
                 console.error(data);
             }
         });
+    }
+    static _buildOrders(orders, index = 0, onReady) {
+        if (index < orders.length) {
+            const order = orders[index];
+            const orderItem = new Order(order, () => {
+                Application.orders.push(orderItem);
+                Application._buildOrders(orders, index + 1, onReady);
+            });
+        } else {
+            onReady();
+        }
     }
     static loadNotifications() {
         if (!Application.userReady) {

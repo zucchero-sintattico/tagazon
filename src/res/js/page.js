@@ -12,6 +12,9 @@ export class Page {
         // Extend this class and implement this method
     }
 
+    onOrdersReady() {}
+
+
     onNotificationsChange() {
         // Extend this class and implement this method
     }

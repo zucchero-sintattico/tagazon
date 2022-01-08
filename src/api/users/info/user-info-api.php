@@ -22,6 +22,16 @@ class UserInfoApi extends Api {
         $user = $_SESSION["user"];
         unset($user["password"]);
 
+        if ($user["type"] == "seller"){
+            $balance = 0;
+            $orderTags = OrdersTagsApi::get([], true)->getData();
+            foreach ($orderTags as $orderTag){
+                $tag = TagsApi::get(["id" => $orderTag["tag"]], true)->getData()[0];
+                $balance += ($tag["sale_price"] !== null ? $tag["sale_price"] : $tag["price"]) * $orderTag["quantity"];
+            }
+            $user["balance"] = $balance;
+        }
+
         return Response::ok($user, "User info");
     }
     

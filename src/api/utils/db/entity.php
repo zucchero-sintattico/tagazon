@@ -55,7 +55,11 @@ abstract class Entity
             array_push($bind_params, "$value");
         }
 
-        $where = join(' = ? AND ', $keys) . (count($keys) > 0 ? ' = ? ' : '');
+        // Wrap keys in tilde
+        $wrappedKeys = array_map(function ($key) {
+            return "`$key`";
+        }, $keys);
+        $where = join(' = ? AND ', $wrappedKeys) . (count($wrappedKeys) > 0 ? ' = ? ' : '');
         $bind = join('', $bind);
 
         $query = "SELECT * FROM $tableName WHERE $where ORDER BY $orderBy";

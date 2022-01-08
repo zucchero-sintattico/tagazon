@@ -1,4 +1,4 @@
-@import '../seller-page.css';
+@import '../buyer-page.css';
 
 /*
 Put the distance from the top
@@ -169,6 +169,6 @@ main>div>form>input[type=submit]:hover {
         width: 30%;
     }
     .popup {
-        width: 30%;
+        width: 40%;
     }
 }

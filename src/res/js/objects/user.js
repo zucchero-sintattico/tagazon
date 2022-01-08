@@ -27,10 +27,11 @@ class User {
 }
 
 export class Seller extends User {
-    constructor(id, email, rag_soc, piva) {
+    constructor(id, email, rag_soc, piva, balance) {
         super(id, email, Seller);
         this.rag_soc = rag_soc;
         this.piva = piva;
+        this.balance = balance;
     }
 
     getRagSoc() {
@@ -41,8 +42,8 @@ export class Seller extends User {
         return this.piva;
     }
 
-    getAlias() {
-        return this.rag_soc;
+    getBalance() {
+        return this.balance;
     }
 }
 
@@ -65,5 +66,6 @@ export class Buyer extends User {
     getSurname() {
         return this.surname;
     }
+
 
 }
