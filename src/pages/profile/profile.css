@@ -35,8 +35,8 @@ main>div>form>h2 {
 Close icon on form and success popup
 */
 
-main>div>form>a,
-main>div>div>a {
+main>div>form>button,
+main>div>div>button {
     display: inline-block;
     width: 1rem;
     height: 1rem;
