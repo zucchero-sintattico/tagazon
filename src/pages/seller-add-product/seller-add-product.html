@@ -3,10 +3,7 @@
         <form action="#" method="POST">
             <section>
                 <h2>Select categories</h2>
-                <ul>
-                    <li><input type="checkbox" name="category" id="item1" value="item1" /><label for="item1">item1</label></li>
-                    <li><input type="checkbox" name="category" id="item2" value="item2" /><label for="item2">item2</label></li>
-                </ul>
+                <ul id="category-list"></ul>
             </section>
             <section>
                 <h2>Tag information</h2>
@@ -23,6 +20,7 @@
                 <label for="tag-discount">Tag discount</label>
                 <input type="number" name="tag-discount" id="tag-discount" placeholder="Discount €" />
             </section>
-            <input type="submit" value="Sell the Tag" />
+            <input id="form-submit" type="submit" value="Sell the Tag" />
+            <p id="tag-error">Tag insertion error</p>
         </form>
     </main>

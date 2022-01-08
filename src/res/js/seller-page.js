@@ -1,6 +1,6 @@
 import { Page } from "./page.js";
 
-export class SellerPage {
+export class SellerPage extends Page {
 
     onSellerNotificationChange() {
 

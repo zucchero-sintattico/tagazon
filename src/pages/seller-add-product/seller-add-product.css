@@ -50,6 +50,7 @@ main > form > section > ul > li > label {
 
 main > form > section > ul > li > input[type=checkbox]:checked+label {
     background-color: var(--primary-color);
+    color: white;
 }
 
 main > form > section > ul > li > input {

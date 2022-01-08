@@ -18,6 +18,29 @@ export class SellerAddProductPage extends NavbarSellerPage {
         $("textarea")[2].id = idCodeMirror;
         $(`<label for="${idCodeMirror}">Code Example</label>`).insertBefore($("textarea")[2]);
         
+        $("#form-submit").on("click", () => {
+            //TODO make post here
+        });
+    }
+
+    createCategory(category) {
+        return `<li><input type="checkbox" name="category" id="${category.id}" value="${category.name}" /><label for="${category.id}">${category.name}</label></li>`;
+    }
+
+    onUserLoad() {
+        super.onUserLoad();
+
+        $.ajax({
+            url: "./api/objects/categories",
+            method: "GET",
+            success: (response) => {
+                const { data } = response;
+                data.forEach(category => {
+                    $("#category-list").append(this.createCategory(category));
+                });
+            },
+            error: (err) => { console.log(err); }
+        })
     }
     
 }
