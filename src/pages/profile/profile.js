@@ -3,13 +3,11 @@ import { NavbarPage } from '../navbar/navbar.js';
 
 export class ProfilePage extends NavbarPage {
 
+    onUserLoad() {}
+
     onUserLoad() {
+
         $("h1").text(`Profile - ${Application.user.getAlias()}`);
-    }
-
-    onUserLoad() {
-
-        $("h1").text(`Bentornato ${Application.user.getName()}`)
 
         $("#logout").click(() => {
             Application.authManager.logout(() => {

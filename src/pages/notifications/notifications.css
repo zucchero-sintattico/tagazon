@@ -6,11 +6,14 @@ body {
 }
 
 h1 {
-    margin: 1em 0;
+    color: var(--text-color);
     text-align: center;
+    font-size: 2em;
+    font-family: AlfaSlabOne;
+    margin: 1em 0;
 }
 
-h1 + p {
+h1+p {
     display: none;
     margin: 1em 0;
     text-align: center;
@@ -18,13 +21,13 @@ h1 + p {
 }
 
 main {
-    margin: 1em 5%;
-    width: 90%;
+    background-color: var(--background-body);
+    width: 100%;
     min-height: 90%;
 }
 
 main>article {
-    margin: 1em 0;
+    margin: 1em 5%;
     padding: .25em .5em;
     background-color: var(--notification-unseen);
     border-radius: .5em;

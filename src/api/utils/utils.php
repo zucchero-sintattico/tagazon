@@ -7,6 +7,8 @@ require __DIR__.'/mailer/SMTP.php';
 
 function sendMail($to, $subject, $message)
 {
+	$credentials = parse_ini_file("/tagazon/src/secrets.ini");
+
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
 	$mail->Mailer = "smtp";
@@ -14,11 +16,11 @@ function sendMail($to, $subject, $message)
 	$mail->SMTPSecure = "tls";
 	$mail->Port       = 587;
 	$mail->Host       = "smtp.gmail.com";
-	$mail->Username   = "tagazon2021@gmail.com";
-	$mail->Password   = "muxnar-6rybqo-Kudgaf";
+	$mail->Username   = $credentials["email"];
+	$mail->Password   = $credentials["password"];
 	$mail->IsHTML(true);
 	$mail->AddAddress($to);
-	$mail->SetFrom("tagazon2021@gmail.com", "Tagazon");
+	$mail->SetFrom($credentials["email"], $credentials["name"]);
 	$mail->Subject = $subject;
 	$mail->MsgHTML("<b>$message</b>"); 
 	return $mail->Send();
