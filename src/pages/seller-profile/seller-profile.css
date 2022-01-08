@@ -43,8 +43,8 @@ main>div>div>h2 {
 Close icon on form and success popup
 */
 
-main>div>form>a,
-main>div>div>a {
+main>div>form>button,
+main>div>div>button {
     float: right;
     display: inline;
     width: 1rem;

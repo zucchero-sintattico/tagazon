@@ -20,6 +20,8 @@ export class Application {
     static authManager = new AuthManager();
     static notificationsService = new NotificationsService();
 
+    static startedUserLoading = false;
+
     static pageReady = false;
     static userReady = false;
     static cartReady = false;
@@ -31,7 +33,6 @@ export class Application {
 
     static start(page) {
 
-        Application.loadUser();
         Application.page = page;
         let methods = new Set()
         let currentObj = Object.getPrototypeOf(page)
@@ -44,11 +45,11 @@ export class Application {
 
         methods.forEach((method) => {
             switch (method) {
-                case "onPageLoad":
-                    Application.whenPageReady(() => Application.page.onPageLoad());
-                    break;
                 case "onUserLoad":
                     Application.whenUserReady(() => Application.page.onUserLoad());
+                    break;
+                case "onPageLoad":
+                    Application.whenPageReady(() => Application.page.onPageLoad());
                     break;
                 case "onCartChange":
                     Application.onCartChange(() => Application.page.onCartChange());
@@ -114,9 +115,13 @@ export class Application {
             url: Application.baseUrl + "orders/",
             type: "GET",
             success: (response) => {
+                Application.orders = response.data;
+                Application.ordersReady = true;
+                /*
                 Application._buildOrders(response.data, 0, () => {
                     Application.ordersReady = true;
                 });
+                */
             },
             error: (data) => {
                 console.error(data);
@@ -191,8 +196,10 @@ export class Application {
     }
 
     static onCartChange(callback) {
-        Application.loadCart();
-        return Application._whenReady("cart", callback);
+        Application.whenUserReady(() => {
+            Application.loadCart();
+            Application._whenReady("cart", callback);
+        });
     }
     static onNotificationsChange(callback) {
         Application.loadNotifications();
@@ -203,16 +210,22 @@ export class Application {
 
 
     static whenOrdersReady(callback) {
-        Application.loadOrders();
-        return Application._whenReady("orders", callback);
+        Application.whenUserReady(() => {
+            Application.loadOrders();
+            Application._whenReady("orders", callback);
+        });
     }
 
     static whenUserReady(callback) {
+        if (!Application.startedUserLoading) {
+            Application.startedUserLoading = true;
+            Application.loadUser();
+        }
         return Application._whenReady("user", callback);
     }
 
     static whenPageReady(callback) {
-        return Application._whenReady("page", callback);
+        Application._whenReady("page", callback);
     }
 
 }

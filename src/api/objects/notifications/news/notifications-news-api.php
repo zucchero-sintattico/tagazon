@@ -18,9 +18,14 @@ class NotificationsNewsApi extends Api {
         $orders_id = array_unique(array_map(function($notification){
             return $notification["order"];
         }, $news));
-        $buyers = array_unique(array_map(function($order_id){
-            return OrdersApi::get(["id" => $order_id], true)->getData()[0]["buyer"];
-        }, $orders_id));
+
+        $buyers = [];
+        foreach ($orders_id as $order_id) {
+            $buyer = OrdersApi::get(["id" => $order_id], true)->getData()[0]["buyer"];
+            if (!in_array($buyer, $buyers)) {
+                $buyers[] = $buyer;
+            }
+        }
 
         return Response::ok($buyers);
     }

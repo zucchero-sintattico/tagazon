@@ -3,13 +3,6 @@ import { NavbarPage } from '../navbar/navbar.js';
 
 export class ProfilePage extends NavbarPage {
 
-    onOrdersReady() {
-        Application.orders.forEach(order => {
-            console.log(Application.orders);
-            console.log(`Order ${order.getId()}: ${order.getTotalPrice()}`);
-        });
-    }
-
     onUserLoad() {
 
         $("h1").text(`Profile - ${Application.user.getAlias()}`);
