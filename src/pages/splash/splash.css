@@ -55,9 +55,9 @@ body>main>a {
 body>main>footer {
     height: 30vh;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
 
 body>main>footer>div>span {
