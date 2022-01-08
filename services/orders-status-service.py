@@ -61,7 +61,7 @@ def checkOrdersAndSetStatus(orders, nextStatus):
         
 
 def sendNotification(order, nextStatus):
-    title = f"{nextStatus.lower().capitalize()}: Your order #{order['id']} has been {nextStatus.lower()}";
+    title = f"Order #{order['id']}: {nextStatus.lower().capitalize()}";
     body = f"Dear customer, your order #{order['id']} has been {nextStatus.lower()}. \nThank you for choosing Tagazon.";
     data = {
         "order": order["id"],

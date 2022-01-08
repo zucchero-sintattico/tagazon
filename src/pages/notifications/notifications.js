@@ -17,15 +17,11 @@ export class NotificationsPage extends NavbarPage {
         </article>
         */
         const article = document.createElement("article");
+        if (notification.getSeen()) {
+            // add class seen
+            article.classList.add("seen");
+        }
         article.ariaRoleDescription = "button"; /* for screen readers */
-
-        /* event on click of all article */
-        article.addEventListener(
-            "click",
-            () => {
-                window.location.href = `./?page=info_tag&tag_id=${notification.tag.id}`
-            }
-        );
 
         /* header */
         const header = document.createElement("header");
@@ -34,7 +30,7 @@ export class NotificationsPage extends NavbarPage {
         deleteButton.innerText = "Elimina";
         deleteButton.addEventListener("click", (e) => {
             e.stopPropagation();
-            Application.notification.deleteNotification(notification.id);
+            notification.setSeen(!notification.getSeen());
         });
 
         const h2 = document.createElement("h2");
@@ -64,7 +60,7 @@ export class NotificationsPage extends NavbarPage {
 
     onNotificationsChange() {
         super.onNotificationsChange();
-        $("main").html("");
+        $("main").empty();
         Application.notifications.forEach((notification) => {
             const article = this.createArticle(notification);
             $("main").prepend(article);

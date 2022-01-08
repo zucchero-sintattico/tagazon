@@ -19,8 +19,12 @@ main {
 main>article {
     margin: 1em 0;
     padding: .25em .5em;
-    background-color: var(--text-color);
+    background-color: var(--notification-unseen);
     border-radius: .5em;
+}
+
+main>article.seen {
+    background-color: var(--notification-seen);
 }
 
 main>article>*::first-letter {
@@ -37,13 +41,18 @@ main>article>header {
 
 main>article>header>button {
     text-align: right;
-    width: 1em;
-    height: 1em;
-    -webkit-mask: url(../../res/img/icons/close-x.svg) center / contain no-repeat;
-    mask: url(../../res/img/icons/close-x.svg) center / contain no-repeat;
+    width: 2em;
+    height: 2em;
     background: white;
     color: transparent;
     cursor: pointer;
+    -webkit-mask: url(../../res/img/icons/eye-open.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/eye-open.svg) center / contain no-repeat;
+}
+
+main>article.seen>header>button {
+    -webkit-mask: url(../../res/img/icons/eye-closed.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/eye-closed.svg) center / contain no-repeat;
 }
 
 main>article>header>h2 {

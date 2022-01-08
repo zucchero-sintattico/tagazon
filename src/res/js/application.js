@@ -76,6 +76,8 @@ export class Application {
                 Application.userReady = true;
                 Application.notificationsService.start(user.id, (notification) => {
                     Application.addNotification(notification);
+                }, () => {
+                    Application.notifyNotificationChange();
                 });
             }
         );

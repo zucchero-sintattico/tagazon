@@ -32,15 +32,15 @@ export class NotificationObject {
         return this.seen;
     }
 
-    setSeen() {
-        this.seen = true;
+    setSeen(seen = true) {
+        this.seen = seen;
         const _this = this;
         $.ajax({
             url: `${NotificationObject.baseUrl}?id=${this.id}`,
             type: "PUT",
             data: {
                 "id": this.id,
-                "seen": true
+                "seen": seen
             },
             success: () => {
                 _this.onNotificationChange();
