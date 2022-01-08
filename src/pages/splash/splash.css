@@ -6,17 +6,15 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Poppins';
-    animation: fade-in 2s ease 0s 1 normal forwards;
     font-size: 48px;
     overflow-x: hidden;
-}
-
-body>header {
-    height: 20%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    animation: fade-in 2s ease 0s 1 normal forwards;
+    gap: 0.5em;
 }
 
 body>header>h1 {
@@ -27,15 +25,6 @@ body>header>h1 {
     font-size: 1em;
     letter-spacing: -0.06em;
     -webkit-text-stroke: 0.06em var(--primary-color);
-}
-
-body>main {
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 body>main>section>img {
