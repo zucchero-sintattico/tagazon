@@ -1,7 +1,7 @@
 import { Application } from '../../res/js/application.js';
 import { NavbarPage } from '../navbar/navbar.js';
 
-export class NotificationsPage extends NavbarPage {
+export class SellerNotificationsPage extends NavbarPage {
 
     createArticle(notification) {
         /*
@@ -17,11 +17,15 @@ export class NotificationsPage extends NavbarPage {
         </article>
         */
         const article = document.createElement("article");
-        if (notification.getSeen()) {
-            // add class seen
-            article.classList.add("seen");
-        }
         article.ariaRoleDescription = "button"; /* for screen readers */
+
+        /* event on click of all article */
+        article.addEventListener(
+            "click",
+            () => {
+                window.location.href = `./?page=info_tag&tag_id=${notification.tag.id}`
+            }
+        );
 
         /* header */
         const header = document.createElement("header");
@@ -30,7 +34,7 @@ export class NotificationsPage extends NavbarPage {
         deleteButton.innerText = "Elimina";
         deleteButton.addEventListener("click", (e) => {
             e.stopPropagation();
-            notification.setSeen(!notification.getSeen());
+            Application.notification.deleteNotification(notification.id);
         });
 
         const h2 = document.createElement("h2");
@@ -60,16 +64,10 @@ export class NotificationsPage extends NavbarPage {
 
     onNotificationsChange() {
         super.onNotificationsChange();
-        $("main").empty();
+        $("main").html("");
         Application.notifications.forEach((notification) => {
             const article = this.createArticle(notification);
-            $("main").prepend(article);
+            $("main").append(article);
         });
-
-        if (Application.notifications.length !== 0) {
-            $("#empty-notifications").hide(500);
-        } else {
-            $("#empty-notifications").show(500);
-        }
     }
 }

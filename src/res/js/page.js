@@ -10,7 +10,6 @@ export class Page {
 
     onCartChange() {
         // Extend this class and implement this method
-        console.log("Cart change");
     }
 
     onNotificationsChange() {

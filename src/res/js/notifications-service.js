@@ -1,3 +1,4 @@
+import { NotificationObject } from "./objects/notification.js";
 export class NotificationsService {
 
     protocol = "wss";
@@ -5,13 +6,14 @@ export class NotificationsService {
     port = 8084;
     topic = "tagazon-notifications";
 
-    start(userId, onNewNotification) {
+    start(userId, onNewNotification, onNotificationChange) {
         this.userId = userId;
         this.onNewNotification = onNewNotification;
+        this.onNotificationChange = onNotificationChange;
         const options = {
             clean: true,
             connectTimeout: 30000,
-            qos: 1
+            qos: 1,
         }
         this.client = mqtt.connect(`${this.protocol}://${this.server}:${this.port}/mqtt`, options)
         let service = this;
@@ -48,6 +50,9 @@ export class NotificationsService {
                             icon: "/tagazon/src/res/img/logo.png",
                             data: notification.timestamp,
                             origin: "Tagazon",
+                            data: {
+                                url: "/tagazon/src/?page=notifications"
+                            }
                         });
                     },
                     function(err) {
@@ -67,8 +72,8 @@ export class NotificationsService {
             success: (data) => {
                 let notifications = data.data;
                 notifications.forEach((notification) => {
-                    let not = new NotificationObject(notification.id, notification.order, notification.timestamp, notification.title, notification.message, notification.seen);
-                    _this.onNewNotification(not);
+                    let not = new NotificationObject(notification.id, notification.order, notification.timestamp, notification.title, notification.message, notification.seen, service.onNotificationChange);
+                    service.onNewNotification(not);
                     not.setReceived();
                     service.createNotification(notification);
                 });

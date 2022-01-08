@@ -25,18 +25,19 @@ class ResetPasswordApi extends Api {
             $seller = $sellers[0];
             $seller["password"] = password_hash($password, PASSWORD_DEFAULT);
             $res = SellersApi::put($seller);
-            sendMail($seller["email"], "Password reset", "Your new password is: " . $password);
+            $resMail = sendMail($seller["email"], "Password reset", "Your new password is: " . $password);
         } else if (count($buyers) > 0) {
             $buyer = $buyers[0];
             $buyer["password"] = password_hash($password, PASSWORD_DEFAULT);
             $res = BuyersApi::put($buyer);
-            sendMail($buyer["email"], "Password reset", "Your new password is: " . $password);
+            $resMail = sendMail($buyer["email"], "Password reset", "Your new password is: " . $password);
         } else {
             return Response::notFound("User not found");
         }
-
-        if ($res->getCode() == 200) {
-            return Response::ok($res->getData(), "Password reset");
+        
+        
+        if ($res->getCode() == 200 && $resMail) {
+            return Response::ok($res->getData(), "Password reset $resMail");
         } else {
             return Response::badRequest("Error resetting password");
         }

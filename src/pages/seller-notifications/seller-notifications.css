@@ -10,13 +10,6 @@ h1 {
     text-align: center;
 }
 
-h1 + p {
-    display: none;
-    margin: 1em 0;
-    text-align: center;
-    font-size: 2em;
-}
-
 main {
     margin: 1em 5%;
     width: 90%;
@@ -26,12 +19,8 @@ main {
 main>article {
     margin: 1em 0;
     padding: .25em .5em;
-    background-color: var(--notification-unseen);
+    background-color: var(--text-color);
     border-radius: .5em;
-}
-
-main>article.seen {
-    background-color: var(--notification-seen);
 }
 
 main>article>*::first-letter {
@@ -43,24 +32,18 @@ main>article:last-of-type {
 }
 
 main>article>header {
-    margin: 1em;
     text-align: right;
 }
 
 main>article>header>button {
     text-align: right;
-    width: 2em;
-    height: 2em;
+    width: 1em;
+    height: 1em;
+    -webkit-mask: url(../../res/img/icons/close-x.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/close-x.svg) center / contain no-repeat;
     background: white;
     color: transparent;
     cursor: pointer;
-    -webkit-mask: url(../../res/img/icons/eye-open.svg) center / contain no-repeat;
-    mask: url(../../res/img/icons/eye-open.svg) center / contain no-repeat;
-}
-
-main>article.seen>header>button {
-    -webkit-mask: url(../../res/img/icons/eye-closed.svg) center / contain no-repeat;
-    mask: url(../../res/img/icons/eye-closed.svg) center / contain no-repeat;
 }
 
 main>article>header>h2 {
@@ -72,7 +55,6 @@ main>article>header>h2 {
 }
 
 main>article>p {
-    margin: 1em;
     color: white;
     font-size: 1.2em;
 }
@@ -80,7 +62,7 @@ main>article>p {
 main>article>footer>p {
     color: white;
     text-align: right;
-    font-size: 1em;
+    font-size: .6em;
 }
 
 nav {

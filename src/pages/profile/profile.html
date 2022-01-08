@@ -1,6 +1,30 @@
 <h1>Profile</h1>
 <main>
     <a href="#">My orders</a>
-    <a href="#">Password reset</a>
-    <a id="logout" href="./?page=splash">Logout</a>
+    <a href="#change-password-popup" id="change-password">Change Password</a>
+    <a href="#" id="logout">Logout</a>
+
+    <div id="change-password-popup" class="overlay">
+        <form action="#" id="change-password-form" class="popup">
+            <h2>Change Password</h2>
+            <a href="#" id="dismiss"></a>
+            <label for="old-password">Old password: </label>
+            <input type="password" id="old-password" placeholder="Old password" required>
+            <label for="new-password">New password: </label>
+            <input type="password" id="new-password" placeholder="New password" required>
+            <label for="confirm-password">Confirm password: </label>
+            <input type="password" id="confirm-password" placeholder="Confirm password" required>
+            <p id="error"></p>
+            <input type="submit" value="Change Password">
+        </form>
+    </div>
+    <div id="box" class="overlay">
+        <div class="popup">
+            <h2>Password changed</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                Your password has been changed.
+            </div>
+        </div>
+    </div>
 </main>

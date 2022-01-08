@@ -8,7 +8,7 @@ import { Order } from './objects/order.js';
 
 export class Application {
 
-    static baseUrl = "/tagazon/src/api/./objects/";
+    static baseUrl = "/tagazon/src/api/objects/";
 
     static page = null;
 
@@ -30,6 +30,7 @@ export class Application {
     static notificationsListen = false;
 
     static start(page) {
+
         Application.loadUser();
         Application.page = page;
         let methods = new Set()
@@ -75,6 +76,8 @@ export class Application {
                 Application.userReady = true;
                 Application.notificationsService.start(user.id, (notification) => {
                     Application.addNotification(notification);
+                }, () => {
+                    Application.notifyNotificationChange();
                 });
             }
         );

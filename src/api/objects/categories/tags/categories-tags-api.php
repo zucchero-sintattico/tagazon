@@ -20,7 +20,7 @@ class CategoriesTagsApi extends Api {
             return Response::badRequest("category_id is required");
         }
 
-        $category_id = $params["category_id"];        
+        $category_id = $params["category_id"];
         $tags_cat = TagsCategoriesApi::get(["category" => $category_id])->getData();
 
         $tags_id = array_map(function($tc){

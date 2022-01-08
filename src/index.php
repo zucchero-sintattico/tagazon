@@ -5,11 +5,13 @@ class Page {
     public $name;
     public $authRequired;
     public $navbar;
+    public $seller;
 
-    public function __construct($name, $authRequired, $navbar) {
+    public function __construct($name, $authRequired, $navbar, $seller=false) {
         $this->name = $name;
         $this->authRequired = $authRequired;
         $this->navbar = $navbar;
+        $this->seller = $seller;
     }
 
     public function getName(){
@@ -26,6 +28,10 @@ class Page {
 
     public function isNavbarPresent() {
         return $this->navbar;
+    }
+
+    public function isSeller() {
+        return $this->seller;
     }
 
     public function getHtml() {
@@ -65,10 +71,21 @@ class Pages {
         'notifications' => ['notifications', true, true],
         'profile' => ['profile', true, true],
         'payment' => ['payment', true, false],
+        'order-completed' => ['order-completed', true, false],
+
+
+        /**
+         * Admin pages
+         */
+        'seller-home' => ['seller-home', false, false, true],
+        'seller-profile' => ['seller-profile', false, false, true],
+        'seller-add-product' => ['seller-add-product', false, false, true],
+        'seller-notifications' => ['seller-notifications', false, false, true],
     );
 
     const userNotLoggedDefaultPage = "splash";
-    const defaultPage = "home";
+    const defaultBuyerPage = "home";
+    const defaultSellerPage = "seller-home";
     const errorPage = "error";
 
     static function get($page) {
@@ -81,24 +98,58 @@ class Pages {
             header("Location: ./?page=" . self::errorPage);
             die();
         }
-        if (self::isAuthRequiredForPage($page) && !self::isUserLoggedIn()) {
-            header("Location: ./?page=" . self::userNotLoggedDefaultPage);
-            die();
-        } else if (!self::isAuthRequiredForPage($page) && self::isUserLoggedIn()) {
-            header("Location: ./?page=" . self::defaultPage);
-            die();
+
+        if (self::isSellerPage($page)) {
+            if (self::isSeller()) {
+                return self::renderPage($page);
+            } else if (self::isBuyer()) {
+                header("Location: ./?page=" . self::defaultBuyerPage);
+                die();
+            } else {
+                header("Location: ./?page=" . self::userNotLoggedDefaultPage);
+                die();
+            }
         }
-        self::renderPage($page);
+
+        if (self::isAuthRequiredForPage($page)) {
+            if (self::isBuyer()) {
+                return self::renderPage($page);
+            } else if (self::isSeller()){
+                header("Location: ./?page=" . self::defaultSellerPage);
+                die();
+            } else {
+                header("Location: ./?page=" . self::userNotLoggedDefaultPage);
+                die();
+            }
+        } else {
+            if (self::isSeller()) {
+                header("Location: ./?page=" . self::defaultSellerPage);
+                die();
+            } else if (self::isBuyer()) {
+                header("Location: ./?page=" . self::defaultBuyerPage);
+                die();
+            } else {
+                return self::renderPage($page);
+            }
+        }
+        
     }
 
     static function isAuthRequiredForPage($page) {
         return self::pages[$page][1];
     }
 
-    static function isUserLoggedIn() {
-        return isset($_SESSION["user"]);
+    static function isSellerPage($page) {
+        return (new Page(...self::pages[$page]))->isSeller();
     }
 
+    static function isBuyer() {
+        return isset($_SESSION["user"]) && $_SESSION["user"]["type"] == "buyer";
+    }
+
+    static function isSeller() {
+        return isset($_SESSION["user"]) && $_SESSION["user"]["type"] == "seller";;
+    }
     /**
      * Renders the page
      * @param $page -- the page to render [REQUIRED BECAUSE IT HAS TO BE PASSED TO base.php]

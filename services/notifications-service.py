@@ -10,7 +10,7 @@ if len(sys.argv) > 1:
     website = sys.argv[1]
     
 url = f'http://{website}/api/objects/notifications/news/'
-delay = 1
+delay = 2
 
 class Mqtt:
     
@@ -30,9 +30,10 @@ class Mqtt:
         print(f'Publishing to {topic}')
         self.client.publish(topic, "NEW", qos=1)
 
-mqttClient = Mqtt()
-mqttClient.connect()
 while True:
+    print('Checking for new notifications...')
+    mqttClient = Mqtt()
+    mqttClient.connect()
     response = requests.get(url)
     buyers = json.loads(response.text)["data"]
     for buyerId in buyers:

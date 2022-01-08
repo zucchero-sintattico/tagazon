@@ -7,25 +7,20 @@ require __DIR__.'/mailer/SMTP.php';
 
 function sendMail($to, $subject, $message)
 {
-	$email = "tagazon@programmer.net";
-
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
-	$mail->Host = 'smtp.mail.com';
-	$mail->Port = 587;
-	$mail->SMTPAuth = true;
-	$mail->Username = $email;
-	$mail->Password = 'DejK5FT6BFsO';
-	$mail->SMTPSecure = 'tls';
-	$mail->From = $email;
-	$mail->FromName = 'Tagazon';
-	$mail->AddAddress($to);
-	$mail->AddReplyTo($email);
-	$mail->WordWrap = 50;
+	$mail->Mailer = "smtp";
+	$mail->SMTPAuth   = TRUE;
+	$mail->SMTPSecure = "tls";
+	$mail->Port       = 587;
+	$mail->Host       = "smtp.gmail.com";
+	$mail->Username   = "tagazon2021@gmail.com";
+	$mail->Password   = "muxnar-6rybqo-Kudgaf";
 	$mail->IsHTML(true);
+	$mail->AddAddress($to);
+	$mail->SetFrom("tagazon2021@gmail.com", "Tagazon");
 	$mail->Subject = $subject;
-	$mail->Body = $message;
-	$mail->AltBody = $message;
+	$mail->MsgHTML("<b>$message</b>"); 
 	return $mail->Send();
 }
 

@@ -126,4 +126,17 @@ export class AuthManager {
         });
     }
 
+    changePassword(oldPassword, newPassword, onSuccess, onError = (err) => console.error(err)) {
+
+        $.ajax({
+            url: `${this.baseUrl}change-password/`,
+            type: "POST",
+            data: {
+                oldPassword: oldPassword,
+                newPassword: newPassword
+            },
+            success: onSuccess,
+            error: onError
+        });
+    }
 }

@@ -16,6 +16,9 @@ function requireRecursive($dir, $depth=1) {
 }
 
 requireRecursive(__DIR__);
-
-
+require_once __DIR__ . "/utils/mailer/PHPMailer.php";
+require_once __DIR__ . "/utils/mailer/Exception.php";
+require_once __DIR__ . "/utils/mailer/OAuth.php";
+require_once __DIR__ . "/utils/mailer/Exception.php";
+require_once __DIR__ . "/utils/mailer/POP3.php";
 ?>

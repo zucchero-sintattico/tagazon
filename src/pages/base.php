@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="<?php echo $page->getCss(); ?>"/>
     <?php if ($page->isNavbarPresent()): ?>
         <link rel="stylesheet" href="./pages/navbar/navbar.css"/>
+    <?php elseif ($page->isSeller()): ?>
+        <link rel="stylesheet" href="./pages/navbar-seller/navbar-seller.css"/>
     <?php endif; ?>
     <script type="module" src="<?php echo $page->getJs(); ?>"></script>
     <script type="module">
@@ -44,6 +46,8 @@
         require $page->getHtml(); 
         if ($page->isNavbarPresent()) {
             require './pages/navbar/navbar.html';
+        } else if ($page->isSeller()) {
+            require './pages/navbar-seller/navbar-seller.html';
         }
     ?>
 

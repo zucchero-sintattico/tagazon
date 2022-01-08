@@ -15,12 +15,12 @@ class SellersTagsApi extends Api {
     // implement methods
     public function onGet($params){
 
-        if (!isset($params["seller"])) {
-            return Response::badRequest("seller is required");
+        if (!isset($params["seller_id"])) {
+            return Response::badRequest("seller_id is required");
         }
 
-        $seller = $params["seller"];
-        $tags = TagsApi::get(["seller" => $seller])->getData();
+        $seller_id = $params["seller_id"];
+        $tags = TagsApi::get(["seller" => $seller_id])->getData();
 
         return Response::ok($tags);
     }

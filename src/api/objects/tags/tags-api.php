@@ -17,7 +17,7 @@ class TagsApi extends EntityApi {
 
     public function canModify($element)
     {
-        return $element["seller"] == $_SESSION["user"]->id;
+        return $element["seller"] == $_SESSION["user"]["id"];
     }
 
     public function canDelete($element)

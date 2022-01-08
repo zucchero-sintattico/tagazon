@@ -57,4 +57,13 @@ export class Buyer extends User {
     getAlias() {
         return `${this.name} ${this.surname}`;
     }
+
+    getName() {
+        return this.name;
+    }
+
+    getSurname() {
+        return this.surname;
+    }
+
 }

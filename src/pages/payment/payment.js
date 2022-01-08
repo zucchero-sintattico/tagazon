@@ -4,7 +4,20 @@ import { Page } from "../../res/js/page.js";
 export class PaymentPage extends Page {
 
     onCartChange() {
-        super.onPageLoad();
+
         $("#submit").val(`Paga (${Application.cart.getTotalPrice().toFixed(2)}€)`);
+        $("#submit").click((e) => {
+            e.preventDefault();
+            $.ajax({
+                url: "/tagazon/src/api/objects/orders/",
+                method: "POST",
+                success: (data) => {
+                    window.location.href = "?page=order-completed";
+                }
+
+            });
+
+
+        });
     }
 }

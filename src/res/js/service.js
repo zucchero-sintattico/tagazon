@@ -1,18 +1,6 @@
-/*global clients*/
-self.addEventListener('notificationclick', function(event) {
-    event.notification.close();
+// Notification click event listener
+self.addEventListener('notificationclick', e => {
+    // Close the notification popout
+    e.notification.close();
 
-    // This looks to see if the current is already open and
-    // focuses if it is
-    event.waitUntil(clients.matchAll({
-        type: "window"
-    }).then(function(clientList) {
-        for (let i = 0; i < clientList.length; i++) {
-            const client = clientList[i];
-            if ('focus' in client)
-                return client.focus();
-        }
-        if (clients.openWindow)
-            return clients.openWindow('/?page=notifications');
-    }));
 });
