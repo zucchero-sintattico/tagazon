@@ -29,9 +29,8 @@ class OrdersApi extends EntityApi {
         }
 
         $status = "RECEIVED";
-        $items = ShoppingCartsTagsApi::get([])->getData();
         
-        $amount = array_reduce($items, function($acc, $item) {
+        $amount = array_reduce($shoppingCartItems, function($acc, $item) {
             $tag = TagsApi::get(['id' => $item['tag']])->getData()[0];
             return $acc + ($tag["sale_price"] != null ? $tag["sale_price"] : $tag["price"]) * $item['quantity'];
         }, 0);
@@ -50,7 +49,7 @@ class OrdersApi extends EntityApi {
                     "tag" => $item["tag"],
                     "quantity" => $item["quantity"]
                 ];
-            }, $items);
+            }, $shoppingCartItems);
             foreach ($orderTags as $orderTag) {
                 $result = OrdersTagsApi::post($orderTag, true);
                 if ($result->getCode() != 201) {

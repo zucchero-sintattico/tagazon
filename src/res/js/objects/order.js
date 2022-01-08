@@ -6,7 +6,7 @@ class OrderItem {
         this.quantity = item.quantity;
         const _this = this;
         $.ajax({
-            url: `/tagazon/src/api/objects/tags/?id=${this.id}`,
+            url: `/tagazon/src/api/objects/tags/?id=${item.tag}`,
             type: "GET",
             success: (response) => {
                 let { data } = response;

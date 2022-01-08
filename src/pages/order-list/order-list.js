@@ -7,7 +7,7 @@ export class OrderListPage extends NavbarPage {
         return `
             <article>
                 <h3>Order number #${order.id}</h3>
-                <p>Total: ${order.getTotalPrice()}€</p><p>${order.timestamp}</p>
+                <p>Total: ${parseFloat(order.amount).toFixed(2)}€</p><p>${order.timestamp}</p>
             </article>
         `;
     }
@@ -15,6 +15,7 @@ export class OrderListPage extends NavbarPage {
     onOrdersReady() {
         super.onUserLoad();
 
+        console.log(Application.orders);
         Application.orders.forEach((order) => {
             const article = this.createArticle(order);
             $("#orders").prepend(article);
