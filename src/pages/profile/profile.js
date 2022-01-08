@@ -54,7 +54,7 @@ export class ProfilePage extends NavbarPage {
             });
         });
 
-        $(".close").click(() => {
+        $("#close").click(() => {
             $("#box").fadeOut(200);
         });
 

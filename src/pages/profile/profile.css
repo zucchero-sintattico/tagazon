@@ -1,24 +1,17 @@
-@import '../base.css';
-html,
-body {
-    height: 100%;
-    font-family: AlfaSlabOne;
-}
+@import '../seller-page.css';
 
-h1 {
-    color: var(--text-color);
-    text-align: center;
-    font-size: 2em;
-    font-family: AlfaSlabOne;
-    margin: 1em 0;
-}
+/*
+Put the distance from the top
+*/
 
 main {
-    background-color: var(--background-body);
-    border-radius: 1em 1em 0 0;
     padding-top: 4em;
-    min-height: 90%;
 }
+
+
+/*
+Main items
+*/
 
 main>a {
     display: inline-block;
@@ -33,57 +26,17 @@ main>a {
     border-radius: 1em;
 }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-}
-
-.popup {
-    margin: 70px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 70%;
-    position: relative;
-    border-radius: 8px;
-}
-
-.popup h2 {
-    margin-top: 0;
-    color: #333;
-    font-family: Tahoma, Arial, sans-serif;
-}
-
-.close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-}
-
-.close:hover {
-    color: #06D85F;
-}
-
-.popup .content {
-    max-height: 30%;
-    overflow: auto;
-}
-
 main>div>form>h2 {
     text-align: center;
 }
 
-main>div>form>a {
+
+/*
+Close icon on form and success popup
+*/
+
+main>div>form>a,
+main>div>div>a {
     display: inline-block;
     width: 1rem;
     height: 1rem;
@@ -144,11 +97,6 @@ main>div>form>input {
     box-shadow: 0 0.25em 0.25em #bbb;
 }
 
-main>div>form>input[type=email] {
-    padding: 0.8em 3.5em;
-    background-image: url('../../res/img/icons/mail.webp');
-}
-
 main>div>form>input[type=password] {
     padding: 0.8em 3.5em;
     background-image: url('../../res/img/icons/key.webp');
@@ -159,18 +107,50 @@ main>div>form>input[type=submit] {
     width: 50%;
     padding: 10px 0;
     margin: 2em 25%;
-    color: var(--primary-color);
     font-size: 1em;
     text-decoration: none;
     text-align: center;
-    background-color: white;
     border: 2px solid var(--primary-color);
     border-radius: 0.8em;
-}
-
-main>div>form>input[type=sumbit]:hover {
     color: white;
     background-color: var(--primary-color);
+    cursor: pointer;
+}
+
+main>div>form>input[type=submit]:hover {
+    color: var(--primary-color);
+    background-color: white;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+.popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 70%;
+    position: relative;
+    border-radius: 8px;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -179,11 +159,7 @@ main>div>form>input[type=sumbit]:hover {
         width: 50%;
     }
     .popup {
-        width: 30%;
-    }
-    main>div>form {
         width: 60%;
-        margin: 50px 20%;
     }
 }
 
@@ -192,8 +168,7 @@ main>div>form>input[type=sumbit]:hover {
         margin: 1em 35%;
         width: 30%;
     }
-    main>div>form {
-        width: 40%;
-        margin: 50px 30%;
+    .popup {
+        width: 30%;
     }
 }

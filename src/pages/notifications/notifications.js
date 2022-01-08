@@ -60,10 +60,11 @@ export class NotificationsPage extends NavbarPage {
 
     onNotificationsChange() {
         super.onNotificationsChange();
-        $("main").empty();
+        $("#notifications").empty();
+
         Application.notifications.forEach((notification) => {
             const article = this.createArticle(notification);
-            $("section").prepend(article);
+            $("#notifications").prepend(article);
         });
 
         if (Application.notifications.length !== 0) {

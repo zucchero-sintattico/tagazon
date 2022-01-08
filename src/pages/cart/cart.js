@@ -80,13 +80,13 @@ export class CartPage extends NavbarPage {
     onCartChange() {
         super.onCartChange();
 
-        $("#cart-items").html("");
+        $("#cart-items").empty();
         Application.cart.getItems().forEach(item => {
             $("#cart-items").append(createArticle(item));
         });
 
         if (Application.cart.getItems().length !== 0) {
-            $("#cart-total").html(`(${Application.cart.getTotalPrice().toFixed(2)}€)`);   
+            $("#cart-total").html(`(${Application.cart.getTotalPrice().toFixed(2)}€)`);
             $("#checkout").css("visibility", "visible");
             $("#empty-cart").hide(500);
         } else {

@@ -30,7 +30,7 @@ class ResetPasswordApi extends Api {
             $buyer = $buyers[0];
             $buyer["password"] = password_hash($password, PASSWORD_DEFAULT);
             $res = BuyersApi::put($buyer);
-            $resMail = sendMail($buyer["email"], "Password reset", "Your new password is: " . $password);
+            $resMail = sendMail($buyer["email"], "Password reset", "Your new password is: " . $password . "\n");
         } else {
             return Response::notFound("User not found");
         }

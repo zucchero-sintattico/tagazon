@@ -1,56 +1,45 @@
-@import '../base.css';
-html,
-body {
-    font-family: AlfaSlabOne;
-    height: 100%;
-}
+@import '../seller-page.css';
 
-h1 {
-    color: var(--text-color);
-    text-align: center;
-    font-size: 2em;
-    font-family: AlfaSlabOne;
-    margin: 1em 0;
-}
+/*
+Empty section error paragraph
+*/
 
-h1+p {
+main>p {
     display: none;
-    margin: 1em 0;
     text-align: center;
     font-size: 2em;
+    color: var(--text-color);
 }
 
-main {
-    background-color: var(--background-body);
-    width: 100%;
-    min-height: 90%;
+main>section>div {
+    padding: 2em 5% 2em 5%;
 }
 
-main>article {
+main>section>div>article {
     margin: 1em 5%;
     padding: .25em .5em;
     background-color: var(--notification-unseen);
     border-radius: .5em;
 }
 
-main>article.seen {
+main>section>div>article.seen {
     background-color: var(--notification-seen);
 }
 
-main>article>*::first-letter {
+main>section>div>article>*::first-letter {
     text-transform: capitalize;
 }
 
-main>article:last-of-type {
+main>section>div>article:last-of-type {
     margin-bottom: 5.5em;
 }
 
-main>article>header {
+main>section>div>article>header {
     margin: 1em;
     text-align: right;
 }
 
-main>article>header>button {
+main>section>div>article>header>button {
     text-align: right;
     width: 2em;
     height: 2em;
@@ -61,12 +50,12 @@ main>article>header>button {
     mask: url(../../res/img/icons/eye-open.svg) center / contain no-repeat;
 }
 
-main>article.seen>header>button {
+main>section>div>article.seen>header>button {
     -webkit-mask: url(../../res/img/icons/eye-closed.svg) center / contain no-repeat;
     mask: url(../../res/img/icons/eye-closed.svg) center / contain no-repeat;
 }
 
-main>article>header>h2 {
+main>section>div>article>header>h2 {
     margin-top: -1em;
     margin-bottom: .5em;
     color: white;
@@ -74,31 +63,27 @@ main>article>header>h2 {
     font-size: 1.6em;
 }
 
-main>article>p {
+main>section>div>article>p {
     margin: 1em;
     color: white;
     font-size: 1.2em;
 }
 
-main>article>footer>p {
+main>section>div>article>footer>p {
     color: white;
     text-align: right;
     font-size: 1em;
 }
 
-nav {
-    background-color: white !important;
-}
-
 @media screen and (min-width: 768px) {
-    main {
+    main>section {
         margin: 1.5em 25%;
         width: 50%;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    main {
+    main>section {
         margin: 1.5em 35%;
         width: 30%;
     }

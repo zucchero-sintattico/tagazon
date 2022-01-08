@@ -1,31 +1,14 @@
-@import '../base.css';
-html,
-body {
-    height: 100%;
-}
+@import '../seller-page.css';
 
-h1 {
-    color: var(--text-color);
+/*
+Empty section error paragraph
+*/
+
+main>p {
+    display: none;
     text-align: center;
     font-size: 2em;
-    font-family: AlfaSlabOne;
-    margin: 1em 0;
-}
-
-main {
-    background-color: var(--background-body);
-    border-radius: 1em 1em 0 0;
-    min-height: 90%;
-}
-
-main>section>h2 {
-    /* hidden, but visible for screen readers category name */
-    clip: rect(1px 1px 1px 1px);
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    overflow: hidden;
-    position: absolute;
+    color: var(--text-color);
 }
 
 
@@ -170,14 +153,7 @@ main>section>div>article>footer>p:last-of-type {
     font-size: 1.2em;
 }
 
-main > p {
-    display: none;
-    text-align: center;
-    font-size: 2em;
-    color: var(--text-color);
-}
-
-main > a {
+main>a {
     visibility: hidden;
     display: inline-block;
     position: sticky;
@@ -185,7 +161,6 @@ main > a {
     margin: 1em 10%;
     padding: .6em 0;
     width: 80%;
-
     color: white;
     font-size: 1.2em;
     text-align: center;
@@ -201,8 +176,7 @@ main > a {
         padding: 1em 20% 2em 20%;
         grid-template-columns: 100%;
     }
-
-    main > a {
+    main>a {
         margin: 1em 25%;
         width: 50%;
     }
