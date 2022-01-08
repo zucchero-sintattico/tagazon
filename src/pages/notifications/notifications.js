@@ -33,7 +33,7 @@ export class NotificationsPage extends NavbarPage {
             notification.setSeen(!notification.getSeen());
         });
 
-        const h2 = document.createElement("h2");
+        const h2 = document.createElement("h3");
         h2.innerText = notification.title;
 
         header.appendChild(deleteButton);
