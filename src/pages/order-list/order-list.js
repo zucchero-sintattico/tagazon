@@ -7,12 +7,12 @@ export class OrderListPage extends NavbarPage {
         return `
             <article>
                 <h3>Order number #${order.id}</h3>
-                <p>Total: ${order.getTotalPrice()}€</p><p>${new Date(order.timestamp)}</p>
+                <p>Total: ${order.getTotalPrice()}€</p><p>${order.timestamp}</p>
             </article>
         `;
     }
 
-    onUserLoad() {
+    onOrdersReady() {
         super.onUserLoad();
 
         Application.orders.forEach((order) => {

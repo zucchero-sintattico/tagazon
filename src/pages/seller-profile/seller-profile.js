@@ -5,8 +5,17 @@ export class SellerProfilePage extends NavbarSellerPage {
 
     onUserLoad() {
 
+        console.log(Application.user);
         $("h1").text(`Profile - ${Application.user.getRagSoc()}`);
-        $("#balance").text(`Your balance: ${Application.user.getBalance().toFixed(2)}€`);
+        $("#balance").text(`Your balance: `);
+
+        $.ajax({
+            url: "/tagazon/src/api/users/info/balance/",
+            type: "GET",
+            success: (response) => {
+                $("#balance").text(`Your balance: ${response.data.toFixed(2)}€`);
+            }
+        });
 
         $("#logout").click(() => {
             Application.authManager.logout(() => {

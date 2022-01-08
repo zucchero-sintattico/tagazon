@@ -26,8 +26,11 @@ class UserInfoApi extends Api {
             $balance = 0;
             $orderTags = OrdersTagsApi::get([], true)->getData();
             foreach ($orderTags as $orderTag){
-                $tag = TagsApi::get(["id" => $orderTag["tag"]], true)->getData()[0];
-                $balance += ($tag["sale_price"] !== null ? $tag["sale_price"] : $tag["price"]) * $orderTag["quantity"];
+                $tag = TagsApi::get(["id" => $orderTag["tag"], "seller" => $user["id"]], true);
+                if ($tag->getCode() == 200){
+                    $data = $tag->getData()[0];
+                    $balance += ($data["sale_price"] !== null ? $data["sale_price"] : $data["price"]) * $orderTag["quantity"];
+                }
             }
             $user["balance"] = $balance;
         }

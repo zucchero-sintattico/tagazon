@@ -21,15 +21,26 @@ class Mqtt:
 
     def __init__(self):
         self.client = mqtt.Client(transport=self.transport)
+        self.connected_flag=False
     
     def connect(self):
+        self.client.on_connect = self.on_connect
         self.client.connect(self.server, self.port)
+        while not self.connected_flag: #wait in loop
+            print("In wait loop")
+            sleep(1)
     
     def publish(self, buyerId):
         topic = f'{self.topic}/{buyerId}'
         print(f'Publishing to {topic}')
-        self.client.publish(topic, "NEW", qos=1)
-
+        print(self.client.publish(topic, "NEW", qos=1))
+        
+    def on_connect(client, userdata, flags, rc):
+        if rc==0:
+            self.connected_flag=True #set flag
+            print("connected OK Returned code=",rc)
+        else:
+            print("Bad connection Returned code=",rc)
 while True:
     print('Checking for new notifications...')
     mqttClient = Mqtt()

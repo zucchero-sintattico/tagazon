@@ -47,7 +47,6 @@ export class Order {
             url: `/tagazon/src/api/objects/order_tags/?order=${this.id}`,
             type: "GET",
             success: (response) => {
-                console.log(response);
                 const items = response.data;
                 _this._buildItems(items, 0, onReady);
             }

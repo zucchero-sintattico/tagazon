@@ -69,7 +69,6 @@ export class Application {
         Application.userReady = false;
         Application.authManager.start(
             (user) => {
-
                 if (user.type == "buyer") {
                     Application.user = new Buyer(user.id, user.email, user.name, user.surname);
                 } else if (user.type == "seller") {
