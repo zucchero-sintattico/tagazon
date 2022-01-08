@@ -1,0 +1,69 @@
+@import '../seller-page.css';
+
+/*
+Empty section error paragraph
+*/
+
+main>p {
+    display: none;
+    text-align: center;
+    font-size: 2em;
+    color: var(--text-color);
+}
+
+main>section>div {
+    padding: 2em 5% 2em 5%;
+}
+
+main>section>div>article {
+    margin: 1em 5%;
+    padding: .5em 1em;
+    background-color: var(--notification-unseen);
+    border-radius: .5em;
+}
+
+main>section>div>article>*::first-letter {
+    text-transform: capitalize;
+}
+
+main>section>div>article:last-of-type {
+    margin-bottom: 5.5em;
+}
+
+main>section>div>article>h3 {
+    margin: 1em;
+    margin-bottom: .5em;
+    color: white;
+    text-align: center;
+    font-size: 1.6em;
+}
+
+main>section>div>article>p {
+    display: inline-block;
+    margin: 1em 0;
+    width: 50%;
+    color: white;
+    font-size: 1.2em;
+}
+
+main>section>div>article>p:first-of-type {
+    text-align: left;
+}
+
+main>section>div>article>p:nth-of-type(2) {
+    text-align: right;
+}
+
+@media screen and (min-width: 768px) {
+    main>section {
+        margin: 1.5em 15%;
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    main>section {
+        margin: 1.5em 25%;
+        width: 50%;
+    }
+}
