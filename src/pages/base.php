@@ -9,7 +9,15 @@
     <script src="./res/lib/jquery-3.6.0.min.js"></script>
     <script src="./res/lib/mqtt.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/googlecode.min.css"/>
+    <!-- Style for code -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+
+    <!-- Style for code insert -->
+    <script src="./res/lib/codemirror/lib/codemirror.js" defer></script>
+    <script src="./res/lib/codemirror/mode/xml/xml.js" defer></script>
+    <script src="./res/lib/codemirror/addon/edit/closetag.js" defer></script>
+    <link rel="stylesheet" href="./res/lib/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./res/lib/codemirror/theme/idea.css">
 
     <!-- 
         PHP-based
