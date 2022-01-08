@@ -7,7 +7,7 @@ require __DIR__.'/mailer/SMTP.php';
 
 function sendMail($to, $subject, $message)
 {
-	$credentials = parse_ini_file("/tagazon/src/secrets.ini");
+	$credentials = parse_ini_file(__DIR__."/../../secrets.ini");
 
 	$mail = new PHPMailer();
 	$mail->IsSMTP();
