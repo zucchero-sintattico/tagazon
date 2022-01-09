@@ -1,26 +1,26 @@
 <h1>Build your Tag!</h1>
-    <main>
-        <form action="#" method="POST">
-            <section>
-                <h2>Select categories</h2>
-                <ul id="category-list"></ul>
-            </section>
-            <section>
-                <h2>Tag information</h2>
-                <label for="tag-name">Tag name</label>
-                <input type="text" name="tag-name" id="tag-name" placeholder="Tag name" required />
-                <label for="tag-description">Tag description: max 240 characters</label>
-                <textarea name="tag-description" id="tag-description" maxlength="240" cols="24" rows="10" placeholder="Tag description: max 240 characters" required></textarea>
-                <label for="tag-info">Tag info</label>
-                <input type="text" name="tag-info" id="tag-info" placeholder="Tag info" required />
-                <label for="tag-code">Tag code example</label>
-                <textarea name="tag-code" id="tag-code" cols="30" rows="10" maxlength="512" placeholder="Code example" required></textarea>
-                <label for="tag-price">Tag price</label>
-                <input type="number" name="tag-price" id="tag-price" placeholder="Price €" required />
-                <label for="tag-discount">Tag discount</label>
-                <input type="number" name="tag-discount" id="tag-discount" placeholder="Discount €" />
-            </section>
-            <input id="form-submit" type="submit" value="Sell the Tag" />
-            <p id="tag-error">Tag insertion error</p>
-        </form>
-    </main>
+<main>
+    <form action="#" method="POST">
+        <section>
+            <h2>Select categories</h2>
+            <ul id="category-list"></ul>
+        </section>
+        <section>
+            <h2>Tag information</h2>
+            <label for="tag-name">Tag name</label>
+            <input type="text" name="tag-name" id="tag-name" placeholder="Tag name" required />
+            <label for="tag-description">Tag description: max 240 characters</label>
+            <textarea name="tag-description" id="tag-description" maxlength="240" cols="24" rows="10" placeholder="Tag description: max 240 characters" required></textarea>
+            <label for="tag-example-desc">Tag example desc</label>
+            <input type="text" name="tag-example-desc" id="tag-example-desc" placeholder="Tag example description" required />
+            <label for="tag-example">Tag code example</label>
+            <textarea name="tag-example" id="tag-example" cols="30" rows="10" maxlength="512" placeholder="Code example"></textarea>
+            <label for="tag-price">Tag price</label>
+            <input type="number" name="tag-price" id="tag-price" placeholder="Price €" step="0.01" required />
+            <label for="tag-sale-price">Tag discount</label>
+            <input type="number" name="tag-sale-price" id="tag-sale-price" placeholder="Discount €" step="0.01" />
+        </section>
+        <input id="form-submit" type="submit" value="Sell the Tag" />
+        <p id="tag-error">Tag insertion error</p>
+    </form>
+</main>

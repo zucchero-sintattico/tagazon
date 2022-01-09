@@ -115,13 +115,11 @@ export class Application {
             url: Application.baseUrl + "orders/",
             type: "GET",
             success: (response) => {
-                Application.orders = response.data;
-                Application.ordersReady = true;
-                /*
+
                 Application._buildOrders(response.data, 0, () => {
                     Application.ordersReady = true;
                 });
-                */
+
             },
             error: (data) => {
                 console.error(data);

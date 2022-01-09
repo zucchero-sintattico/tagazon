@@ -24,6 +24,47 @@ class TagsApi extends EntityApi {
     {
         return $this->canModify($element);
     }
+
+
+    public function onPost($params, $server=true){
+
+        $seller = $_SESSION["user"]["id"];
+
+        $tag = [
+            "name" => $params["name"],
+            "description" => $params["description"],
+            "example" => $params["example"],
+            "example_desc" => $params["example_desc"],
+            "seller" => $seller,
+            "price" => $params["price"]
+        ];
+
+        if ($params["sale_price"] != null) {
+            $tag["sale_price"] = $params["sale_price"];
+        }
+
+        $res = Tag::create($tag);
+
+        if ($res){
+            
+            $categories = $params["categories"];
+            foreach ($categories as $category){
+                $tag_category = [
+                    "tag" => $res["id"],
+                    "category" => $category
+                ];
+                $resCat = TagsCategoriesApi::post($tag_category, true);
+                if ($resCat->getCode() != 201){
+                    return Response::badRequest("Error while creating tag category");
+                }
+            }
+            return Response::created($tag);
+        } else {
+            return Response::badRequest("Cannot create tag");
+        }
+
+        
+    }
 }
 
 ?>

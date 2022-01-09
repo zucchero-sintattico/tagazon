@@ -39,5 +39,13 @@ export class InfoTagPage extends NavbarPage {
                 });
             }
         });
+
+    }
+
+    onUserLoad() {
+        $("#add-to-cart").click(() => {
+            const tagId = new URLSearchParams(document.location.search).get("tag_id");
+            Application.cart.addItem(tagId);
+        });
     }
 }

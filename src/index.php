@@ -73,6 +73,7 @@ class Pages {
         'payment' => ['payment', true, false],
         'order-completed' => ['order-completed', true, false],
         'order-list' => ['order-list', true, true],
+        'order-view' => ['order-view', true, true],
 
 
         /**
@@ -81,7 +82,6 @@ class Pages {
         'seller-home' => ['seller-home', false, false, true],
         'seller-profile' => ['seller-profile', false, false, true],
         'seller-add-product' => ['seller-add-product', false, false, true],
-        'seller-notifications' => ['seller-notifications', false, false, true],
     );
 
     const userNotLoggedDefaultPage = "splash";

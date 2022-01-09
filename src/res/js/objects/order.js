@@ -42,6 +42,7 @@ export class Order {
         this.timestamp = order.timestamp;
         this.status = order.status;
         this.items = [];
+        this.amount = order.amount;
         const _this = this;
         $.ajax({
             url: `/tagazon/src/api/objects/order_tags/?order=${this.id}`,
@@ -78,12 +79,8 @@ export class Order {
         return this.status;
     }
 
-    getTotalPrice() {
-        let total = 0;
-        this.items.forEach(element => {
-            total += element.getTotalPrice();
-        });
-        return total;
+    getAmount() {
+        return this.amount;
     }
 
 
