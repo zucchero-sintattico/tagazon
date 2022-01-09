@@ -125,7 +125,7 @@ function handleChangeCategory() {
     if ($(this).hasClass("selected")) {
         $(this).removeClass("selected");
         $("#category-name").text("Tutte le categorie");
-        requestGet("api/objects/tags", loadTags);
+        requestGet("api/objects/tags/", loadTags);
     } else {
         $("#categories-list > li > button").removeClass("selected");
         $(this).addClass("selected");
