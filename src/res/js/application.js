@@ -166,8 +166,12 @@ export class Application {
     }
 
     static addNotification(notification, onSuccess = () => {}) {
-        Application.notifications.push(notification);
-        Application.notifyNotificationChange();
+        // check if present
+        const present = Application.notifications.find((item) => item.id == notification.id);
+        if (!present) {
+            Application.notifications.push(notification);
+            Application.notifyNotificationChange();
+        }
     }
 
     static _whenReady(type, callback) {

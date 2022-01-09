@@ -34,26 +34,37 @@ def setStatus(order, status):
     requests.put(f'http://{website}/api/objects/orders/&python-bot', order)
 
 def buildMessageTitle(order, status):
-    return f'The status of order {order["id"]} has been changed to {status}'
+    if status == "PROCESSING":
+        return f"Order #{order['id']}: received"
+    elif status == "SHIPPED":
+        return f"Order #{order['id']}: shipped"
+    elif status == "DELIVERING":
+        return f"Order #{order['id']}: delivering"
+    elif status == "DELIVERED":
+        return f"Order #{order['id']}: delivered"
+    
 def buildMessageBody(order, status):
-    return f'The status of order {order["id"]} has been changed to {status}'
+    if status == "PROCESSING": 
+        return f"Dear customer, your order #{order['id']} has been received. \nWe are processing it. \nIt will be shipped soon."
+    elif status == "SHIPPED":
+        return f"Dear customer, your order #{order['id']} has been shipped. \nIt will arrive soon."
+    elif status == "DELIVERING":
+        return f"Dear customer, your order #{order['id']} is being delivered to the address: Via dell' Università 50, 47522, Cesena(FC), Italy."
+    elif status == "DELIVERED":
+        return f"Dear customer, your order #{order['id']} has been delivered to the address: Via dell' Università 50, 47522, Cesena(FC), Italy.\nThank you for choosing Tagazon."
 
 def checkOrderAndSetStatus(order, nextStatus):
-    timestamp = datetime.strptime(order["timestamp"], "%Y-%m-%d %H:%M:%S")
-    if ((datetime.now() - timestamp).total_seconds() >= 2):
-        url = f'http://{website}/api/objects/orders/?python-bot'
-        data = {
-            "id": order["id"],
-            "status": nextStatus,
-            "timestamp": datetime.now()
-        }
-        response = requests.put(url, data)
-        if response.status_code == 200:
-            sendNotification(order, nextStatus)
-            print(f'The status of order {order["id"]} has been changed to {nextStatus}')
-        else:
-            print(response.text)
-            print('Error')
+    url = f'http://{website}/api/objects/orders/?python-bot'
+    data = {
+        "id": order["id"],
+        "status": nextStatus,
+    }
+    response = requests.put(url, data)
+    if response.status_code == 200:
+        sendNotification(order, nextStatus)
+        print(f'The status of order {order["id"]} has been changed to {nextStatus}')
+    else:
+        print('Error')
             
 def checkOrdersAndSetStatus(orders, nextStatus):
     for order in orders:
@@ -61,8 +72,8 @@ def checkOrdersAndSetStatus(orders, nextStatus):
         
 
 def sendNotification(order, nextStatus):
-    title = f"Order #{order['id']}: {nextStatus.lower().capitalize()}";
-    body = f"Dear customer, your order #{order['id']} has been {nextStatus.lower()}. \nThank you for choosing Tagazon.";
+    title = buildMessageTitle(order, nextStatus)
+    body = buildMessageBody(order, nextStatus)
     data = {
         "order": order["id"],
         "title": title,
@@ -70,8 +81,7 @@ def sendNotification(order, nextStatus):
     }
     url = f'http://{website}/api/objects/notifications/?python-bot'
     response = requests.post(url, data)
-    print(response.text)
-    if response.status_code == 200:
+    if response.status_code == 201:
         print(f'Notification has been sent')
     else:
         print('Error')

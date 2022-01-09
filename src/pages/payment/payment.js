@@ -6,7 +6,7 @@ export class PaymentPage extends Page {
     onCartChange() {
 
         $("#submit").val(`Paga (${Application.cart.getTotalPrice().toFixed(2)}€)`);
-        $("#submit").click((e) => {
+        $("form").submit((e) => {
             e.preventDefault();
             $.ajax({
                 url: "/tagazon/src/api/objects/orders/",
