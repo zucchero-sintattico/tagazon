@@ -121,7 +121,7 @@ main>form>input[type=submit] {
 }
 
 nav {
-    z-index: 3 !important;
+    z-index: 5 !important;
 }
 
 main>form>p {
