@@ -36,9 +36,12 @@ class TagsApi extends EntityApi {
             "example" => $params["example"],
             "example_desc" => $params["example_desc"],
             "seller" => $seller,
-            "price" => $params["price"],
-            "sale_price" => $params["sale_price"]
+            "price" => $params["price"]
         ];
+
+        if ($params["sale_price"] != null) {
+            $tag["sale_price"] = $params["sale_price"];
+        }
 
         $res = Tag::create($tag);
 

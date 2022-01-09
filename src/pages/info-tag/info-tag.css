@@ -64,6 +64,7 @@ body>main>section:nth-child(2)>p {
 
 body>main>section:nth-child(2)>footer {
     width: 90%;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -73,6 +74,18 @@ body>main>section:nth-child(2)>footer {
 body>main>section:nth-child(2)>footer>p {
     font-size: 1.5em;
     color: var(--secondary-color);
+    margin-right: .75em;
+}
+
+body>main>section:nth-child(2)>footer>button {
+    width: 4em;
+    height: 4em;
+    border-radius: 100%;
+    -webkit-mask: url(../../res/img/icons/plus-circle.svg) center / contain no-repeat;
+    mask: url(../../res/img/icons/plus-circle.svg) center / contain no-repeat;
+    background: var(--text-color);
+    color: transparent;
+    cursor: pointer;
 }
 
 body>main>section:nth-child(2)>div>h4 {

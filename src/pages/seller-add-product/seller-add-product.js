@@ -4,6 +4,7 @@ import { NavbarSellerPage } from '../navbar-seller/navbar-seller.js';
 export class SellerAddProductPage extends NavbarSellerPage {
 
     onPageLoad() {
+
         super.onPageLoad();
         const code = $("#tag-example")[0];
         const editor = CodeMirror.fromTextArea(code, {
@@ -14,9 +15,6 @@ export class SellerAddProductPage extends NavbarSellerPage {
         });
 
 
-
-
-
         if ($("textarea").length > 2) {
             const idCodeMirror = "tag-codemirror";
             $("textarea")[2].id = idCodeMirror;
@@ -24,7 +22,7 @@ export class SellerAddProductPage extends NavbarSellerPage {
         }
 
 
-        $("#form-submit").on("click", (e) => {
+        $("form").on("submit", (e) => {
             e.preventDefault();
 
             const categories = $("input[name='category']:checked").map((i, e) => e.id).get();
@@ -35,7 +33,7 @@ export class SellerAddProductPage extends NavbarSellerPage {
                 example_desc: $("#tag-example-desc").val(),
                 example: editor.getValue(),
                 price: $("#tag-price").val(),
-                sale_price: $("#tag-sale-price").val(),
+                sale_price: $("#tag-sale-price").val() != 0 ? $("#tag-sale-price").val() : null,
                 categories: categories
             }
 
@@ -44,7 +42,7 @@ export class SellerAddProductPage extends NavbarSellerPage {
                 method: "POST",
                 data: data,
                 success: (response) => {
-                    window.location.href = "/tagazon/src/?page=home";
+                    window.location.href = "/tagazon/src/?page=seller-home";
                 },
                 error: (err) => { $("main>p").show(200); }
             });
@@ -54,7 +52,7 @@ export class SellerAddProductPage extends NavbarSellerPage {
     }
 
     createCategory(category) {
-        return `<li><input type="checkbox" name="category" id="${category.id}" value="${category.name}" /><label for="${category.id}">${category.name}</label></li>`;
+        return `<li><input type="checkbox" name="category" id="${category.id}" value="${category.name}" ${category.id == 1 ? "checked": ""} /><label for="${category.id}">${category.name}</label></li>`;
     }
 
     onUserLoad() {

@@ -16,9 +16,9 @@
             <label for="tag-example">Tag code example</label>
             <textarea name="tag-example" id="tag-example" cols="30" rows="10" maxlength="512" placeholder="Code example"></textarea>
             <label for="tag-price">Tag price</label>
-            <input type="number" name="tag-price" id="tag-price" placeholder="Price €" required />
+            <input type="number" name="tag-price" id="tag-price" placeholder="Price €" step="0.01" required />
             <label for="tag-sale-price">Tag discount</label>
-            <input type="number" name="tag-sale-price" id="tag-sale-price" placeholder="Discount €" />
+            <input type="number" name="tag-sale-price" id="tag-sale-price" placeholder="Discount €" step="0.01" />
         </section>
         <input id="form-submit" type="submit" value="Sell the Tag" />
         <p id="tag-error">Tag insertion error</p>
