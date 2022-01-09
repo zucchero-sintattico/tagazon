@@ -5,7 +5,6 @@ export class SellerProfilePage extends NavbarSellerPage {
 
     onUserLoad() {
 
-        console.log(Application.user);
         $("h1").text(`Profile - ${Application.user.getRagSoc()}`);
         $("#balance").text(`Your balance: `);
 
