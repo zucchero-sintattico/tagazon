@@ -8,9 +8,9 @@
     <!-- Libraries -->
     <script src="./res/lib/jquery-3.6.0.min.js"></script>
     <script src="./res/lib/mqtt.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/googlecode.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/googlecode.min.css"/>
     <!-- Style for code -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 
     <!-- Style for code insert -->
     <script src="./res/lib/codemirror/lib/codemirror.js" defer></script>
