@@ -192,7 +192,7 @@ export class Application {
         } else {
             setTimeout(() => {
                 Application._whenReady(type, callback);
-            }, 30);
+            }, 100);
         }
 
     }

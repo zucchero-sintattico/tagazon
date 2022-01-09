@@ -53,7 +53,6 @@ export class OrderListPage extends NavbarPage {
     onOrdersReady() {
         super.onUserLoad();
 
-        console.log(Application.orders);
         Application.orders.forEach((order) => {
             const article = this.createArticle(order);
             $("#orders").prepend(article);
