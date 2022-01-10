@@ -59,7 +59,7 @@ export class SellerAddProductPage extends NavbarSellerPage {
         super.onUserLoad();
 
         $.ajax({
-            url: "./api/objects/categories",
+            url: "./api/objects/categories/",
             method: "GET",
             success: (response) => {
                 const { data } = response;
