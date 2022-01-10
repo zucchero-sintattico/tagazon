@@ -50,7 +50,8 @@ export class Order {
             success: (response) => {
                 const items = response.data;
                 _this._buildItems(items, 0, onReady);
-            }
+            },
+            error: (err) => { onReady() }
         });
     }
 
