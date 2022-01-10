@@ -50,7 +50,7 @@ function createArticle(item) {
     if (item.tag.isInSale()) {
         price.innerHTML = `<del>${item.tag.getPriceWithoutSale()}€</del> ${item.tag.getPrice()}€`;
     }
-    quantity.innerText = `Quantità: ${item.getQuantity()}`;
+    quantity.innerText = `Quantity: ${item.getQuantity()}`;
 
     footer.appendChild(price);
     footer.appendChild(quantity);
